@@ -41,7 +41,6 @@ export default function Layout({ children }: LayoutProps) {
   const navItems = [
     { name: "The Science", path: "/science" },
     { name: "Our Formulas", path: "/products" },
-    { name: "Patricia's Lab", path: "/founder" },
     { name: "Daily Rituals", path: "/rituals" },
     { name: "Contact", path: "/contact" },
   ];
@@ -205,11 +204,6 @@ export default function Layout({ children }: LayoutProps) {
                 <li>
                   <Link href="/science" className="hover:text-accent transition-colors">
                     The Thalamus Bypass
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/founder" className="hover:text-accent transition-colors">
-                    Patricia's Lab
                   </Link>
                 </li>
                 <li>

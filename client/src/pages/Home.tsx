@@ -42,11 +42,6 @@ export default function Home() {
                   Explore Formulas <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <Link href="/founder" className="w-full sm:w-auto">
-                <Button variant="outline" className="w-full sm:w-auto font-mono text-xs uppercase tracking-widest border-primary text-primary hover:bg-primary/5 py-6 px-8 btn-tactile">
-                  Meet the Founder
-                </Button>
-              </Link>
             </div>
           </div>
           
@@ -343,56 +338,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Founder Story Preview */}
-      <section className="py-24 bg-background">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Copywriting Column */}
-            <div className="lg:col-span-7 space-y-6 order-2 lg:order-1">
-              <div className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">
-                [The Founder]
-              </div>
-              <h2 className="text-3xl md:text-4xl text-primary font-serif font-semibold">
-                From Personal Grief to Neurological Synthesis
-              </h2>
-              <p className="text-sm text-foreground/80 leading-relaxed">
-                Sana Essência was born out of profound necessity. When Patricia, an aromachology researcher, faced sudden grief, solo parenting, and the physical transitions of perimenopause, she found traditional therapeutic pathways incomplete. 
-              </p>
-              <p className="text-sm text-foreground/80 leading-relaxed">
-                She turned her laboratory focus to neuroaromacology, studying how botanical actives could directly regulate the hypothalamic-pituitary-adrenal (HPA) axis. Her personal journey of resilience became the scientific foundation for our entire circadian scent-cycle protocol.
-              </p>
-              <div className="pt-4">
-                <Link href="/founder">
-                  <Button className="font-mono text-xs uppercase tracking-widest bg-primary text-primary-foreground hover:bg-secondary py-6 px-8 btn-tactile">
-                    Read Patricia's Story <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
 
-            {/* Photo Column */}
-            <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center">
-              <div className="border border-border p-4 bg-card max-w-sm relative">
-                <div className="aspect-square overflow-hidden border border-border/40 relative">
-                  <img 
-                    src={compressedPatricia} 
-                    alt="Patricia, founder of Sana Essência" 
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-3 right-3 bg-primary text-primary-foreground px-3 py-1 font-mono text-[8px] uppercase tracking-wider">
-                    Patricia • Chief Researcher
-                  </div>
-                </div>
-                <div className="mt-4 font-mono text-[10px] text-muted-foreground text-center italic">
-                  "Nature contains the molecular keys; science simply maps the locks."
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       {/* 6. Testimonials Section */}
       <section className="py-24 bg-card border-t border-border grid-notebook">
