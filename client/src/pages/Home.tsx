@@ -26,7 +26,7 @@ export default function Home() {
               <span>Passive Olfactory Healing</span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl text-primary font-serif leading-[1.1] font-semibold">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] font-light" style={{fontFamily: "Cormorant Garamond, serif", fontWeight: 300, letterSpacing: "-0.02em"}}>
               Breathe. Improve. Heal.
             </h1>
             

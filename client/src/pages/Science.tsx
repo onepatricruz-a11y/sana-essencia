@@ -182,7 +182,9 @@ export default function Science() {
                     <span className="font-mono text-[10px] text-muted-foreground">[COMPOUND-01]</span>
                     <h3 className="font-serif text-xl font-bold text-primary">Linalool</h3>
                   </div>
-                  <LinaloolIcon size={50} className="text-accent" />
+                </div>
+                <div className="flex justify-center py-4">
+                  <img src="https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.php?cid=6549&t=l" alt="Linalool chemical structure" className="h-32 w-auto" />
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   A terpene alcohol found abundantly in lavender. It acts as an antagonist at NMDA receptors and modulates GABAergic transmission, producing a systemic sedative effect similar to low-dose clinical anxiolytics.
@@ -203,7 +205,9 @@ export default function Science() {
                     <span className="font-mono text-[10px] text-muted-foreground">[COMPOUND-02]</span>
                     <h3 className="font-serif text-xl font-bold text-primary">1,8-Cineole</h3>
                   </div>
-                  <CineoleIcon size={50} className="text-accent" />
+                </div>
+                <div className="flex justify-center py-4">
+                  <img src="https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.php?cid=2758&t=l" alt="1,8-Cineole chemical structure" className="h-32 w-auto" />
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   A monoterpene ether abundant in rosemary and eucalyptus. It inhibits acetylcholinesterase (AChE), the enzyme that breaks down the neurotransmitter acetylcholine, thereby improving cognitive focus, speed, and accuracy.
@@ -224,7 +228,9 @@ export default function Science() {
                     <span className="font-mono text-[10px] text-muted-foreground">[COMPOUND-03]</span>
                     <h3 className="font-serif text-xl font-bold text-primary">Menthol</h3>
                   </div>
-                  <MentholIcon size={50} className="text-accent" />
+                </div>
+                <div className="flex justify-center py-4">
+                  <img src="https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.php?cid=4168&t=l" alt="Menthol chemical structure" className="h-32 w-auto" />
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   A covalent organic compound found in mint. It selectively activates TRPM8 cold receptors in sensory nerves, triggering cortical arousal, physical refreshment, and down-regulating acute cortisol surges.

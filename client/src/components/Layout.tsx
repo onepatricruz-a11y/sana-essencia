@@ -63,10 +63,10 @@ export default function Layout({ children }: LayoutProps) {
         <div className="container flex items-center justify-between">
           {/* Logo wordmark */}
           <Link href="/" className="group flex flex-col items-start">
-            <span className="font-serif text-xl md:text-2xl tracking-[0.15em] text-primary uppercase font-semibold transition-colors duration-300 group-hover:text-secondary">
+            <span className="text-2xl md:text-3xl tracking-[0.08em] text-primary font-light transition-colors duration-300 group-hover:text-secondary" style={{fontFamily: "Cormorant Garamond, serif", letterSpacing: "0.08em"}}>
               sana essencia
             </span>
-            <span className="font-mono text-[8px] tracking-[0.3em] uppercase text-muted-foreground mt-0.5">
+            <span className="text-[7px] tracking-[0.35em] uppercase text-muted-foreground mt-1" style={{fontFamily: "IBM Plex Mono, monospace"}}>
               Neuroaromacology Lab
             </span>
           </Link>
