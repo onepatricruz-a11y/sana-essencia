@@ -1,352 +1,254 @@
-import { LinaloolIcon, CineoleIcon, MentholIcon } from "@/components/MoleculeIcons";
-import { ArrowRight, Brain, Zap, Moon, Activity, EyeOff, ShieldAlert, Award } from "lucide-react";
+import { Brain, Zap, Moon, Activity } from "lucide-react";
 
 export default function Science() {
   return (
     <div className="flex flex-col min-h-screen">
       
       {/* Page Header */}
-      <section className="bg-card text-card-foreground border-b border-border py-16 grid-notebook">
-        <div className="container max-w-4xl text-center space-y-4">
-          <div className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">
-            [Neuroaromacology]
-          </div>
-          <h1 className="text-3xl md:text-5xl font-serif text-primary font-bold">
-            The Science of Passive Olfactory Healing
+      <section className="py-16 bg-background border-b border-border">
+        <div className="container space-y-4">
+          <h1 
+            className="text-5xl font-light text-primary"
+            style={{fontFamily: "Cormorant Garamond, serif"}}
+          >
+            The Science
           </h1>
-          <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            How botanical volatile compounds directly regulate your nervous system and optimize your circadian rhythm through the most ancient sensory pathway in the brain.
+          <p className="text-sm text-muted-foreground max-w-2xl">
+            How botanical volatile compounds support your body's natural circadian rhythms and optimize cognitive and emotional performance through passive olfactory pathways.
           </p>
         </div>
       </section>
 
-      {/* 1. The Olfactory Bypass & Thalamus */}
-      <section className="py-24 bg-background">
+      {/* 1. The Olfactory Pathway */}
+      <section className="py-24 bg-card border-b border-border">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <div className="lg:col-span-7 space-y-6">
-              <div className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">
-                [Pathway Mechanism 01]
-              </div>
-              <h2 className="text-2xl md:text-3xl font-serif text-primary font-semibold">
-                The Thalamus Bypass: Direct Synaptic Entry
+          <div className="max-w-3xl mx-auto space-y-8">
+            <div className="space-y-4">
+              <h2 
+                className="text-4xl font-light text-primary"
+                style={{fontFamily: "Cormorant Garamond, serif"}}
+              >
+                Direct Olfactory Pathway
               </h2>
-              <p className="text-sm text-foreground/80 leading-relaxed">
-                In standard sensory processing (vision, hearing, somatosensory), peripheral signals are routed to the <strong>thalamus</strong>—the brain's central sorting station and cognitive gatekeeper. The thalamus evaluates, filters, and down-regulates signals before they reach the cerebral cortex for conscious awareness.
-              </p>
-              
-              <div className="bg-card border border-border p-5 space-y-3">
-                <div className="flex items-center space-x-3 text-secondary">
-                  <EyeOff className="h-5 w-5" />
-                  <span className="font-mono text-xs uppercase tracking-wider font-bold">The Exception: Olfaction</span>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Olfactory receptors in the nasal epithelium project axons directly into the <strong>olfactory bulb</strong>. From there, signals travel via the lateral olfactory tract directly to the <strong>primary olfactory cortex</strong> and the <strong>limbic system</strong>, completely bypassing the thalamus filter.
-                </p>
-              </div>
-
-              <p className="text-sm text-foreground/80 leading-relaxed">
-                This direct pathway is an evolutionary survival mechanism, enabling instantaneous physiological responses to environmental chemicals. Sana Essencia leverages this direct connection to introduce therapeutic molecular actives straight to emotional and autonomic control centers without cognitive lag.
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Unlike other senses (vision, hearing, touch), which are processed through the thalamus before reaching the limbic system, olfactory signals travel directly from the nasal epithelium to the olfactory bulb and into the limbic system—the brain's emotional and autonomic control center. This direct pathway enables rapid, non-cognitive responses to environmental scents.
               </p>
             </div>
 
-            <div className="lg:col-span-5 flex justify-center">
-              {/* Technical diagram box */}
-              <div className="border border-border p-6 bg-card w-full max-w-md font-mono text-[11px] space-y-6">
-                <div className="border-b border-border pb-2 text-primary font-bold uppercase tracking-wider">
-                  Fig 2.1 — COMPARATIVE SENSORY ROUTING
-                </div>
-                
-                {/* Standard Route */}
-                <div className="space-y-2">
-                  <div className="text-muted-foreground font-semibold uppercase text-[9px]">[STANDARD SENSES: SIGHT / SOUND]</div>
-                  <div className="flex items-center space-x-2 text-muted-foreground">
-                    <span className="bg-muted px-2 py-0.5 border border-border">Sensory Receptor</span>
-                    <span>→</span>
-                    <span className="bg-muted px-2 py-0.5 border border-border font-bold text-primary">Thalamus (Gating)</span>
-                    <span>→</span>
-                    <span className="bg-muted px-2 py-0.5 border border-border">Cortex</span>
+            <div className="border border-border bg-background p-8 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3">Standard Sensory Route</p>
+                  <div className="space-y-2 text-sm">
+                    <p><span className="text-accent font-semibold">Sensory Receptor</span> → Thalamus (filtering) → Cortex (conscious awareness)</p>
+                    <p className="text-xs text-muted-foreground">Processing time: 150-300ms</p>
                   </div>
                 </div>
-
-                {/* Olfactory Route */}
-                <div className="space-y-2 border-t border-border/40 pt-4">
-                  <div className="text-secondary font-semibold uppercase text-[9px]">[OLFACTORY ROUTE: SANA ESSENCIA]</div>
-                  <div className="flex items-center space-x-2 text-primary">
-                    <span className="bg-primary/5 border border-primary px-2 py-0.5 font-bold">Nasal Epithelium</span>
-                    <span>→</span>
-                    <span className="bg-secondary/10 border border-secondary px-2 py-0.5 font-bold text-secondary">Limbic System</span>
-                    <span>→</span>
-                    <span className="bg-primary/5 border border-primary px-2 py-0.5">Autonomic Response</span>
-                  </div>
-                </div>
-
-                <div className="bg-accent/10 border border-accent/20 p-3 text-[10px] leading-relaxed text-accent-foreground uppercase">
-                  <strong>CRITICAL FINDING:</strong> Olfactory stimulation registers in the limbic cortex within 150-200 milliseconds, faster than any conscious cognitive appraisal.
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Amygdala & Hippocampus Activation */}
-      <section className="py-24 bg-card text-card-foreground border-y border-border grid-notebook">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <div className="lg:col-span-5 flex justify-center order-2 lg:order-1">
-              <div className="border border-border p-6 bg-background w-full max-w-md space-y-6">
-                <div className="font-mono text-[9px] text-muted-foreground uppercase border-b border-border pb-2">
-                  NEURAL MAPPING [LIMBIC CENTER]
-                </div>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="bg-primary/5 border border-primary p-2 mt-1">
-                      <Brain className="h-4 w-4 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-serif text-sm font-bold text-primary">Amygdala Modulation</h4>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Governs the flight-or-fight sympathetic response. Inhalation of linalool down-regulates amygdalar hyperactivity, mitigating acute stress.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-3 border-t border-border/60 pt-4">
-                    <div className="bg-primary/5 border border-primary p-2 mt-1">
-                      <Activity className="h-4 w-4 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-serif text-sm font-bold text-primary">Hippocampal Memory-Trace</h4>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Mediates memory formation and emotional associations. Scent triggers powerful memory anchoring, reinforcing long-term behavioral habits.
-                      </p>
-                    </div>
+                <div className="space-y-3">
+                  <p className="text-xs font-mono uppercase tracking-wider text-accent mb-3">Olfactory Route (Sana Essencia)</p>
+                  <div className="space-y-2 text-sm">
+                    <p><span className="text-accent font-semibold">Nasal Epithelium</span> → Olfactory Bulb → Limbic System (direct)</p>
+                    <p className="text-xs text-muted-foreground">Processing time: 50-100ms</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="lg:col-span-7 space-y-6 order-1 lg:order-2">
-              <div className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">
-                [Pathway Mechanism 02]
-              </div>
-              <h2 className="text-2xl md:text-3xl font-serif text-primary font-semibold">
-                Direct Limbic Engagement: Amygdala & Hippocampus
-              </h2>
-              <p className="text-sm text-foreground/80 leading-relaxed">
-                Once the olfactory tract bypasses the thalamus, it synapses directly onto the structures of the <strong>limbic system</strong>. The two primary targets of our aromacology formulations are:
-              </p>
-              <ul className="space-y-3 text-sm text-foreground/80">
-                <li className="flex items-start">
-                  <span className="font-mono text-xs text-accent mr-2 mt-1">01.</span>
-                  <span><strong>The Amygdala:</strong> The emotional epicenter of the brain, responsible for processing fear, anxiety, and autonomic arousal. By modulating amygdala firing rates, our calming formulations reduce acute sympathetic output (lowering heart rate and blood pressure).</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="font-mono text-xs text-accent mr-2 mt-1">02.</span>
-                  <span><strong>The Hippocampus:</strong> The seat of memory consolidation. Because of the direct link between the olfactory bulb and the hippocampus, scents are uniquely capable of evoking vivid memories and establishing robust, positive emotional associations. This allows our rituals to create lasting neurological "habits of calm."</span>
-                </li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Biochemical Actives (The Molecules) */}
-      <section className="py-24 bg-background">
-        <div className="container">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-            <div className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">
-              [Molecular Taxonomy]
-            </div>
-            <h2 className="text-3xl font-serif text-primary font-bold">
-              Botanical Actives & Chemical Profiles
-            </h2>
-            <p className="text-xs md:text-sm text-muted-foreground">
-              Sana Essencia does not use generic "fragrances." We isolate specific volatile organic compounds with proven neurochemical mechanisms of action.
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              This direct pathway is an evolutionary adaptation that allows rapid responses to environmental chemicals. Sana Essencia formulations leverage this direct connection to support your body's natural neurotransmitter systems without cognitive lag.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Linalool */}
-            <div className="border border-border p-6 bg-card flex flex-col justify-between space-y-6">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center border-b border-border/60 pb-4">
-                  <div>
-                    <span className="font-mono text-[10px] text-muted-foreground">[COMPOUND-01]</span>
-                    <h3 className="font-serif text-xl font-bold text-primary">Linalool</h3>
-                  </div>
-                </div>
-                <div className="flex justify-center py-4">
-                  <img src="https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.php?cid=6549&t=l" alt="Linalool chemical structure" className="h-32 w-auto" />
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  A terpene alcohol found abundantly in lavender. It acts as an antagonist at NMDA receptors and modulates GABAergic transmission, producing a systemic sedative effect similar to low-dose clinical anxiolytics.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-border/60 font-mono text-[10px] text-muted-foreground space-y-1">
-                <div>FORMULA: C₁₀H₁₈O</div>
-                <div>MECHANISM: GABA-A Modulation</div>
-                <div>SOURCE: Lavandula angustifolia</div>
-              </div>
-            </div>
-
-            {/* 1,8-Cineole */}
-            <div className="border border-border p-6 bg-card flex flex-col justify-between space-y-6">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center border-b border-border/60 pb-4">
-                  <div>
-                    <span className="font-mono text-[10px] text-muted-foreground">[COMPOUND-02]</span>
-                    <h3 className="font-serif text-xl font-bold text-primary">1,8-Cineole</h3>
-                  </div>
-                </div>
-                <div className="flex justify-center py-4">
-                  <img src="https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.php?cid=2758&t=l" alt="1,8-Cineole chemical structure" className="h-32 w-auto" />
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  A monoterpene ether abundant in rosemary and eucalyptus. It inhibits acetylcholinesterase (AChE), the enzyme that breaks down the neurotransmitter acetylcholine, thereby improving cognitive focus, speed, and accuracy.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-border/60 font-mono text-[10px] text-muted-foreground space-y-1">
-                <div>FORMULA: C₁₀H₁₈O</div>
-                <div>MECHANISM: AChE Inhibition</div>
-                <div>SOURCE: Rosmarinus officinalis</div>
-              </div>
-            </div>
-
-            {/* Menthol */}
-            <div className="border border-border p-6 bg-card flex flex-col justify-between space-y-6">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center border-b border-border/60 pb-4">
-                  <div>
-                    <span className="font-mono text-[10px] text-muted-foreground">[COMPOUND-03]</span>
-                    <h3 className="font-serif text-xl font-bold text-primary">Menthol</h3>
-                  </div>
-                </div>
-                <div className="flex justify-center py-4">
-                  <img src="https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.php?cid=4168&t=l" alt="Menthol chemical structure" className="h-32 w-auto" />
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  A covalent organic compound found in mint. It selectively activates TRPM8 cold receptors in sensory nerves, triggering cortical arousal, physical refreshment, and down-regulating acute cortisol surges.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-border/60 font-mono text-[10px] text-muted-foreground space-y-1">
-                <div>FORMULA: C₁₀H₂₀O</div>
-                <div>MECHANISM: TRPM8 Activation</div>
-                <div>SOURCE: Mentha piperita</div>
-              </div>
-            </div>
-
-          </div>
         </div>
       </section>
 
-      {/* 4. Circadian-Aligned Scent Cycles */}
-      <section className="py-24 bg-card text-card-foreground border-t border-border grid-notebook">
+      {/* 2. Limbic System & Autonomic Regulation */}
+      <section className="py-24 bg-background border-b border-border">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <div className="lg:col-span-7 space-y-6">
-              <div className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">
-                [Chronobiology Integration]
-              </div>
-              <h2 className="text-2xl md:text-3xl font-serif text-primary font-semibold">
-                Circadian-Aligned Scent Cycles
+          <div className="max-w-3xl mx-auto space-y-8">
+            <div className="space-y-4">
+              <h2 
+                className="text-4xl font-light text-primary"
+                style={{fontFamily: "Cormorant Garamond, serif"}}
+              >
+                Limbic System & Autonomic Regulation
               </h2>
-              <p className="text-sm text-foreground/80 leading-relaxed">
-                Human neurobiology is fundamentally cyclic. Cortisol spikes in the morning to wake us, cognitive endurance peaks in the afternoon, and melatonin rises in the evening to prepare us for sleep. Sana Essencia formulations are engineered to align with and support each phase of your natural 24-hour circadian rhythm.
-              </p>
-              <p className="text-sm text-foreground/80 leading-relaxed">
-                This is not arbitrary. Each formulation is timed, each molecule is selected, and each delivery method is optimized to work passively with your body's natural chronobiology.
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                The limbic system controls emotional processing, memory formation, and autonomic nervous system regulation. Olfactory signals reaching this region can influence:
               </p>
             </div>
 
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="border border-border p-6 bg-background w-full max-w-md space-y-4 font-mono text-[10px]">
-                <div className="border-b border-border pb-3 text-primary font-bold uppercase">
-                  24-HOUR CIRCADIAN CYCLE
-                </div>
-                
-                <div className="space-y-3">
-                  <div className="bg-primary/5 border border-primary/20 p-3 space-y-1">
-                    <div className="text-primary font-bold uppercase text-[9px]">06:00 — 10:00 [MORNING]</div>
-                    <div className="text-muted-foreground">Cortisol Awakening Rise</div>
-                    <div className="text-secondary font-semibold">→ Menthol / Citrus Actives</div>
-                  </div>
-
-                  <div className="bg-secondary/5 border border-secondary/20 p-3 space-y-1">
-                    <div className="text-secondary font-bold uppercase text-[9px]">13:00 — 17:00 [AFTERNOON]</div>
-                    <div className="text-muted-foreground">Cognitive Plateau</div>
-                    <div className="text-secondary font-semibold">→ 1,8-Cineole Focus</div>
-                  </div>
-
-                  <div className="bg-accent/5 border border-accent/20 p-3 space-y-1">
-                    <div className="text-accent font-bold uppercase text-[9px]">20:00 — 23:00 [EVENING]</div>
-                    <div className="text-muted-foreground">Melatonin Transition</div>
-                    <div className="text-accent font-semibold">→ Linalool Sleep Reset</div>
-                  </div>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="clinical-card">
+                <Brain className="h-6 w-6 text-accent mb-3" />
+                <h3 className="font-serif text-lg text-primary mb-2">Emotional State</h3>
+                <p className="text-xs text-muted-foreground">Scent directly influences mood, stress perception, and emotional resilience through amygdala activation.</p>
+              </div>
+              <div className="clinical-card">
+                <Activity className="h-6 w-6 text-accent mb-3" />
+                <h3 className="font-serif text-lg text-primary mb-2">Autonomic Balance</h3>
+                <p className="text-xs text-muted-foreground">Olfactory input modulates parasympathetic (rest) and sympathetic (alert) nervous system tone.</p>
+              </div>
+              <div className="clinical-card">
+                <Moon className="h-6 w-6 text-accent mb-3" />
+                <h3 className="font-serif text-lg text-primary mb-2">Circadian Rhythm</h3>
+                <p className="text-xs text-muted-foreground">Specific compounds support natural cortisol and melatonin cycles aligned with your daily schedule.</p>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* 5. Why Passive Healing Works */}
-      <section className="py-24 bg-background border-t border-border">
-        <div className="container max-w-4xl">
-          <div className="text-center mb-16 space-y-4">
-            <div className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">
-              [Clinical Advantage]
+      {/* 3. Botanical Compounds & Mechanisms */}
+      <section className="py-24 bg-card border-b border-border">
+        <div className="container">
+          <div className="max-w-3xl mx-auto space-y-8">
+            <div className="space-y-4">
+              <h2 
+                className="text-4xl font-light text-primary"
+                style={{fontFamily: "Cormorant Garamond, serif"}}
+              >
+                Botanical Compounds
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Sana Essencia formulations contain specific volatile organic compounds (VOCs) from botanical sources, each with documented interactions with neurotransmitter systems:
+              </p>
             </div>
-            <h2 className="text-3xl font-serif text-primary font-bold">
-              Why Passive Olfactory Healing Works
-            </h2>
+
+            <div className="space-y-6">
+              {[
+                {
+                  name: "1,8-Cineole",
+                  source: "Rosemary, Eucalyptus",
+                  mechanism: "Acetylcholinesterase inhibition",
+                  effect: "Supports sustained cognitive focus and memory clarity",
+                  time: "Morning / Afternoon"
+                },
+                {
+                  name: "Limonene",
+                  source: "Lemon, Orange, Grapefruit",
+                  mechanism: "Serotonin and dopamine modulation",
+                  effect: "Promotes mood elevation and mental clarity",
+                  time: "Morning / Afternoon"
+                },
+                {
+                  name: "Linalool",
+                  source: "Lavender, Mint",
+                  mechanism: "GABA-A receptor modulation",
+                  effect: "Supports relaxation and parasympathetic activation",
+                  time: "Evening"
+                },
+                {
+                  name: "Menthol",
+                  source: "Peppermint",
+                  mechanism: "TRPM8 cold receptor activation",
+                  effect: "Promotes alertness and sensory clarity",
+                  time: "Morning"
+                },
+              ].map((compound, idx) => (
+                <div key={idx} className="border border-border p-6 bg-background space-y-3">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="font-serif text-lg text-primary font-semibold">{compound.name}</h3>
+                      <p className="text-xs font-mono text-muted-foreground mt-1">Source: {compound.source}</p>
+                    </div>
+                    <span className="text-xs font-mono uppercase tracking-wider text-accent bg-accent/10 px-3 py-1 rounded">{compound.time}</span>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-xs text-muted-foreground"><span className="font-semibold">Mechanism:</span> {compound.mechanism}</p>
+                    <p className="text-xs text-muted-foreground"><span className="font-semibold">Effect:</span> {compound.effect}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-xs text-muted-foreground italic border-l-2 border-accent pl-4">
+              Note: These descriptions are based on published research in olfactory neuroscience and phytochemistry. Sana Essencia formulations are designed to support optimal performance and well-being, not to treat, cure, or prevent any medical condition.
+            </p>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="border border-border p-6 bg-card space-y-3">
-              <Brain className="h-6 w-6 text-accent" />
-              <h3 className="font-serif font-bold text-primary">No Cognitive Effort Required</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Unlike meditation or cognitive behavioral therapy, passive olfactory healing requires zero conscious engagement. You simply breathe. The botanical compounds do the neurological work for you.
+      {/* 4. Circadian Rhythm Alignment */}
+      <section className="py-24 bg-background border-b border-border">
+        <div className="container">
+          <div className="max-w-3xl mx-auto space-y-8">
+            <div className="space-y-4">
+              <h2 
+                className="text-4xl font-light text-primary"
+                style={{fontFamily: "Cormorant Garamond, serif"}}
+              >
+                Circadian Rhythm Alignment
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Your body operates on a 24-hour circadian cycle governed by cortisol, melatonin, and other hormones. Sana Essencia collections are formulated to support these natural rhythms:
               </p>
             </div>
 
-            <div className="border border-border p-6 bg-card space-y-3">
-              <Zap className="h-6 w-6 text-accent" />
-              <h3 className="font-serif font-bold text-primary">Immediate Limbic Activation</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Olfactory signals reach the limbic system within 150–200 milliseconds. This is faster than conscious cognitive appraisal. Your nervous system responds before your thinking brain even registers the scent.
-              </p>
-            </div>
+            <div className="space-y-4">
+              <div className="border border-border p-6 bg-card space-y-3">
+                <div className="flex items-center gap-3">
+                  <Zap className="h-5 w-5 text-accent" />
+                  <h3 className="font-serif text-lg text-primary font-semibold">Morning (6-9 AM)</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">Cortisol naturally peaks, promoting alertness. Morning Cortisol collection supports this natural awakening response with cineole and limonene.</p>
+              </div>
 
-            <div className="border border-border p-6 bg-card space-y-3">
-              <Moon className="h-6 w-6 text-accent" />
-              <h3 className="font-serif font-bold text-primary">Circadian Alignment</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Each formulation is timed to support your natural 24-hour rhythm. Morning formulations support cortisol awakening. Evening formulations support melatonin synthesis and sleep quality.
-              </p>
-            </div>
+              <div className="border border-border p-6 bg-card space-y-3">
+                <div className="flex items-center gap-3">
+                  <Activity className="h-5 w-5 text-accent" />
+                  <h3 className="font-serif text-lg text-primary font-semibold">Afternoon (2-4 PM)</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">Cortisol dips, causing the "afternoon slump." Afternoon Focus collection sustains cognitive performance with rosemary and eucalyptus.</p>
+              </div>
 
-            <div className="border border-border p-6 bg-card space-y-3">
-              <Award className="h-6 w-6 text-accent" />
-              <h3 className="font-serif font-bold text-primary">Zero Side Effects</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                100% natural botanical actives. No synthetic carriers, no phthalates, no pharmaceutical interventions. Pure, clean, passive healing through nature's own neurochemistry.
-              </p>
+              <div className="border border-border p-6 bg-card space-y-3">
+                <div className="flex items-center gap-3">
+                  <Moon className="h-5 w-5 text-accent" />
+                  <h3 className="font-serif text-lg text-primary font-semibold">Evening (8-11 PM)</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">Melatonin rises, preparing the body for sleep. Evening Reset collection supports relaxation with lavender and chamomile.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* 5. Research Foundation */}
+      <section className="py-24 bg-card border-b border-border">
+        <div className="container">
+          <div className="max-w-3xl mx-auto space-y-8">
+            <div className="space-y-4">
+              <h2 
+                className="text-4xl font-light text-primary"
+                style={{fontFamily: "Cormorant Garamond, serif"}}
+              >
+                Research Foundation
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Sana Essencia formulations are grounded in peer-reviewed research across olfactory neuroscience, phytochemistry, and circadian biology. Key research areas include:
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              {[
+                "Olfactory bulb direct projections to limbic structures (Shipley & Ennis, 1996)",
+                "Volatile organic compound interactions with neurotransmitter systems (Moss et al., 2003)",
+                "Circadian rhythm modulation through sensory pathways (Mistlberger & Skene, 2005)",
+                "Botanical compound bioavailability and neurochemical effects (Perry et al., 2003)",
+              ].map((item, idx) => (
+                <div key={idx} className="flex gap-3 text-sm text-muted-foreground">
+                  <span className="text-accent font-semibold">•</span>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-xs text-muted-foreground italic border-l-2 border-accent pl-4">
+              Sana Essencia is a research-backed atmospheric optimization brand. We do not make medical claims. If you have specific health concerns, consult a healthcare professional.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

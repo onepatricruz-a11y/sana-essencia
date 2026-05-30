@@ -36,85 +36,101 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Custom Font Families for Medical-Editorial Aesthetic */
-  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  /* Modern Clinical Typography */
+  --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", "JetBrains Mono", monospace;
+  --font-mono: "IBM Plex Mono", monospace;
 
-  /* Custom Color Tokens matching the clinical, medical-editorial aesthetic */
-  --color-charcoal-brand: #1a1a1a; /* Deep charcoal base */
-  --color-slate-brand: #3a3a3a; /* Desaturated slate */
-  --color-cream-brand: #f5f3f0; /* Warm parchment */
-  --color-green-brand: #4a6b5a; /* Muted botanical green accent */
-  --color-border-brand: #d0ccc8; /* Subtle lab notebook borders */
+  /* Clinical Minimalist Color Tokens */
+  --color-charcoal: #1a1a1a;
+  --color-slate: #4a4a4a;
+  --color-light-gray: #f5f5f5;
+  --color-white: #ffffff;
+  --color-brass: #c9a961;
+  --color-dark-brass: #8b7355;
 }
 
 :root {
-  /* Primary brand color: Deep Amber */
-  --primary: oklch(0.18 0.04 45);
-  --primary-foreground: oklch(0.97 0.01 75);
+  /* Primary: Deep Charcoal */
+  --primary: oklch(0.12 0.01 0);
+  --primary-foreground: oklch(0.98 0.001 0);
 
-  --background: oklch(0.97 0.01 75); /* Warm cream canvas */
-  --foreground: oklch(0.22 0.01 90); /* Charcoal body text */
+  /* Background: Clean White */
+  --background: oklch(0.99 0.001 0);
+  --foreground: oklch(0.15 0.01 0);
 
-  --card: oklch(0.99 0.005 75); /* Bright warm cream for cards */
-  --card-foreground: oklch(0.22 0.01 90);
+  /* Card: Off-white */
+  --card: oklch(0.97 0.001 0);
+  --card-foreground: oklch(0.15 0.01 0);
 
-  --popover: oklch(0.99 0.005 75);
-  --popover-foreground: oklch(0.22 0.01 90);
+  --popover: oklch(0.97 0.001 0);
+  --popover-foreground: oklch(0.15 0.01 0);
 
-  --secondary: oklch(0.32 0.04 135); /* Botanical green for secondary */
-  --secondary-foreground: oklch(0.97 0.01 75);
+  /* Secondary: Slate Gray */
+  --secondary: oklch(0.35 0.01 0);
+  --secondary-foreground: oklch(0.98 0.001 0);
 
-  --muted: oklch(0.93 0.01 75); /* Darker cream */
-  --muted-foreground: oklch(0.45 0.02 75);
+  /* Muted: Light Gray */
+  --muted: oklch(0.92 0.001 0);
+  --muted-foreground: oklch(0.45 0.01 0);
 
-  --accent: oklch(0.72 0.11 78); /* Soft gold for highlights */
-  --accent-foreground: oklch(0.18 0.04 45);
+  /* Accent: Brass/Gold */
+  --accent: oklch(0.65 0.12 60);
+  --accent-foreground: oklch(0.12 0.01 0);
 
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
 
-  --border: oklch(0.88 0.01 75); /* Fine lab notebook rule borders */
-  --input: oklch(0.88 0.01 75);
-  --ring: oklch(0.18 0.04 45);
+  /* Borders: Subtle */
+  --border: oklch(0.90 0.001 0);
+  --input: oklch(0.90 0.001 0);
+  --ring: oklch(0.65 0.12 60);
 
-  --radius: 0px; /* Sharp clinical corners instead of generic rounded slop */
+  --radius: 0px;
 
-  --sidebar: oklch(0.99 0.005 75);
-  --sidebar-foreground: oklch(0.22 0.01 90);
-  --sidebar-accent: oklch(0.93 0.01 75);
-  --sidebar-accent-foreground: oklch(0.18 0.04 45);
-  --sidebar-border: oklch(0.88 0.01 75);
-  --sidebar-ring: oklch(0.18 0.04 45);
+  --sidebar: oklch(0.97 0.001 0);
+  --sidebar-foreground: oklch(0.15 0.01 0);
+  --sidebar-accent: oklch(0.92 0.001 0);
+  --sidebar-accent-foreground: oklch(0.12 0.01 0);
+  --sidebar-border: oklch(0.90 0.001 0);
+  --sidebar-ring: oklch(0.65 0.12 60);
 }
 
 .dark {
-  /* Dark mode theme variables if switchable, otherwise stays grounded in Clinical Alchemy light/warm cream mode */
-  --primary: oklch(0.97 0.01 75);
-  --primary-foreground: oklch(0.18 0.04 45);
+  --primary: oklch(0.98 0.001 0);
+  --primary-foreground: oklch(0.12 0.01 0);
 
-  --background: oklch(0.18 0.04 45); /* Deep Amber */
-  --foreground: oklch(0.97 0.01 75); /* Cream text */
+  --background: oklch(0.12 0.01 0);
+  --foreground: oklch(0.98 0.001 0);
 
-  --card: oklch(0.14 0.03 45);
-  --card-foreground: oklch(0.97 0.01 75);
+  --card: oklch(0.15 0.01 0);
+  --card-foreground: oklch(0.98 0.001 0);
 
-  --popover: oklch(0.14 0.03 45);
-  --popover-foreground: oklch(0.97 0.01 75);
+  --popover: oklch(0.15 0.01 0);
+  --popover-foreground: oklch(0.98 0.001 0);
 
-  --secondary: oklch(0.35 0.06 140); /* Botanical green */
-  --secondary-foreground: oklch(0.97 0.01 75);
+  --secondary: oklch(0.65 0.01 0);
+  --secondary-foreground: oklch(0.12 0.01 0);
 
-  --muted: oklch(0.24 0.03 45);
-  --muted-foreground: oklch(0.75 0.02 75);
+  --muted: oklch(0.25 0.01 0);
+  --muted-foreground: oklch(0.70 0.01 0);
 
-  --accent: oklch(0.72 0.11 78); /* Gold */
-  --accent-foreground: oklch(0.18 0.04 45);
+  --accent: oklch(0.65 0.12 60);
+  --accent-foreground: oklch(0.12 0.01 0);
 
-  --border: oklch(0.28 0.03 45);
-  --input: oklch(0.28 0.03 45);
-  --ring: oklch(0.97 0.01 75);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  --border: oklch(0.25 0.01 0);
+  --input: oklch(0.25 0.01 0);
+  --ring: oklch(0.65 0.12 60);
+
+  --sidebar: oklch(0.15 0.01 0);
+  --sidebar-foreground: oklch(0.98 0.001 0);
+  --sidebar-accent: oklch(0.25 0.01 0);
+  --sidebar-accent-foreground: oklch(0.98 0.001 0);
+  --sidebar-border: oklch(0.25 0.01 0);
+  --sidebar-ring: oklch(0.65 0.12 60);
 }
 
 @layer base {
@@ -123,14 +139,11 @@
   }
   body {
     @apply bg-background text-foreground font-sans selection:bg-accent/30 selection:text-primary;
-    background-image: 
-      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" /></filter><rect width="100" height="100" fill="%23f5f3f0" /><rect width="100" height="100" fill="%23000000" opacity="0.02" filter="url(%23noise)" /></svg>');
-    background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif tracking-wide;
+    @apply font-serif tracking-tight;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -170,18 +183,29 @@
     .container {
       padding-left: 3rem;
       padding-right: 3rem;
-      max-width: 1440px; /* Editorial wide margins */
+      max-width: 1440px;
     }
   }
 
-  /* Micro-interactions */
   .btn-tactile {
     @apply relative overflow-hidden transition-all duration-300 ease-out active:scale-97;
   }
 
-  .grid-notebook {
+  /* Subtle grid background for clinical feel */
+  .grid-background {
+    background-image: 
+      linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
     background-size: 40px 40px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  }
+
+  /* Brass accent underline */
+  .accent-underline {
+    @apply border-b-2 border-accent;
+  }
+
+  /* Clinical card styling */
+  .clinical-card {
+    @apply border border-border bg-card p-6 transition-all duration-300 hover:border-accent/40;
   }
 }

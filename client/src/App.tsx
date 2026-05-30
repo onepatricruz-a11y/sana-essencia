@@ -13,6 +13,7 @@ import Products from "./pages/Products";
 import Founder from "./pages/Founder";
 import Rituals from "./pages/Rituals";
 import Contact from "./pages/Contact";
+import ComingSoon from "./pages/ComingSoon";
 
 function Router() {
   return (
@@ -24,6 +25,7 @@ function Router() {
         <Route path="/founder" component={Founder} />
         <Route path="/rituals" component={Rituals} />
         <Route path="/contact" component={Contact} />
+        <Route path="/coming-soon" component={ComingSoon} />
         <Route path="/404" component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />
