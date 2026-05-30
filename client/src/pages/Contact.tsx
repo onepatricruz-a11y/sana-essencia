@@ -57,7 +57,7 @@ export default function Contact() {
                   [Lab Headquarters]
                 </div>
                 <h2 className="text-2xl font-serif text-primary font-semibold">
-                  Sana Essência Laboratories
+                  Sana Essencia Laboratories
                 </h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Our research and compounding laboratory is located within the scientific incubator park of Coimbra, Portugal. 
@@ -84,7 +84,7 @@ export default function Contact() {
                   <div className="space-y-1">
                     <span className="text-primary font-bold uppercase tracking-wider block">LABORATORY ADDRESS</span>
                     <p className="leading-relaxed">
-                      Sana Essência Labs, Block B-3<br />
+                      Sana Essencia Labs, Block B-3<br />
                       Coimbra Science and Technology Park<br />
                       3030-199 Coimbra, Portugal
                     </p>

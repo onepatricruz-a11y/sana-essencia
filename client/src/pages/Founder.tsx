@@ -34,7 +34,7 @@ export default function Founder() {
                 <div className="aspect-square overflow-hidden border border-border/40 relative">
                   <img 
                     src={compressedPatricia} 
-                    alt="Patricia, Founder of Sana Essência" 
+                    alt="Patricia, Founder of Sana Essencia" 
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute bottom-3 right-3 bg-primary text-primary-foreground px-3 py-1 font-mono text-[8px] uppercase tracking-wider">
@@ -81,7 +81,7 @@ export default function Founder() {
                   Scientist, Counselor, Mother
                 </h2>
                 <p className="text-sm text-foreground/80 leading-relaxed">
-                  Before founding Sana Essência, Patricia spent over two decades navigating the intersections of human biology and emotional processing. With academic credentials spanning **neuroscience, psychological counseling, and botanical pharmacology**, she dedicated her early career to understanding how the central nervous system responds to stress, trauma, and environmental triggers.
+                  Before founding Sana Essencia, Patricia spent over two decades navigating the intersections of human biology and emotional processing. With academic credentials spanning **neuroscience, psychological counseling, and botanical pharmacology**, she dedicated her early career to understanding how the central nervous system responds to stress, trauma, and environmental triggers.
                 </p>
                 <p className="text-sm text-foreground/80 leading-relaxed">
                   She worked in clinical environments, helping patients map their emotional landscapes while conducting academic research on the **hypothalamic-pituitary-adrenal (HPA) axis**—the body's primary stress response system.
@@ -120,16 +120,16 @@ export default function Founder() {
                   [The Synthesis]
                 </div>
                 <h2 className="text-2xl md:text-3xl font-serif text-primary font-semibold">
-                  The Synthesis of Sana Essência
+                  The Synthesis of Sana Essencia
                 </h2>
                 <p className="text-sm text-foreground/80 leading-relaxed">
                   Working late nights at her lab bench, Patricia began isolating volatile organic compounds from botanical extracts. She wasn't seeking pleasing fragrances; she was mapping **biochemical targets**. She synthesized and tested combinations of linalool, 1,8-cineole, and menthol, measuring her own physiological indicators of sympathetic tone—heart rate variability, blood pressure, and salivary cortisol.
                 </p>
                 <p className="text-sm text-foreground/80 leading-relaxed">
-                  What emerged was the **Sana Essência Circadian Cycle**—a series of precise, clinically clean formulations that passively regulate the autonomic nervous system on a predictable 24-hour cycle. 
+                  What emerged was the **Sana Essencia Circadian Cycle**—a series of precise, clinically clean formulations that passively regulate the autonomic nervous system on a predictable 24-hour cycle. 
                 </p>
                 <p className="text-sm text-foreground/80 leading-relaxed">
-                  Today, Patricia continues to oversee every batch of formulations synthesized in her Portugal lab. Sana Essência remains a researcher-founded, independent laboratory, refusing to compromise on chemical purity or scientific transparency.
+                  Today, Patricia continues to oversee every batch of formulations synthesized in her Portugal lab. Sana Essencia remains a researcher-founded, independent laboratory, refusing to compromise on chemical purity or scientific transparency.
                 </p>
               </div>
 
