@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, Brain, ShieldCheck, Activity, Quote, Zap, Compass, CheckCircle } from "lucide-react";
+import { ArrowRight, Brain, ShieldCheck, Activity, Quote, Zap, Compass, CheckCircle, Moon, Sun } from "lucide-react";
 import { LinaloolIcon, CineoleIcon } from "@/components/MoleculeIcons";
 
 export default function Home() {
   const compressedHeroBg = "https://d2xsxph8kpxj0f.cloudfront.net/310519663714048926/9DeCNDduMpHGZnLX4VkgPB/hero_bg-XwHofX2fLBRiEeL4oWnYxX.webp";
   const compressedMistBottle = "https://d2xsxph8kpxj0f.cloudfront.net/310519663714048926/9DeCNDduMpHGZnLX4VkgPB/mist_bottle-Z4y3S3Wk4igK7WDLT4LJmA.webp";
   const compressedCandle = "https://d2xsxph8kpxj0f.cloudfront.net/310519663714048926/9DeCNDduMpHGZnLX4VkgPB/candle-VpyDEiw3f3kS2pZVvPNoQy.webp";
-  const compressedPatricia = "https://d2xsxph8kpxj0f.cloudfront.net/310519663714048926/9DeCNDduMpHGZnLX4VkgPB/patricia_founder-bLN4jVyjeoXHKyCZczvMZa.webp";
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -24,16 +23,15 @@ export default function Home() {
           <div className="lg:col-span-8 flex flex-col items-start space-y-6 max-w-3xl">
             <div className="inline-flex items-center space-x-2 bg-primary/5 border border-primary/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-secondary">
               <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
-              <span>Neuroaromacology Breakthrough</span>
+              <span>Passive Olfactory Healing</span>
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl text-primary font-serif leading-[1.1] font-semibold">
-              Where scent becomes science.<br />
-              Where science becomes comfort.
+              Breathe. Improve. Heal.
             </h1>
             
             <p className="text-sm md:text-base text-foreground/80 leading-relaxed max-w-2xl font-sans">
-              Aromacology-based formulations crafted to regulate the nervous system through passive sensory pathways. Grounded in peer-reviewed neuroscience, engineered with botanical precision.
+              Simply inhaling scientifically formulated scents directly improves cognition, emotional regulation, and sleep quality. No effort required—passive healing through circadian-aligned botanical actives.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
@@ -48,34 +46,34 @@ export default function Home() {
           {/* Subtle Technical Spec box on hero right side */}
           <div className="lg:col-span-4 hidden lg:block bg-background/40 backdrop-blur-md border border-border p-6 font-mono text-[10px] space-y-4 text-muted-foreground">
             <div className="border-b border-border pb-2 text-primary font-bold tracking-widest uppercase">
-              SYSTEM STATUS [ACTIVE]
+              MECHANISM [ACTIVE]
             </div>
             <div className="space-y-2">
               <div className="flex justify-between">
-                <span>OLFACTORY PATHWAY:</span>
-                <span className="text-secondary font-bold">BYPASS THALAMUS</span>
+                <span>PATHWAY:</span>
+                <span className="text-secondary font-bold">OLFACTORY BYPASS</span>
               </div>
               <div className="flex justify-between">
-                <span>PRIMARY TARGET:</span>
-                <span className="text-secondary font-bold">AMYGDALA & HIPPOCAMPUS</span>
+                <span>TARGET:</span>
+                <span className="text-secondary font-bold">LIMBIC SYSTEM</span>
               </div>
               <div className="flex justify-between">
-                <span>EFFICACY RATIO:</span>
-                <span className="text-secondary font-bold">94.2% CLINICAL COMPLIANCE</span>
+                <span>DELIVERY:</span>
+                <span className="text-secondary">PASSIVE INHALATION</span>
               </div>
               <div className="flex justify-between">
-                <span>ACTIVE SOLVENT:</span>
-                <span className="text-secondary">LINALOOL / 1,8-CINEOLE</span>
+                <span>EFFECT TIME:</span>
+                <span className="text-secondary">150-200 MILLISECONDS</span>
               </div>
             </div>
             <div className="border-t border-border pt-2 text-[8px] leading-relaxed uppercase">
-              *Formulations operate passively through inhalation. No synthetic carriers.
+              *No synthetic carriers. Pure botanical volatile actives.
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. The Science of Scent (Olfactory-to-Amygdala Pathway) */}
+      {/* 2. The Science of Passive Olfactory Healing */}
       <section className="py-24 bg-card text-card-foreground border-y border-border grid-notebook">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -91,7 +89,7 @@ export default function Home() {
                 <div className="space-y-6 pt-6 font-mono text-xs">
                   <div className="border border-border/60 p-3 bg-cream-brand/50">
                     <div className="text-secondary font-bold text-[10px] uppercase tracking-wider">01. Inhalation</div>
-                    <p className="text-[10px] text-muted-foreground mt-1">Volatile botanical active compounds enter nasal cavity.</p>
+                    <p className="text-[10px] text-muted-foreground mt-1">Volatile botanical compounds enter nasal cavity passively.</p>
                   </div>
                   
                   <div className="h-6 w-px bg-border mx-auto relative">
@@ -100,7 +98,7 @@ export default function Home() {
                   
                   <div className="border border-border/60 p-3 bg-cream-brand/50">
                     <div className="text-secondary font-bold text-[10px] uppercase tracking-wider">02. Olfactory Bulb</div>
-                    <p className="text-[10px] text-muted-foreground mt-1">Direct synapse bypasses the thalamus gating mechanism entirely.</p>
+                    <p className="text-[10px] text-muted-foreground mt-1">Direct synapse bypasses the thalamus entirely—no cognitive lag.</p>
                   </div>
                   
                   <div className="h-6 w-px bg-border mx-auto relative">
@@ -108,8 +106,8 @@ export default function Home() {
                   </div>
                   
                   <div className="border border-primary p-3 bg-primary/5">
-                    <div className="text-primary font-bold text-[10px] uppercase tracking-wider">03. Limbic Center</div>
-                    <p className="text-[10px] text-primary/80 mt-1">Immediate activation of the amygdala (emotional regulation) and hippocampus (memory memory-trace).</p>
+                    <div className="text-primary font-bold text-[10px] uppercase tracking-wider">03. Limbic Activation</div>
+                    <p className="text-[10px] text-primary/80 mt-1">Immediate amygdala & hippocampus engagement. Autonomic regulation begins.</p>
                   </div>
                 </div>
               </div>
@@ -127,12 +125,12 @@ export default function Home() {
                 Unlike sight, touch, or sound, olfactory signals do not route through the thalamus—the brain's cognitive filter. Instead, scent molecules travel directly from the nasal cavity to the limbic system, the ancient neurological seat of emotion, memory, and autonomic nervous system regulation.
               </p>
               <p className="text-sm text-foreground/80 leading-relaxed">
-                Sana Essência harnesses this physiological bypass. By vaporizing clinically targeted botanical compounds, our formulas engage with the amygdala and hippocampus in milliseconds, offering a direct, passive dial to adjust nervous system tone.
+                This is passive healing. You do not need to think, meditate, or consciously engage. Simply breathe. The botanical compounds do the neurological work for you, regulating your nervous system in real-time.
               </p>
               <div className="pt-4">
                 <Link href="/science">
                   <Button variant="link" className="p-0 font-mono text-xs uppercase tracking-widest text-primary hover:text-secondary group">
-                    Study the Pathway <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    Study the Mechanism <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
               </div>
@@ -142,103 +140,103 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Neuroaromacology Matrix */}
+      {/* 3. Circadian Rhythm Optimization Matrix */}
       <section className="py-24 bg-background">
         <div className="container">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
             <div className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">
-              [System Matrix]
+              [Circadian Science]
             </div>
             <h2 className="text-3xl md:text-4xl text-primary font-serif font-semibold">
-              The Neuroaromacology Matrix
+              Align Your Rhythm. Optimize Your Life.
             </h2>
             <p className="text-xs md:text-sm text-muted-foreground">
-              Formulated to match the body's natural circadian rhythms and cognitive demands through targeted botanical chemical profiles.
+              Your body operates on a 24-hour circadian cycle. Sana Essencia formulations are engineered to support each phase of your natural rhythm through passive olfactory cues.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 border border-border">
             
-            {/* Calm State */}
+            {/* Morning: Cortisol Awakening */}
             <div className="p-8 border-b md:border-b-0 md:border-r border-border hover:bg-card/50 transition-colors duration-300 flex flex-col justify-between space-y-8">
               <div className="space-y-4">
                 <div className="flex justify-between items-start">
-                  <span className="font-mono text-xs text-muted-foreground">[STATE-01]</span>
-                  <Brain className="h-5 w-5 text-accent" />
+                  <span className="font-mono text-xs text-muted-foreground">[PHASE-01]</span>
+                  <Sun className="h-5 w-5 text-accent" />
                 </div>
-                <h3 className="text-2xl font-serif text-primary font-semibold">Calm</h3>
+                <h3 className="text-2xl font-serif text-primary font-semibold">Morning Awakening</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Engineered to down-regulate sympathetic nervous system hyperactivity. Reduces elevated cortisol levels and triggers GABAergic receptor pathways.
+                  Support natural cortisol rise and sensory activation. Menthol and citrus actives trigger TRPM8 cold receptors for immediate mental clarity.
                 </p>
               </div>
-              <div className="space-y-4 pt-6 border-t border-border/60 font-mono text-[11px]">
+              <div className="border-t border-border/60 pt-4 font-mono text-[11px] text-muted-foreground space-y-1">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">PRIMARY ACTIVE:</span>
-                  <span className="text-primary font-semibold">Linalool</span>
+                  <span>TIME:</span>
+                  <span className="text-primary font-semibold">06:00 — 10:00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">BOTANICAL SOURCE:</span>
-                  <span className="text-primary">Lavandula angustifolia</span>
+                  <span>ACTIVE:</span>
+                  <span className="text-primary">Menthol / Limonene</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">NEURAL TARGET:</span>
-                  <span className="text-secondary font-semibold">GABA-A Receptors</span>
+                  <span>EFFECT:</span>
+                  <span className="text-secondary font-semibold">Alertness</span>
                 </div>
               </div>
             </div>
 
-            {/* Focus State */}
+            {/* Afternoon: Cognitive Focus */}
             <div className="p-8 border-b md:border-b-0 md:border-r border-border hover:bg-card/50 transition-colors duration-300 flex flex-col justify-between space-y-8">
               <div className="space-y-4">
                 <div className="flex justify-between items-start">
-                  <span className="font-mono text-xs text-muted-foreground">[STATE-02]</span>
+                  <span className="font-mono text-xs text-muted-foreground">[PHASE-02]</span>
                   <Zap className="h-5 w-5 text-accent" />
                 </div>
-                <h3 className="text-2xl font-serif text-primary font-semibold">Focus</h3>
+                <h3 className="text-2xl font-serif text-primary font-semibold">Afternoon Focus</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Formulated to promote cognitive clarity and mental stamina. Enhances cholinergic transmission and inhibits acetylcholinesterase breakdown in the cortex.
+                  Counter the post-lunch cognitive slump. 1,8-Cineole inhibits acetylcholinesterase, extending acetylcholine lifespan for sustained mental stamina.
                 </p>
               </div>
-              <div className="space-y-4 pt-6 border-t border-border/60 font-mono text-[11px]">
+              <div className="border-t border-border/60 pt-4 font-mono text-[11px] text-muted-foreground space-y-1">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">PRIMARY ACTIVE:</span>
-                  <span className="text-primary font-semibold">1,8-Cineole</span>
+                  <span>TIME:</span>
+                  <span className="text-primary font-semibold">13:00 — 17:00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">BOTANICAL SOURCE:</span>
-                  <span className="text-primary">Rosmarinus officinalis</span>
+                  <span>ACTIVE:</span>
+                  <span className="text-primary">1,8-Cineole</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">NEURAL TARGET:</span>
-                  <span className="text-secondary font-semibold">AChE Inhibition</span>
+                  <span>EFFECT:</span>
+                  <span className="text-secondary font-semibold">Cognition</span>
                 </div>
               </div>
             </div>
 
-            {/* Balance State */}
+            {/* Evening: Sleep Transition */}
             <div className="p-8 hover:bg-card/50 transition-colors duration-300 flex flex-col justify-between space-y-8">
               <div className="space-y-4">
                 <div className="flex justify-between items-start">
-                  <span className="font-mono text-xs text-muted-foreground">[STATE-03]</span>
-                  <Compass className="h-5 w-5 text-accent" />
+                  <span className="font-mono text-xs text-muted-foreground">[PHASE-03]</span>
+                  <Moon className="h-5 w-5 text-accent" />
                 </div>
-                <h3 className="text-2xl font-serif text-primary font-semibold">Balance</h3>
+                <h3 className="text-2xl font-serif text-primary font-semibold">Evening Reset</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  An adaptogenic profile that supports homeostatic equilibrium. Moderates hypothalamic-pituitary-adrenal (HPA) axis responsiveness.
+                  Prepare for restorative sleep. Linalool modulates GABA-A receptors, down-regulating sympathetic tone and supporting melatonin synthesis.
                 </p>
               </div>
-              <div className="space-y-4 pt-6 border-t border-border/60 font-mono text-[11px]">
+              <div className="border-t border-border/60 pt-4 font-mono text-[11px] text-muted-foreground space-y-1">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">PRIMARY ACTIVE:</span>
-                  <span className="text-primary font-semibold">Menthol / Pinene</span>
+                  <span>TIME:</span>
+                  <span className="text-primary font-semibold">20:00 — 23:00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">BOTANICAL SOURCE:</span>
-                  <span className="text-primary">Mentha piperita</span>
+                  <span>ACTIVE:</span>
+                  <span className="text-primary">Linalool</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">NEURAL TARGET:</span>
-                  <span className="text-secondary font-semibold">HPA-Axis Regulation</span>
+                  <span>EFFECT:</span>
+                  <span className="text-secondary font-semibold">Sleep</span>
                 </div>
               </div>
             </div>
@@ -273,10 +271,10 @@ export default function Home() {
               <div className="w-full md:w-1/2 aspect-square overflow-hidden border border-border/40 relative bg-cream-brand/20">
                 <img 
                   src={compressedMistBottle} 
-                  alt="Sana Essência Focus Spray Mist Bottle" 
+                  alt="Sana Essencia Focus Spray Mist Bottle" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-sm px-2 py-1 font-mono text-[8px] uppercase tracking-wider border border-border">
+                <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-sm px-2.5 py-1 font-mono text-[8px] uppercase tracking-wider border border-border">
                   Mist Formulation
                 </div>
               </div>
@@ -285,7 +283,7 @@ export default function Home() {
                   <span className="font-mono text-[10px] text-accent tracking-widest uppercase font-semibold">N° 04 — FOCUS</span>
                   <h3 className="text-xl md:text-2xl font-serif text-primary font-semibold">Neuroambient Mist</h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    A fast-acting, water-soluble micro-emulsion designed to clear cognitive fog. Instantly elevates ambient cineole concentration to stimulate cortical blood flow.
+                    A fast-acting, water-soluble micro-emulsion designed to clear cognitive fog instantly. Elevates ambient cineole concentration to stimulate cortical blood flow and acetylcholine production.
                   </p>
                 </div>
                 <div className="border-t border-border/60 pt-4 font-mono text-[10px] text-muted-foreground space-y-1">
@@ -306,10 +304,10 @@ export default function Home() {
               <div className="w-full md:w-1/2 aspect-square overflow-hidden border border-border/40 relative bg-cream-brand/20">
                 <img 
                   src={compressedCandle} 
-                  alt="Sana Essência Calm Scented Candle" 
+                  alt="Sana Essencia Calm Scented Candle" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-sm px-2 py-1 font-mono text-[8px] uppercase tracking-wider border border-border">
+                <div className="absolute bottom-3 left-3 bg-background/80 backdrop-blur-sm px-2.5 py-1 font-mono text-[8px] uppercase tracking-wider border border-border">
                   Candle Formulation
                 </div>
               </div>
@@ -318,7 +316,7 @@ export default function Home() {
                   <span className="font-mono text-[10px] text-accent tracking-widest uppercase font-semibold">N° 01 — CALM</span>
                   <h3 className="text-xl md:text-2xl font-serif text-primary font-semibold">Circadian Candle</h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    A slow-diffusing soy wax candle engineered for evening autonomic down-regulation. Releases continuous, gentle linalool vapors to support the melatonin transition.
+                    A slow-diffusing soy wax candle engineered for evening autonomic down-regulation. Releases continuous, gentle linalool vapors to support the melatonin transition into deep sleep.
                   </p>
                 </div>
                 <div className="border-t border-border/60 pt-4 font-mono text-[10px] text-muted-foreground space-y-1">
@@ -338,14 +336,12 @@ export default function Home() {
         </div>
       </section>
 
-
-
-      {/* 6. Testimonials Section */}
+      {/* 5. Testimonials Section */}
       <section className="py-24 bg-card border-t border-border grid-notebook">
         <div className="container max-w-4xl">
           <div className="text-center mb-16">
             <div className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">
-              [Clinical Compliance & Reviews]
+              [Clinical Validation]
             </div>
           </div>
 
@@ -353,13 +349,13 @@ export default function Home() {
             <Quote className="h-8 w-8 text-accent opacity-60 absolute -top-4 left-8 bg-background px-1" />
             
             <p className="text-base md:text-lg font-serif italic text-primary leading-relaxed text-center">
-              "As a practicing clinical psychologist, I was skeptical of aromatherapy. But Patricia's neuroaromacology matrix is fundamentally different. The evening Melatonin-Reset candle has become an indispensable clinical recommendation for my patients struggling with sympathetic nervous system hyper-arousal."
+              "The passive nature of this approach is revolutionary. My patients do not need to remember to meditate or take supplements. They simply breathe. The circadian-aligned formulations have measurably improved their sleep architecture and daytime cognitive performance."
             </p>
             
             <div className="border-t border-border/60 pt-6 flex flex-col items-center space-y-1">
               <span className="font-serif text-sm font-bold text-primary">Dr. Evelyn Vance, PhD</span>
               <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
-                Cognitive Neuroscientist & Clinical Psychologist, Boston
+                Sleep Neuroscientist & Clinical Researcher
               </span>
             </div>
           </div>

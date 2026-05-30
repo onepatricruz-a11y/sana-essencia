@@ -64,7 +64,7 @@ export default function Layout({ children }: LayoutProps) {
           {/* Logo wordmark */}
           <Link href="/" className="group flex flex-col items-start">
             <span className="font-serif text-xl md:text-2xl tracking-[0.15em] text-primary uppercase font-semibold transition-colors duration-300 group-hover:text-secondary">
-              sana essência
+              sana essencia
             </span>
             <span className="font-mono text-[8px] tracking-[0.3em] uppercase text-muted-foreground mt-0.5">
               Neuroaromacology Lab
@@ -156,7 +156,7 @@ export default function Layout({ children }: LayoutProps) {
             {/* Brand Column */}
             <div className="md:col-span-4 flex flex-col space-y-4">
               <span className="font-serif text-2xl tracking-[0.15em] uppercase font-semibold">
-                sana essência
+                sana essencia
               </span>
               <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-accent/80">
                 Scientia et Natura Formula
@@ -258,7 +258,7 @@ export default function Layout({ children }: LayoutProps) {
           {/* Bottom Copyright and Meta */}
           <div className="pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-[10px] font-mono tracking-wider text-primary-foreground/50">
             <div>
-              © {new Date().getFullYear()} SANA ESSÊNCIA LABS. ALL RIGHTS RESERVED.
+              © {new Date().getFullYear()} SANA ESSENCIA LABS. ALL RIGHTS RESERVED.
             </div>
             <div className="flex space-x-6">
               <a href="#privacy" className="hover:text-accent transition-colors">
