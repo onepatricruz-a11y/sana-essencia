@@ -49,7 +49,7 @@ export default function Layout({ children }: LayoutProps) {
     <div className="min-h-screen flex flex-col selection:bg-accent selection:text-primary">
       {/* Top Banner: Scientific Credential */}
       <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-[10px] md:text-xs tracking-widest uppercase font-mono border-b border-border/10">
-        Clinical Aromacology & Neuroscience • Scientia et Natura Formula
+        Natura and Formula backed by Science
       </div>
 
       {/* Header */}
