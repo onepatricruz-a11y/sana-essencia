@@ -1,255 +1,270 @@
-import { Link } from "wouter";
-import { ArrowRight, Zap, Moon, Focus, Users, Briefcase, BookOpen, Activity } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import React from "react";
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen">
-      
-      {/* 1. Hero Section - Modern Minimal */}
-      <section className="min-h-[90vh] flex items-center bg-background border-b border-border">
-        <div className="container grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
-          {/* Left: Headline & CTA */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground font-mono">
-                <span className="w-2 h-2 bg-accent rounded-full" />
-                Atmospheric Optimization
-              </div>
-              <h1 
-                className="text-6xl md:text-7xl font-light leading-[1.05] text-primary"
-                style={{fontFamily: "Cormorant Garamond, serif", letterSpacing: "-0.02em"}}
-              >
-                Your Day, Optimized by Scent
-              </h1>
-              <p className="text-base text-foreground/70 leading-relaxed max-w-lg">
-                Circadian-aligned formulations that enhance cognitive performance in the morning, sustain focus through the afternoon, and prepare your body for restorative sleep at night.
-              </p>
-            </div>
+    <div className="w-full bg-gray-50 text-gray-900">
+      {/* HERO */}
+      <section className="max-w-6xl mx-auto px-6 py-20 border-b border-gray-200">
+        <p className="uppercase tracking-widest text-sm text-gray-500">
+          Neuro‑aromacology for real life
+        </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/products">
-                <Button className="px-8 py-3 bg-primary text-primary-foreground hover:bg-slate-800 font-mono text-xs uppercase tracking-wider transition-all duration-300">
-                  Explore Collections <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href="/science">
-                <Button variant="outline" className="px-8 py-3 border border-border text-primary hover:bg-muted font-mono text-xs uppercase tracking-wider">
-                  Learn the Science
-                </Button>
-              </Link>
-            </div>
-          </div>
+        <h1 className="text-4xl md:text-5xl font-semibold mt-4">
+          Portable tools for the modern nervous system.
+        </h1>
 
-          {/* Right: Visual Hierarchy - Product Showcase Placeholder */}
-          <div className="hidden lg:block">
-            <div className="relative space-y-6">
-              {/* Simulated product display */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="aspect-square border border-border bg-muted flex items-center justify-center text-muted-foreground text-sm">
-                  Morning Collection
-                </div>
-                <div className="aspect-square border border-border bg-muted flex items-center justify-center text-muted-foreground text-sm">
-                  Afternoon Collection
-                </div>
-                <div className="aspect-square border border-border bg-muted flex items-center justify-center text-muted-foreground text-sm col-span-2">
-                  Evening Collection
-                </div>
-              </div>
-              <p className="text-xs text-muted-foreground font-mono text-center">
-                Product photography coming soon
-              </p>
-            </div>
-          </div>
+        <p className="text-lg text-gray-600 max-w-2xl mt-4">
+          Neuro‑aromacology devices engineered to help you shift into focus,
+          calm, or rest — effortlessly, anywhere, anytime. Sana Essência creates
+          science‑coded scent instruments that support cognitive clarity,
+          emotional balance, and nervous system regulation.
+        </p>
+
+        <div className="flex flex-wrap gap-4 mt-8">
+          <a
+            href="#neuro-tools"
+            className="px-6 py-3 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors"
+          >
+            Explore Neuro Tools
+          </a>
+
+          <a
+            href="#science"
+            className="px-6 py-3 rounded-full bg-gray-200 text-gray-900 text-sm font-medium hover:bg-gray-300 transition-colors"
+          >
+            Learn the Science
+          </a>
         </div>
+
+        <p className="text-sm text-gray-500 mt-4">State‑shifting through scent.</p>
       </section>
 
-      {/* 2. Three Circadian Collections */}
-      <section className="py-24 bg-card border-b border-border">
-        <div className="container">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-            <h2 
-              className="text-4xl font-light text-primary"
-              style={{fontFamily: "Cormorant Garamond, serif"}}
-            >
-              Three Collections, One Optimized Day
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Each collection is formulated to support your body's natural circadian rhythms and enhance performance at specific times of day.
+      {/* PROBLEM */}
+      <section
+        id="problem"
+        className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200"
+      >
+        <h2 className="text-3xl font-semibold">Modern minds are overloaded.</h2>
+        <p className="mt-4 text-gray-700 leading-relaxed">
+          Screens, deadlines, emotional fatigue, and constant cognitive switching
+          have become the new baseline. Traditional wellness tools require time,
+          effort, or participation — things most people don’t have.
+        </p>
+        <p className="mt-4 text-gray-700">Your nervous system needs support that works in the background.</p>
+      </section>
+
+      {/* SOLUTION */}
+      <section
+        id="solution"
+        className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200"
+      >
+        <h2 className="text-3xl font-semibold">
+          Neuro Tools: portable scent instruments engineered for regulation.
+        </h2>
+
+        <p className="mt-4 text-gray-700">
+          Sana Essência combines neuroscience, aromachology, and circadian
+          biology to create tools that:
+        </p>
+
+        <ul className="list-disc ml-6 mt-4 space-y-2 text-gray-700">
+          <li>sharpen focus</li>
+          <li>reduce stress</li>
+          <li>support emotional balance</li>
+          <li>improve sleep readiness</li>
+          <li>regulate the nervous system through passive scent diffusion</li>
+        </ul>
+      </section>
+
+      {/* SCIENCE SUMMARY */}
+      <section
+        id="science"
+        className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200"
+      >
+        <div className="grid md:grid-cols-2 gap-10">
+          <div>
+            <h2 className="text-3xl font-semibold">The science of Sana Essência.</h2>
+            <p className="mt-4 text-gray-700 leading-relaxed">
+              Scent is the only sense with a direct line to the emotional brain.
+              Aromatic molecules travel from the olfactory bulb straight to the
+              amygdala and hippocampus — the centres of emotion, memory, and
+              state regulation — bypassing the thalamus.
+            </p>
+            <p className="mt-4 text-gray-700 leading-relaxed">
+              Through repetition, your brain builds neural anchors between a
+              specific scent and a specific state. Over time, the scent becomes
+              a biological cue that helps you shift into focus, calm, or rest
+              more easily.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Morning */}
-            <div className="clinical-card space-y-6">
-              <div className="flex items-center gap-3">
-                <Zap className="h-6 w-6 text-accent" />
-                <h3 className="text-lg font-serif text-primary font-semibold">Morning Cortisol</h3>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Supports natural cortisol awakening response. Enhances alertness, mental clarity, and readiness for the day ahead.
-              </p>
-              <div className="space-y-2 border-t border-border pt-4">
-                <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Key Compounds</p>
-                <p className="text-xs text-foreground">1,8-Cineole, Limonene, Peppermint</p>
-              </div>
-              <Link href="/products">
-                <Button variant="ghost" className="w-full text-xs uppercase tracking-wider font-mono text-accent hover:text-accent/80">
-                  View Collection →
-                </Button>
-              </Link>
-            </div>
-
-            {/* Afternoon */}
-            <div className="clinical-card space-y-6">
-              <div className="flex items-center gap-3">
-                <Focus className="h-6 w-6 text-accent" />
-                <h3 className="text-lg font-serif text-primary font-semibold">Afternoon Focus</h3>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Sustains cognitive performance and prevents the afternoon slump. Promotes sustained attention and mental stamina.
-              </p>
-              <div className="space-y-2 border-t border-border pt-4">
-                <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Key Compounds</p>
-                <p className="text-xs text-foreground">Rosemary, Lemon, Eucalyptus</p>
-              </div>
-              <Link href="/products">
-                <Button variant="ghost" className="w-full text-xs uppercase tracking-wider font-mono text-accent hover:text-accent/80">
-                  View Collection →
-                </Button>
-              </Link>
-            </div>
-
-            {/* Evening */}
-            <div className="clinical-card space-y-6">
-              <div className="flex items-center gap-3">
-                <Moon className="h-6 w-6 text-accent" />
-                <h3 className="text-lg font-serif text-primary font-semibold">Evening Reset</h3>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Supports natural melatonin production and circadian wind-down. Promotes relaxation and prepares the body for sleep.
-              </p>
-              <div className="space-y-2 border-t border-border pt-4">
-                <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Key Compounds</p>
-                <p className="text-xs text-foreground">Lavender, Chamomile, Sandalwood</p>
-              </div>
-              <Link href="/products">
-                <Button variant="ghost" className="w-full text-xs uppercase tracking-wider font-mono text-accent hover:text-accent/80">
-                  View Collection →
-                </Button>
-              </Link>
-            </div>
+          <div>
+            <h3 className="text-xl font-semibold">Key principles</h3>
+            <ul className="list-disc ml-6 mt-4 space-y-2 text-gray-700">
+              <li>
+                <strong>Direct brain link:</strong> olfactory → limbic system in
+                under a second.
+              </li>
+              <li>
+                <strong>Neural anchoring:</strong> pairing scent with state
+                builds a stable pathway.
+              </li>
+              <li>
+                <strong>Sensory cueing:</strong> the scent becomes the trigger.
+              </li>
+              <li>
+                <strong>Circadian alignment:</strong> blends for morning, focus,
+                and rest.
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* 3. Target Audiences */}
-      <section className="py-24 bg-background border-b border-border">
-        <div className="container">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-            <h2 
-              className="text-4xl font-light text-primary"
-              style={{fontFamily: "Cormorant Garamond, serif"}}
-            >
-              Designed for Your Lifestyle
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Whether you're optimizing personal performance or creating the ideal environment for your team, Sana Essencia adapts to your needs.
+      {/* NEURO TOOLS */}
+      <section
+        id="neuro-tools"
+        className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200"
+      >
+        <h2 className="text-3xl font-semibold">Neuro Tools collection.</h2>
+        <p className="mt-4 text-gray-700">
+          Portable scent instruments designed for cognitive clarity, emotional
+          balance, and circadian alignment.
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-6 mt-10">
+          {/* Inhaler Slide */}
+          <div className="bg-white border border-gray-200 rounded-xl p-6">
+            <h3 className="text-xl font-semibold">Inhaler Slide</h3>
+            <p className="text-sm text-gray-500 mt-1">
+              Lab precision • Morning activation
+            </p>
+            <p className="mt-4 text-gray-700">
+              A compact sliding device revealing lava beads infused with
+              energising scent molecules.
+            </p>
+            <p className="text-sm text-gray-500 mt-4">
+              Best for: morning clarity, pre‑meeting reset, travel, desk use.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Briefcase, label: "Professionals", desc: "Enhance focus and productivity throughout your workday" },
-              { icon: BookOpen, label: "Students", desc: "Support concentration during study sessions and exams" },
-              { icon: Users, label: "Corporate Teams", desc: "Optimize shared workspaces for collective performance" },
-              { icon: Activity, label: "Athletes", desc: "Support recovery and circadian rhythm optimization" },
-            ].map((item, idx) => (
-              <div key={idx} className="border border-border p-6 bg-card space-y-4 hover:border-accent/40 transition-colors duration-300">
-                <item.icon className="h-6 w-6 text-accent" />
-                <h3 className="font-serif text-primary font-semibold">{item.label}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. How It Works */}
-      <section className="py-24 bg-card border-b border-border">
-        <div className="container">
-          <div className="max-w-3xl mx-auto space-y-12">
-            <div className="text-center space-y-4">
-              <h2 
-                className="text-4xl font-light text-primary"
-                style={{fontFamily: "Cormorant Garamond, serif"}}
-              >
-                Passive Olfactory Optimization
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                No effort required. Simply breathe.
-              </p>
-            </div>
-
-            <div className="space-y-8">
-              {[
-                {
-                  num: "01",
-                  title: "Inhalation",
-                  desc: "Volatile botanical compounds enter your nasal cavity passively through normal breathing."
-                },
-                {
-                  num: "02",
-                  title: "Olfactory Pathway",
-                  desc: "Scent molecules bypass the thalamus and travel directly to your limbic system—the brain's emotional and memory center."
-                },
-                {
-                  num: "03",
-                  title: "Neurochemical Response",
-                  desc: "Specific compounds activate neurotransmitter systems that influence mood, cognition, and sleep-wake cycles."
-                },
-                {
-                  num: "04",
-                  title: "Circadian Alignment",
-                  desc: "Formulations are timed to support your body's natural rhythms throughout the day."
-                },
-              ].map((step, idx) => (
-                <div key={idx} className="flex gap-6 border-l-2 border-accent pl-6 py-2">
-                  <span className="text-lg font-serif text-accent font-light">{step.num}</span>
-                  <div>
-                    <h3 className="font-serif text-primary font-semibold mb-2">{step.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. CTA Section */}
-      <section className="py-24 bg-primary text-primary-foreground border-b border-border">
-        <div className="container text-center space-y-8">
-          <div className="space-y-4">
-            <h2 
-              className="text-4xl font-light"
-              style={{fontFamily: "Cormorant Garamond, serif"}}
-            >
-              Ready to Optimize Your Day?
-            </h2>
-            <p className="text-sm text-primary-foreground/80 max-w-lg mx-auto">
-              Join our waitlist to be among the first to experience circadian-aligned atmospheric optimization.
+          {/* Synaptic Clicker */}
+          <div className="bg-white border border-gray-200 rounded-xl p-6">
+            <h3 className="text-xl font-semibold">Synaptic Clicker</h3>
+            <p className="text-sm text-gray-500 mt-1">
+              Brain activation • Cognitive stamina
+            </p>
+            <p className="mt-4 text-gray-700">
+              A tactile focus tool combining sensory grounding with scent‑based
+              cognitive support.
+            </p>
+            <p className="text-sm text-gray-500 mt-4">
+              Best for: study sessions, long afternoons, deep work.
             </p>
           </div>
-          <Link href="/coming-soon">
-            <Button className="px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 font-mono text-xs uppercase tracking-wider transition-all duration-300">
-              Join the Waitlist
-            </Button>
-          </Link>
+
+          {/* Elemental Token */}
+          <div className="bg-white border border-gray-200 rounded-xl p-6">
+            <h3 className="text-xl font-semibold">Elemental Token</h3>
+            <p className="text-sm text-gray-500 mt-1">
+              Molecular balance • Evening regulation
+            </p>
+            <p className="mt-4 text-gray-700">
+              A pocket‑sized molecular disc that releases a soft, steady scent.
+            </p>
+            <p className="text-sm text-gray-500 mt-4">
+              Best for: commuting, unwinding, sleep preparation.
+            </p>
+          </div>
         </div>
       </section>
+
+      {/* CIRCADIAN CYCLE */}
+      <section
+        id="cycle"
+        className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200"
+      >
+        <h2 className="text-3xl font-semibold">
+          Support your rhythm throughout the day.
+        </h2>
+
+        <p className="mt-4 text-gray-700">
+          Use circadian‑aligned scent modules to train your nervous system
+          gently over time.
+        </p>
+
+        <ul className="list-disc ml-6 mt-4 space-y-2 text-gray-700">
+          <li>
+            <strong>Morning – Cortisol Rise:</strong> wake the mind, clear the
+            fog.
+          </li>
+          <li>
+            <strong>Afternoon – Synaptic Peak:</strong> sharpen attention,
+            sustain performance.
+          </li>
+          <li>
+            <strong>Evening – Delta Descent:</strong> release tension, prepare
+            for sleep.
+          </li>
+        </ul>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section
+        id="how-it-works"
+        className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200"
+      >
+        <h2 className="text-3xl font-semibold">How it works.</h2>
+
+        <ol className="list-decimal ml-6 mt-4 space-y-3 text-gray-700">
+          <li>Add 1–3 drops of your scent formula onto the lava beads.</li>
+          <li>
+            Use your tool only during the state you want to strengthen (morning,
+            focus, or rest).
+          </li>
+          <li>Repeat daily to build the neural pathway.</li>
+          <li>Let the scent become the trigger for your nervous system.</li>
+          <li>Refresh every 2–4 weeks to keep the cue strong.</li>
+        </ol>
+      </section>
+
+      {/* SUBSCRIPTION */}
+      <section
+        id="subscription"
+        className="max-w-6xl mx-auto px-6 py-12 border-b border-gray-200"
+      >
+        <h2 className="text-3xl font-semibold">Refill subscription.</h2>
+        <p className="mt-4 text-gray-700 leading-relaxed">
+          Neuro‑aromacology works through repetition. To keep your neural anchor
+          strong, refresh your lava beads every 2–4 weeks. A refill subscription
+          delivers fresh scent modules on your chosen schedule, so your nervous
+          system always receives a clear, consistent signal.
+        </p>
+      </section>
+
+      {/* CORPORATE */}
+      <section
+        id="corporate"
+        className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200"
+      >
+        <h2 className="text-3xl font-semibold">
+          Corporate & workplace programs.
+        </h2>
+        <p className="mt-4 text-gray-700 leading-relaxed">
+          Sana Essência Neuro Tools are ideal for employee wellbeing programs,
+          onboarding gifts, leadership retreats, and study spaces. They offer
+          passive, science‑led support for focus, calm, and emotional balance —
+          with zero disruption to the workday.
+        </p>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="max-w-6xl mx-auto px-6 py-12 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>Sana Essência — portable tools for the modern nervous system.</div>
+        <div className="text-xs text-gray-400">Sana Essência, Basingstoke, UK</div>
+      </footer>
     </div>
   );
-}
+};
+
+export default Home;
