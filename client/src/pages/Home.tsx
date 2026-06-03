@@ -15,7 +15,7 @@ const Home: React.FC = () => {
 
         <p className="text-lg text-gray-600 max-w-2xl mt-4">
           Neuro‑aromacology devices engineered to help you shift into focus,
-          calm, or rest — effortlessly, anywhere, anytime. Sana Essência creates
+          calm, or rest — effortlessly, anywhere, anytime. Sana Essencia creates
           science‑coded scent instruments that support cognitive clarity,
           emotional balance, and nervous system regulation.
         </p>
@@ -83,7 +83,7 @@ const Home: React.FC = () => {
       >
         <div className="grid md:grid-cols-2 gap-10">
           <div>
-            <h2 className="text-3xl font-semibold">The science of Sana Essência.</h2>
+            <h2 className="text-3xl font-semibold">The science of Sana Essencia.</h2>
             <p className="mt-4 text-gray-700 leading-relaxed">
               Scent is the only sense with a direct line to the emotional brain.
               Aromatic molecules travel from the olfactory bulb straight to the
@@ -251,7 +251,7 @@ const Home: React.FC = () => {
           Corporate & workplace programs.
         </h2>
         <p className="mt-4 text-gray-700 leading-relaxed">
-          Sana Essência Neuro Tools are ideal for employee wellbeing programs,
+          Sana Essencia Neuro Tools are ideal for employee wellbeing programs,
           onboarding gifts, leadership retreats, and study spaces. They offer
           passive, science‑led support for focus, calm, and emotional balance —
           with zero disruption to the workday.
@@ -260,8 +260,8 @@ const Home: React.FC = () => {
 
       {/* FOOTER */}
       <footer className="max-w-6xl mx-auto px-6 py-12 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div>Sana Essência — portable tools for the modern nervous system.</div>
-        <div className="text-xs text-gray-400">Sana Essência, Basingstoke, UK</div>
+        <div>Sana Essencia — portable tools for the modern nervous system.</div>
+        <div className="text-xs text-gray-400">Sana Essencia, Basingstoke, UK</div>
       </footer>
     </div>
   );
