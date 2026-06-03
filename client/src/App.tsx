@@ -20,7 +20,7 @@ export default function App() {
         backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(138,138,130,0.15)"
       }}>
         <a href="#" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.25rem", fontWeight: 400, letterSpacing: "0.08em", color: "#2A2A2A", textDecoration: "none" }}>
-          Sana Essência
+          Sana <span style={{ color: "#B8975A" }}>Essencia</span>
         </a>
         <div style={{ display: "flex", gap: "2rem" }}>
           <a href="#collection" style={{ fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#7A7570", textDecoration: "none" }}>Collection</a>
