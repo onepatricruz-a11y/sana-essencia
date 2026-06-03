@@ -113,7 +113,7 @@ export default function App() {
   const [quizRecommendation, setQuizRecommendation] = useState<ProductItem | null>(null);
 
   // Waitlist State
-  const [email, setEmail] = useState<string>(" ");
+  const [email, setEmail] = useState<string>("");
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
   const handleAngleChange = (prodId: string, angle: string) => {
@@ -151,24 +151,24 @@ export default function App() {
   };
 
   return (
-    <section style={{ background: "#F7F4EF", padding: "7rem 2.5rem", color: "#2A2A2A", fontFamily: "'Jost', sans-serif" }} id="collection">
-      <div style={{ maxWidth: "1300px", margin: "0 auto" }}>
+    <section style={{ background: "#F7F4EF", padding: "4rem 1.5rem", color: "#2A2A2A", fontFamily: "'Jost', sans-serif" }} id="collection">
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         
         {/* HEADER SECTION */}
-        <div style={{ display: "grid", gap: "4rem", marginBottom: "5rem", alignItems: "end" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "2rem", marginBottom: "4rem" }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "1rem", fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#7A7570" }}>
               <span style={{ width: "30px", height: "1px", background: "#7A7570" }}></span>06 — Neuro Tools Collection
             </div>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.5rem, 5vw, 4rem)", fontWeight: 300, lineHeight: 1.1, marginTop: "1rem" }}>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.3rem, 5vw, 3.8rem)", fontWeight: 300, lineHeight: 1.1, marginTop: "1rem" }}>
               Instruments<br /><span style={{ fontStyle: "italic", color: "#7A7570" }}>engineered for state.</span>
             </h2>
           </div>
           <div>
-            <p style={{ fontSize: "0.85rem", lineHeight: 2, color: "#7A7570", maxWidth: "440px", marginBottom: "1.5rem" }}>
+            <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "#7A7570", maxWidth: "480px", marginBottom: "1.5rem" }}>
               Each Neuro Tool is a precision-manufactured scent instrument designed for a specific cognitive window. Portable biological signal systems, not wellness decor.
             </p>
-            <div style={{ display: "flex", border: "1px solid #E8E3DA", width: "fit-content" }}>
+            <div style={{ display: "flex", border: "1px solid #E8E3DA", width: "fit-content", flexWrap: "wrap" }}>
               {["all", "morning", "focus", "evening"].map(type => (
                 <button 
                   key={type}
@@ -187,16 +187,15 @@ export default function App() {
         </div>
 
         {/* PRODUCTS DYNAMIC GRID */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "2px", background: "#E8E3DA" }}>
-          {filteredProducts.map((product, index) => {
-            const isEven = index % 2 === 0;
+        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+          {filteredProducts.map((product) => {
             return (
-              <div key={product.id} style={{ display: "grid", background: "#F7F4EF", border: "1px solid #E8E3DA" }}>
+              <div key={product.id} style={{ display: "flex", flexDirection: "column", background: "#F7F4EF", border: "1px solid #E8E3DA", overflow: "hidden" }}>
                 
                 {/* Visual Frame Container */}
-                <div style={{ position: "relative", background: "#E8E3DA", aspectRatio: "1/1" }}>
-                  <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "#7A7570" }}>
-                    <div style={{ width: "60px", height: "60px", border: "1px solid #7A7570", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.4, marginBottom: "1rem" }}>
+                <div style={{ position: "relative", background: "#E8E3DA", width: "100%", aspectRatio: "4/3", minHeight: "280px" }}>
+                  <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "#7A7570", padding: "1rem" }}>
+                    <div style={{ width: "50px", height: "50px", border: "1px solid #7A7570", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.4, marginBottom: "1rem" }}>
                       ⚡
                     </div>
                     <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.15em", textTransform: "uppercase", opacity: 0.5, textAlign: "center" }}>
@@ -207,15 +206,15 @@ export default function App() {
                     Photos coming soon
                   </span>
 
-                  <div style={{ position: "absolute", bottom: "0", left: "0", right: "0", display: "flex", gap: "2px", padding: "1rem", background: "linear-gradient(to top, rgba(0,0,0,0.2), transparent)" }}>
+                  <div style={{ position: "absolute", bottom: "0", left: "0", right: "0", display: "flex", gap: "2px", padding: "0.75rem", background: "linear-gradient(to top, rgba(0,0,0,0.15), transparent)", overflowX: "auto" }}>
                     {product.angles.map(angle => (
                       <button
                         key={angle}
                         onClick={() => handleAngleChange(product.id, angle)}
                         style={{
                           fontFamily: "'DM Mono', monospace", fontSize: "0.5rem", letterSpacing: "0.1em", textTransform: "uppercase",
-                          padding: "0.4rem 0.75rem", background: selectedAngles[product.id] === angle ? "#2A2A2A" : "rgba(28,28,28,0.4)",
-                          color: "#fff", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer", transition: "all 0.2s"
+                          padding: "0.35rem 0.65rem", background: selectedAngles[product.id] === angle ? "#2A2A2A" : "rgba(28,28,28,0.5)",
+                          color: "#fff", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer", transition: "all 0.2s", whiteSpace: "nowrap"
                         }}
                       >
                         {angle}
@@ -225,15 +224,15 @@ export default function App() {
                 </div>
 
                 {/* Technical Product Info Sidebar */}
-                <div style={{ padding: "3rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <div style={{ padding: "2rem 1.5rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <div>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
                       <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.2em", color: "#B8975A", textTransform: "uppercase" }}>{product.tag}</span>
                       <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", color: "#E8E3DA" }}>{product.num}</span>
                     </div>
-                    <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2.2rem", fontWeight: 300, lineHeight: 1.1 }}>{product.name}</h3>
+                    <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2rem", fontWeight: 300, lineHeight: 1.1 }}>{product.name}</h3>
                     <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#7A7570", marginTop: "0.25rem", marginBottom: "1.5rem" }}>{product.sub}</div>
-                    <p style={{ fontSize: "0.82rem", lineHeight: 2, color: "#7A7570", paddingBottom: "1.5rem", borderBottom: "1px solid #E8E3DA" }}>
+                    <p style={{ fontSize: "0.82rem", lineHeight: 1.8, color: "#7A7570", paddingBottom: "1.5rem", borderBottom: "1px solid #E8E3DA" }}>
                       {product.desc}<br /><br />{product.descExtra}
                     </p>
 
@@ -256,7 +255,7 @@ export default function App() {
                     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1.5rem" }}>
                       {product.specs.map(spec => (
                         <div key={spec.key} style={{ display: "flex", fontSize: "0.75rem" }}>
-                          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.55rem", color: "#7A7570", width: "100px", textTransform: "uppercase" }}>{spec.key}</span>
+                          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.55rem", color: "#7A7570", width: "100px", textTransform: "uppercase", flexShrink: 0 }}>{spec.key}</span>
                           <span style={{ color: "#2A2A2A" }}>{spec.val}</span>
                         </div>
                       ))}
@@ -271,13 +270,13 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "1.5rem", borderTop: "1px solid #E8E3DA" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "1.5rem", borderTop: "1px solid #E8E3DA", flexWrap: "wrap", gap: "1rem" }}>
                     <div>
                       <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.75rem", fontWeight: 300 }}>{product.price}</div>
                       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.5rem", color: "#7A7570" }}>+ refill sub option</div>
                     </div>
-                    <div style={{ display: "flex", gap: "0.5rem" }}>
-                      <button style={{ background: "#2A2A2A", color: "#F7F4EF", border: "none", padding: "0.75rem 1.5rem", fontFamily: "'DM Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.15em", textTransform: "uppercase", cursor: "pointer" }}>Pre-Order</button>
+                    <div>
+                      <button style={{ background: "#2A2A2A", color: "#F7F4EF", border: "none", padding: "0.75rem 1.5rem", fontFamily: "'DM Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.15em", textTransform: "uppercase", cursor: "pointer", width: "100%" }}>Pre-Order</button>
                     </div>
                   </div>
 
@@ -289,12 +288,12 @@ export default function App() {
         </div>
 
         {/* PROTOCOL ASSESSMENT ENGINE (QUIZ BLOCK) */}
-        <div style={{ background: "#ece9e3", border: "1px solid #E8E3DA", marginTop: "4rem", padding: "3.5rem" }}>
+        <div style={{ background: "#ece9e3", border: "1px solid #E8E3DA", marginTop: "4rem", padding: "2rem 1.5rem" }}>
           <div style={{ maxWidth: "600px" }}>
             <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#B8975A", marginBottom: "0.75rem" }}>
               Protocol Assessment Engine
             </div>
-            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2rem", fontWeight: 300, marginBottom: "1.5rem" }}>
+            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.8rem", fontWeight: 300, marginBottom: "1.5rem" }}>
               Identify your neural interface requirements.
             </h3>
 
@@ -330,7 +329,7 @@ export default function App() {
             )}
 
             {quizStep === 3 && quizRecommendation && (
-              <div style={{ padding: "1rem", background: "#F7F4EF", border: "1px solid #B8975A" }}>
+              <div style={{ padding: "1.5rem", background: "#F7F4EF", border: "1px solid #B8975A" }}>
                 <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.5rem", color: "#B8975A", textTransform: "uppercase" }}>Recommended Archetype Interface</div>
                 <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.5rem", margin: "0.25rem 0" }}>{quizRecommendation.name}</h4>
                 <p style={{ fontSize: "0.8rem", color: "#7A7570", marginBottom: "1rem" }}>{quizRecommendation.sub}. Perfectly matched to optimize your focus environment parameters.</p>
@@ -343,29 +342,29 @@ export default function App() {
         </div>
 
         {/* EARLY ACCESS CAPTURE MODULE */}
-        <div style={{ background: "#1E1E1E", padding: "3.5rem 4rem", display: "grid", gap: "3rem", alignItems: "center", marginTop: "2px" }}>
+        <div style={{ background: "#1E1E1E", padding: "3rem 1.5rem", display: "flex", flexDirection: "column", gap: "2rem", marginTop: "2rem" }}>
           <div>
             <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8975A", marginBottom: "0.5rem" }}>Early Access · Limited Prototype Matrix</div>
-            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2.2rem", fontWeight: 300, color: "#F7F4EF", lineHeight: 1.2 }}>
+            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2rem", fontWeight: 300, color: "#F7F4EF", lineHeight: 1.2 }}>
               Join the initial <br /><span style={{ fontStyle: "italic", color: "#7A7570" }}>laboratory cohort.</span>
             </h3>
-            <p style={{ fontSize: "0.78rem", color: "rgba(247,244,239,0.45)", lineHeight: 1.8, marginTop: "0.5rem" }}>
+            <p style={{ fontSize: "0.78rem", color: "rgba(247,244,239,0.45)", lineHeight: 1.6, marginTop: "0.5rem" }}>
               We are assembling data allocations for our first 3D-printed alpha sequence. Secure allocations for priority manufacturing, tiered founder tracking options, and research tracking metrics directly from development.
             </p>
           </div>
           <div>
             {!isSubmitted ? (
-              <div style={{ display: "flex", border: "1px solid rgba(247,244,239,0.15)" }}>
+              <div style={{ display: "flex", border: "1px solid rgba(247,244,239,0.15)", width: "100%" }}>
                 <input 
                   type="email" 
                   placeholder="secure@network.com" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  style={{ flex: 1, padding: "1rem", background: "rgba(247,244,239,0.05)", border: "none", color: "#F7F4EF", fontSize: "0.85rem", outline: "none" }}
+                  style={{ flex: 1, padding: "1rem", background: "rgba(247,244,239,0.05)", border: "none", color: "#F7F4EF", fontSize: "0.85rem", outline: "none", minWidth: "0" }}
                 />
                 <button 
                   onClick={() => email.includes("@") && setIsSubmitted(true)}
-                  style={{ background: "#B8975A", color: "#1E1E1E", border: "none", padding: "0 1.5rem", fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.15em", cursor: "pointer" }}
+                  style={{ background: "#B8975A", color: "#1E1E1E", border: "none", padding: "0 1.25rem", fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.15em", cursor: "pointer" }}
                 >
                   Initialize
                 </button>
