@@ -4,39 +4,29 @@ const Home: React.FC = () => {
   return (
     <div className="w-full bg-gray-50 text-gray-900">
       {/* HERO */}
-      <section className="max-w-6xl mx-auto px-6 py-20 border-b border-gray-200">
-        <p className="uppercase tracking-widest text-sm text-gray-500">
-          Neuro‑aromacology for real life
-        </p>
+      {/* HERO SECTION - Clinical Positioning */}
+<section className="max-w-6xl mx-auto px-6 py-20 border-b border-gray-200">
+  <p className="uppercase tracking-widest text-sm text-gray-500">
+    Neuro-Aromachology Infrastructure
+  </p>
+  <h1 className="text-4xl md:text-5xl font-semibold mt-4">
+    Precision micro-regulation for the nervous system.
+  </h1>
+  <p className="text-lg text-gray-600 max-w-2xl mt-4">
+    Sana Essencia engineers scientifically-validated delivery protocols. 
+    Our neuro-aromachology instruments provide rapid, non-invasive 
+    intervention to optimize cognitive state and mood.
+  </p>
+  <div className="flex flex-wrap gap-4 mt-8">
+    <a 
+      href="#technical-specs" 
+      className="px-6 py-3 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition"
+    >
+      View Technical Specifications
+    </a>
+  </div>
+</section>
 
-        <h1 className="text-4xl md:text-5xl font-semibold mt-4">
-          Portable tools for the modern nervous system.
-        </h1>
-
-        <p className="text-lg text-gray-600 max-w-2xl mt-4">
-          Neuro‑aromacology devices engineered to help you shift into focus,
-          calm, or rest — effortlessly, anywhere, anytime. Sana Essencia creates
-          science‑coded scent instruments that support cognitive clarity,
-          emotional balance, and nervous system regulation.
-        </p>
-
-        <div className="flex flex-wrap gap-4 mt-8">
-          <a
-            href="#neuro-tools"
-            className="px-6 py-3 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors"
-          >
-            Explore Neuro Tools
-          </a>
-
-          <a
-            href="#science"
-            className="px-6 py-3 rounded-full bg-gray-200 text-gray-900 text-sm font-medium hover:bg-gray-300 transition-colors"
-          >
-            Learn the Science
-          </a>
-        </div>
-
-        <p className="text-sm text-gray-500 mt-4">State‑shifting through scent.</p>
       </section>
 
       {/* PROBLEM */}
