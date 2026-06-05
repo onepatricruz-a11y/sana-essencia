@@ -53,7 +53,7 @@ const Home: React.FC = () => {
         </h2>
 
         <p className="mt-4 text-gray-700">
-          Sana Essência combines neuroscience, aromachology, and circadian
+          Sana Essencia combines neuroscience, aromachology, and circadian
           biology to create tools that:
         </p>
 
@@ -111,19 +111,19 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* NEURO TOOLS */}
+      {/* COGNITIVE REGULATION MODULES*/}
       <section
         id="neuro-tools"
         className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200"
       >
-        <h2 className="text-3xl font-semibold">Neuro Tools collection.</h2>
+        <h2 className="text-3xl font-semibold">Cognitive Regulation Modules.</h2>
         <p className="mt-4 text-gray-700">
           Portable scent instruments designed for cognitive clarity, emotional
           balance, and circadian alignment.
         </p>
 
         <div className="grid md:grid-cols-3 gap-6 mt-10">
-          {/* Inhaler Slide */}
+          {/*  Module A: Precision Shutter */}
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h3 className="text-xl font-semibold">Inhaler Slide</h3>
             <p className="text-sm text-gray-500 mt-1">
@@ -138,7 +138,7 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          {/* Synaptic Clicker */}
+          {/* Module B: Tactile Anchor */}
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h3 className="text-xl font-semibold">Synaptic Clicker</h3>
             <p className="text-sm text-gray-500 mt-1">
@@ -153,7 +153,7 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          {/* Elemental Token */}
+          {/* Module C: Molecular Disc */}
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h3 className="text-xl font-semibold">Elemental Token</h3>
             <p className="text-sm text-gray-500 mt-1">
@@ -163,7 +163,7 @@ const Home: React.FC = () => {
               A pocket‑sized molecular disc that releases a soft, steady scent.
             </p>
             <p className="text-sm text-gray-500 mt-4">
-              Best for: commuting, unwinding, sleep preparation.
+              Primary Function: autonomic modulation for high-stress environments 
             </p>
           </div>
         </div>
@@ -175,25 +175,24 @@ const Home: React.FC = () => {
         className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200"
       >
         <h2 className="text-3xl font-semibold">
-          Support your rhythm throughout the day.
+          Circadian Alignment Protocols.
         </h2>
 
         <p className="mt-4 text-gray-700">
-          Use circadian‑aligned scent modules to train your nervous system
-          gently over time.
+          Use circadian‑aligned scent modules to systematic delivery of volatile organic compounds to stabilize diurnal cortisol patterns.
         </p>
 
         <ul className="list-disc ml-6 mt-4 space-y-2 text-gray-700">
           <li>
-            <strong>Morning – Cortisol Rise:</strong> wake the mind, clear the
+            <strong>Morning – Wake/Focus Phase:</strong> wake the mind, clear the
             fog.
           </li>
           <li>
-            <strong>Afternoon – Synaptic Peak:</strong> sharpen attention,
+            <strong>Afternoon – Cognitive Peak Phase:</strong> sharpen attention,
             sustain performance.
           </li>
           <li>
-            <strong>Evening – Delta Descent:</strong> release tension, prepare
+            <strong>Evening – Restorative Regulation Phase:</strong> release tension, prepare
             for sleep.
           </li>
         </ul>
@@ -238,12 +237,11 @@ const Home: React.FC = () => {
         className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200"
       >
         <h2 className="text-3xl font-semibold">
-          Corporate & workplace programs.
+          Clinical Infrastructure Partnerships.
         </h2>
         <p className="mt-4 text-gray-700 leading-relaxed">
-          Sana Essencia Neuro Tools are ideal for employee wellbeing programs,
-          onboarding gifts, leadership retreats, and study spaces. They offer
-          passive, science‑led support for focus, calm, and emotional balance —
+          Sana Essencia Neuro Instruments are integrated into workplace environments to maintain cognitive performance and stabilise emotional states during high-load operational periodsThey offer
+           —
           with zero disruption to the workday.
         </p>
       </section>
