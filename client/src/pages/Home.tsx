@@ -160,7 +160,6 @@ const Home = () => {
             <h2 className="text-3xl font-light mb-5" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>The only sense with a direct line to the emotional brain.</h2>
           </div>
         </div>
-        {/* NEW MOLECULAR HERO SECTION */}
         <FadeIn delay={200}><img src="/images/molecular-hero.jpg" alt="Molecular Intervention" className="w-full rounded-2xl shadow-xl mb-16" /></FadeIn>
       </section>
 
