@@ -114,7 +114,7 @@ const Home = () => {
       {/* NAV */}
       <nav className="sticky top-0 z-50 bg-stone-50/90 backdrop-blur-md border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-          <a href="/"><img src="/Images/logo-light.png" alt="Sana Essencia" style={{ height: "40px", width: "auto" }} /></a>
+          <a href="/"><img src="/images/logo-light.png" alt="Sana Essencia" style={{ height: "40px", width: "auto" }} /></a>
           <div className="flex items-center gap-6">
             <a href="#neuro-tools" className="text-xs uppercase tracking-widest text-gray-500 hidden md:block">Products</a>
             <a href="#science" className="text-xs uppercase tracking-widest text-gray-500 hidden md:block">Science</a>
@@ -131,7 +131,7 @@ const Home = () => {
 
       {/* IMAGE: RITUAL */}
       <section className="max-w-5xl mx-auto px-6 py-14">
-        <FadeIn><img src="/Images/model-ritual.jpg" alt="Ritual" className="w-full rounded-2xl shadow-xl" /></FadeIn>
+        <FadeIn><img src="/images/model-ritual.jpg" alt="Ritual" className="w-full rounded-2xl shadow-xl" /></FadeIn>
       </section>
 
       {/* PROBLEM SECTION */}
@@ -155,13 +155,13 @@ const Home = () => {
       {/* SCIENCE + MOLECULAR HERO */}
       <section id="science" className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <img src="/Images/lava-drop.jpg" alt="Science" className="w-full rounded-2xl shadow-lg" />
+          <img src="/images/lava-drop.jpg" alt="Science" className="w-full rounded-2xl shadow-lg" />
           <div>
             <h2 className="text-3xl font-light mb-5" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>The only sense with a direct line to the emotional brain.</h2>
           </div>
         </div>
         {/* NEW MOLECULAR HERO SECTION */}
-        <FadeIn delay={200}><img src="/Images/molecular-hero.jpg" alt="Molecular Intervention" className="w-full rounded-2xl shadow-xl mb-16" /></FadeIn>
+        <FadeIn delay={200}><img src="/images/molecular-hero.jpg" alt="Molecular Intervention" className="w-full rounded-2xl shadow-xl mb-16" /></FadeIn>
       </section>
 
       {/* PRODUCTS */}
@@ -194,7 +194,7 @@ const Home = () => {
       <footer style={{ background: "#2d3748" }} className="w-full py-16 px-6 text-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <img src="/Images/logo-dark.png" alt="Sana Essencia" style={{ height: "56px", marginBottom: "16px" }} />
+            <img src="/images/logo-dark.png" alt="Sana Essencia" style={{ height: "56px", marginBottom: "16px" }} />
             <p className="text-xs text-gray-400">Scientia et Natura Formula. Basingstoke, UK.</p>
           </div>
         </div>
