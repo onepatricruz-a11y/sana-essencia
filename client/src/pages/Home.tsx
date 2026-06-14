@@ -1,99 +1,89 @@
-import React, { useState, useEffect, useRef } from "react";
+"use client";
+import React, { useState } from "react";
 
-// ─── FADE-IN HOOK ─────────────────────────────────────────────────────────────
-const useFadeIn = (threshold = 0.15) => {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return [ref, visible];
-};
-
-const FadeIn = ({ children, delay = 0, className = "" }) => {
-  const [ref, visible] = useFadeIn();
-  return (
-    <div ref={ref} className={className} style={{
-      opacity: visible ? 1 : 0,
-      transform: visible ? "translateY(0)" : "translateY(24px)",
-      transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
-    }}>
-      {children}
-    </div>
-  );
-};
-
-// ─── WAITLIST ──────────────────────────────────────────────────────────────
-const WaitlistSection = () => {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+export default function Home() {
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [confirmationMsg, setConfirmationMsg] = useState("");
-  
-  const handleSubmit = async () => {
-    if (!name.trim()) { setError("Please enter your name."); return; }
-    if (!email || !email.includes("@")) { setError("Please enter a valid email address."); return; }
-    setError(""); setLoading(true);
-    try {
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email }),
-      });
-      if (response.ok) {
-        setConfirmationMsg(`Your registration has been recorded, ${name.split(" ")[0]}.`);
-        setSubmitted(true);
-      } else { setError("Something went wrong."); }
-    } catch { setError("Something went wrong."); }
-    setLoading(false);
-  };
 
   return (
-    <section id="waitlist" className="max-w-6xl mx-auto px-6 py-20 border-b border-gray-200">
-      <FadeIn>
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          <div>
-            <h2 className="text-3xl font-light mb-4" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Join the waitlist.</h2>
-            {!submitted ? (
-              <div className="space-y-4">
-                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Full name" className="w-full border p-3 text-sm" />
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email address" className="w-full border p-3 text-sm" />
-                <button onClick={handleSubmit} disabled={loading} className="w-full px-6 py-3 bg-gray-900 text-white text-sm">{loading ? "Registering…" : "Request Early Access"}</button>
-              </div>
-            ) : <div className="p-6 bg-stone-50 text-sm text-gray-700">{confirmationMsg}</div>}
-          </div>
-        </div>
-      </FadeIn>
-    </section>
-  );
-};
+    <div className="se-root">
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+        :root { --se-cream: #F6F3EC; --se-ink: #1E3329; --se-sage: #4A6B5C; --se-amber: #B8763E; --se-slate: #2C4A6E; --se-stone: #DDD6C7; }
+        .se-root { background: var(--se-cream); color: var(--se-ink); font-family: 'Inter', sans-serif; line-height: 1.6; }
+        .se-display { font-family: 'Source Serif 4', serif; }
+        .se-mono { font-family: 'JetBrains Mono', monospace; }
+        .se-eyebrow { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.7rem; color: var(--se-sage); }
+        .se-btn { background: var(--se-ink); color: var(--se-cream); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; padding: 10px 20px; border: none; cursor: pointer; transition: background 0.2s; }
+        .se-btn:hover { background: var(--se-sage); }
+        .se-input { background: transparent; border: 1px solid var(--se-stone); padding: 10px; color: var(--se-ink); }
+        .se-manifesto { background: var(--se-ink); color: var(--se-cream); }
+      `}</style>
 
-// ─── MAIN ──────────────────────────────────────────────────────────────────
-const Home = () => {
-  return (
-    <div className="w-full bg-stone-50 text-gray-900">
-      <nav className="sticky top-0 z-50 bg-stone-50/90 backdrop-blur-md border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-          <a href="/"><img src="/images/logo-light.png" alt="Sana Essencia" style={{ height:"40px", width:"auto" }} /></a>
-        </div>
-      </nav>
+      {/* HEADER */}
+      <header className="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+        <div className="se-mono text-sm uppercase">Sana Essencia</div>
+        <nav className="flex gap-8 items-center">
+          <a href="mailto:hello@sanaessencia.co.uk" className="se-mono text-sm underline hover:text-amber-700 transition">Contact</a>
+          <a href="#join" className="se-btn">Join the Research</a>
+        </nav>
+      </header>
 
-      {/* Hero */}
-      <section className="max-w-6xl mx-auto px-6 pt-20 pb-16">
-        <h1 className="text-5xl font-light mb-6" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Precision micro-regulation.</h1>
-        <FadeIn><img src="/images/model-ritual.jpg" alt="Ritual" className="w-full rounded-2xl shadow-xl" /></FadeIn>
+      {/* HERO */}
+      <section className="max-w-6xl mx-auto px-6 pt-16 pb-24">
+        <h1 className="se-display text-5xl md:text-6xl font-medium max-w-4xl leading-tight">
+          Engineering Emotional Equilibrium Through the Neuroscience of Scent
+        </h1>
+        <p className="mt-8 max-w-2xl text-lg text-emerald-900">
+          Sana Essencia designs functional, brain-targeted scent formulas. Each protocol is engineered to act on a specific neural pathway for a measurable outcome.
+        </p>
       </section>
 
-      <WaitlistSection />
+      {/* MANIFESTO */}
+      <section id="manifesto" className="se-manifesto py-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="se-display text-4xl mb-10">Bridging neuroscience and everyday chaos</h2>
+          <div className="space-y-6 text-lg">
+            <p>I am a professional, a mother of four, and a notorious self-taught researcher. Sana Essencia was born not in a lab, but at the intersection of a demanding corporate career and the beautiful, high-energy chaos of family life.</p>
+            <p>I turned to the science of neuro-olfaction. By using targeted volatile compounds, we can trigger neural pathways — like norepinephrine for alertness or GABA for calm — to shift brain chemistry in seconds.</p>
+            <p>Welcome to Sana Essencia. Let's optimise our brains, together.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* JOIN / NEWSLETTER */}
+      <section id="join" className="py-20 max-w-6xl mx-auto px-6">
+        <p className="se-eyebrow mb-4">Join the Research</p>
+        <h2 className="se-display text-3xl md:text-4xl font-medium mb-6 max-w-xl">
+          Get the weekly finding before anyone else.
+        </h2>
+        
+        {submitted ? (
+          <p className="se-mono text-sm" style={{ color: "#4A6B5C" }}>
+            You're on the list. Thank you.
+          </p>
+        ) : (
+          <form 
+            action="https://formspree.io/f/xqeowqqp" 
+            method="POST" 
+            className="flex flex-col sm:flex-row gap-3 max-w-md"
+            onSubmit={() => setSubmitted(true)}
+          >
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="you@email.com"
+              className="se-input flex-1"
+            />
+            <button type="submit" className="se-btn">Join the list</button>
+          </form>
+        )}
+      </section>
+
+      {/* FOOTER */}
+      <footer className="max-w-6xl mx-auto px-6 py-10 border-t border-stone-200 se-mono text-xs text-stone-500">
+        © Sana Essencia, {new Date().getFullYear()}
+      </footer>
     </div>
   );
-};
-
-export default Home;
+}
