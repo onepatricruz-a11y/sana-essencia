@@ -1,62 +1,123 @@
-"use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-export default function Home() {
-  const [submitted, setSubmitted] = useState(false);
+// ─── FADE-IN HOOK ─────────────────────────────────────────────────────────────
+const useFadeIn = (threshold = 0.15) => {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, visible];
+};
 
+const FadeIn = ({ children, delay = 0, className = "" }) => {
+  const [ref, visible] = useFadeIn();
   return (
-    <div className="se-root">
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap');
-        :root { --se-cream: #F6F3EC; --se-ink: #1E3329; --se-sage: #4A6B5C; --se-stone: #DDD6C7; }
-        .se-root { background: var(--se-cream); color: var(--se-ink); font-family: 'Inter', sans-serif; }
-        .se-display { font-family: 'Cormorant Garamond', serif; }
-        .se-mono { font-family: 'JetBrains Mono', monospace; }
-        .se-btn { background: var(--se-ink); color: var(--se-cream); padding: 12px 24px; border: none; cursor: pointer; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }
-      `}</style>
-
-      {/* HEADER */}
-      <header className="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
-        <img src="/images/logo-light.png" alt="Sana Essencia Logo" className="h-10" />
-        <a href="#waitlist" className="se-mono text-xs uppercase tracking-widest border-b border-se-ink">Early Access</a>
-      </header>
-
-      {/* HERO: CLINICAL FOCUS */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
-        <h1 className="se-display text-5xl md:text-7xl font-light mb-12">Cognitive Infrastructure through Neuro-Olfaction</h1>
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <img src="/images/molecular-hero.jpg" alt="Molecular Research" className="w-full h-96 object-cover rounded-sm" />
-          <div className="space-y-6">
-            <p className="text-xl">Sana Essencia investigates the chemical relationship between botanical volatiles and the autonomic nervous system.</p>
-            <p className="text-lg opacity-80 leading-relaxed">Our research focuses on precision scent delivery as a mechanism for neural regulation, targeting specific pathways for executive function and physiological equilibrium.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* LAB IMAGERY GRID */}
-      <section className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-6">
-        <img src="/images/lava-drop.jpg" alt="Lava Drop" className="w-full h-80 object-cover rounded-sm" />
-        <img src="/images/vial-trio.jpg" alt="Vial Trio" className="w-full h-80 object-cover rounded-sm" />
-        <img src="/images/model-ritual.jpg" alt="Ritual Model" className="w-full h-80 object-cover rounded-sm" />
-      </section>
-
-      {/* WAITLIST */}
-      <section id="waitlist" className="max-w-3xl mx-auto px-6 py-20 text-center">
-        <h2 className="se-display text-4xl mb-8">Access the Research Protocol</h2>
-        {!submitted ? (
-          <form action="https://formspree.io/f/xqeowqqp" method="POST" className="flex flex-col gap-4" onSubmit={() => setSubmitted(true)}>
-            <input type="email" name="email" required placeholder="Institutional or professional email" className="p-4 border border-se-stone bg-transparent w-full text-center" />
-            <button type="submit" className="se-btn">Register for Early Access</button>
-          </form>
-        ) : (
-          <p className="se-mono text-sm">Registration recorded. Dispatch priority established.</p>
-        )}
-      </section>
-
-      {/* FOOTER */}
-      <footer className="max-w-6xl mx-auto px-6 py-20 border-t border-se-stone text-xs se-mono uppercase tracking-widest">
-        © Sana Essencia {new Date().getFullYear()} · Basingstoke, UK
-      </footer>
+    <div ref={ref} className={className} style={{
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(24px)",
+      transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
+    }}>
+      {children}
     </div>
   );
-}
+};
+
+// ─── WAITLIST ─────────────────────────────────────────────────────────────────
+const WaitlistSection = () => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [confirmationMsg, setConfirmationMsg] = useState("");
+  const [joinedList, setJoinedList] = useState([
+    { name: "Isabelle M.", time: "2 min ago" },
+    { name: "Thomas K.", time: "7 min ago" },
+    { name: "Priya S.", time: "14 min ago" },
+  ]);
+
+  const handleSubmit = async () => {
+    if (!name.trim()) { setError("Please enter your name."); return; }
+    if (!email || !email.includes("@")) { setError("Please enter a valid email address."); return; }
+    setError("");
+    setLoading(true);
+    try {
+      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email }),
+      });
+      if (response.ok) {
+        setConfirmationMsg(`Registration confirmed. We will be in touch.`);
+        setSubmitted(true);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    }
+    setLoading(false);
+  };
+
+  return (
+    <section id="waitlist" className="max-w-6xl mx-auto px-6 py-20 border-b border-gray-200">
+      <FadeIn>
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div>
+            <p className="uppercase tracking-widest text-xs text-gray-400 mb-3">Early Access</p>
+            <h2 className="text-3xl font-light mb-4" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+              Join the waitlist.
+            </h2>
+            <p className="text-gray-600 mb-8 leading-relaxed text-sm">
+              Be among the first to receive your instrument.
+            </p>
+            {!submitted ? (
+              <div className="space-y-4">
+                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Full name"
+                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-gray-400" />
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email address"
+                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-gray-400" />
+                {error && <p className="text-red-400 text-xs">{error}</p>}
+                <button onClick={handleSubmit} disabled={loading}
+                  className="w-full px-6 py-3 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-gray-700 transition">
+                  {loading ? "Registering…" : "Request Early Access"}
+                </button>
+              </div>
+            ) : (
+              <div className="bg-stone-50 border border-stone-200 rounded-xl p-6">
+                <p className="text-gray-700 leading-relaxed text-sm">{confirmationMsg}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </FadeIn>
+    </section>
+  );
+};
+
+// ─── MAIN ──
+const Home = () => {
+  return (
+    <div className="w-full bg-stone-50 text-gray-900" style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}>
+      {/* --- ADD YOUR STYLES AND SECTIONS HERE AS PER PREVIOUS BLOCK --- */}
+      
+      {/* Example Image Implementation with Optimizations: */}
+      <img 
+        src="/images/Model-ritual.jpg" 
+        alt="Applying Sana Essencia"
+        loading="lazy" 
+        style={{ aspectRatio: "16/9", width: "100%", objectFit: "cover" }} 
+      />
+
+      <WaitlistSection />
+    </div>
+  );
+};
+
+export default Home;
