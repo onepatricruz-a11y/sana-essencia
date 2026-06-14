@@ -28,14 +28,27 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* HERO */}
-      <section className="max-w-6xl mx-auto px-6 pt-16 pb-24">
+      {/* HERO SECTION WITH IMAGE */}
+      <section className="max-w-6xl mx-auto px-6 pt-16 pb-16">
+        <div className="mb-10 w-full h-80 md:h-96 bg-stone-200 rounded-sm overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1584483766114-11119b489a3f" alt="Clinical Environment" className="w-full h-full object-cover opacity-90" />
+        </div>
         <h1 className="se-display text-5xl md:text-6xl font-medium max-w-4xl leading-tight">
           Engineering Emotional Equilibrium Through the Neuroscience of Scent
         </h1>
         <p className="mt-8 max-w-2xl text-lg text-emerald-900">
           Sana Essencia designs functional, brain-targeted scent formulas. Each protocol is engineered to act on a specific neural pathway for a measurable outcome.
         </p>
+      </section>
+
+      {/* VISUAL ANCHORS */}
+      <section className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8">
+        <div className="h-64 bg-stone-200 rounded-sm overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Nature" className="w-full h-full object-cover" />
+        </div>
+        <div className="h-64 bg-stone-200 rounded-sm overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174" alt="Clinical" className="w-full h-full object-cover" />
+        </div>
       </section>
 
       {/* MANIFESTO */}
@@ -80,7 +93,6 @@ export default function Home() {
         )}
       </section>
 
-      {/* FOOTER */}
       <footer className="max-w-6xl mx-auto px-6 py-10 border-t border-stone-200 se-mono text-xs text-stone-500">
         © Sana Essencia, {new Date().getFullYear()}
       </footer>
