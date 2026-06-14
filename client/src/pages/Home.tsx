@@ -31,7 +31,7 @@ export default function Home() {
       {/* HERO SECTION WITH IMAGE */}
       <section className="max-w-6xl mx-auto px-6 pt-16 pb-16">
         <div className="mb-10 w-full h-80 md:h-96 bg-stone-200 rounded-sm overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1584483766114-11119b489a3f" alt="Clinical Environment" className="w-full h-full object-cover opacity-90" />
+         <img src="/images/molecular-hero.jpg" alt="Clinical Environment" className="w-full h-full object-cover opacity-90" />
         </div>
         <h1 className="se-display text-5xl md:text-6xl font-medium max-w-4xl leading-tight">
           Engineering Emotional Equilibrium Through the Neuroscience of Scent
@@ -43,7 +43,7 @@ export default function Home() {
 
       {/* VISUAL ANCHORS */}
       <section className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8">
-        <div className="h-64 bg-stone-200 rounded-sm overflow-hidden">
+       <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Nature" className="w-full h-full object-cover" />
           <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Nature" className="w-full h-full object-cover" />
         </div>
         <div className="h-64 bg-stone-200 rounded-sm overflow-hidden">
