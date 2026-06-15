@@ -360,7 +360,6 @@ const Home = () => {
               <div className="product-card bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
                 <div className="flex items-start justify-between mb-2">
                   <h3 className="text-lg font-medium text-gray-900">{product.name}</h3>
-                  <span className="text-sm font-semibold text-gray-700">{product.price}</span>
                 </div>
                 <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">{product.tag}</p>
                 <span className="phase-pill mb-4 self-start" style={{ background: product.phaseColor, color: product.phaseText }}>
