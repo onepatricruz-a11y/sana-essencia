@@ -50,7 +50,7 @@ const WaitlistSection = () => {
     try {
       const response = await fetch("https://formspree.io/f/xqeowqqp", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ name, email }),
       });
       if (response.ok) {
@@ -883,7 +883,10 @@ const Home = () => {
                 </div>
                 <p className="text-xs text-gray-500 mb-3">Founder, Sana Essencia · Basingstoke, UK</p>
                 <p className="text-sm text-gray-700 leading-relaxed mb-3">
-                  "I am 49. I know exactly what it feels like when your biology creates an emotional ambush with no apparent cause — the sudden urge to cry, the mood that arrives uninvited. I built the Nexus because I needed it. I understood the olfactory mechanism from the science. I designed the formula around the specific neurochemistry of that moment. The baseline self is still there. The Nexus gives the nervous system a signal to find it."
+                  "I built Sana Essencia in the margins of a demanding full-time career — the kind of role that fills the calendar before the day has properly begun. Like almost everyone I work alongside, I knew the afternoon slump intimately: that wall where focus drains and your own biology seems to be working against you. With my son away at university and my own life moving through a real season of change, I began paying closer attention to those rhythms — and to how much of our mood, energy and clarity is shaped by biology we can gently influence."
+                </p>
+                <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                  "I know exactly what it feels like when your biology creates an emotional ambush with no apparent cause — the sudden urge to cry, the mood that arrives uninvited. I'm living through this transition myself. I built the Nexus because I needed it. I understood the olfactory mechanism from the science. I designed the formula around the specific neurochemistry of that moment. The baseline self is still there. The Nexus gives the nervous system a signal to find it."
                 </p>
                 <p className="text-xs text-gray-400 italic">On the Equilibrium Nexus — Baseline formula</p>
               </div>
