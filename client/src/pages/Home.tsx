@@ -194,7 +194,7 @@ const Home = () => {
       <section className="max-w-5xl mx-auto px-6 py-14">
         <FadeIn>
           <div className="relative rounded-2xl overflow-hidden shadow-xl">
-            <img src="/Model-ritual.jpg" alt="Applying Sana Essencia oil to the lava bead tray"
+            <img src="/model-ritual.jpg" alt="Applying Sana Essencia oil"
               className="w-full object-cover" style={{ maxHeight: "560px", objectPosition: "center 25%" }} />
             <div className="absolute bottom-0 left-0 right-0 px-8 py-6"
               style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%)" }}>
@@ -207,19 +207,96 @@ const Home = () => {
         </FadeIn>
       </section>
 
-      {/* ... [Rest of your code remains the same, just update the src paths in remaining <img> tags] ... */}
-      
-      {/* ── SCIENCE IMAGE ── */}
-      <img src="/22812.jpg" ... />
-      
-      {/* ── VIAL TRIO IMAGE ── */}
-      <img src="/IMG_6444.jpg" ... />
-      
-      {/* ── EQUILIBRIUM IMAGE ── */}
-      <img src="/22921.jpg" ... />
+      <div className="se-divider" />
 
-      {/* ── FOOTER IMAGE ── */}
-      <img src="/logo-dark.png" ... />
+      {/* ── DISCOVER ── */}
+      <section id="discover" className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200">
+        <FadeIn>
+          <div className="max-w-3xl">
+            <p className="uppercase tracking-widest text-xs text-gray-400 mb-3">Discover Sana Essencia</p>
+            <h2 className="text-3xl font-light mb-6" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+              Born from watching real nervous systems under load.
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+              Sana Essencia did not begin in a laboratory. It began in observation — of the people moving through an ordinary day, and the moments when their minds quietly strained against it.
+            </p>
+            <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+              The office worker hitting the afternoon wall, reaching for a third coffee that will not quite reach. The university student deep in revision, trying to hold focus the night before an exam. The woman moving through a transition her own biology is making turbulent — a mood arriving without warning, a version of herself that feels briefly out of reach.
+            </p>
+            <p className="text-gray-600 leading-relaxed mb-6 text-sm">
+              Three different people. Three different days. One shared truth: the nervous system was under load, and the tools on offer either asked too much — time, willpower, a new routine — or did nothing at all. There was a gap where a precise, effortless intervention should be. Sana Essencia was built to fill it.
+            </p>
+            <div className="rounded-xl p-6 border border-gray-200 bg-white">
+              <p className="text-sm text-gray-700 leading-relaxed mb-2">
+                Everything we make is built on one mechanism, and everything we claim is traceable to published research.
+              </p>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                The olfactory pathway is the only sense that reaches the emotional brain without passing through the thalamus — in under one second, before conscious thought. We did not discover this. We built a precision instrument around what the science already describes.
+                <a href="#science" className="text-gray-700 underline ml-1 hover:text-gray-900">See the science →</a>
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* ── PROBLEM ── */}
+      <section className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200">
+        <FadeIn>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="uppercase tracking-widest text-xs text-gray-400 mb-3">The Problem</p>
+              <h2 className="text-3xl font-light mb-5" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+                Modern minds are overloaded.
+              </h2>
+              <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+                Screens, cognitive switching, emotional demands, and hormonal change have become the new baseline. Most interventions ask something of you — time, willpower, a new routine. Your nervous system needs support that works in the background.
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* ── SCIENCE ── */}
+      <section id="science" className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200">
+        <FadeIn>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative rounded-2xl overflow-hidden shadow-lg order-2 md:order-1">
+              <img src="/22812.jpg" alt="Golden essential oil drop"
+                className="w-full object-cover" style={{ height: "480px", objectPosition: "center" }} />
+            </div>
+            <div className="order-1 md:order-2">
+              <h2 className="text-3xl font-light mb-5" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+                The only sense with a direct line to the emotional brain.
+              </h2>
+            </div>
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* ── VIAL TRIO ── */}
+      <section className="max-w-5xl mx-auto px-6 py-14">
+        <FadeIn>
+          <div className="relative rounded-2xl overflow-hidden shadow-xl">
+            <img src="/IMG_6444.jpg" alt="Three Sana Essencia oil formulations"
+              className="w-full object-cover" style={{ maxHeight: "560px", objectPosition: "center" }} />
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* ── EQUILIBRIUM ── */}
+      <section id="equilibrium" className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200">
+        <FadeIn>
+          <img src="/22921.jpg" alt="Sana Essencia Nexus" className="w-full rounded-2xl shadow-xl" />
+        </FadeIn>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <footer style={{ background: "#2d3748" }} className="w-full">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <img src="/logo-dark.png" alt="Sana Essencia" style={{ height: "56px", width: "auto", marginBottom: "16px" }} />
+          <p className="text-xs" style={{ color: "#718096" }}>© {new Date().getFullYear()} Sana Essencia Ltd.</p>
+        </div>
+      </footer>
 
     </div>
   );
