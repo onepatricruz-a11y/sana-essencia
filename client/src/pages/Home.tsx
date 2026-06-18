@@ -128,14 +128,6 @@ const Home = () => {
           <a href="/">
             <img src="/images/logo-light.png" alt="Sana Essencia" style={{ height: "40px", width: "auto" }} />
           </a>
-          <div className="flex items-center gap-5">
-            <a href="#discover" className="text-xs uppercase tracking-widest text-gray-500 hover:text-gray-900 transition hidden md:block">Discover</a>
-            <a href="#neuro-tools" className="text-xs uppercase tracking-widest text-gray-500 hover:text-gray-900 transition hidden md:block">Regulate</a>
-            <a href="#equilibrium" className="text-xs uppercase tracking-widest text-gray-500 hover:text-gray-900 transition hidden md:block">Equilibrium</a>
-            <a href="#restoration" className="text-xs uppercase tracking-widest text-gray-500 hover:text-gray-900 transition hidden md:block">Restore</a>
-            <a href="#research" className="text-xs uppercase tracking-widest text-gray-500 hover:text-gray-900 transition hidden md:block">Research</a>
-            <a href="#waitlist" className="px-5 py-2 rounded-full bg-gray-900 text-white text-xs font-medium hover:bg-gray-700 transition">Early Access</a>
-          </div>
         </div>
       </nav>
 
@@ -150,77 +142,22 @@ const Home = () => {
             <em>Without adding anything to your day.</em>
           </h1>
         </FadeIn>
-        <FadeIn delay={200}>
-          <p className="text-gray-500 max-w-xl leading-relaxed mb-4 text-base">
-            Sana Essencia engineers precision scent delivery instruments that work through the fastest pathway to the emotional brain — passively, silently, without interrupting a single minute of your life.
-          </p>
-          <p className="text-gray-500 max-w-xl leading-relaxed mb-8 text-sm">
-            Scent with intention — wherever you are, the moment you choose it. One deliberate breath, and your nervous system is already responding. The pathway the science describes.
-          </p>
-        </FadeIn>
-        <FadeIn delay={300}>
-          <div className="flex flex-wrap gap-3 mb-6">
-            <a href="#discover" className="px-6 py-3 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-gray-700 transition">Discover Sana Essencia</a>
-            <a href="#research" className="px-6 py-3 rounded-full border border-gray-300 text-gray-700 text-sm font-medium hover:border-gray-500 transition">Help the research</a>
-          </div>
-          <p className="text-xs text-gray-400">Joining the professionals, students, clinicians, and women in transition already on the waitlist.</p>
-        </FadeIn>
       </section>
 
       {/* ── HERO IMAGE ── */}
       <section className="max-w-5xl mx-auto px-6 py-14">
         <FadeIn>
           <div className="relative rounded-2xl overflow-hidden shadow-xl">
-            <img src="/images/Model-ritual.jpg" alt="Applying Sana Essencia oil to the lava bead tray"
+            <img src="/images/Model-ritual.jpg" alt="Applying Sana Essencia oil"
               className="w-full object-cover" style={{ maxHeight: "560px", objectPosition: "center 25%" }} />
-            <div className="absolute top-4 right-4">
-              <span className="bg-white/80 backdrop-blur-sm text-gray-700 text-xs px-3 py-1 rounded-full uppercase tracking-widest">Concept visualisation</span>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 px-8 py-6"
-              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%)" }}>
-              <p className="text-white text-sm tracking-widest uppercase opacity-80">The Ritual</p>
-              <p className="text-white text-lg font-light mt-1" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-                One drop. One breath. One shift.
-              </p>
-            </div>
           </div>
         </FadeIn>
       </section>
-
-      {/* ── NEW NEXUS IMAGE ── */}
+      
+      {/* ── NEW NEXUS RITUAL IMAGE ── */}
       <section className="max-w-5xl mx-auto px-6 py-14">
         <FadeIn>
           <img src="/images/22876.png" alt="Sana Essencia Nexus Ritual" className="w-full rounded-2xl shadow-xl" />
-        </FadeIn>
-      </section>
-
-      <div className="se-divider" />
-
-      {/* ── DISCOVER ── */}
-      <section id="discover" className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200">
-        <FadeIn>
-          <div className="max-w-3xl">
-            <p className="uppercase tracking-widest text-xs text-gray-400 mb-3">Discover Sana Essencia</p>
-            <h2 className="text-3xl font-light mb-6" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-              Born from watching real nervous systems under load.
-            </h2>
-          </div>
-        </FadeIn>
-      </section>
-
-      {/* ── SCIENCE ── */}
-      <section id="science" className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200">
-        <FadeIn>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative rounded-2xl overflow-hidden shadow-lg order-2 md:order-1">
-              <img src="/images/22812.jpg" alt="Lava beads" className="w-full object-cover" style={{ height: "480px" }} />
-            </div>
-            <div className="order-1 md:order-2">
-              <h2 className="text-3xl font-light mb-5" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-                The olfactory pathway.
-              </h2>
-            </div>
-          </div>
         </FadeIn>
       </section>
 
