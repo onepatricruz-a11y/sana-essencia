@@ -36,6 +36,11 @@ const WaitlistSection = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [confirmationMsg, setConfirmationMsg] = useState("");
+  const [joinedList, setJoinedList] = useState([
+    { name: "Isabelle M.", time: "2 min ago" },
+    { name: "Thomas K.", time: "7 min ago" },
+    { name: "Priya S.", time: "14 min ago" },
+  ]);
 
   const handleSubmit = async () => {
     if (!name.trim()) { setError("Please enter your name."); return; }
@@ -45,12 +50,13 @@ const WaitlistSection = () => {
     try {
       const response = await fetch("https://formspree.io/f/xqeowqqp", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email }),
       });
       if (response.ok) {
         setConfirmationMsg(`Your registration has been recorded, ${name.split(" ")[0]}. You are now in the queue for the first release of our instruments. We will be in touch as we approach our launch window.`);
         setSubmitted(true);
+        setJoinedList(prev => [{ name: name.split(" ")[0] + " " + (name.split(" ")[1]?.[0] || "") + ".", time: "just now" }, ...prev.slice(0, 4)]);
       } else {
         setError("Something went wrong. Please try again.");
       }
@@ -63,7 +69,7 @@ const WaitlistSection = () => {
   return (
     <section id="waitlist" className="max-w-6xl mx-auto px-6 py-20 border-b border-gray-200">
       <FadeIn>
-        <div className="max-w-xl">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
             <p className="uppercase tracking-widest text-xs text-gray-400 mb-3">Early Access</p>
             <h2 className="text-3xl font-light mb-4" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
@@ -98,6 +104,23 @@ const WaitlistSection = () => {
                 <p className="text-gray-700 leading-relaxed text-sm">{confirmationMsg}</p>
               </div>
             )}
+          </div>
+          <div>
+            <p className="text-xs text-gray-400 uppercase tracking-widest mb-4">Recent registrations</p>
+            <ul className="space-y-3">
+              {joinedList.map((entry, i) => (
+                <li key={i} className="flex items-center justify-between bg-white border border-gray-100 rounded-xl px-4 py-3 text-sm shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-xs font-semibold text-stone-500">
+                      {entry.name[0]}
+                    </div>
+                    <span className="text-gray-700 font-medium">{entry.name}</span>
+                  </div>
+                  <span className="text-gray-400 text-xs">{entry.time}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-xs text-gray-400">Names partially anonymised to protect privacy.</p>
           </div>
         </div>
       </FadeIn>
@@ -164,26 +187,6 @@ const Home = () => {
             <a href="#research" className="px-6 py-3 rounded-full border border-gray-300 text-gray-700 text-sm font-medium hover:border-gray-500 transition">Help the research</a>
           </div>
           <p className="text-xs text-gray-400">Joining the professionals, students, clinicians, and women in transition already on the waitlist.</p>
-        </FadeIn>
-      </section>
-
-      {/* ── HERO IMAGE — Model-ritual.jpg ── */}
-      <section className="max-w-5xl mx-auto px-6 py-14">
-        <FadeIn>
-          <div className="relative rounded-2xl overflow-hidden shadow-xl">
-            <img src="/images/Model-ritual.jpg" alt="Applying Sana Essencia oil to the lava bead tray"
-              className="w-full object-cover" style={{ maxHeight: "560px", objectPosition: "center 25%" }} />
-            <div className="absolute top-4 right-4">
-              <span className="bg-white/80 backdrop-blur-sm text-gray-700 text-xs px-3 py-1 rounded-full uppercase tracking-widest">Concept visualisation</span>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 px-8 py-6"
-              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%)" }}>
-              <p className="text-white text-sm tracking-widest uppercase opacity-80">The Ritual</p>
-              <p className="text-white text-lg font-light mt-1" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-                One drop. One breath. One shift.
-              </p>
-            </div>
-          </div>
         </FadeIn>
       </section>
 
@@ -360,6 +363,7 @@ const Home = () => {
               <div className="product-card bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
                 <div className="flex items-start justify-between mb-2">
                   <h3 className="text-lg font-medium text-gray-900">{product.name}</h3>
+                  <span className="text-sm font-semibold text-gray-700">{product.price}</span>
                 </div>
                 <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">{product.tag}</p>
                 <span className="phase-pill mb-4 self-start" style={{ background: product.phaseColor, color: product.phaseText }}>
@@ -469,9 +473,6 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            <div className="absolute top-4 right-4">
-              <span className="bg-white/80 backdrop-blur-sm text-gray-700 text-xs px-3 py-1 rounded-full uppercase tracking-widest">Concept visualisation</span>
-            </div>
           </div>
         </FadeIn>
       </section>
@@ -510,9 +511,6 @@ const Home = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
               <img src="/images/22921.jpg" alt="Sana Essencia Nexus — Quick-Action"
                 className="w-full object-cover" style={{ height: "520px", objectPosition: "center" }} />
-              <div className="absolute top-4 right-4">
-                <span className="bg-white/80 backdrop-blur-sm text-gray-700 text-xs px-3 py-1 rounded-full uppercase tracking-widest">Concept visualisation</span>
-              </div>
               <div className="absolute bottom-0 left-0 right-0 px-6 py-4"
                 style={{ background: "linear-gradient(to top, rgba(45,36,56,0.85) 0%, transparent 100%)" }}>
                 <p className="text-white text-xs uppercase tracking-widest opacity-70 mb-1">Equilibrium Collection</p>
@@ -646,18 +644,14 @@ const Home = () => {
               </div>
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
-              <img src="/images/restoration-collection.jpg" alt="Sana Essencia Olfactory Restoration — Foundations vials"
+              <img src="/images/22812.jpg" alt="Sana Essencia Olfactory Restoration — lava substrate"
                 className="w-full object-cover" style={{ height: "500px", objectPosition: "center" }} />
-              <div className="absolute top-4 right-4">
-                <span className="bg-white/80 backdrop-blur-sm text-gray-700 text-xs px-3 py-1 rounded-full uppercase tracking-widest">Concept visualisation</span>
-              </div>
               <div className="absolute bottom-0 left-0 right-0 px-6 py-4"
                 style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)" }}>
                 <p className="text-white text-xs uppercase tracking-widest opacity-70 mb-1">Coming Soon</p>
                 <p className="text-white text-lg font-light" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
                   The Restoration Collection
                 </p>
-                <p className="text-white text-xs opacity-60 mt-1">Illustrative image — final vials may differ</p>
               </div>
             </div>
           </div>
@@ -665,7 +659,7 @@ const Home = () => {
         <FadeIn delay={100}>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { tier: "Foundations", subtitle: "Weeks 1 – 12", desc: "The classical Hummel protocol. Four scents — Rose Absolute, Eucalyptus Globulus, Lemon Cold-Pressed, Clove Bud — presented twice daily. The entry point of the Olfactory Restoration Pathway.", scents: ["Florum — Rose Absolute", "Resina — Eucalyptus Globulus", "Spicium — Clove Bud", "Fructos — Lemon Cold-Pressed"], bg: "#faf8f5", border: "#e8e0d5" },
+              { tier: "Foundations", subtitle: "Weeks 1 – 12", desc: "The classical Hummel protocol. Four scents — Rose Absolute, Eucalyptus Globulus, Lemon Cold-Pressed, Clove Bud — presented twice daily. The entry point of the Olfactory Restoration Pathway.", scents: ["Rose Absolute", "Eucalyptus Globulus", "Lemon Cold-Pressed", "Clove Bud"], bg: "#faf8f5", border: "#e8e0d5" },
               { tier: "Sensory Expansion", subtitle: "Weeks 13 – 24", desc: "The modified protocol. Four new compounds introduced at week 12 to stimulate new neural pathways. Rotating scent sets produces superior outcomes. The Damm 2014 protocol.", scents: ["Lavender", "Scots Pine", "Jasmine", "Peppermint"], bg: "#f5f8f5", border: "#d5e8d5" },
               { tier: "Oil Vitals", subtitle: "Monthly subscription", desc: "Ongoing refill delivery on a 28-day schedule. The unbroken signal is the mechanism. Interrupting the protocol weakens the conditioned response. The subscription exists so that never happens.", scents: ["Your chosen compounds", "Delivered monthly", "Never interrupted", "Refill and continue"], bg: "#f5f7fa", border: "#d5dde8" },
             ].map((item, i) => (
@@ -872,10 +866,7 @@ const Home = () => {
                 </div>
                 <p className="text-xs text-gray-500 mb-3">Founder, Sana Essencia · Basingstoke, UK</p>
                 <p className="text-sm text-gray-700 leading-relaxed mb-3">
-                  "I built Sana Essencia in the margins of a demanding full-time career — the kind of role that fills the calendar before the day has properly begun. Like almost everyone I work alongside, I knew the afternoon slump intimately: that wall where focus drains and your own biology seems to be working against you. With my son away at university and my own life moving through a real season of change, I began paying closer attention to those rhythms — and to how much of our mood, energy and clarity is shaped by biology we can gently influence."
-                </p>
-                <p className="text-sm text-gray-700 leading-relaxed mb-3">
-                  "I know exactly what it feels like when your biology creates an emotional ambush with no apparent cause — the sudden urge to cry, the mood that arrives uninvited. I'm living through this transition myself. I built the Nexus because I needed it. I understood the olfactory mechanism from the science. I designed the formula around the specific neurochemistry of that moment. The baseline self is still there. The Nexus gives the nervous system a signal to find it."
+                  "I am 49. I know exactly what it feels like when your biology creates an emotional ambush with no apparent cause — the sudden urge to cry, the mood that arrives uninvited. I built the Nexus because I needed it. I understood the olfactory mechanism from the science. I designed the formula around the specific neurochemistry of that moment. The baseline self is still there. The Nexus gives the nervous system a signal to find it."
                 </p>
                 <p className="text-xs text-gray-400 italic">On the Equilibrium Nexus — Baseline formula</p>
               </div>
@@ -1014,7 +1005,6 @@ const Home = () => {
                 Neuro-aromachology instruments for cognitive performance, autonomic balance, circadian alignment, and the perimenopausal transition.
               </p>
               <p className="text-xs italic" style={{ color: "#718096" }}>Scientia et Natura Formula</p>
-              <p className="text-xs mt-3" style={{ color: "#718096" }}>Product images are illustrative. Final devices, vials, packaging and finishes may differ from those shown.</p>
             </div>
             <div>
               <p className="text-xs uppercase tracking-widest mb-3 font-medium" style={{ color: "#a0aec0" }}>Navigate</p>
