@@ -36,11 +36,6 @@ const WaitlistSection = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [confirmationMsg, setConfirmationMsg] = useState("");
-  const [joinedList, setJoinedList] = useState([
-    { name: "Isabelle M.", time: "2 min ago" },
-    { name: "Thomas K.", time: "7 min ago" },
-    { name: "Priya S.", time: "14 min ago" },
-  ]);
 
   const handleSubmit = async () => {
     if (!name.trim()) { setError("Please enter your name."); return; }
@@ -50,13 +45,12 @@ const WaitlistSection = () => {
     try {
       const response = await fetch("https://formspree.io/f/xqeowqqp", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ name, email }),
       });
       if (response.ok) {
         setConfirmationMsg(`Your registration has been recorded, ${name.split(" ")[0]}. You are now in the queue for the first release of our instruments. We will be in touch as we approach our launch window.`);
         setSubmitted(true);
-        setJoinedList(prev => [{ name: name.split(" ")[0] + " " + (name.split(" ")[1]?.[0] || "") + ".", time: "just now" }, ...prev.slice(0, 4)]);
       } else {
         setError("Something went wrong. Please try again.");
       }
@@ -69,7 +63,7 @@ const WaitlistSection = () => {
   return (
     <section id="waitlist" className="max-w-6xl mx-auto px-6 py-20 border-b border-gray-200">
       <FadeIn>
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="max-w-xl">
           <div>
             <p className="uppercase tracking-widest text-xs text-gray-400 mb-3">Early Access</p>
             <h2 className="text-3xl font-light mb-4" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
@@ -104,23 +98,6 @@ const WaitlistSection = () => {
                 <p className="text-gray-700 leading-relaxed text-sm">{confirmationMsg}</p>
               </div>
             )}
-          </div>
-          <div>
-            <p className="text-xs text-gray-400 uppercase tracking-widest mb-4">Recent registrations</p>
-            <ul className="space-y-3">
-              {joinedList.map((entry, i) => (
-                <li key={i} className="flex items-center justify-between bg-white border border-gray-100 rounded-xl px-4 py-3 text-sm shadow-sm">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-xs font-semibold text-stone-500">
-                      {entry.name[0]}
-                    </div>
-                    <span className="text-gray-700 font-medium">{entry.name}</span>
-                  </div>
-                  <span className="text-gray-400 text-xs">{entry.time}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-xs text-gray-400">Names partially anonymised to protect privacy.</p>
           </div>
         </div>
       </FadeIn>
@@ -190,6 +167,26 @@ const Home = () => {
         </FadeIn>
       </section>
 
+      {/* ── HERO IMAGE — Model-ritual.jpg ── */}
+      <section className="max-w-5xl mx-auto px-6 py-14">
+        <FadeIn>
+          <div className="relative rounded-2xl overflow-hidden shadow-xl">
+            <img src="/images/Model-ritual.jpg" alt="Applying Sana Essencia oil to the lava bead tray"
+              className="w-full object-cover" style={{ maxHeight: "560px", objectPosition: "center 25%" }} />
+            <div className="absolute top-4 right-4">
+              <span className="bg-white/80 backdrop-blur-sm text-gray-700 text-xs px-3 py-1 rounded-full uppercase tracking-widest">Concept visualisation</span>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 px-8 py-6"
+              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%)" }}>
+              <p className="text-white text-sm tracking-widest uppercase opacity-80">The Ritual</p>
+              <p className="text-white text-lg font-light mt-1" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+                One drop. One breath. One shift.
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+      </section>
+
       <div className="se-divider" />
 
       {/* ── DISCOVER — origin story ── */}
@@ -220,6 +217,46 @@ const Home = () => {
             </div>
           </div>
         </FadeIn>
+      </section>
+
+      {/* ── WHY SANA ESSENCIA ── */}
+      <section id="why" className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200">
+        <FadeIn>
+          <p className="uppercase tracking-widest text-xs text-gray-400 mb-3">Why Sana Essencia</p>
+          <h2 className="text-3xl font-light mb-3" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+            A precise answer to a problem most people just push through.
+          </h2>
+          <p className="text-gray-500 text-sm mb-10 max-w-2xl">
+            Three questions, answered plainly: the problem we exist for, what makes the approach different, and why it is being built the way it is.
+          </p>
+        </FadeIn>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              k: "The problem",
+              h: "Cognitive depletion in demanding roles.",
+              body: "Across a working day the nervous system runs down — focus fades in the afternoon, pressure builds before it is needed, and for many, hormonal change makes the dips sharper. Most responses ask for time, willpower or a new routine. The moment passes before any of them help.",
+            },
+            {
+              k: "The approach",
+              h: "The Vector — a payload delivered to the pathway.",
+              body: "A Vector is the scientific term for a carrier that delivers an active payload to its target. Our instruments do exactly that: a precise scent payload, sent through the one sense with a direct line to the emotional brain, in under a second. Every compound is chosen for a named mechanism — nothing is included because it simply smells pleasant.",
+            },
+            {
+              k: "Why this, why now",
+              h: "Garden to lab, built and tested in the open.",
+              body: "Sana Essencia is built by a synthesiser, not a marketer — someone who reads the research, translates plant compounds into the mechanisms they act on, and prototypes quickly rather than waiting for permission. From the garden to the lab: botanical origin, biological mechanism, published citation. The work is shown, not claimed.",
+            },
+          ].map((item, i) => (
+            <FadeIn key={i} delay={i * 80}>
+              <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm h-full">
+                <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">{item.k}</p>
+                <h3 className="text-lg font-medium text-gray-900 mb-3" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>{item.h}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{item.body}</p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
       </section>
 
       {/* ── PROBLEM ── */}
@@ -363,7 +400,6 @@ const Home = () => {
               <div className="product-card bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
                 <div className="flex items-start justify-between mb-2">
                   <h3 className="text-lg font-medium text-gray-900">{product.name}</h3>
-                  <span className="text-sm font-semibold text-gray-700">{product.price}</span>
                 </div>
                 <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">{product.tag}</p>
                 <span className="phase-pill mb-4 self-start" style={{ background: product.phaseColor, color: product.phaseText }}>
@@ -473,6 +509,9 @@ const Home = () => {
                 ))}
               </div>
             </div>
+            <div className="absolute top-4 right-4">
+              <span className="bg-white/80 backdrop-blur-sm text-gray-700 text-xs px-3 py-1 rounded-full uppercase tracking-widest">Concept visualisation</span>
+            </div>
           </div>
         </FadeIn>
       </section>
@@ -511,6 +550,9 @@ const Home = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
               <img src="/images/22921.jpg" alt="Sana Essencia Nexus — Quick-Action"
                 className="w-full object-cover" style={{ height: "520px", objectPosition: "center" }} />
+              <div className="absolute top-4 right-4">
+                <span className="bg-white/80 backdrop-blur-sm text-gray-700 text-xs px-3 py-1 rounded-full uppercase tracking-widest">Concept visualisation</span>
+              </div>
               <div className="absolute bottom-0 left-0 right-0 px-6 py-4"
                 style={{ background: "linear-gradient(to top, rgba(45,36,56,0.85) 0%, transparent 100%)" }}>
                 <p className="text-white text-xs uppercase tracking-widest opacity-70 mb-1">Equilibrium Collection</p>
@@ -644,14 +686,18 @@ const Home = () => {
               </div>
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
-              <img src="/images/22812.jpg" alt="Sana Essencia Olfactory Restoration — lava substrate"
+              <img src="/images/restoration-collection.jpg" alt="Sana Essencia Olfactory Restoration — Foundations vials"
                 className="w-full object-cover" style={{ height: "500px", objectPosition: "center" }} />
+              <div className="absolute top-4 right-4">
+                <span className="bg-white/80 backdrop-blur-sm text-gray-700 text-xs px-3 py-1 rounded-full uppercase tracking-widest">Concept visualisation</span>
+              </div>
               <div className="absolute bottom-0 left-0 right-0 px-6 py-4"
                 style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)" }}>
                 <p className="text-white text-xs uppercase tracking-widest opacity-70 mb-1">Coming Soon</p>
                 <p className="text-white text-lg font-light" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
                   The Restoration Collection
                 </p>
+                <p className="text-white text-xs opacity-60 mt-1">Illustrative image — final vials may differ</p>
               </div>
             </div>
           </div>
@@ -659,7 +705,7 @@ const Home = () => {
         <FadeIn delay={100}>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { tier: "Foundations", subtitle: "Weeks 1 – 12", desc: "The classical Hummel protocol. Four scents — Rose Absolute, Eucalyptus Globulus, Lemon Cold-Pressed, Clove Bud — presented twice daily. The entry point of the Olfactory Restoration Pathway.", scents: ["Rose Absolute", "Eucalyptus Globulus", "Lemon Cold-Pressed", "Clove Bud"], bg: "#faf8f5", border: "#e8e0d5" },
+              { tier: "Foundations", subtitle: "Weeks 1 – 12", desc: "The classical Hummel protocol. Four scents — Rose Absolute, Eucalyptus Globulus, Lemon Cold-Pressed, Clove Bud — presented twice daily. The entry point of the Olfactory Restoration Pathway.", scents: ["Florum — Rose Absolute", "Resina — Eucalyptus Globulus", "Spicium — Clove Bud", "Fructos — Lemon Cold-Pressed"], bg: "#faf8f5", border: "#e8e0d5" },
               { tier: "Sensory Expansion", subtitle: "Weeks 13 – 24", desc: "The modified protocol. Four new compounds introduced at week 12 to stimulate new neural pathways. Rotating scent sets produces superior outcomes. The Damm 2014 protocol.", scents: ["Lavender", "Scots Pine", "Jasmine", "Peppermint"], bg: "#f5f8f5", border: "#d5e8d5" },
               { tier: "Oil Vitals", subtitle: "Monthly subscription", desc: "Ongoing refill delivery on a 28-day schedule. The unbroken signal is the mechanism. Interrupting the protocol weakens the conditioned response. The subscription exists so that never happens.", scents: ["Your chosen compounds", "Delivered monthly", "Never interrupted", "Refill and continue"], bg: "#f5f7fa", border: "#d5dde8" },
             ].map((item, i) => (
@@ -843,20 +889,20 @@ const Home = () => {
         </FadeIn>
       </section>
 
-      {/* ── TESTIMONIALS ── */}
-      <section id="testimonials" className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200">
+      {/* ── FOUNDER ── */}
+      <section id="founder" className="max-w-6xl mx-auto px-6 py-16 border-b border-gray-200">
         <FadeIn>
-          <p className="uppercase tracking-widest text-xs text-gray-400 mb-3">Early Community</p>
+          <p className="uppercase tracking-widest text-xs text-gray-400 mb-3">Founder</p>
           <h2 className="text-3xl font-light mb-3" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-            Why people are waiting.
+            Why Sana Essencia exists.
           </h2>
           <p className="text-gray-500 text-sm mb-10 max-w-xl">
-            Sana Essencia is pre-launch. The voices here are from the waitlist community and the LinkedIn audience — people who have engaged with the science before a single product has shipped.
+            Sana Essencia is pre-launch. There are no customer reviews yet — and we would rather wait for real ones than invent them. In the meantime, here is the honest story of why this exists.
           </p>
         </FadeIn>
 
         <FadeIn delay={80}>
-          <div className="rounded-2xl p-8 mb-8 border" style={{ background: "linear-gradient(135deg, #f5f0f5 0%, #ede5ed 100%)", borderColor: "#d4b8d4" }}>
+          <div className="rounded-2xl p-8 md:p-10 border" style={{ background: "linear-gradient(135deg, #f5f0f5 0%, #ede5ed 100%)", borderColor: "#d4b8d4" }}>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center text-white text-sm font-semibold" style={{ background: "#5C3A5C" }}>P</div>
               <div className="flex-1">
@@ -864,60 +910,35 @@ const Home = () => {
                   <p className="text-sm font-semibold text-gray-900">Patricia</p>
                   <span className="text-xs px-2 py-0.5 rounded-full text-white" style={{ background: "#7C5C7C" }}>Founder</span>
                 </div>
-                <p className="text-xs text-gray-500 mb-3">Founder, Sana Essencia · Basingstoke, UK</p>
+                <p className="text-xs text-gray-500 mb-4">Founder, Sana Essencia · Basingstoke, UK</p>
+
                 <p className="text-sm text-gray-700 leading-relaxed mb-3">
-                  "I am 49. I know exactly what it feels like when your biology creates an emotional ambush with no apparent cause — the sudden urge to cry, the mood that arrives uninvited. I built the Nexus because I needed it. I understood the olfactory mechanism from the science. I designed the formula around the specific neurochemistry of that moment. The baseline self is still there. The Nexus gives the nervous system a signal to find it."
+                  I am not a scientist. I want to say that plainly, before anything else, because the whole of Sana Essencia is built on the discipline of not pretending otherwise.
                 </p>
-                <p className="text-xs text-gray-400 italic">On the Equilibrium Nexus — Baseline formula</p>
+                <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                  What I am is a translator — someone who reads the research most people never get near, and asks a stubborn question of every claim: where is the receptor? Where is the pathway? Where is the citation? If a compound can't answer that question, it doesn't go in the bottle. Mechanism or nothing.
+                </p>
+                <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                  The idea itself has a specific origin. In 2023 I listened to an episode of the Huberman Lab podcast featuring Professor Noam Sobel of the Weizmann Institute — a conversation about the olfactory system as one of the most direct, least understood pathways into the brain. It wasn't a vague inspiration. It was a specific, falsifiable claim about how scent reaches the nervous system, and I couldn't stop pulling on the thread.
+                </p>
+                <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                  At the same time, I was living the exact gap the research described. Holding down a demanding corporate role, watching my own nervous system run down across the day in ways that had nothing to do with willpower, and finding that almost nothing on the market was built on an actual mechanism — just mood, marketing, and the word "wellness" doing a great deal of unearned work.
+                </p>
+                <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                  So I started doing what I do for a living anyway: reading the papers, finding the named compound, tracing it to the documented pathway, and refusing to write a word of copy I couldn't defend to a pharmacologist. Sana Essencia is that discipline turned into a product line — three ranges, each built for a specific moment biology works against you, each compound chosen because the science says it should be there, not because it smells nice.
+                </p>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  I'm building this in public, pre-launch, with full transparency about what's proven, what's promising, and what's still being tested. No fabricated reviews. No invented traction. Just the mechanism, the citation, and an honest account of where we are.
+                </p>
               </div>
             </div>
           </div>
         </FadeIn>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          {[
-            { initial: "J", name: "James R.", role: "Knowledge worker · LinkedIn community", color: "#2C4A3E", quote: "I have watched every Huberman Lab episode on cortisol and circadian rhythm. I have been waiting for someone to build a product that actually applies the olfactory neuroscience. This is the first brand I have seen that names the compounds, cites the papers, and builds the instrument around the mechanism.", context: "On the science communication and Cognitive Regulation range" },
-            { initial: "S", name: "Sophie M.", role: "Waitlist member · Post-COVID smell loss", color: "#4A6A9A", quote: "I lost my sense of smell in 2021. My GP told me to wait. I found the Hummel protocol online and tried it with basic oils from a health shop. Knowing that someone has built a precision instrument specifically around this protocol — with circadian timing and proper formulations — makes me feel like there is finally something designed for exactly what I am going through.", context: "On the Olfactory Restoration Collection" },
-            { initial: "M", name: "Maria T.", role: "Perimenopause community · LinkedIn", color: "#7C5C7C", quote: "The copy on this website is the first time I have read a description of perimenopause that explains what is actually happening in the brain rather than listing symptoms. The amygdala reactivity. The GABA gap. The HPA axis. I am 47 and this is my lived experience described with scientific precision.", context: "On the Equilibrium range copy and science" },
-          ].map((item, i) => (
-            <FadeIn key={i} delay={i * 80}>
-              <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full flex flex-col">
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-white text-sm font-semibold" style={{ background: item.color }}>{item.initial}</div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900">{item.name}</p>
-                    <p className="text-xs text-gray-400">{item.role}</p>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-4">"{item.quote}"</p>
-                <p className="text-xs text-gray-400 italic border-t border-gray-100 pt-3">{item.context}</p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-
         <FadeIn delay={150}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            {[
-              { stat: "2,000+", label: "LinkedIn impressions on first product post" },
-              { stat: "30+", label: "Peer-reviewed citations across all formulations" },
-              { stat: "3", label: "Complete product ranges — Cognitive, Restoration, Equilibrium" },
-              { stat: "Pre-launch", label: "Waitlist open — early access priority dispatch" },
-            ].map((item, i) => (
-              <FadeIn key={i} delay={i * 60}>
-                <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm text-center">
-                  <p className="text-2xl font-semibold text-gray-900 mb-1">{item.stat}</p>
-                  <p className="text-xs text-gray-500 leading-snug">{item.label}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={200}>
-          <div className="rounded-xl p-5 border border-dashed border-gray-200 bg-stone-50">
+          <div className="mt-8 rounded-xl p-5 border border-dashed border-gray-200 bg-stone-50">
             <p className="text-xs text-gray-400 text-center leading-relaxed">
-              As Sana Essencia moves toward launch, this section will grow with verified user experiences from early access customers and clinical practitioners. If you would like to share your experience with the science or the brand — we would love to hear from you at{" "}
+              As Sana Essencia moves toward launch, this section will grow with verified experiences from early access customers and clinical practitioners. If you would like to be among the first to share yours, we would love to hear from you at{" "}
               <a href="mailto:hello@sanaessencia.co.uk" className="text-gray-600 hover:text-gray-900 underline">hello@sanaessencia.co.uk</a>
             </p>
           </div>
@@ -1005,6 +1026,7 @@ const Home = () => {
                 Neuro-aromachology instruments for cognitive performance, autonomic balance, circadian alignment, and the perimenopausal transition.
               </p>
               <p className="text-xs italic" style={{ color: "#718096" }}>Scientia et Natura Formula</p>
+              <p className="text-xs mt-3" style={{ color: "#718096" }}>Product images are illustrative. Final devices, vials, packaging and finishes may differ from those shown.</p>
             </div>
             <div>
               <p className="text-xs uppercase tracking-widest mb-3 font-medium" style={{ color: "#a0aec0" }}>Navigate</p>
@@ -1016,7 +1038,7 @@ const Home = () => {
                   ["#restoration", "Olfactory Restoration"],
                   ["#research", "The Research Club"],
                   ["#perceived-benefits", "Perceived Benefits"],
-                  ["#testimonials", "Early Community"],
+                  ["#founder", "Founder"],
                   ["#cycle", "The Protocol"],
                   ["#subscription", "Subscription"],
                   ["#waitlist", "Early Access"],
