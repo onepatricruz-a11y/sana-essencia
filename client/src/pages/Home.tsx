@@ -167,26 +167,6 @@ const Home = () => {
         </FadeIn>
       </section>
 
-      {/* ── HERO IMAGE ── */}
-      <section className="max-w-5xl mx-auto px-6 py-14">
-        <FadeIn>
-          <div className="relative rounded-2xl overflow-hidden shadow-xl">
-            <img src="/images/Model-ritual.jpg" alt="Applying Sana Essencia oil to the lava bead tray"
-              className="w-full object-cover" style={{ maxHeight: "560px", objectPosition: "center 25%" }} />
-            <div className="absolute top-4 right-4">
-              <span className="bg-white/80 backdrop-blur-sm text-gray-700 text-xs px-3 py-1 rounded-full uppercase tracking-widest">Concept visualisation</span>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 px-8 py-6"
-              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%)" }}>
-              <p className="text-white text-sm tracking-widest uppercase opacity-80">The Ritual</p>
-              <p className="text-white text-lg font-light mt-1" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-                One drop. One breath. One shift.
-              </p>
-            </div>
-          </div>
-        </FadeIn>
-      </section>
-
       <div className="se-divider" />
 
       {/* ── DISCOVER ── */}
@@ -727,4 +707,3 @@ const Home = () => {
 };
 
 export default Home;
-
