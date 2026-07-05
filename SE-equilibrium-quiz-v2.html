@@ -1,579 +1,553 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-<meta name="description" content="Sana Essencia Equilibrium Quiz — find your personalised scent protocol for perimenopause, wellbeing, connection and decompression." />
-<title>Sana Essencia · The Equilibrium Quiz</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --graphite: #2a2a28;
-    --graphite-soft: #3d3d3a;
-    --gold: #b8963e;
-    --gold-light: #fdf9f0;
-    --cream: #f5f1ea;
-    --text: #1e1e1c;
-    --text2: #5a5a57;
-    --text3: #9a9a96;
-    --border: rgba(0,0,0,0.09);
-    --border2: rgba(0,0,0,0.17);
-    --surface: #ffffff;
-    --surface2: #f8f6f2;
-    --radius: 12px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--cream); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
-  .app { max-width: 480px; margin: 0 auto; padding-bottom: 3rem; min-height: 100vh; }
-
-  /* Header */
-  .hdr { padding: 1.5rem 1.5rem 1rem; border-bottom: 0.5px solid var(--border); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; }
-  .brand { font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text2); }
-  .brand-sub { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-top: 3px; }
-  .hdr-badge { font-size: 9px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gold); border: 0.5px solid var(--gold); padding: 3px 8px; border-radius: 20px; white-space: nowrap; }
-
-  /* Screens */
-  .scr { display: none; padding: 0 1.5rem; }
-  .scr.on { display: block; }
-
-  /* Progress bar */
-  .prog-wrap { margin-bottom: 1.4rem; }
-  .prog-bg { height: 2px; background: var(--border); border-radius: 2px; margin-bottom: 7px; }
-  .prog-fill { height: 2px; background: var(--gold); border-radius: 2px; transition: width 0.4s ease; }
-  .prog-text { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); }
-
-  /* Questions */
-  .q-lbl { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.55rem; }
-  .q-txt { font-family: 'Source Serif 4', serif; font-size: 20px; font-weight: 300; line-height: 1.44; color: var(--text); margin-bottom: 0.45rem; }
-  .q-sub { font-size: 13px; color: var(--text3); line-height: 1.6; margin-bottom: 1.4rem; font-style: italic; }
-
-  /* Options */
-  .opts { display: flex; flex-direction: column; gap: 9px; margin-bottom: 1.4rem; }
-  .opt { padding: 13px 15px; border: 0.5px solid var(--border); border-radius: var(--radius); background: var(--surface); cursor: pointer; text-align: left; width: 100%; transition: border-color 0.13s, background 0.13s; -webkit-tap-highlight-color: transparent; }
-  .opt:hover { border-color: var(--border2); background: var(--surface2); }
-  .opt.sel { border-color: var(--gold); background: var(--gold-light); }
-  .ot { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
-  .os { font-size: 12px; color: var(--text3); line-height: 1.5; }
-
-  /* Buttons */
-  .btn { width: 100%; padding: 13px; border: 0.5px solid var(--border2); border-radius: var(--radius); background: transparent; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: var(--text); cursor: pointer; transition: background 0.12s; -webkit-tap-highlight-color: transparent; }
-  .btn:hover { background: var(--surface2); }
-  .btn:disabled { opacity: 0.3; pointer-events: none; }
-  .btnp { background: var(--graphite); color: var(--cream); border-color: var(--graphite); }
-  .btnp:hover { background: var(--graphite-soft); }
-  .back-btn { font-size: 12px; color: var(--text3); cursor: pointer; background: none; border: none; padding: 0; margin-bottom: 1.2rem; -webkit-tap-highlight-color: transparent; }
-  .back-btn:hover { color: var(--text2); }
-
-  /* Intro */
-  .intro-eyebrow { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-  .intro-h1 { font-family: 'Source Serif 4', serif; font-size: 24px; font-weight: 300; line-height: 1.38; color: var(--text); margin-bottom: 1rem; }
-  .intro-body { font-size: 14px; line-height: 1.75; color: var(--text2); margin-bottom: 1rem; }
-  .intro-note { font-size: 12px; line-height: 1.65; color: var(--text3); margin-bottom: 1.6rem; padding: 12px 14px; border-left: 2px solid var(--gold); background: var(--surface2); border-radius: 0 6px 6px 0; }
-
-  /* Five profile chips */
-  .profiles { display: flex; gap: 6px; margin-bottom: 1.6rem; flex-wrap: wrap; }
-  .chip { flex: 1; min-width: 80px; padding: 9px 6px; border-radius: 8px; text-align: center; border: 0.5px solid var(--border); background: var(--surface); }
-  .chip-icon { font-size: 16px; margin-bottom: 3px; }
-  .chip-name { font-size: 9px; font-weight: 500; color: var(--text2); letter-spacing: 0.04em; }
-
-  /* Loading */
-  .ldg { display: flex; align-items: center; gap: 10px; padding: 2rem 1.5rem; color: var(--text3); font-size: 13px; }
-  .spin { width: 18px; height: 18px; border: 1.5px solid var(--border2); border-top-color: var(--gold); border-radius: 50%; animation: sp 0.8s linear infinite; flex-shrink: 0; }
-  @keyframes sp { to { transform: rotate(360deg); } }
-
-  /* Result */
-  .profile-badge { display: inline-flex; align-items: center; gap: 7px; padding: 5px 13px; border-radius: 20px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 1rem; }
-  .b-thermal { background: #e8f2ec; color: #3a7a55; border: 0.5px solid #a8d4b8; }
-  .b-endocrine { background: #ede8f2; color: #5a3a7a; border: 0.5px solid #c4a8d4; }
-  .b-unified { background: #f2ede8; color: #7a4a2a; border: 0.5px solid #d4b89a; }
-  .b-cognitive { background: #eef2e8; color: #3a5a2a; border: 0.5px solid #b4d4a0; }
-  .b-decompress { background: #e8eef2; color: #2a4a6a; border: 0.5px solid #a0b8d4; }
-
-  .rcard { border: 0.5px solid var(--border); border-radius: 14px; background: var(--surface); padding: 1.35rem; margin-bottom: 0.9rem; }
-  .rl { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
-  .rf { font-family: 'Source Serif 4', serif; font-size: 23px; font-weight: 300; color: var(--text); margin-bottom: 5px; }
-  .ri { font-family: 'Source Serif 4', serif; font-size: 13px; font-style: italic; color: var(--text2); margin-bottom: 9px; }
-  .divhr { height: 0.5px; background: var(--border); margin: 9px 0; }
-  .rdesc { font-size: 13px; line-height: 1.7; color: var(--text2); }
-  .rdesc.italic { font-style: italic; margin-bottom: 9px; }
-
-  .sci { border-left: 2px solid var(--gold); padding-left: 12px; margin: 0.9rem 0; }
-  .scilbl { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; }
-  .scitxt { font-size: 12px; line-height: 1.7; color: var(--text2); }
-
-  .steps { margin: 0.7rem 0; }
-  .step { display: flex; gap: 10px; align-items: flex-start; padding: 9px 12px; border-radius: 8px; background: var(--surface2); border: 0.5px solid var(--border); margin-bottom: 6px; }
-  .sn { font-size: 10px; font-weight: 500; color: var(--gold); min-width: 15px; padding-top: 1px; }
-  .st { font-size: 12px; line-height: 1.58; color: var(--text2); }
-
-  .why-now { padding: 9px 12px; border-radius: 8px; background: var(--surface2); border: 0.5px solid var(--border); margin-top: 0.5rem; }
-
-  /* Product cards */
-  .sec-div { display: flex; align-items: center; gap: 10px; margin: 1.2rem 0; }
-  .sec-div span { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); white-space: nowrap; }
-  .sec-div::before, .sec-div::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
-
-  .prod { display: flex; align-items: center; gap: 11px; padding: 11px 13px; border: 0.5px solid var(--border); border-radius: 10px; background: var(--surface); margin-bottom: 7px; cursor: pointer; transition: border-color 0.12s; }
-  .prod:hover { border-color: var(--gold); }
-  .prod-icon { width: 34px; height: 34px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
-  .prod-info { flex: 1; }
-  .prod-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
-  .prod-desc { font-size: 11px; color: var(--text3); line-height: 1.45; }
-  .prod-price { font-size: 13px; font-weight: 500; color: var(--gold); white-space: nowrap; }
-
-  /* Gift banner */
-  .gift-banner { background: linear-gradient(135deg, #2a2a28 0%, #3d3530 100%); border-radius: 12px; padding: 1.15rem; margin: 0.9rem 0; }
-  .gift-lbl { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
-  .gift-title { font-family: 'Source Serif 4', serif; font-size: 17px; font-weight: 300; color: #f5f0e8; margin-bottom: 5px; }
-  .gift-desc { font-size: 12px; color: rgba(245,240,232,0.62); line-height: 1.6; margin-bottom: 11px; }
-  .gift-btn { padding: 9px 15px; background: var(--gold); color: var(--graphite); border: none; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
-
-  /* Secret Santa banner */
-  .santa-banner { background: linear-gradient(135deg, #1a3a2a 0%, #2a4a3a 100%); border-radius: 12px; padding: 1.15rem; margin: 0.9rem 0; }
-  .santa-lbl { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #7dc89a; margin-bottom: 5px; }
-  .santa-title { font-family: 'Source Serif 4', serif; font-size: 16px; font-weight: 300; color: #f0f5f2; margin-bottom: 5px; }
-  .santa-desc { font-size: 12px; color: rgba(240,245,242,0.62); line-height: 1.6; margin-bottom: 11px; }
-  .santa-btn { padding: 9px 15px; background: #7dc89a; color: #1a3a2a; border: none; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
-
-  /* Waitlist */
-  .cta { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 0.5px solid var(--border); }
-  .cta-lbl { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 5px; }
-  .cta-sub { font-size: 12px; color: var(--text3); margin-bottom: 9px; line-height: 1.55; }
-  .ei { width: 100%; padding: 11px 13px; border: 0.5px solid var(--border2); border-radius: var(--radius); background: var(--surface); font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); outline: none; margin-bottom: 7px; -webkit-appearance: none; }
-  .ei:focus { border-color: var(--gold); }
-  .ok-msg { font-size: 12px; color: #5a8a5a; padding: 8px 12px; background: rgba(90,138,90,0.1); border-radius: 6px; display: none; margin-top: 7px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sana Essencia — neuro-aromachology for women. Science-backed scent protocols for perimenopause, focus, decompression and connection. Find your formula." />
+  <meta name="theme-color" content="#2a2a28" />
+  <title>Sana Essencia — Olfactory Science for the Modern Woman</title>
+  <meta property="og:title" content="Sana Essencia" />
+  <meta property="og:description" content="Your nose has a direct line to the part of your brain that runs your hormones, mood and memory. Find your formula." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sanaessencia.co.uk" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200;0,8..60,300;0,8..60,400;1,8..60,200;1,8..60,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--g:#2a2a28;--gm:#3d3d3a;--gl:#5a5a57;--gold:#b8963e;--gp:#fdf9f0;--cr:#f5f1ea;--cd:#ede9e0;--w:#ffffff;--b:rgba(42,42,40,.10);--bm:rgba(42,42,40,.18);--t:#1e1e1c;--t2:#5a5a57;--t3:#9a9a96;--sf:'Source Serif 4',Georgia,serif;--ss:'Inter',-apple-system,sans-serif;--max:1080px;--pad:clamp(1.25rem,5vw,3rem);--r:10px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--ss);background:var(--cr);color:var(--t);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    button{font-family:var(--ss);cursor:pointer;border:none;background:none}
+    .wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+    .eye{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:500}
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:100;background:rgba(245,241,234,.93);backdrop-filter:blur(12px);border-bottom:.5px solid var(--b)}
+    .nav-i{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+    .nav-brand{font-family:var(--sf);font-size:15px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--g)}
+    .nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
+    .nav-links a{font-size:12px;letter-spacing:.05em;color:var(--t2);transition:color .15s}
+    .nav-links a:hover{color:var(--t)}
+    .nav-cta{font-size:12px;font-weight:500;padding:8px 18px;background:var(--g);color:var(--cr);border-radius:20px;transition:background .15s;white-space:nowrap}
+    .nav-cta:hover{background:var(--gm)}
+    .nav-btn{display:none;flex-direction:column;gap:5px;padding:4px}
+    .nav-btn span{display:block;width:22px;height:1.5px;background:var(--g)}
+    .mob-nav{display:none;flex-direction:column;background:var(--cr);border-top:.5px solid var(--b);padding:1.5rem var(--pad);gap:1.25rem}
+    .mob-nav.open{display:flex}
+    .mob-nav a{font-size:15px;color:var(--t2);padding:.25rem 0;border-bottom:.5px solid var(--b)}
+    .mob-cta{display:block;text-align:center;padding:12px;background:var(--g);color:var(--cr);border-radius:var(--r);font-weight:500;margin-top:.5rem}
+    @media(max-width:680px){.nav-links,.nav-cta{display:none}.nav-btn{display:flex}}
+    /* ANNOUNCE */
+    .ann{background:var(--gold);padding:8px var(--pad);text-align:center;font-size:12px;color:var(--g);font-weight:500}
+    .ann a{text-decoration:underline;text-underline-offset:2px}
+    /* BUTTONS */
+    .btn-p{padding:13px 28px;background:var(--g);color:var(--cr);border-radius:30px;font-size:14px;font-weight:500;transition:background .15s,transform .1s;display:inline-block}
+    .btn-p:hover{background:var(--gm);transform:translateY(-1px)}
+    .btn-g{padding:12px 24px;border:.5px solid var(--bm);border-radius:30px;font-size:14px;color:var(--t2);transition:border-color .15s,color .15s;display:inline-block}
+    .btn-g:hover{border-color:var(--g);color:var(--t)}
+    /* HERO */
+    .hero{padding:clamp(4rem,10vw,8rem) var(--pad) clamp(3rem,8vw,6rem);max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .hero-hl{font-family:var(--sf);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:200;line-height:1.15;color:var(--g);margin-bottom:1.5rem;letter-spacing:-.01em}
+    .hero-hl em{font-style:italic;color:var(--gold)}
+    .hero-body{font-size:16px;line-height:1.75;color:var(--t2);margin-bottom:2rem;max-width:44ch}
+    .hero-acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .hero-card{background:var(--g);border-radius:16px;padding:2.5rem;color:var(--cr);position:relative;overflow:hidden}
+    .hero-card::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(184,150,62,.25) 0%,transparent 70%);pointer-events:none}
+    .hc-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+    .hc-name{font-family:var(--sf);font-size:2rem;font-weight:200;font-style:italic;margin-bottom:.5rem}
+    .hc-range{font-size:12px;color:rgba(245,241,234,.5);margin-bottom:1.5rem;letter-spacing:.06em}
+    .hc-div{height:.5px;background:rgba(245,241,234,.15);margin-bottom:1.5rem}
+    .crow{display:flex;align-items:flex-start;gap:.75rem;font-size:12px;margin-bottom:.6rem}
+    .cn{color:var(--gold);min-width:90px;font-weight:500}
+    .cp{color:rgba(245,241,234,.55);line-height:1.5}
+    .hc-btn{margin-top:1.75rem;padding:11px 0;width:100%;background:rgba(184,150,62,.18);border:.5px solid rgba(184,150,62,.4);border-radius:8px;color:var(--gold);font-size:13px;font-weight:500;transition:background .15s;cursor:pointer}
+    .hc-btn:hover{background:rgba(184,150,62,.28)}
+    @media(max-width:820px){.hero{grid-template-columns:1fr;gap:3rem}.hero-body{max-width:100%}}
+    /* STRIP */
+    .strip{border-top:.5px solid var(--b);border-bottom:.5px solid var(--b);background:var(--w);padding:1.25rem var(--pad)}
+    .strip-i{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:2.5rem;overflow-x:auto;scrollbar-width:none}
+    .strip-i::-webkit-scrollbar{display:none}
+    .stat{display:flex;align-items:center;gap:10px;white-space:nowrap;flex-shrink:0}
+    .stat-n{font-family:var(--sf);font-size:1.5rem;font-weight:200;color:var(--gold)}
+    .stat-l{font-size:11px;color:var(--t3);line-height:1.4}
+    .sdot{width:3px;height:3px;border-radius:50%;background:var(--bm);flex-shrink:0}
+    /* SECTIONS */
+    .sec{padding:clamp(4rem,8vw,7rem) var(--pad);max-width:var(--max);margin:0 auto}
+    .sec-title{font-family:var(--sf);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;line-height:1.2;color:var(--g);max-width:22ch;margin-top:.75rem}
+    .sec-title em{font-style:italic;color:var(--gold)}
+    .sec-body{font-size:16px;line-height:1.8;color:var(--t2);max-width:60ch;margin-top:1rem}
+    /* SCIENCE GRID */
+    .sci-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin-top:3rem}
+    .sci-cell{background:var(--w);padding:2rem 1.75rem;transition:background .15s}
+    .sci-cell:hover{background:var(--gp)}
+    .sci-icon{font-size:1.5rem;margin-bottom:1rem}
+    .sci-t{font-family:var(--sf);font-size:1.1rem;font-weight:300;color:var(--g);margin-bottom:.5rem}
+    .sci-b{font-size:13px;line-height:1.7;color:var(--t3)}
+    .sci-c{display:inline-block;margin-top:.75rem;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:500}
+    @media(max-width:720px){.sci-grid{grid-template-columns:1fr}}
+    /* STATES */
+    .states-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin-top:3rem}
+    .state-cell{background:var(--w);padding:2rem 1.5rem;text-align:center;transition:background .15s;cursor:pointer}
+    .state-cell:hover{background:var(--gp)}
+    .state-icon{font-size:1.8rem;margin-bottom:1rem}
+    .state-name{font-family:var(--sf);font-size:1.2rem;font-weight:300;color:var(--g);margin-bottom:.5rem}
+    .state-quote{font-size:12px;line-height:1.6;color:var(--t3);font-style:italic}
+    @media(max-width:720px){.states-grid{grid-template-columns:1fr 1fr}}
+    /* FORMULAS */
+    .f-sec{background:var(--g);padding:clamp(4rem,8vw,7rem) var(--pad)}
+    .f-inner{max-width:var(--max);margin:0 auto}
+    .f-inner .eye{color:var(--gold);margin-bottom:.75rem}
+    .f-title{font-family:var(--sf);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;color:var(--cr);margin-bottom:.75rem}
+    .f-sub{font-size:14px;color:rgba(245,241,234,.55);max-width:55ch;line-height:1.7;margin-bottom:3rem}
+    .f-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:rgba(245,241,234,.08);border:1px solid rgba(245,241,234,.08);border-radius:12px;overflow:hidden}
+    .f-card{background:rgba(245,241,234,.04);padding:1.75rem;transition:background .15s}
+    .f-card:hover{background:rgba(245,241,234,.08)}
+    .f-code{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+    .f-name{font-family:var(--sf);font-size:1.35rem;font-weight:200;font-style:italic;color:var(--cr);margin-bottom:.35rem}
+    .f-range{font-size:11px;color:rgba(245,241,234,.4);letter-spacing:.06em;margin-bottom:1rem}
+    .f-desc{font-size:13px;line-height:1.65;color:rgba(245,241,234,.6)}
+    .f-mech{margin-top:1rem;padding-top:1rem;border-top:.5px solid rgba(245,241,234,.1);font-size:11px;color:rgba(184,150,62,.7);line-height:1.6}
+    /* QUIZ */
+    .quiz-card{background:var(--w);border:.5px solid var(--b);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;margin-top:0}
+    .quiz-l{padding:3rem;background:var(--gp);border-right:.5px solid var(--b)}
+    .quiz-l .eye{margin-bottom:1rem}
+    .quiz-title{font-family:var(--sf);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:200;line-height:1.25;color:var(--g);margin-bottom:1rem}
+    .quiz-body{font-size:14px;line-height:1.75;color:var(--t2);margin-bottom:2rem}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem}
+    .chip{padding:5px 12px;border:.5px solid var(--bm);border-radius:20px;font-size:11px;color:var(--t3);background:var(--w)}
+    .quiz-r{padding:3rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+    .quiz-vis{width:80px;height:80px;border-radius:50%;background:var(--cr);border:.5px solid var(--b);display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:1.5rem}
+    .quiz-rt{font-family:var(--sf);font-size:1.4rem;font-weight:300;color:var(--g);margin-bottom:.75rem}
+    .quiz-rb{font-size:13px;color:var(--t3);line-height:1.65;margin-bottom:1.75rem}
+    @media(max-width:720px){.quiz-card{grid-template-columns:1fr}.quiz-l{border-right:none;border-bottom:.5px solid var(--b);padding:2rem}.quiz-r{padding:2rem}}
+    /* SHOP */
+    .shop-sec{background:var(--cd);border-top:.5px solid var(--b);border-bottom:.5px solid var(--b);padding:clamp(4rem,8vw,7rem) var(--pad)}
+    .shop-i{max-width:var(--max);margin:0 auto}
+    .shop-i .eye{margin-bottom:.75rem}
+    .shop-title{font-family:var(--sf);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;color:var(--g);margin-bottom:.75rem}
+    .shop-sub{font-size:15px;color:var(--t2);max-width:58ch;line-height:1.75;margin-bottom:3rem}
+    .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-bottom:2.5rem}
+    .shop-card{background:var(--w);border:.5px solid var(--b);border-radius:12px;overflow:hidden;transition:border-color .15s,transform .15s}
+    .shop-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+    .shop-img{height:160px;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+    .shop-img::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(184,150,62,.2) 0%,transparent 60%)}
+    .shop-body{padding:1.25rem}
+    .shop-cat{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
+    .shop-name{font-family:var(--sf);font-size:1.05rem;font-weight:300;color:var(--g);margin-bottom:.35rem}
+    .shop-desc{font-size:12px;color:var(--t3);line-height:1.55;margin-bottom:1rem}
+    .shop-foot{display:flex;align-items:center;justify-content:space-between;padding-top:.75rem;border-top:.5px solid var(--b);margin-top:.75rem}
+    .shop-price{font-size:14px;font-weight:500;color:var(--g)}
+    .shop-btn{padding:7px 16px;background:var(--g);color:var(--cr);border-radius:20px;font-size:12px;font-weight:500;transition:background .12s;display:inline-block}
+    .shop-btn:hover{background:var(--gm)}
+    .shop-note{font-size:12px;color:var(--t3);font-style:italic;padding:1rem 1.25rem;background:var(--w);border:.5px solid var(--b);border-radius:8px;line-height:1.65}
+    /* GIFTS */
+    .gift-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:2.5rem}
+    .gift-card{padding:1.25rem;border:.5px solid var(--b);border-radius:var(--r);background:var(--w);transition:border-color .15s}
+    .gift-card:hover{border-color:var(--gold)}
+    .gift-occ{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+    .gift-name{font-family:var(--sf);font-size:1rem;font-weight:300;color:var(--g);margin-bottom:.3rem}
+    .gift-hook{font-size:12px;color:var(--t3);font-style:italic;line-height:1.5}
+    /* PERI */
+    .peri-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:2.5rem}
+    .peri-card{padding:1.75rem;border:.5px solid var(--b);border-radius:12px;background:var(--w);transition:border-color .15s}
+    .peri-card:hover{border-color:var(--gold)}
+    .peri-sym{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+    .peri-f{font-family:var(--sf);font-size:1.2rem;font-weight:300;font-style:italic;color:var(--g);margin-bottom:.4rem}
+    .peri-d{font-size:13px;color:var(--t3);line-height:1.6;margin-bottom:1rem}
+    .peri-p{font-size:11px;color:var(--t2);padding:.6rem .75rem;background:var(--cr);border-radius:6px;line-height:1.55}
+    /* FOUNDER */
+    .founder-sec{background:var(--g);padding:clamp(4rem,8vw,7rem) var(--pad)}
+    .founder-i{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:center}
+    .founder-i .eye{color:var(--gold);margin-bottom:1rem}
+    .founder-t{font-family:var(--sf);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:200;color:var(--cr);line-height:1.2;margin-bottom:1.5rem}
+    .founder-b{font-size:15px;line-height:1.8;color:rgba(245,241,234,.65);margin-bottom:1.25rem}
+    .founder-sig{font-family:var(--sf);font-size:1.1rem;font-style:italic;color:var(--gold)}
+    .principle{padding:2rem;border:.5px solid rgba(245,241,234,.15);border-radius:12px;border-left:3px solid var(--gold)}
+    .principle-lbl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
+    .principle-txt{font-family:var(--sf);font-size:1.3rem;font-weight:200;font-style:italic;color:var(--cr);line-height:1.5}
+    @media(max-width:720px){.founder-i{grid-template-columns:1fr;gap:2.5rem}}
+    /* WAITLIST */
+    .wl-sec{padding:clamp(4rem,8vw,7rem) var(--pad);max-width:680px;margin:0 auto;text-align:center}
+    .wl-sec .eye{margin-bottom:1rem}
+    .wl-title{font-family:var(--sf);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:200;line-height:1.2;color:var(--g);margin-bottom:1rem}
+    .wl-body{font-size:15px;color:var(--t2);line-height:1.75;margin-bottom:2rem}
+    .wl-form{display:flex;gap:10px;max-width:440px;margin:0 auto 1rem}
+    .wl-in{flex:1;padding:13px 16px;border:.5px solid var(--bm);border-radius:30px;background:var(--w);font-family:var(--ss);font-size:14px;color:var(--t);outline:none;transition:border-color .15s;-webkit-appearance:none}
+    .wl-in:focus{border-color:var(--gold)}
+    .wl-in::placeholder{color:var(--t3)}
+    .wl-sub{padding:13px 24px;background:var(--g);color:var(--cr);border-radius:30px;font-size:14px;font-weight:500;transition:background .15s;white-space:nowrap;cursor:pointer;border:none;font-family:var(--ss)}
+    .wl-sub:hover{background:var(--gm)}
+    .wl-note{font-size:11px;color:var(--t3)}
+    .wl-ok{display:none;font-size:14px;color:#5a8a5a;padding:12px 20px;background:rgba(90,138,90,.1);border-radius:8px;max-width:440px;margin:0 auto}
+    @media(max-width:480px){.wl-form{flex-direction:column}.wl-in,.wl-sub{width:100%}}
+    /* FOOTER */
+    footer{background:var(--g);padding:3rem var(--pad) 2rem}
+    .ft-i{max-width:var(--max);margin:0 auto}
+    .ft-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;padding-bottom:2rem;border-bottom:.5px solid rgba(245,241,234,.1);margin-bottom:1.5rem}
+    .ft-brand{font-family:var(--sf);font-size:1.1rem;font-weight:300;letter-spacing:.12em;text-transform:uppercase;color:var(--cr);margin-bottom:.75rem}
+    .ft-tag{font-size:13px;color:rgba(245,241,234,.45);line-height:1.65;max-width:32ch}
+    .ft-ct{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+    .ft-links{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+    .ft-links a{font-size:13px;color:rgba(245,241,234,.5);transition:color .15s}
+    .ft-links a:hover{color:var(--cr)}
+    .ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+    .ft-leg{font-size:11px;color:rgba(245,241,234,.3)}
+    @media(max-width:680px){.ft-top{grid-template-columns:1fr;gap:2rem}}
+    /* ANIMATIONS */
+    .fu{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .fu.vis{opacity:1;transform:translateY(0)}
+    @media(prefers-reduced-motion:reduce){.fu{opacity:1;transform:none;transition:none}}
+  </style>
 </head>
 <body>
-<div class="app">
 
-  <div class="hdr">
-    <div>
-      <div class="brand">Sana Essencia</div>
-      <div class="brand-sub">The Equilibrium Quiz</div>
+<div class="ann">🌿 Early access open — <a href="#waitlist">join the waitlist</a> and be first when we launch</div>
+
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="nav-i">
+    <a href="/" class="nav-brand" aria-label="Sana Essencia home">Sana Essencia<sup style="font-size:8px;letter-spacing:0;vertical-align:super">&trade;</sup></a>
+    <ul class="nav-links" role="list">
+      <li><a href="#science">The Science</a></li>
+      <li><a href="#formulas">Formulas</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#gifts">Gifts</a></li>
+      <li><a href="#perimenopause">Equilibrium Edit</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a href="SE-equilibrium-quiz-v2.html" class="nav-cta">Start assessment</a>
+    <button class="nav-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleNav(this)">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mob-nav" id="mob-nav">
+    <a href="#science" onclick="closeMob()">The Science</a>
+    <a href="#formulas" onclick="closeMob()">Formulas</a>
+    <a href="#shop" onclick="closeMob()">Shop</a>
+    <a href="#gifts" onclick="closeMob()">Gifts</a>
+    <a href="#perimenopause" onclick="closeMob()">Equilibrium Edit</a>
+    <a href="#about" onclick="closeMob()">About</a>
+    <a href="SE-equilibrium-quiz-v2.html" class="mob-cta">Start assessment →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section aria-label="Introduction">
+  <div class="hero">
+    <div class="fu">
+      <p class="eye" style="margin-bottom:1.5rem">Neuro-aromachology · Sana Essencia&trade;</p>
+      <h1 class="hero-hl">Your nervous system<br>is trying to tell you<br><em>something.</em></h1>
+      <p class="hero-body">Some days you can't focus. Some evenings you can't switch off. Sometimes you don't quite feel like yourself. Your sense of smell reaches the part of your brain that runs your mood, stress, and focus faster than any other sense. Start with a 2-minute assessment — no products, no pressure, just the science of your state.</p>
+      <div class="hero-acts">
+        <a href="SE-equilibrium-quiz-v2.html" class="btn-p">Start the assessment →</a>
+        <a href="#science" class="btn-g">Why scent?</a>
+      </div>
     </div>
-    <div class="hdr-badge">8 questions · 5 profiles</div>
-  </div>
-
-  <!-- INTRO -->
-  <div id="s0" class="scr on">
-    <div class="intro-eyebrow">Your personal scent protocol</div>
-    <h1 class="intro-h1">Your nose has a direct line to the part of your brain that runs your hormones, mood, and memory.</h1>
-    <p class="intro-body">This isn't aromatherapy as you know it. Every recommendation traces to a specific biological mechanism — a compound, a receptor, a pathway. We tell you exactly what it does and why.</p>
-    <p class="intro-note">Eight questions. No jargon. Your result tells you which formula matches where you are right now — and how to feel the difference within 20 minutes.</p>
-    <div class="profiles">
-      <div class="chip"><div class="chip-icon">❄️</div><div class="chip-name">Thermal Reset</div></div>
-      <div class="chip"><div class="chip-icon">🌿</div><div class="chip-name">Hormone Balance</div></div>
-      <div class="chip"><div class="chip-icon">🕯️</div><div class="chip-name">Connection</div></div>
-      <div class="chip"><div class="chip-icon">⚡</div><div class="chip-name">Focus</div></div>
-      <div class="chip"><div class="chip-icon">🌊</div><div class="chip-name">Decompress</div></div>
-    </div>
-    <button class="btn btnp" onclick="go(1)">Begin your assessment</button>
-  </div>
-
-  <!-- Q1 -->
-  <div id="s1" class="scr">
-    <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:12%"></div></div><div class="prog-text">Question 1 of 8</div></div>
-    <button class="back-btn" onclick="go(0)">← Back</button>
-    <div class="q-lbl">Your body right now</div>
-    <div class="q-txt">When you tune in to how your body feels today, what stands out most?</div>
-    <div class="q-sub">Go with your first instinct — don't overthink it.</div>
-    <div class="opts">
-      <button class="opt" onclick="pick('q1','thermal','Sudden waves of heat or sweating')"><div class="ot">Sudden waves of heat or sweating</div><div class="os">Hot flushes, night sweats, or overheating for no clear reason</div></button>
-      <button class="opt" onclick="pick('q1','endocrine','Deep fatigue and feeling out of sync')"><div class="ot">Deep fatigue and feeling out of sync</div><div class="os">Exhausted, foggy, or disconnected from how I normally feel</div></button>
-      <button class="opt" onclick="pick('q1','unified','A longing to feel close to someone')"><div class="ot">A longing to feel close to someone</div><div class="os">I want to reconnect — with my partner, with myself, with calm</div></button>
-      <button class="opt" onclick="pick('q1','cognitive','Mental fog or scattered energy')"><div class="ot">Mental fog or scattered energy</div><div class="os">I need to focus but my mind keeps sliding away</div></button>
-      <button class="opt" onclick="pick('q1','decompress','Completely wrung out and overstimulated')"><div class="ot">Completely wrung out and overstimulated</div><div class="os">Screens, noise, mental load — I just need everything to stop for a moment</div></button>
-    </div>
-    <button class="btn" id="bq1" onclick="go(2)" disabled>Continue</button>
-  </div>
-
-  <!-- Q2 -->
-  <div id="s2" class="scr">
-    <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:25%"></div></div><div class="prog-text">Question 2 of 8</div></div>
-    <button class="back-btn" onclick="go(1)">← Back</button>
-    <div class="q-lbl">Your sleep</div>
-    <div class="q-txt">How has your sleep been lately?</div>
-    <div class="q-sub">Sleep is one of the clearest signals your nervous system sends.</div>
-    <div class="opts">
-      <button class="opt" onclick="pick('q2','thermal','Waking hot and restless')"><div class="ot">Waking hot and restless</div><div class="os">Night sweats or overheating waking me up</div></button>
-      <button class="opt" onclick="pick('q2','endocrine','Hard to fall asleep, mind racing')"><div class="ot">Hard to fall asleep, mind racing</div><div class="os">Anxious thoughts or hormonal restlessness keeping me awake</div></button>
-      <button class="opt" onclick="pick('q2','unified','Sleeping separately or feeling distant')"><div class="ot">Sleeping separately or feeling distant</div><div class="os">Disconnection from my partner is affecting how I rest</div></button>
-      <button class="opt" onclick="pick('q2','cognitive','Exhausted but wired')"><div class="ot">Exhausted but wired</div><div class="os">Tired all day but my mind won't switch off at night</div></button>
-      <button class="opt" onclick="pick('q2','decompress','Crashing the moment I stop but never resting properly')"><div class="ot">Crashing the moment I stop but never resting properly</div><div class="os">I fall asleep from exhaustion but wake up still tired</div></button>
-    </div>
-    <button class="btn" id="bq2" onclick="go(3)" disabled>Continue</button>
-  </div>
-
-  <!-- Q3 -->
-  <div id="s3" class="scr">
-    <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:37%"></div></div><div class="prog-text">Question 3 of 8</div></div>
-    <button class="back-btn" onclick="go(2)">← Back</button>
-    <div class="q-lbl">Your mood</div>
-    <div class="q-txt">If you had to describe your emotional landscape this week, which feels closest?</div>
-    <div class="q-sub">There are no wrong answers — this helps us understand your nervous system's current state.</div>
-    <div class="opts">
-      <button class="opt" onclick="pick('q3','thermal','Irritable and easily overwhelmed')"><div class="ot">Irritable and easily overwhelmed</div><div class="os">Short fuse, frustration bubbling close to the surface</div></button>
-      <button class="opt" onclick="pick('q3','endocrine','Low, flat, or teary without clear reason')"><div class="ot">Low, flat, or teary without clear reason</div><div class="os">Sadness or anxiety that doesn't have an obvious cause</div></button>
-      <button class="opt" onclick="pick('q3','unified','Missing warmth and connection')"><div class="ot">Missing warmth and connection</div><div class="os">Longing for closeness, intimacy, or simply to feel seen</div></button>
-      <button class="opt" onclick="pick('q3','cognitive','Anxious and scattered')"><div class="ot">Anxious and scattered</div><div class="os">Racing thoughts, difficulty settling, pulled in all directions</div></button>
-      <button class="opt" onclick="pick('q3','decompress','Numb and running on empty')"><div class="ot">Numb and running on empty</div><div class="os">Past feeling stressed — just flat, hollow, going through the motions</div></button>
-    </div>
-    <button class="btn" id="bq3" onclick="go(4)" disabled>Continue</button>
-  </div>
-
-  <!-- Q4 -->
-  <div id="s4" class="scr">
-    <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:50%"></div></div><div class="prog-text">Question 4 of 8</div></div>
-    <button class="back-btn" onclick="go(3)">← Back</button>
-    <div class="q-lbl">What you're craving</div>
-    <div class="q-txt">Close your eyes for a second. What does your body most want right now?</div>
-    <div class="q-sub">Think physical sensation, not outcome.</div>
-    <div class="opts">
-      <button class="opt" onclick="pick('q4','thermal','Something cool, crisp, and instantly clearing')"><div class="ot">Something cool, crisp, and instantly clearing</div><div class="os">Like opening a window on a winter morning</div></button>
-      <button class="opt" onclick="pick('q4','endocrine','Something soft, grounding, and reassuring')"><div class="ot">Something soft, grounding, and reassuring</div><div class="os">Gentle, like a deep breath you've been holding finally released</div></button>
-      <button class="opt" onclick="pick('q4','unified','Something warm, rich, and deeply comforting')"><div class="ot">Something warm, rich, and deeply comforting</div><div class="os">An embrace — safe, present, magnetic</div></button>
-      <button class="opt" onclick="pick('q4','cognitive','Something sharp and energising')"><div class="ot">Something sharp and energising</div><div class="os">A mental wake-up call — clear, bright, purposeful</div></button>
-      <button class="opt" onclick="pick('q4','decompress','Something earthy and deeply settling')"><div class="ot">Something earthy and deeply settling</div><div class="os">Woody, grounding, like bare feet on cool earth — permission to stop</div></button>
-    </div>
-    <button class="btn" id="bq4" onclick="go(5)" disabled>Continue</button>
-  </div>
-
-  <!-- Q5 -->
-  <div id="s5" class="scr">
-    <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:62%"></div></div><div class="prog-text">Question 5 of 8</div></div>
-    <button class="back-btn" onclick="go(4)">← Back</button>
-    <div class="q-lbl">Your relationship</div>
-    <div class="q-txt">How much does connection — with your partner or those closest to you — feel like a priority right now?</div>
-    <div class="q-sub">This helps us understand whether a shared protocol might serve you better than a solo one.</div>
-    <div class="opts">
-      <button class="opt" onclick="pick('q5','high','It\'s my biggest priority right now')"><div class="ot">It's my biggest priority right now</div><div class="os">I want to invest in closeness and intimacy — it feels urgent</div></button>
-      <button class="opt" onclick="pick('q5','medium','It matters but I need to sort myself out first')"><div class="ot">It matters, but I need to sort myself out first</div><div class="os">I want connection but I need to feel better in myself first</div></button>
-      <button class="opt" onclick="pick('q5','gift','I\'m thinking of someone else — this might be a gift')"><div class="ot">I'm thinking of someone else — this might be a gift</div><div class="os">I want to find something for my partner, friend, or someone I love</div></button>
-      <button class="opt" onclick="pick('q5','solo','I\'m focused on myself right now')"><div class="ot">I'm focused on myself right now</div><div class="os">Solo protocols only — this is just for me</div></button>
-    </div>
-    <button class="btn" id="bq5" onclick="go(6)" disabled>Continue</button>
-  </div>
-
-  <!-- Q6 -->
-  <div id="s6" class="scr">
-    <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:75%"></div></div><div class="prog-text">Question 6 of 8</div></div>
-    <button class="back-btn" onclick="go(5)">← Back</button>
-    <div class="q-lbl">Where you are in the day</div>
-    <div class="q-txt">When are you most likely to use your protocol?</div>
-    <div class="q-sub">Scent compounds interact differently with your hormones at different times of day — this matters more than most people realise.</div>
-    <div class="opts">
-      <button class="opt" onclick="pick('q6','morning','Morning — setting up for the day')"><div class="ot">Morning — setting up for the day</div><div class="os">Before 10am, while cortisol is naturally peaking</div></button>
-      <button class="opt" onclick="pick('q6','afternoon','Afternoon — the mid-day slump')"><div class="ot">Afternoon — the mid-day slump</div><div class="os">12pm–5pm, when energy dips and focus gets harder</div></button>
-      <button class="opt" onclick="pick('q6','transition','Late afternoon — the handover moment')"><div class="ot">Late afternoon — the handover moment</div><div class="os">5pm–7pm, closing the laptop, transitioning out of work mode</div></button>
-      <button class="opt" onclick="pick('q6','evening','Evening — winding down or being present')"><div class="ot">Evening — winding down or being present</div><div class="os">After 7pm, time for family, partner, or simply yourself</div></button>
-      <button class="opt" onclick="pick('q6','night','Night — sleep or intimate time')"><div class="ot">Night — sleep preparation or intimate time</div><div class="os">Bedtime ritual, sleep support, or shared evening connection</div></button>
-    </div>
-    <button class="btn" id="bq6" onclick="go(7)" disabled>Continue</button>
-  </div>
-
-  <!-- Q7 -->
-  <div id="s7" class="scr">
-    <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:87%"></div></div><div class="prog-text">Question 7 of 8</div></div>
-    <button class="back-btn" onclick="go(6)">← Back</button>
-    <div class="q-lbl">The mental load</div>
-    <div class="q-txt">How much are you carrying for other people right now?</div>
-    <div class="q-sub">The invisible mental load — remembering everything, managing everything, being needed by everyone — has a real neurological cost.</div>
-    <div class="opts">
-      <button class="opt" onclick="pick('q7','high','Everything. I am holding it all together for everyone.')"><div class="ot">Everything. I am holding it all together for everyone.</div><div class="os">I am the person everyone comes to — and I haven't stopped in weeks</div></button>
-      <button class="opt" onclick="pick('q7','medium','A lot, but I can still see myself in it')"><div class="ot">A lot, but I can still see myself in it</div><div class="os">Heavy but manageable — I'm still functioning, just stretched</div></button>
-      <button class="opt" onclick="pick('q7','low','Not much — this time is mostly mine')"><div class="ot">Not much — this time is mostly mine</div><div class="os">I have space right now. This protocol is for my own performance or wellbeing</div></button>
-    </div>
-    <button class="btn" id="bq7" onclick="go(8)" disabled>Continue</button>
-  </div>
-
-  <!-- Q8 -->
-  <div id="s8" class="scr">
-    <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:97%"></div></div><div class="prog-text">Question 8 of 8</div></div>
-    <button class="back-btn" onclick="go(7)">← Back</button>
-    <div class="q-lbl">Last question</div>
-    <div class="q-txt">One word. Which of these feels most like you right now?</div>
-    <div class="q-sub">Trust your instinct — don't deliberate.</div>
-    <div class="opts">
-      <button class="opt" onclick="pick('q8','burning','Burning')"><div class="ot">Burning</div><div class="os">Overheated, inflamed, running too hot</div></button>
-      <button class="opt" onclick="pick('q8','fading','Fading')"><div class="ot">Fading</div><div class="os">Depleted, dimming, losing my spark</div></button>
-      <button class="opt" onclick="pick('q8','longing','Longing')"><div class="ot">Longing</div><div class="os">Reaching for closeness, warmth, presence</div></button>
-      <button class="opt" onclick="pick('q8','scattered','Scattered')"><div class="ot">Scattered</div><div class="os">Unfocused, fragmented, pulled apart</div></button>
-      <button class="opt" onclick="pick('q8','sinking','Sinking')"><div class="ot">Sinking</div><div class="os">Under the weight of it — just need to surface and breathe</div></button>
-    </div>
-    <button class="btn btnp" id="bq8" onclick="getResult()" disabled>Reveal my protocol →</button>
-  </div>
-
-  <!-- LOADING -->
-  <div id="sload" class="scr">
-    <div class="ldg"><div class="spin"></div><span>Reading your profile and finding your formula...</span></div>
-  </div>
-
-  <!-- RESULT -->
-  <div id="sres" class="scr">
-    <button class="back-btn" onclick="restart()">↺ Start again</button>
-    <div id="rcontent"></div>
-    <div class="cta">
-      <div class="cta-lbl">Join the waitlist</div>
-      <p class="cta-sub">Be first when Sana Essencia launches. We'll send your full protocol guide too.</p>
-      <input type="email" class="ei" id="em" placeholder="your@email.com" />
-      <button class="btn btnp" id="wlbtn" onclick="joinList()">Reserve my place</button>
-      <div class="ok-msg" id="okm">You're on the list. Your protocol guide is on its way.</div>
+    <div class="fu" style="transition-delay:.15s">
+      <div class="hero-card">
+        <div class="hc-lbl">Sample result · Cognitive Regulation</div>
+        <div class="hc-name">Acuity Strike</div>
+        <div class="hc-range">SE-N5 · Lemon + Rosemary</div>
+        <div class="hc-div"></div>
+        <div class="crow"><span class="cn">Limonene</span><span class="cp">→ dopaminergic signalling → directed attention</span></div>
+        <div class="crow"><span class="cn">Beta-pinene</span><span class="cp">→ noradrenergic pathway → sustained focus</span></div>
+        <div class="crow"><span class="cn">1,8-Cineole</span><span class="cp">→ AChE inhibition → acetylcholine availability</span></div>
+        <button class="hc-btn" onclick="window.location.href='sana-essencia-advisor.html'">Get your personalised formula →</button>
+      </div>
     </div>
   </div>
+</section>
 
+<!-- STRIP -->
+<div class="strip" aria-label="Key facts">
+  <div class="strip-i">
+    <div class="stat"><span class="stat-n">7</span><span class="stat-l">Documented<br>formulas</span></div>
+    <div class="sdot"></div>
+    <div class="stat"><span class="stat-n">25+</span><span class="stat-l">Peer-reviewed<br>citations</span></div>
+    <div class="sdot"></div>
+    <div class="stat"><span class="stat-n">20</span><span class="stat-l">Minutes to feel<br>the difference</span></div>
+    <div class="sdot"></div>
+    <div class="stat"><span class="stat-n">5</span><span class="stat-l">Personalised<br>profiles</span></div>
+    <div class="sdot"></div>
+    <div class="stat"><span class="stat-n" style="font-family:var(--sf);font-style:italic;font-size:1.1rem;padding-top:3px">"Mechanism<br>or nothing"</span><span class="stat-l">— our founding<br>standard</span></div>
+  </div>
 </div>
 
+<!-- SCIENCE -->
+<section id="science" aria-labelledby="sci-h">
+  <div class="sec">
+    <div class="fu">
+      <p class="eye">How it works</p>
+      <h2 class="sec-title" id="sci-h">The olfactory pathway is the fastest route to your <em>limbic system.</em></h2>
+      <p class="sec-body">When you inhale a scent compound, it binds to olfactory receptors in the nasal epithelium and sends signals directly to the limbic system — bypassing the cortex entirely. This is why scent affects mood, stress, and cognitive state faster than almost any other sensory input. There is no rational filter between the nose and the nervous system.</p>
+    </div>
+    <div class="sci-grid fu">
+      <div class="sci-cell"><div class="sci-icon">🫁</div><div class="sci-t">Inhalation</div><div class="sci-b">Volatile aromatic compounds bind to olfactory receptor neurons in the nasal mucosa within seconds of inhalation.</div><span class="sci-c">Nasal epithelium → OR neurons</span></div>
+      <div class="sci-cell"><div class="sci-icon">⚡</div><div class="sci-t">Signal</div><div class="sci-b">Receptor activation triggers signals directly to the limbic system — amygdala, hippocampus, hypothalamus — bypassing cortical processing.</div><span class="sci-c">Olfactory bulb → Limbic system</span></div>
+      <div class="sci-cell"><div class="sci-icon">🧬</div><div class="sci-t">Effect</div><div class="sci-b">Limbic activation modulates cortisol, GABA, dopamine, and serotonin — producing measurable changes in stress, focus, and mood within 10–20 minutes.</div><span class="sci-c">Cortisol · GABA · Dopamine · Serotonin</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATES -->
+<section id="states" aria-labelledby="states-h">
+  <div class="sec">
+    <div class="fu">
+      <p class="eye">Where to begin</p>
+      <h2 class="sec-title" id="states-h">Four ways your nervous system <em>asks for help.</em></h2>
+      <p class="sec-body">You don't wake up thinking "I need lavender." You wake up thinking "I can't focus" or "I can't switch off." Start with the state you're in — the assessment does the rest.</p>
+    </div>
+    <div class="states-grid fu">
+      <a href="SE-equilibrium-quiz-v2.html" class="state-cell">
+        <div class="state-icon">⚡</div>
+        <div class="state-name">Focus</div>
+        <div class="state-quote">"I lose concentration during the day."</div>
+      </a>
+      <a href="SE-equilibrium-quiz-v2.html" class="state-cell">
+        <div class="state-icon">🌊</div>
+        <div class="state-name">Reset</div>
+        <div class="state-quote">"I can't switch off after work."</div>
+      </a>
+      <a href="SE-equilibrium-quiz-v2.html" class="state-cell">
+        <div class="state-icon">🕯️</div>
+        <div class="state-name">Connection</div>
+        <div class="state-quote">"I want to feel closer to my partner."</div>
+      </a>
+      <a href="SE-equilibrium-quiz-v2.html" class="state-cell">
+        <div class="state-icon">🌙</div>
+        <div class="state-name">Recovery</div>
+        <div class="state-quote">"I need better, more consistent rest."</div>
+      </a>
+    </div>
+    <div style="margin-top:2rem;text-align:center">
+      <a href="SE-equilibrium-quiz-v2.html" class="btn-p">Start the assessment →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAS -->
+<section id="formulas" aria-labelledby="form-h">
+  <div class="f-sec">
+    <div class="f-inner">
+      <p class="eye">The catalogue</p>
+      <h2 class="f-title" id="form-h">Seven formulas. Seven receptor pathways. One standard.</h2>
+      <p class="f-sub">Every compound in every formula traces to a named receptor. Every receptor traces to a documented effect. Every effect traces to a peer-reviewed study.</p>
+      <div class="f-grid fu">
+        <div class="f-card"><div class="f-code">SE-N1 · Equilibrium</div><div class="f-name">Nexus Baseline</div><div class="f-range">Lavender dominant</div><div class="f-desc">Anxiety, hormonal restlessness, high stress. The grounding formula.</div><div class="f-mech">Linalool → GABA-A receptor → anxiolytic, cortisol reduction</div></div>
+        <div class="f-card"><div class="f-code">SE-N2 · Equilibrium</div><div class="f-name">Nexus Thermal Reset</div><div class="f-range">Eucalyptus + Peppermint</div><div class="f-desc">Hot flushes, overheating, afternoon fatigue. The cooling formula.</div><div class="f-mech">1,8-Cineole → TRPM8 channel → thermal relief, alertness</div></div>
+        <div class="f-card"><div class="f-code">SE-N3 · Cognitive Regulation</div><div class="f-name">Aurora Rise</div><div class="f-range">Bergamot FCF + Rosemary</div><div class="f-desc">Low mood, depleted energy, need to perform. The lift formula.</div><div class="f-mech">Linalyl acetate → serotonergic modulation + 1,8-cineole → AChE inhibition</div></div>
+        <div class="f-card"><div class="f-code">SE-N4 · Olfactory Restoration</div><div class="f-name">Noct Descent</div><div class="f-range">Clary Sage + Frankincense</div><div class="f-desc">Evening wind-down, sleep preparation, high stress. The restoration formula.</div><div class="f-mech">Sclareol → GABAergic pathway + Incensole acetate → CB1 receptor</div></div>
+        <div class="f-card"><div class="f-code">SE-N5 · Cognitive Regulation</div><div class="f-name">Acuity Strike</div><div class="f-range">Lemon + Rosemary</div><div class="f-desc">Brain fog, scattered energy, cognitive demand. The focus formula.</div><div class="f-mech">Limonene + Beta-pinene → dopaminergic signalling → directed attention</div></div>
+        <div class="f-card"><div class="f-code">SE-N6 · Equilibrium Intimate</div><div class="f-name">Vinculum</div><div class="f-range">Jasmine + Bergamot + Sandalwood</div><div class="f-desc">Connection, intimacy, shared calm. The couples formula.</div><div class="f-mech">Hedione → VN1R1 pheromone receptor → social trust + bonding</div></div>
+        <div class="f-card"><div class="f-code">SE-N7 · Olfactory Restoration</div><div class="f-name">Vela</div><div class="f-range">Orange + Bergamot + Cedarwood + Vetiver</div><div class="f-desc">Mental load, overwhelm, end-of-day transition. The permission formula.</div><div class="f-mech">Cedrol → autonomic regulation + Linalool → SNS suppression</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" aria-labelledby="quiz-h">
+  <div class="sec">
+    <div class="quiz-card fu">
+      <div class="quiz-l">
+        <p class="eye">The Equilibrium Quiz</p>
+        <h2 class="quiz-title" id="quiz-h">Eight questions. A formula matched to you.</h2>
+        <p class="quiz-body">Tell us where you are right now — your energy, stress, time of day, and what you need. The quiz recommends your formula with the receptor-pathway science behind it. No jargon. No wellness clichés.</p>
+        <div class="chips">
+          <span class="chip">❄️ Thermal Reset</span>
+          <span class="chip">🌿 Hormone Balance</span>
+          <span class="chip">🕯️ Connection</span>
+          <span class="chip">⚡ Focus</span>
+          <span class="chip">🌊 Decompression</span>
+        </div>
+        <a href="SE-equilibrium-quiz-v2.html" class="btn-p">Take the quiz →</a>
+      </div>
+      <div class="quiz-r">
+        <div class="quiz-vis">🎁</div>
+        <div class="quiz-rt">Also for gifting</div>
+        <p class="quiz-rb">Taking it for someone else? The quiz has a gifting path. Build a personalised protocol for your partner, friend, or colleague — with science they'll actually understand.</p>
+        <a href="SE-equilibrium-quiz-v2.html" class="btn-g">Find a gift protocol →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop" aria-labelledby="shop-h">
+  <div class="shop-sec">
+    <div class="shop-i">
+      <p class="eye">The Vector Collection</p>
+      <h2 class="shop-title" id="shop-h">Your formula needs a home.</h2>
+      <p class="shop-sub">We've curated lava stone vectors, diffuser carriers, and protocol accessories — each chosen for its mechanism, not its marketing. Shop now, add formula when ready.</p>
+      <div class="shop-grid fu">
+        <div class="shop-card">
+          <div class="shop-img">🪨</div>
+          <div class="shop-body">
+            <div class="shop-cat">Portable Vector</div>
+            <div class="shop-name">Lava Stone Diffuser Bracelet</div>
+            <div class="shop-desc">Porous volcanic basalt. Absorbs your formula and releases it steadily for 4–8 hours. The wearable protocol.</div>
+            <div class="shop-foot"><span class="shop-price">£16.99</span><a href="https://sanaessencia.myshopify.com" target="_blank" rel="noopener" class="shop-btn">Shop now</a></div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-img">🔗</div>
+          <div class="shop-body">
+            <div class="shop-cat">Portable Vector</div>
+            <div class="shop-name">Stainless Steel Diffuser Locket</div>
+            <div class="shop-desc">Absorbent felt pad with ventilation openings. Continuous olfactory signal at chest level for up to 8 hours.</div>
+            <div class="shop-foot"><span class="shop-price">£19.99</span><a href="https://sanaessencia.myshopify.com" target="_blank" rel="noopener" class="shop-btn">Shop now</a></div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-img">🗝️</div>
+          <div class="shop-body">
+            <div class="shop-cat">Secret Santa · Under £10</div>
+            <div class="shop-name">Lava Stone Keyring</div>
+            <div class="shop-desc">One drop. Clip to your keys. Decompress on the commute home. The pocket protocol.</div>
+            <div class="shop-foot"><span class="shop-price">£8.99</span><a href="https://sanaessencia.myshopify.com" target="_blank" rel="noopener" class="shop-btn">Shop now</a></div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-img">💊</div>
+          <div class="shop-body">
+            <div class="shop-cat">Perimenopause Support</div>
+            <div class="shop-name">MENOstage Herbal Support</div>
+            <div class="shop-desc">Soya isoflavones and women's herbs. EFSA-approved health claims. Pairs with your Equilibrium formula protocol.</div>
+            <div class="shop-foot"><span class="shop-price">£18.99</span><a href="https://sanaessencia.myshopify.com" target="_blank" rel="noopener" class="shop-btn">Shop now</a></div>
+          </div>
+        </div>
+      </div>
+      <p class="shop-note">Your order may arrive in separate parcels from our fulfilment partners. Your Sana Essencia protocol cards and personal items are packed and dispatched by our founder from Basingstoke. <a href="#about" style="color:var(--gold)">Why we work this way →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- GIFTS -->
+<section id="gifts" aria-labelledby="gifts-h">
+  <div class="sec">
+    <div class="fu">
+      <p class="eye">For every occasion</p>
+      <h2 class="sec-title" id="gifts-h">A gift with a story the giver can <em>tell.</em></h2>
+      <p class="sec-body">Every Sana Essencia gift set contains a formula, a vector, and a protocol card — the science and the instructions. That's what makes it memorable.</p>
+    </div>
+    <div class="gift-grid fu">
+      <div class="gift-card"><div class="gift-occ">Valentine's Day</div><div class="gift-name">Vinculum Connection Set</div><div class="gift-hook">"The science of connection. Given with intention."</div></div>
+      <div class="gift-card"><div class="gift-occ">Mother's Day</div><div class="gift-name">Vela Decompression Set</div><div class="gift-hook">"For the woman who carries everything. Permission to put it down."</div></div>
+      <div class="gift-card"><div class="gift-occ">Graduation</div><div class="gift-name">Acuity Strike Focus Set</div><div class="gift-hook">"The next chapter starts here. Your focus protocol."</div></div>
+      <div class="gift-card"><div class="gift-occ">Work Promotion</div><div class="gift-name">Aurora Rise Leadership Set</div><div class="gift-hook">"For the leader you're becoming."</div></div>
+      <div class="gift-card"><div class="gift-occ">Secret Santa · Under £10</div><div class="gift-name">The Desk Reset Keyring</div><div class="gift-hook">"Add one drop. Decompress on the way home."</div></div>
+      <div class="gift-card"><div class="gift-occ">Perimenopause Support</div><div class="gift-name">The Equilibrium Edit Set</div><div class="gift-hook">"I thought of you. Because I know what you're carrying."</div></div>
+      <div class="gift-card"><div class="gift-occ">New Parent</div><div class="gift-name">Vela Recovery Set</div><div class="gift-hook">"Not a baby gift. A gift for you."</div></div>
+      <div class="gift-card"><div class="gift-occ">Corporate · Bulk orders</div><div class="gift-name">Workplace Wellbeing Pack</div><div class="gift-hook">"From £6.99 per unit." Enquire: hello@sanaessencia.co.uk</div></div>
+    </div>
+    <div style="margin-top:2rem"><a href="https://sanaessencia.myshopify.com" target="_blank" rel="noopener" class="btn-p">Shop all gift sets →</a></div>
+  </div>
+</section>
+
+<!-- PERIMENOPAUSE -->
+<section id="perimenopause" aria-labelledby="peri-h">
+  <div class="sec" style="background:var(--cr)">
+    <div class="fu">
+      <p class="eye">The Equilibrium Edit</p>
+      <h2 class="sec-title" id="peri-h">For the perimenopause transition — <em>scent that works with your biology.</em></h2>
+      <p class="sec-body">Perimenopause isn't a malfunction. It's a transition with specific neurological and hormonal signatures. Our formulas are matched to those signatures.</p>
+    </div>
+    <div class="peri-grid fu">
+      <div class="peri-card"><div class="peri-sym">Hot flushes · Night sweats</div><div class="peri-f">Nexus Thermal Reset</div><div class="peri-d">1,8-Cineole activates TRPM8 cold receptors, producing a measurable cooling sensation. Menthol stimulates the trigeminal nerve for instant thermal relief.</div><div class="peri-p">Pairs with: Lava stone bracelet · Magnesium menopause spray</div></div>
+      <div class="peri-card"><div class="peri-sym">Low mood · Hormonal fog</div><div class="peri-f">Aurora Rise</div><div class="peri-d">Linalyl acetate from bergamot FCF modulates serotonergic signalling. 1,8-cineole from rosemary sustains acetylcholine for focus and mood stabilisation.</div><div class="peri-p">Pairs with: Diffuser locket · MENOstage herbal support</div></div>
+      <div class="peri-card"><div class="peri-sym">Sleep disruption · Anxiety</div><div class="peri-f">Noct Descent</div><div class="peri-d">Sclareol from clary sage modulates the GABAergic pathway. Incensole acetate from frankincense activates CB1 receptors — reducing cortisol and neural hyperactivity.</div><div class="peri-p">Pairs with: Lava stone bracelet · Nexus Baseline (layered)</div></div>
+      <div class="peri-card"><div class="peri-sym">Mental load · Overwhelm</div><div class="peri-f">Vela</div><div class="peri-d">Cedrol from cedarwood Atlas regulates the autonomic nervous system — grounding without drowsing. Linalool suppresses the sympathetic nervous system without sedation.</div><div class="peri-p">Pairs with: Lava stone bracelet · Used at 5–8pm daily</div></div>
+    </div>
+    <div style="margin-top:2rem"><a href="SE-equilibrium-quiz-v2.html" class="btn-p">Take the Equilibrium Quiz →</a></div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="about" aria-labelledby="about-h">
+  <div class="founder-sec">
+    <div class="founder-i">
+      <div>
+        <p class="eye">About Sana Essencia</p>
+        <h2 class="founder-t" id="about-h">Built by a science translator. Not a scientist. Not a marketer.</h2>
+        <p class="founder-b">Sana Essencia began with a single question: why do we trust wellness products that have no mechanism? Every product on this market is sold on tradition or feeling. None of them show you the receptor.</p>
+        <p class="founder-b">My standard is simple: mechanism or nothing. If I cannot name the compound, identify the receptor, and cite a peer-reviewed study — that compound does not go in the formula.</p>
+        <p class="founder-b">Incorporated June 2026. Building toward a pre-Christmas 2027 full product launch, self-funded, from Basingstoke, Hampshire.</p>
+        <p class="founder-sig">— Patricia Cruz, Founder</p>
+      </div>
+      <div class="principle fu">
+        <div class="principle-lbl">Our founding standard</div>
+        <div class="principle-txt">"Every active compound in every Sana Essencia formula traces to a named receptor, a documented pathway, and a peer-reviewed citation. This is our founding commitment. It will not change."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section id="waitlist" aria-labelledby="wl-h">
+  <div class="wl-sec">
+    <p class="eye">Join the waitlist</p>
+    <h2 class="wl-title" id="wl-h">Be first when we launch.</h2>
+    <p class="wl-body">The Nexus 20 desk diffuser and full formula range launch in late 2026. Join the waitlist and receive your protocol guide, science updates, and early access before anyone else.</p>
+    <form class="wl-form" onsubmit="submitWL(event)">
+      <input type="email" class="wl-in" id="wl-email" placeholder="your@email.com" required aria-label="Email address" />
+      <button type="submit" class="wl-sub">Join waitlist</button>
+    </form>
+    <div class="wl-ok" id="wl-ok">✓ You're on the list. We'll be in touch before launch.</div>
+    <p class="wl-note">No spam, ever. Unsubscribe any time. Held under UK GDPR by Sana Essencia Ltd.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-i">
+    <div class="ft-top">
+      <div>
+        <div class="ft-brand">Sana Essencia</div>
+        <p class="ft-tag">Neuro-aromachology for the modern woman. Mechanism or nothing.</p>
+      </div>
+      <div>
+        <div class="ft-ct">Navigate</div>
+        <ul class="ft-links">
+          <li><a href="#science">The Science</a></li>
+          <li><a href="#formulas">Formulas</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#gifts">Gifts</a></li>
+          <li><a href="#perimenopause">Equilibrium Edit</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-ct">Tools</div>
+        <ul class="ft-links">
+          <li><a href="sana-essencia-advisor.html">Protocol Advisor</a></li>
+          <li><a href="SE-equilibrium-quiz-v2.html">Equilibrium Quiz</a></li>
+          <li><a href="https://sanaessencia.myshopify.com" target="_blank" rel="noopener">Shop</a></li>
+          <li><a href="mailto:hello@sanaessencia.co.uk">hello@sanaessencia.co.uk</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p class="ft-leg">© 2026 Sana Essencia Ltd · Company No. 17298884 · Basingstoke, Hampshire</p>
+      <p class="ft-leg">Not medical advice · UK Registered</p>
+    </div>
+  </div>
+</footer>
+
 <script>
-const A = {};
-const FID = 'xqeowqqp';
-
-function go(n) {
-  document.querySelectorAll('.scr').forEach(s => s.classList.remove('on'));
-  const id = n === 0 ? 's0' : n === 'load' ? 'sload' : n === 'res' ? 'sres' : 's' + n;
-  document.getElementById(id).classList.add('on');
-  window.scrollTo(0, 0);
-}
-
-function pick(q, v, title) {
-  A[q] = { v, title };
-  const scr = event.currentTarget.closest('.scr');
-  scr.querySelectorAll('.opt').forEach(o => o.classList.remove('sel'));
-  event.currentTarget.classList.add('sel');
-  const btn = document.getElementById('b' + q);
-  if (btn) btn.disabled = false;
-}
-
-function restart() {
-  Object.keys(A).forEach(k => delete A[k]);
-  document.querySelectorAll('.opt').forEach(o => o.classList.remove('sel'));
-  for (let i = 1; i <= 8; i++) { const b = document.getElementById('bq' + i); if (b) b.disabled = true; }
-  const em = document.getElementById('em');
-  const wlbtn = document.getElementById('wlbtn');
-  const okm = document.getElementById('okm');
-  if (em) { em.value = ''; em.style.display = ''; }
-  if (wlbtn) wlbtn.style.display = '';
-  if (okm) okm.style.display = 'none';
-  go(0);
-}
-
-function getBadge(profile) {
-  const p = (profile || '').toLowerCase();
-  if (p.includes('thermal') || p.includes('heat') || p.includes('flush')) return '<span class="profile-badge b-thermal">❄️ Thermal Regulation</span>';
-  if (p.includes('endocrine') || p.includes('hormone') || p.includes('equilibrium') || p.includes('balance')) return '<span class="profile-badge b-endocrine">🌿 Hormone Balance</span>';
-  if (p.includes('unified') || p.includes('connect') || p.includes('vincul') || p.includes('intimac')) return '<span class="profile-badge b-unified">🕯️ Connection</span>';
-  if (p.includes('decompress') || p.includes('vela') || p.includes('unwind') || p.includes('transition') || p.includes('mental load')) return '<span class="profile-badge b-decompress">🌊 Decompression</span>';
-  return '<span class="profile-badge b-cognitive">⚡ Cognitive Focus</span>';
-}
-
-function getProducts(profile, isGift) {
-  const p = (profile || '').toLowerCase();
-  const isDecompress = p.includes('decompress') || p.includes('vela') || p.includes('unwind') || p.includes('mental load') || p.includes('transition');
-  const isThermal = p.includes('thermal') || p.includes('heat') || p.includes('flush');
-  const isEndocrine = p.includes('endocrine') || p.includes('hormone') || p.includes('balance');
-  const isUnified = p.includes('unified') || p.includes('connect') || p.includes('vincul') || p.includes('intimac');
-
-  if (isDecompress) return `
-    <div class="sec-div"><span>Matched products</span></div>
-    <div class="prod"><div class="prod-icon" style="background:#e8eef2;">🌊</div><div class="prod-info"><div class="prod-name">Lava Stone Diffuser Bracelet</div><div class="prod-desc">Wear your Vela formula through the transition. All-day grounding.</div></div><div class="prod-price">£16.99</div></div>
-    <div class="prod"><div class="prod-icon" style="background:#e8eef2;">🗝️</div><div class="prod-info"><div class="prod-name">Lava Stone Keyring</div><div class="prod-desc">Pocket decompression. One drop of Vela — your reset on your keys.</div></div><div class="prod-price">£8.99</div></div>`;
-
-  if (isThermal) return `
-    <div class="sec-div"><span>Matched products</span></div>
-    <div class="prod"><div class="prod-icon" style="background:#e8f2ec;">❄️</div><div class="prod-info"><div class="prod-name">Lava Stone Diffuser Bracelet</div><div class="prod-desc">Carry your Nexus Thermal Reset formula. Wear your cooling protocol.</div></div><div class="prod-price">£16.99</div></div>
-    <div class="prod"><div class="prod-icon" style="background:#e8f2ec;">💧</div><div class="prod-info"><div class="prod-name">Magnesium Menopause Spray</div><div class="prod-desc">Transdermal magnesium with clary sage — eases hot flushes and tension.</div></div><div class="prod-price">£14.99</div></div>`;
-
-  if (isEndocrine) return `
-    <div class="sec-div"><span>Matched products</span></div>
-    <div class="prod"><div class="prod-icon" style="background:#ede8f2;">🌿</div><div class="prod-info"><div class="prod-name">Lava Stone Diffuser Bracelet</div><div class="prod-desc">Carry your Noct Descent or Aurora Rise formula through the day.</div></div><div class="prod-price">£16.99</div></div>
-    <div class="prod"><div class="prod-icon" style="background:#ede8f2;">💊</div><div class="prod-info"><div class="prod-name">MENOstage Herbal Support</div><div class="prod-desc">Soya isoflavones and women's herbs — EFSA-backed hormonal balance.</div></div><div class="prod-price">£18.99</div></div>`;
-
-  if (isUnified) return `
-    <div class="sec-div"><span>Matched products</span></div>
-    <div class="prod"><div class="prod-icon" style="background:#f2ede8;">🕯️</div><div class="prod-info"><div class="prod-name">Lava Stone Bracelet Pair</div><div class="prod-desc">Two matching bracelets for the shared Vinculum protocol.</div></div><div class="prod-price">£29.99</div></div>
-    <div class="prod"><div class="prod-icon" style="background:#f2ede8;">🎁</div><div class="prod-info"><div class="prod-name">The Connection Gift Set</div><div class="prod-desc">Two bracelets + protocol cards. Ready to give. Ready to share.</div></div><div class="prod-price">£39.99</div></div>`;
-
-  return `
-    <div class="sec-div"><span>Matched products</span></div>
-    <div class="prod"><div class="prod-icon" style="background:#eef2e8;">⚡</div><div class="prod-info"><div class="prod-name">Portable Vector Clamshell Carrier</div><div class="prod-desc">Desk-to-meeting focus protocol. Carry Acuity Strike anywhere.</div></div><div class="prod-price">£24.99</div></div>
-    <div class="prod"><div class="prod-icon" style="background:#eef2e8;">🧠</div><div class="prod-info"><div class="prod-name">Diffuser Locket — Steel</div><div class="prod-desc">All-day cognitive support at chest level.</div></div><div class="prod-price">£19.99</div></div>`;
-}
-
-function getGiftBanner(profile, isGift) {
-  const p = (profile || '').toLowerCase();
-  const showGift = isGift || A.q5?.v === 'high' || p.includes('vincul') || p.includes('connect') || p.includes('unified');
-  if (!showGift) return '';
-  return `<div class="gift-banner">
-    <div class="gift-lbl">💝 Build a gift</div>
-    <div class="gift-title">Give someone the science of connection</div>
-    <div class="gift-desc">Two lava stone bracelets, two protocol cards, one Vinculum vial — boxed and ready. The science of scent, given with intention. Perfect for Valentine's Day, anniversaries, or any moment that deserves more than a candle.</div>
-    <button class="gift-btn" onclick="alert('Coming soon — join the waitlist below to be first!')">Build a gift set →</button>
-  </div>`;
-}
-
-function getSantaBanner(profile) {
-  const p = (profile || '').toLowerCase();
-  const isDecompress = p.includes('decompress') || p.includes('vela') || p.includes('unwind') || p.includes('mental load');
-  const highLoad = A.q7?.v === 'high';
-  if (!isDecompress && !highLoad) return '';
-  return `<div class="santa-banner">
-    <div class="santa-lbl">🎄 Corporate gifting</div>
-    <div class="santa-title">The perfect Secret Santa</div>
-    <div class="santa-desc">A lava stone keyring with a Vela protocol card. Add one drop, clip it to your keys, decompress on the commute home. Under £10. Genuinely useful. A story to tell. Perfect for office gift exchanges or workplace wellbeing.</div>
-    <button class="santa-btn" onclick="alert('Corporate gift enquiries: hello@sanaessencia.co.uk')">Enquire about bulk orders →</button>
-  </div>`;
-}
-
-async function getResult() {
-  go('load');
-  const isGift = A.q5?.v === 'gift';
-  const highLoad = A.q7?.v === 'high';
-
-  const prompt = `You are the science advisor for Sana Essencia, a neuro-aromachology wellness brand for women. You are warm, empathetic, and never patronising. You explain the science simply — no jargon, always grounded in real mechanisms. Speak directly to her. Make her feel genuinely understood.
-
-User quiz answers:
-- Body sensation: ${A.q1?.title}
-- Sleep: ${A.q2?.title}
-- Mood: ${A.q3?.title}
-- Sensory craving: ${A.q4?.title}
-- Connection priority: ${A.q5?.title}
-- Time of day for protocol: ${A.q6?.title}
-- Mental load: ${A.q7?.title}
-- One word: ${A.q8?.title}
-
-Sana Essencia formula catalogue (match to the most relevant):
-- SE-N1 Nexus Baseline (Equilibrium): Lavender. Linalool → GABA-A → anxiolytic, calming. Best: anxiety, hormonal restlessness, evening.
-- SE-N2 Nexus Thermal Reset (Equilibrium): Eucalyptus + peppermint. 1,8-cineole → TRPM8 activation → cooling, alertness. Menthol → trigeminal → thermal relief. Best: hot flushes, overheating, afternoon fatigue.
-- SE-N3 Aurora Rise (Cognitive Regulation): Bergamot FCF + rosemary. Linalyl acetate → serotonin + mood. 1,8-cineole → AChE inhibition → focus. Best: low mood, depleted, need to perform.
-- SE-N4 Noct Descent (Olfactory Restoration): Clary sage + frankincense. Sclareol → GABAergic → cortisol reduction. Incensole acetate → CB1 → neural calm. Best: evening wind-down, sleep prep, high stress.
-- SE-N5 Acuity Strike (Cognitive Regulation): Lemon + rosemary. Limonene + beta-pinene → dopaminergic → sharp focus. Best: brain fog, cognitive demand, scattered energy.
-- SE-N6 Vinculum (Equilibrium Intimate): Jasmine + bergamot + sandalwood + vanilla. Hedione → VN1R1 pheromone receptor → social trust, bonding. Santalol → GABA-A → deep calm. Best: couples, intimacy, connection, shared ritual. SHARED formula — designed for two people.
-- SE-N7 Vela (Olfactory Restoration): Sweet orange + bergamot FCF + cedarwood Atlas + vetiver. Limonene → dopaminergic mood lift. Linalool → SNS suppression, cortisol reduction. Cedrol → autonomic grounding without drowsiness. Khusimol → deep anxiolytic anchoring. Best: decompression, mental load, end-of-day transition 5pm-8pm, overwhelm, running on empty. NOT a sleep formula — a transition formula.
-
-${isGift ? 'IMPORTANT: User is looking for a gift for someone else. Make the result warm and gifting-focused.' : ''}
-${highLoad ? 'IMPORTANT: User is carrying everything for everyone. Acknowledge this directly and warmly. Lean toward Vela unless symptoms strongly suggest otherwise.' : ''}
-
-Respond ONLY in this exact JSON (no markdown, no backticks, no extra text):
-{
-  "profile": "2-3 word profile name",
-  "formula": "exact formula name",
-  "range": "range name",
-  "headline": "warm personal sentence max 12 words — what this does for HER specifically",
-  "personal_note": "2-3 sentences directly to her. Warm, specific to her answers. Make her feel seen. No jargon.",
-  "description": "2 sentences. What this formula does physically and emotionally, in plain English.",
-  "science": "2 sentences. Name the compound, the receptor, the effect. Clear for a non-scientist.",
-  "protocol": ["step 1 warm and practical under 20 words", "step 2", "step 3"],
-  "why_now": "1 sentence on why this formula suits her exact time of day and current state.",
-  "couples_note": "If Vinculum or connection is relevant: 1-2 warm sentences about shared protocol or gift. Otherwise empty string.",
-  "decompress_note": "If Vela is recommended or mental load is high: 1 warm sentence specifically about the permission to put things down. Otherwise empty string.",
-  "gift_note": "If user indicated gift intent: 1 warm gifting sentence. Otherwise empty string."
-}`;
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1200,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    const data = await res.json();
-    const raw = data.content?.find(b => b.type === 'text')?.text || '';
-    const rec = JSON.parse(raw.replace(/```json|```/g, '').trim());
-    renderResult(rec, isGift);
-  } catch (e) {
-    renderFallback(isGift);
-  }
-}
-
-function renderResult(rec, isGift) {
-  const el = document.getElementById('rcontent');
-  const profileStr = (rec.profile || '') + ' ' + (rec.formula || '') + ' ' + (rec.couples_note || '') + ' ' + (rec.decompress_note || '');
-
-  el.innerHTML = `
-    ${getBadge(profileStr)}
-    <div class="rcard">
-      <div class="rl">Your formula · ${rec.range || ''}</div>
-      <div class="rf">${rec.formula || ''}</div>
-      <div class="ri">"${rec.headline || ''}"</div>
-      <div class="divhr"></div>
-      <div class="rdesc italic">${rec.personal_note || ''}</div>
-      <div class="rdesc">${rec.description || ''}</div>
-      ${rec.decompress_note ? `<div style="margin-top:10px;padding:9px 12px;border-radius:7px;background:#e8eef2;font-size:12px;color:#2a4a6a;line-height:1.6;">🌊 ${rec.decompress_note}</div>` : ''}
-    </div>
-
-    <div class="sci">
-      <div class="scilbl">Why it works — the science</div>
-      <div class="scitxt">${rec.science || ''}</div>
-    </div>
-
-    <div class="scilbl" style="margin:0.8rem 0 0.4rem;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);">Your 20-minute protocol</div>
-    <div class="steps">
-      ${(rec.protocol || []).map((s,i) => `<div class="step"><span class="sn">0${i+1}</span><span class="st">${s}</span></div>`).join('')}
-    </div>
-
-    ${rec.why_now ? `<div class="why-now"><div class="scilbl" style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:3px;">Why now</div><div class="scitxt">${rec.why_now}</div></div>` : ''}
-
-    ${getProducts(profileStr, isGift)}
-    ${getGiftBanner(profileStr, isGift)}
-    ${getSantaBanner(profileStr)}
-  `;
-  go('res');
-}
-
-function renderFallback(isGift) {
-  const el = document.getElementById('rcontent');
-  el.innerHTML = `
-    <span class="profile-badge b-decompress">🌊 Decompression</span>
-    <div class="rcard">
-      <div class="rl">Your formula · Olfactory Restoration</div>
-      <div class="rf">Vela</div>
-      <div class="ri">"You don't need fixing. You need permission to stop."</div>
-      <div class="divhr"></div>
-      <div class="rdesc italic">What you're describing isn't a health problem — it's a life lived at full capacity with no clear moment of release. Vela is the signal that the emergency is over. You can exhale now.</div>
-      <div class="rdesc">Vela is a transition formula — not sleep, not calm, but the space between. It lowers cortisol and grounds the autonomic nervous system while keeping you present, so you can return to your evening as yourself rather than a depleted version of yourself.</div>
-      <div style="margin-top:10px;padding:9px 12px;border-radius:7px;background:#e8eef2;font-size:12px;color:#2a4a6a;line-height:1.6;">🌊 This is your permission: the mental load is allowed to be put down for twenty minutes.</div>
-    </div>
-    <div class="sci">
-      <div class="scilbl">Why it works — the science</div>
-      <div class="scitxt">Linalool from bergamot suppresses sympathetic nervous system activity and reduces cortisol within 15 minutes. Cedrol from cedarwood Atlas regulates the autonomic nervous system — calming without sedating, so you can decompress without losing the evening to exhaustion.</div>
-    </div>
-    <div class="scilbl" style="margin:0.8rem 0 0.4rem;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);">Your 20-minute protocol</div>
-    <div class="steps">
-      <div class="step"><span class="sn">01</span><span class="st">At 5pm–6pm, close the laptop. Apply 2–3 drops of Vela to your lava stone. This is the transition signal.</span></div>
-      <div class="step"><span class="sn">02</span><span class="st">Do one physical thing that marks the end of the day — change clothes, make tea, remove shoes. Let the formula reach you.</span></div>
-      <div class="step"><span class="sn">03</span><span class="st">Four slow nasal breaths. Longer out than in. The cortisol begins to drop. You're allowed to be here now.</span></div>
-    </div>
-    ${getProducts('decompress', isGift)}
-    ${getSantaBanner('decompression mental load')}
-  `;
-  go('res');
-}
-
-async function joinList() {
-  const em = document.getElementById('em').value.trim();
-  if (!em || !em.includes('@')) { document.getElementById('em').focus(); return; }
-  try {
-    await fetch('https://formspree.io/f/' + FID, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        email: em,
-        source: 'Equilibrium Quiz v2',
-        profile: document.querySelector('.rf')?.textContent || '',
-        mental_load: A.q7?.v || '',
-        connection: A.q5?.v || '',
-        answers: JSON.stringify(A)
-      })
-    });
-  } catch(e) {}
-  document.getElementById('em').style.display = 'none';
-  document.getElementById('wlbtn').style.display = 'none';
-  document.getElementById('okm').style.display = 'block';
+function toggleNav(btn){const n=document.getElementById('mob-nav');const o=n.classList.toggle('open');btn.setAttribute('aria-expanded',o)}
+function closeMob(){document.getElementById('mob-nav').classList.remove('open')}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const t=document.getElementById(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+async function submitWL(e){
+  e.preventDefault();
+  const em=document.getElementById('wl-email').value.trim();
+  if(!em)return;
+  const btn=e.target.querySelector('button');
+  btn.textContent='Joining...';btn.disabled=true;
+  try{await fetch('https://formspree.io/f/xqeowqqp',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:em,source:'Homepage waitlist',_subject:'New Sana Essencia waitlist signup'})})}catch(err){}
+  e.target.style.display='none';
+  document.getElementById('wl-ok').style.display='block';
 }
 </script>
 </body>
