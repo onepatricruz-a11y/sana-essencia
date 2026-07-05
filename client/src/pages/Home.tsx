@@ -1,246 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sana Essencia — neuro-aromachology for women. Science-backed scent protocols for perimenopause, focus, decompression and connection. Find your formula." />
-  <meta name="theme-color" content="#2a2a28" />
-  <title>Sana Essencia — Olfactory Science for the Modern Woman</title>
-  <meta property="og:title" content="Sana Essencia" />
-  <meta property="og:description" content="Your nose has a direct line to the part of your brain that runs your hormones, mood and memory. Find your formula." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sanaessencia.co.uk" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200;0,8..60,300;0,8..60,400;1,8..60,200;1,8..60,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root{--g:#2a2a28;--gm:#3d3d3a;--gl:#5a5a57;--gold:#b8963e;--gp:#fdf9f0;--cr:#f5f1ea;--cd:#ede9e0;--w:#ffffff;--b:rgba(42,42,40,.10);--bm:rgba(42,42,40,.18);--t:#1e1e1c;--t2:#5a5a57;--t3:#9a9a96;--sf:'Source Serif 4',Georgia,serif;--ss:'Inter',-apple-system,sans-serif;--max:1080px;--pad:clamp(1.25rem,5vw,3rem);--r:10px}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:var(--ss);background:var(--cr);color:var(--t);line-height:1.6;-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-    button{font-family:var(--ss);cursor:pointer;border:none;background:none}
-    .wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-    .eye{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:500}
-    /* NAV */
-    .nav{position:sticky;top:0;z-index:100;background:rgba(245,241,234,.93);backdrop-filter:blur(12px);border-bottom:.5px solid var(--b)}
-    .nav-i{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-    .nav-brand{font-family:var(--sf);font-size:15px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--g)}
-    .nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
-    .nav-links a{font-size:12px;letter-spacing:.05em;color:var(--t2);transition:color .15s}
-    .nav-links a:hover{color:var(--t)}
-    .nav-cta{font-size:12px;font-weight:500;padding:8px 18px;background:var(--g);color:var(--cr);border-radius:20px;transition:background .15s;white-space:nowrap}
-    .nav-cta:hover{background:var(--gm)}
-    .nav-btn{display:none;flex-direction:column;gap:5px;padding:4px}
-    .nav-btn span{display:block;width:22px;height:1.5px;background:var(--g)}
-    .mob-nav{display:none;flex-direction:column;background:var(--cr);border-top:.5px solid var(--b);padding:1.5rem var(--pad);gap:1.25rem}
-    .mob-nav.open{display:flex}
-    .mob-nav a{font-size:15px;color:var(--t2);padding:.25rem 0;border-bottom:.5px solid var(--b)}
-    .mob-cta{display:block;text-align:center;padding:12px;background:var(--g);color:var(--cr);border-radius:var(--r);font-weight:500;margin-top:.5rem}
-    @media(max-width:680px){.nav-links,.nav-cta{display:none}.nav-btn{display:flex}}
-    /* ANNOUNCE */
-    .ann{background:var(--gold);padding:8px var(--pad);text-align:center;font-size:12px;color:var(--g);font-weight:500}
-    .ann a{text-decoration:underline;text-underline-offset:2px}
-    /* BUTTONS */
-    .btn-p{padding:13px 28px;background:var(--g);color:var(--cr);border-radius:30px;font-size:14px;font-weight:500;transition:background .15s,transform .1s;display:inline-block}
-    .btn-p:hover{background:var(--gm);transform:translateY(-1px)}
-    .btn-g{padding:12px 24px;border:.5px solid var(--bm);border-radius:30px;font-size:14px;color:var(--t2);transition:border-color .15s,color .15s;display:inline-block}
-    .btn-g:hover{border-color:var(--g);color:var(--t)}
-    /* HERO */
-    .hero{padding:clamp(4rem,10vw,8rem) var(--pad) clamp(3rem,8vw,6rem);max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-    .hero-hl{font-family:var(--sf);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:200;line-height:1.15;color:var(--g);margin-bottom:1.5rem;letter-spacing:-.01em}
-    .hero-hl em{font-style:italic;color:var(--gold)}
-    .hero-body{font-size:16px;line-height:1.75;color:var(--t2);margin-bottom:2rem;max-width:44ch}
-    .hero-acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-    .hero-card{background:var(--g);border-radius:16px;padding:2.5rem;color:var(--cr);position:relative;overflow:hidden}
-    .hero-card::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(184,150,62,.25) 0%,transparent 70%);pointer-events:none}
-    .hc-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
-    .hc-name{font-family:var(--sf);font-size:2rem;font-weight:200;font-style:italic;margin-bottom:.5rem}
-    .hc-range{font-size:12px;color:rgba(245,241,234,.5);margin-bottom:1.5rem;letter-spacing:.06em}
-    .hc-div{height:.5px;background:rgba(245,241,234,.15);margin-bottom:1.5rem}
-    .crow{display:flex;align-items:flex-start;gap:.75rem;font-size:12px;margin-bottom:.6rem}
-    .cn{color:var(--gold);min-width:90px;font-weight:500}
-    .cp{color:rgba(245,241,234,.55);line-height:1.5}
-    .hc-btn{margin-top:1.75rem;padding:11px 0;width:100%;background:rgba(184,150,62,.18);border:.5px solid rgba(184,150,62,.4);border-radius:8px;color:var(--gold);font-size:13px;font-weight:500;transition:background .15s;cursor:pointer}
-    .hc-btn:hover{background:rgba(184,150,62,.28)}
-    @media(max-width:820px){.hero{grid-template-columns:1fr;gap:3rem}.hero-body{max-width:100%}}
-    /* STRIP */
-    .strip{border-top:.5px solid var(--b);border-bottom:.5px solid var(--b);background:var(--w);padding:1.25rem var(--pad)}
-    .strip-i{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:2.5rem;overflow-x:auto;scrollbar-width:none}
-    .strip-i::-webkit-scrollbar{display:none}
-    .stat{display:flex;align-items:center;gap:10px;white-space:nowrap;flex-shrink:0}
-    .stat-n{font-family:var(--sf);font-size:1.5rem;font-weight:200;color:var(--gold)}
-    .stat-l{font-size:11px;color:var(--t3);line-height:1.4}
-    .sdot{width:3px;height:3px;border-radius:50%;background:var(--bm);flex-shrink:0}
-    /* SECTIONS */
-    .sec{padding:clamp(4rem,8vw,7rem) var(--pad);max-width:var(--max);margin:0 auto}
-    .sec-title{font-family:var(--sf);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;line-height:1.2;color:var(--g);max-width:22ch;margin-top:.75rem}
-    .sec-title em{font-style:italic;color:var(--gold)}
-    .sec-body{font-size:16px;line-height:1.8;color:var(--t2);max-width:60ch;margin-top:1rem}
-    /* SCIENCE GRID */
-    .sci-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin-top:3rem}
-    .sci-cell{background:var(--w);padding:2rem 1.75rem;transition:background .15s}
-    .sci-cell:hover{background:var(--gp)}
-    .sci-icon{font-size:1.5rem;margin-bottom:1rem}
-    .sci-t{font-family:var(--sf);font-size:1.1rem;font-weight:300;color:var(--g);margin-bottom:.5rem}
-    .sci-b{font-size:13px;line-height:1.7;color:var(--t3)}
-    .sci-c{display:inline-block;margin-top:.75rem;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:500}
-    @media(max-width:720px){.sci-grid{grid-template-columns:1fr}}
-    /* STATES */
-    .states-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin-top:3rem}
-    .state-cell{background:var(--w);padding:2rem 1.5rem;text-align:center;transition:background .15s;cursor:pointer}
-    .state-cell:hover{background:var(--gp)}
-    .state-icon{font-size:1.8rem;margin-bottom:1rem}
-    .state-name{font-family:var(--sf);font-size:1.2rem;font-weight:300;color:var(--g);margin-bottom:.5rem}
-    .state-quote{font-size:12px;line-height:1.6;color:var(--t3);font-style:italic}
-    @media(max-width:720px){.states-grid{grid-template-columns:1fr 1fr}}
-    /* FORMULAS */
-    .f-sec{background:var(--g);padding:clamp(4rem,8vw,7rem) var(--pad)}
-    .f-inner{max-width:var(--max);margin:0 auto}
-    .f-inner .eye{color:var(--gold);margin-bottom:.75rem}
-    .f-title{font-family:var(--sf);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;color:var(--cr);margin-bottom:.75rem}
-    .f-sub{font-size:14px;color:rgba(245,241,234,.55);max-width:55ch;line-height:1.7;margin-bottom:3rem}
-    .f-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:rgba(245,241,234,.08);border:1px solid rgba(245,241,234,.08);border-radius:12px;overflow:hidden}
-    .f-card{background:rgba(245,241,234,.04);padding:1.75rem;transition:background .15s}
-    .f-card:hover{background:rgba(245,241,234,.08)}
-    .f-code{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
-    .f-name{font-family:var(--sf);font-size:1.35rem;font-weight:200;font-style:italic;color:var(--cr);margin-bottom:.35rem}
-    .f-range{font-size:11px;color:rgba(245,241,234,.4);letter-spacing:.06em;margin-bottom:1rem}
-    .f-desc{font-size:13px;line-height:1.65;color:rgba(245,241,234,.6)}
-    .f-mech{margin-top:1rem;padding-top:1rem;border-top:.5px solid rgba(245,241,234,.1);font-size:11px;color:rgba(184,150,62,.7);line-height:1.6}
-    /* QUIZ */
-    .quiz-card{background:var(--w);border:.5px solid var(--b);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;margin-top:0}
-    .quiz-l{padding:3rem;background:var(--gp);border-right:.5px solid var(--b)}
-    .quiz-l .eye{margin-bottom:1rem}
-    .quiz-title{font-family:var(--sf);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:200;line-height:1.25;color:var(--g);margin-bottom:1rem}
-    .quiz-body{font-size:14px;line-height:1.75;color:var(--t2);margin-bottom:2rem}
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem}
-    .chip{padding:5px 12px;border:.5px solid var(--bm);border-radius:20px;font-size:11px;color:var(--t3);background:var(--w)}
-    .quiz-r{padding:3rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-    .quiz-vis{width:80px;height:80px;border-radius:50%;background:var(--cr);border:.5px solid var(--b);display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:1.5rem}
-    .quiz-rt{font-family:var(--sf);font-size:1.4rem;font-weight:300;color:var(--g);margin-bottom:.75rem}
-    .quiz-rb{font-size:13px;color:var(--t3);line-height:1.65;margin-bottom:1.75rem}
-    @media(max-width:720px){.quiz-card{grid-template-columns:1fr}.quiz-l{border-right:none;border-bottom:.5px solid var(--b);padding:2rem}.quiz-r{padding:2rem}}
-    /* SHOP */
-    .shop-sec{background:var(--cd);border-top:.5px solid var(--b);border-bottom:.5px solid var(--b);padding:clamp(4rem,8vw,7rem) var(--pad)}
-    .shop-i{max-width:var(--max);margin:0 auto}
-    .shop-i .eye{margin-bottom:.75rem}
-    .shop-title{font-family:var(--sf);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;color:var(--g);margin-bottom:.75rem}
-    .shop-sub{font-size:15px;color:var(--t2);max-width:58ch;line-height:1.75;margin-bottom:3rem}
-    .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-bottom:2.5rem}
-    .shop-card{background:var(--w);border:.5px solid var(--b);border-radius:12px;overflow:hidden;transition:border-color .15s,transform .15s}
-    .shop-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-    .shop-img{height:160px;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
-    .shop-img::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(184,150,62,.2) 0%,transparent 60%)}
-    .shop-body{padding:1.25rem}
-    .shop-cat{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
-    .shop-name{font-family:var(--sf);font-size:1.05rem;font-weight:300;color:var(--g);margin-bottom:.35rem}
-    .shop-desc{font-size:12px;color:var(--t3);line-height:1.55;margin-bottom:1rem}
-    .shop-foot{display:flex;align-items:center;justify-content:space-between;padding-top:.75rem;border-top:.5px solid var(--b);margin-top:.75rem}
-    .shop-price{font-size:14px;font-weight:500;color:var(--g)}
-    .shop-btn{padding:7px 16px;background:var(--g);color:var(--cr);border-radius:20px;font-size:12px;font-weight:500;transition:background .12s;display:inline-block}
-    .shop-btn:hover{background:var(--gm)}
-    .shop-note{font-size:12px;color:var(--t3);font-style:italic;padding:1rem 1.25rem;background:var(--w);border:.5px solid var(--b);border-radius:8px;line-height:1.65}
-    /* GIFTS */
-    .gift-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:2.5rem}
-    .gift-card{padding:1.25rem;border:.5px solid var(--b);border-radius:var(--r);background:var(--w);transition:border-color .15s}
-    .gift-card:hover{border-color:var(--gold)}
-    .gift-occ{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
-    .gift-name{font-family:var(--sf);font-size:1rem;font-weight:300;color:var(--g);margin-bottom:.3rem}
-    .gift-hook{font-size:12px;color:var(--t3);font-style:italic;line-height:1.5}
-    /* PERI */
-    .peri-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:2.5rem}
-    .peri-card{padding:1.75rem;border:.5px solid var(--b);border-radius:12px;background:var(--w);transition:border-color .15s}
-    .peri-card:hover{border-color:var(--gold)}
-    .peri-sym{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
-    .peri-f{font-family:var(--sf);font-size:1.2rem;font-weight:300;font-style:italic;color:var(--g);margin-bottom:.4rem}
-    .peri-d{font-size:13px;color:var(--t3);line-height:1.6;margin-bottom:1rem}
-    .peri-p{font-size:11px;color:var(--t2);padding:.6rem .75rem;background:var(--cr);border-radius:6px;line-height:1.55}
-    /* FOUNDER */
-    .founder-sec{background:var(--g);padding:clamp(4rem,8vw,7rem) var(--pad)}
-    .founder-i{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:center}
-    .founder-i .eye{color:var(--gold);margin-bottom:1rem}
-    .founder-t{font-family:var(--sf);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:200;color:var(--cr);line-height:1.2;margin-bottom:1.5rem}
-    .founder-b{font-size:15px;line-height:1.8;color:rgba(245,241,234,.65);margin-bottom:1.25rem}
-    .founder-sig{font-family:var(--sf);font-size:1.1rem;font-style:italic;color:var(--gold)}
-    .principle{padding:2rem;border:.5px solid rgba(245,241,234,.15);border-radius:12px;border-left:3px solid var(--gold)}
-    .principle-lbl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
-    .principle-txt{font-family:var(--sf);font-size:1.3rem;font-weight:200;font-style:italic;color:var(--cr);line-height:1.5}
-    @media(max-width:720px){.founder-i{grid-template-columns:1fr;gap:2.5rem}}
-    /* WAITLIST */
-    .wl-sec{padding:clamp(4rem,8vw,7rem) var(--pad);max-width:680px;margin:0 auto;text-align:center}
-    .wl-sec .eye{margin-bottom:1rem}
-    .wl-title{font-family:var(--sf);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:200;line-height:1.2;color:var(--g);margin-bottom:1rem}
-    .wl-body{font-size:15px;color:var(--t2);line-height:1.75;margin-bottom:2rem}
-    .wl-form{display:flex;gap:10px;max-width:440px;margin:0 auto 1rem}
-    .wl-in{flex:1;padding:13px 16px;border:.5px solid var(--bm);border-radius:30px;background:var(--w);font-family:var(--ss);font-size:14px;color:var(--t);outline:none;transition:border-color .15s;-webkit-appearance:none}
-    .wl-in:focus{border-color:var(--gold)}
-    .wl-in::placeholder{color:var(--t3)}
-    .wl-sub{padding:13px 24px;background:var(--g);color:var(--cr);border-radius:30px;font-size:14px;font-weight:500;transition:background .15s;white-space:nowrap;cursor:pointer;border:none;font-family:var(--ss)}
-    .wl-sub:hover{background:var(--gm)}
-    .wl-note{font-size:11px;color:var(--t3)}
-    .wl-ok{display:none;font-size:14px;color:#5a8a5a;padding:12px 20px;background:rgba(90,138,90,.1);border-radius:8px;max-width:440px;margin:0 auto}
-    @media(max-width:480px){.wl-form{flex-direction:column}.wl-in,.wl-sub{width:100%}}
-    /* FOOTER */
-    footer{background:var(--g);padding:3rem var(--pad) 2rem}
-    .ft-i{max-width:var(--max);margin:0 auto}
-    .ft-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;padding-bottom:2rem;border-bottom:.5px solid rgba(245,241,234,.1);margin-bottom:1.5rem}
-    .ft-brand{font-family:var(--sf);font-size:1.1rem;font-weight:300;letter-spacing:.12em;text-transform:uppercase;color:var(--cr);margin-bottom:.75rem}
-    .ft-tag{font-size:13px;color:rgba(245,241,234,.45);line-height:1.65;max-width:32ch}
-    .ft-ct{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
-    .ft-links{list-style:none;display:flex;flex-direction:column;gap:.6rem}
-    .ft-links a{font-size:13px;color:rgba(245,241,234,.5);transition:color .15s}
-    .ft-links a:hover{color:var(--cr)}
-    .ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
-    .ft-leg{font-size:11px;color:rgba(245,241,234,.3)}
-    @media(max-width:680px){.ft-top{grid-template-columns:1fr;gap:2rem}}
-    /* ANIMATIONS */
-    .fu{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-    .fu.vis{opacity:1;transform:translateY(0)}
-    @media(prefers-reduced-motion:reduce){.fu{opacity:1;transform:none;transition:none}}
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Sana Essencia — neuro-aromachology for women. Science-backed scent protocols for perimenopause, focus, decompression and connection. Find your formula." />
+<meta name="theme-color" content="#2a2a28" />
+<title>Sana Essencia — Olfactory Science for the Modern Woman</title>
+<meta property="og:title" content="Sana Essencia" />
+<meta property="og:description" content="Your nose has a direct line to the part of your brain that runs your hormones, mood and memory. Find your formula." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sanaessencia.co.uk" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200;0,8..60,300;0,8..60,400;1,8..60,200;1,8..60,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{--g:#2a2a28;--gm:#3d3d3a;--gl:#5a5a57;--gold:#b8963e;--gp:#fdf9f0;--cr:#f5f1ea;--cd:#ede9e0;--w:#ffffff;--b:rgba(42,42,40,.10);--bm:rgba(42,42,40,.18);--t:#1e1e1c;--t2:#5a5a57;--t3:#9a9a96;--sf:'Source Serif 4',Georgia,serif;--ss:'Inter',-apple-system,sans-serif;--max:1080px;--pad:clamp(1.25rem,5vw,3rem);--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ss);background:var(--cr);color:var(--t);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--ss);cursor:pointer;border:none;background:none}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.eye{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.nav{position:sticky;top:0;z-index:100;background:rgba(245,241,234,.93);backdrop-filter:blur(12px);border-bottom:.5px solid var(--b)}
+.nav-i{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.nav-brand{font-family:var(--sf);font-size:15px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--g)}
+.nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
+.nav-links a{font-size:12px;letter-spacing:.05em;color:var(--t2);transition:color .15s}
+.nav-links a:hover{color:var(--t)}
+.nav-cta{font-size:12px;font-weight:500;padding:8px 18px;background:var(--g);color:var(--cr);border-radius:20px;transition:background .15s;white-space:nowrap;cursor:pointer}
+.nav-cta:hover{background:var(--gm)}
+.nav-btn{display:none;flex-direction:column;gap:5px;padding:4px}
+.nav-btn span{display:block;width:22px;height:1.5px;background:var(--g)}
+.mob-nav{display:none;flex-direction:column;background:var(--cr);border-top:.5px solid var(--b);padding:1.5rem var(--pad);gap:1.25rem}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:15px;color:var(--t2);padding:.25rem 0;border-bottom:.5px solid var(--b)}
+.mob-cta{display:block;text-align:center;padding:12px;background:var(--g);color:var(--cr);border-radius:var(--r);font-weight:500;margin-top:.5rem;cursor:pointer}
+@media(max-width:680px){.nav-links,.nav-cta{display:none}.nav-btn{display:flex}}
+.ann{background:var(--gold);padding:8px var(--pad);text-align:center;font-size:12px;color:var(--g);font-weight:500}
+.ann a{text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.btn-p{padding:13px 28px;background:var(--g);color:var(--cr);border-radius:30px;font-size:14px;font-weight:500;transition:background .15s,transform .1s;display:inline-block;cursor:pointer}
+.btn-p:hover{background:var(--gm);transform:translateY(-1px)}
+.btn-g{padding:12px 24px;border:.5px solid var(--bm);border-radius:30px;font-size:14px;color:var(--t2);transition:border-color .15s,color .15s;display:inline-block;cursor:pointer}
+.btn-g:hover{border-color:var(--g);color:var(--t)}
+.hero{padding:clamp(4rem,10vw,8rem) var(--pad) clamp(3rem,8vw,6rem);max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-hl{font-family:var(--sf);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:200;line-height:1.15;color:var(--g);margin-bottom:1.5rem;letter-spacing:-.01em}
+.hero-hl em{font-style:italic;color:var(--gold)}
+.hero-body{font-size:16px;line-height:1.75;color:var(--t2);margin-bottom:2rem;max-width:44ch}
+.hero-acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.hero-card{background:var(--g);border-radius:16px;padding:2.5rem;color:var(--cr);position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(184,150,62,.25) 0%,transparent 70%);pointer-events:none}
+.hc-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.hc-name{font-family:var(--sf);font-size:2rem;font-weight:200;font-style:italic;margin-bottom:.5rem}
+.hc-range{font-size:12px;color:rgba(245,241,234,.5);margin-bottom:1.5rem;letter-spacing:.06em}
+.hc-div{height:.5px;background:rgba(245,241,234,.15);margin-bottom:1.5rem}
+.crow{display:flex;align-items:flex-start;gap:.75rem;font-size:12px;margin-bottom:.6rem}
+.cn{color:var(--gold);min-width:90px;font-weight:500}
+.cp{color:rgba(245,241,234,.55);line-height:1.5}
+.hc-btn{margin-top:1.75rem;padding:11px 0;width:100%;background:rgba(184,150,62,.18);border:.5px solid rgba(184,150,62,.4);border-radius:8px;color:var(--gold);font-size:13px;font-weight:500;transition:background .15s;cursor:pointer}
+.hc-btn:hover{background:rgba(184,150,62,.28)}
+@media(max-width:820px){.hero{grid-template-columns:1fr;gap:3rem}.hero-body{max-width:100%}}
+.strip{border-top:.5px solid var(--b);border-bottom:.5px solid var(--b);background:var(--w);padding:1.25rem var(--pad)}
+.strip-i{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:2.5rem;overflow-x:auto;scrollbar-width:none}
+.strip-i::-webkit-scrollbar{display:none}
+.stat{display:flex;align-items:center;gap:10px;white-space:nowrap;flex-shrink:0}
+.stat-n{font-family:var(--sf);font-size:1.5rem;font-weight:200;color:var(--gold)}
+.stat-l{font-size:11px;color:var(--t3);line-height:1.4}
+.sdot{width:3px;height:3px;border-radius:50%;background:var(--bm);flex-shrink:0}
+.sec{padding:clamp(4rem,8vw,7rem) var(--pad);max-width:var(--max);margin:0 auto}
+.sec-title{font-family:var(--sf);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;line-height:1.2;color:var(--g);max-width:22ch;margin-top:.75rem}
+.sec-title em{font-style:italic;color:var(--gold)}
+.sec-body{font-size:16px;line-height:1.8;color:var(--t2);max-width:60ch;margin-top:1rem}
+.sci-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin-top:3rem}
+.sci-cell{background:var(--w);padding:2rem 1.75rem;transition:background .15s}
+.sci-cell:hover{background:var(--gp)}
+.sci-icon{font-size:1.5rem;margin-bottom:1rem}
+.sci-t{font-family:var(--sf);font-size:1.1rem;font-weight:300;color:var(--g);margin-bottom:.5rem}
+.sci-b{font-size:13px;line-height:1.7;color:var(--t3)}
+.sci-c{display:inline-block;margin-top:.75rem;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:500}
+@media(max-width:720px){.sci-grid{grid-template-columns:1fr}}
+.states-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin-top:3rem}
+.state-cell{background:var(--w);padding:2rem 1.5rem;text-align:center;transition:background .15s;cursor:pointer;border:none;width:100%;font-family:var(--ss)}
+.state-cell:hover{background:var(--gp)}
+.state-icon{font-size:1.8rem;margin-bottom:1rem}
+.state-name{font-family:var(--sf);font-size:1.2rem;font-weight:300;color:var(--g);margin-bottom:.5rem}
+.state-quote{font-size:12px;line-height:1.6;color:var(--t3);font-style:italic}
+@media(max-width:720px){.states-grid{grid-template-columns:1fr 1fr}}
+.f-sec{background:var(--g);padding:clamp(4rem,8vw,7rem) var(--pad)}
+.f-inner{max-width:var(--max);margin:0 auto}
+.f-inner .eye{color:var(--gold);margin-bottom:.75rem}
+.f-title{font-family:var(--sf);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;color:var(--cr);margin-bottom:.75rem}
+.f-sub{font-size:14px;color:rgba(245,241,234,.55);max-width:55ch;line-height:1.7;margin-bottom:3rem}
+.f-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:rgba(245,241,234,.08);border:1px solid rgba(245,241,234,.08);border-radius:12px;overflow:hidden}
+.f-card{background:rgba(245,241,234,.04);padding:1.75rem;transition:background .15s}
+.f-card:hover{background:rgba(245,241,234,.08)}
+.f-code{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.f-name{font-family:var(--sf);font-size:1.35rem;font-weight:200;font-style:italic;color:var(--cr);margin-bottom:.35rem}
+.f-range{font-size:11px;color:rgba(245,241,234,.4);letter-spacing:.06em;margin-bottom:1rem}
+.f-desc{font-size:13px;line-height:1.65;color:rgba(245,241,234,.6)}
+.f-mech{margin-top:1rem;padding-top:1rem;border-top:.5px solid rgba(245,241,234,.1);font-size:11px;color:rgba(184,150,62,.7);line-height:1.6}
+.quiz-card{background:var(--w);border:.5px solid var(--b);border-radius:16px;overflow:hidden}
+.quiz-top{padding:2rem 2.5rem;background:var(--gp);border-bottom:.5px solid var(--b);text-align:center}
+.quiz-title{font-family:var(--sf);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:200;line-height:1.25;color:var(--g);margin-bottom:.5rem}
+.quiz-body{font-size:14px;line-height:1.7;color:var(--t2);max-width:52ch;margin:0 auto}
+.quiz-progress{display:flex;gap:6px;justify-content:center;margin-top:1.5rem}
+.qp-dot{width:24px;height:3px;border-radius:2px;background:var(--bm);transition:background .2s}
+.qp-dot.active{background:var(--gold)}
+.qp-dot.done{background:var(--g)}
+.quiz-body-area{padding:2.5rem}
+.q-step{display:none}
+.q-step.active{display:block}
+.q-question{font-family:var(--sf);font-size:1.4rem;font-weight:300;color:var(--g);margin-bottom:1.5rem;text-align:center}
+.q-options{display:grid;gap:10px;max-width:480px;margin:0 auto}
+.q-opt{padding:16px 20px;border:1px solid var(--bm);border-radius:12px;background:var(--w);font-size:14px;color:var(--t);text-align:left;transition:border-color .15s,background .15s;width:100%;font-family:var(--ss)}
+.q-opt:hover{border-color:var(--gold);background:var(--gp)}
+.q-opt.selected{border-color:var(--gold);background:var(--gp);font-weight:500}
+.q-nav{display:flex;justify-content:space-between;margin-top:2rem;max-width:480px;margin-left:auto;margin-right:auto}
+.q-back{font-size:13px;color:var(--t3);cursor:pointer}
+.q-result{padding:2.5rem;text-align:center;display:none}
+.q-result.active{display:block}
+.qr-badge{display:inline-block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.qr-name{font-family:var(--sf);font-size:2rem;font-weight:200;font-style:italic;color:var(--g);margin-bottom:.5rem}
+.qr-range{font-size:12px;color:var(--t3);margin-bottom:2rem;letter-spacing:.06em}
+.qr-mechs{max-width:480px;margin:0 auto 2rem;text-align:left;background:var(--gp);border-radius:12px;padding:1.5rem}
+.qr-row{display:flex;gap:.75rem;font-size:13px;margin-bottom:.6rem;align-items:flex-start}
+.qr-row:last-child{margin-bottom:0}
+.qr-cn{color:var(--gold);min-width:100px;font-weight:500;flex-shrink:0}
+.qr-cp{color:var(--t2);line-height:1.5}
+.qr-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+@media(max-width:600px){.quiz-body-area,.quiz-top{padding:1.5rem}}
+.shop-sec{background:var(--cd);border-top:.5px solid var(--b);border-bottom:.5px solid var(--b);padding:clamp(4rem,8vw,7rem) var(--pad)}
+.shop-i{max-width:var(--max);margin:0 auto}
+.shop-i .eye{margin-bottom:.75rem}
+.shop-title{font-family:var(--sf);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:200;color:var(--g);margin-bottom:.75rem}
+.shop-sub{font-size:15px;color:var(--t2);max-width:58ch;line-height:1.75;margin-bottom:3rem}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-bottom:2.5rem}
+.shop-card{background:var(--w);border:.5px solid var(--b);border-radius:12px;overflow:hidden;transition:border-color .15s,transform .15s}
+.shop-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.shop-img{height:160px;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+.shop-img::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(184,150,62,.2) 0%,transparent 60%)}
+.shop-body{padding:1.25rem}
+.shop-cat{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
+.shop-name{font-family:var(--sf);font-size:1.05rem;font-weight:300;color:var(--g);margin-bottom:.35rem}
+.shop-desc{font-size:12px;color:var(--t3);line-height:1.55;margin-bottom:1rem}
+.shop-foot{display:flex;align-items:center;justify-content:space-between;padding-top:.75rem;border-top:.5px solid var(--b);margin-top:.75rem}
+.shop-price{font-size:14px;font-weight:500;color:var(--g)}
+.shop-btn{padding:7px 16px;background:var(--g);color:var(--cr);border-radius:20px;font-size:12px;font-weight:500;transition:background .12s;display:inline-block}
+.shop-btn:hover{background:var(--gm)}
+.shop-note{font-size:12px;color:var(--t3);font-style:italic;padding:1rem 1.25rem;background:var(--w);border:.5px solid var(--b);border-radius:8px;line-height:1.65}
+.gift-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:2.5rem}
+.gift-card{padding:1.25rem;border:.5px solid var(--b);border-radius:var(--r);background:var(--w);transition:border-color .15s}
+.gift-card:hover{border-color:var(--gold)}
+.gift-occ{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.gift-name{font-family:var(--sf);font-size:1rem;font-weight:300;color:var(--g);margin-bottom:.3rem}
+.gift-hook{font-size:12px;color:var(--t3);font-style:italic;line-height:1.5}
+.peri-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:2.5rem}
+.peri-card{padding:1.75rem;border:.5px solid var(--b);border-radius:12px;background:var(--w);transition:border-color .15s}
+.peri-card:hover{border-color:var(--gold)}
+.peri-sym{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.peri-f{font-family:var(--sf);font-size:1.2rem;font-weight:300;font-style:italic;color:var(--g);margin-bottom:.4rem}
+.peri-d{font-size:13px;color:var(--t3);line-height:1.6;margin-bottom:1rem}
+.peri-p{font-size:11px;color:var(--t2);padding:.6rem .75rem;background:var(--cr);border-radius:6px;line-height:1.55}
+.founder-sec{background:var(--g);padding:clamp(4rem,8vw,7rem) var(--pad)}
+.founder-i{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:center}
+.founder-i .eye{color:var(--gold);margin-bottom:1rem}
+.founder-t{font-family:var(--sf);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:200;color:var(--cr);line-height:1.2;margin-bottom:1.5rem}
+.founder-b{font-size:15px;line-height:1.8;color:rgba(245,241,234,.65);margin-bottom:1.25rem}
+.founder-sig{font-family:var(--sf);font-size:1.1rem;font-style:italic;color:var(--gold)}
+.principle{padding:2rem;border:.5px solid rgba(245,241,234,.15);border-radius:12px;border-left:3px solid var(--gold)}
+.principle-lbl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
+.principle-txt{font-family:var(--sf);font-size:1.3rem;font-weight:200;font-style:italic;color:var(--cr);line-height:1.5}
+@media(max-width:720px){.founder-i{grid-template-columns:1fr;gap:2.5rem}}
+.wl-sec{padding:clamp(4rem,8vw,7rem) var(--pad);max-width:680px;margin:0 auto;text-align:center}
+.wl-sec .eye{margin-bottom:1rem}
+.wl-title{font-family:var(--sf);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:200;line-height:1.2;color:var(--g);margin-bottom:1rem}
+.wl-body{font-size:15px;color:var(--t2);line-height:1.75;margin-bottom:2rem}
+.wl-form{display:flex;gap:10px;max-width:440px;margin:0 auto 1rem}
+.wl-in{flex:1;padding:13px 16px;border:.5px solid var(--bm);border-radius:30px;background:var(--w);font-family:var(--ss);font-size:14px;color:var(--t);outline:none;transition:border-color .15s;-webkit-appearance:none}
+.wl-in:focus{border-color:var(--gold)}
+.wl-in::placeholder{color:var(--t3)}
+.wl-sub{padding:13px 24px;background:var(--g);color:var(--cr);border-radius:30px;font-size:14px;font-weight:500;transition:background .15s;white-space:nowrap;cursor:pointer;border:none;font-family:var(--ss)}
+.wl-sub:hover{background:var(--gm)}
+.wl-note{font-size:11px;color:var(--t3)}
+.wl-ok{display:none;font-size:14px;color:#5a8a5a;padding:12px 20px;background:rgba(90,138,90,.1);border-radius:8px;max-width:440px;margin:0 auto}
+@media(max-width:480px){.wl-form{flex-direction:column}.wl-in,.wl-sub{width:100%}}
+footer{background:var(--g);padding:3rem var(--pad) 2rem}
+.ft-i{max-width:var(--max);margin:0 auto}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;padding-bottom:2rem;border-bottom:.5px solid rgba(245,241,234,.1);margin-bottom:1.5rem}
+.ft-brand{font-family:var(--sf);font-size:1.1rem;font-weight:300;letter-spacing:.12em;text-transform:uppercase;color:var(--cr);margin-bottom:.75rem}
+.ft-tag{font-size:13px;color:rgba(245,241,234,.45);line-height:1.65;max-width:32ch}
+.ft-ct{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.ft-links a{font-size:13px;color:rgba(245,241,234,.5);transition:color .15s;cursor:pointer}
+.ft-links a:hover{color:var(--cr)}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.ft-leg{font-size:11px;color:rgba(245,241,234,.3)}
+@media(max-width:680px){.ft-top{grid-template-columns:1fr;gap:2rem}}
+.fu{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fu.vis{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.fu{opacity:1;transform:none;transition:none}}
+</style>
 </head>
 <body>
 
-<div class="ann">🌿 Early access open — <a href="#waitlist">join the waitlist</a> and be first when we launch</div>
+<div class="ann">🌿 Early access open — <a onclick="scrollToId('waitlist')">join the waitlist</a> and be first when we launch</div>
 
 <nav class="nav" role="navigation" aria-label="Main">
   <div class="nav-i">
-    <a href="/" class="nav-brand" aria-label="Sana Essencia home">Sana Essencia<sup style="font-size:8px;letter-spacing:0;vertical-align:super">&trade;</sup></a>
+    <a onclick="scrollToId('top')" class="nav-brand" style="cursor:pointer">Sana Essencia<sup style="font-size:8px;letter-spacing:0;vertical-align:super">&trade;</sup></a>
     <ul class="nav-links" role="list">
-      <li><a href="#science">The Science</a></li>
-      <li><a href="#formulas">Formulas</a></li>
-      <li><a href="#shop">Shop</a></li>
-      <li><a href="#gifts">Gifts</a></li>
-      <li><a href="#perimenopause">Equilibrium Edit</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a onclick="scrollToId('science')" style="cursor:pointer">The Science</a></li>
+      <li><a onclick="scrollToId('formulas')" style="cursor:pointer">Formulas</a></li>
+      <li><a onclick="scrollToId('shop')" style="cursor:pointer">Shop</a></li>
+      <li><a onclick="scrollToId('gifts')" style="cursor:pointer">Gifts</a></li>
+      <li><a onclick="scrollToId('perimenopause')" style="cursor:pointer">Equilibrium Edit</a></li>
+      <li><a onclick="scrollToId('about')" style="cursor:pointer">About</a></li>
     </ul>
-    <a href="SE-equilibrium-quiz-v2.html" class="nav-cta">Start assessment</a>
+    <a onclick="startQuiz()" class="nav-cta">Start assessment</a>
     <button class="nav-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleNav(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="mob-nav" id="mob-nav">
-    <a href="#science" onclick="closeMob()">The Science</a>
-    <a href="#formulas" onclick="closeMob()">Formulas</a>
-    <a href="#shop" onclick="closeMob()">Shop</a>
-    <a href="#gifts" onclick="closeMob()">Gifts</a>
-    <a href="#perimenopause" onclick="closeMob()">Equilibrium Edit</a>
-    <a href="#about" onclick="closeMob()">About</a>
-    <a href="SE-equilibrium-quiz-v2.html" class="mob-cta">Start assessment →</a>
+    <a onclick="scrollToId('science');closeMob()">The Science</a>
+    <a onclick="scrollToId('formulas');closeMob()">Formulas</a>
+    <a onclick="scrollToId('shop');closeMob()">Shop</a>
+    <a onclick="scrollToId('gifts');closeMob()">Gifts</a>
+    <a onclick="scrollToId('perimenopause');closeMob()">Equilibrium Edit</a>
+    <a onclick="scrollToId('about');closeMob()">About</a>
+    <a onclick="startQuiz();closeMob()" class="mob-cta">Start assessment →</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section aria-label="Introduction">
+<section aria-label="Introduction" id="top">
   <div class="hero">
     <div class="fu">
       <p class="eye" style="margin-bottom:1.5rem">Neuro-aromachology · Sana Essencia&trade;</p>
       <h1 class="hero-hl">Your nervous system<br>is trying to tell you<br><em>something.</em></h1>
       <p class="hero-body">Some days you can't focus. Some evenings you can't switch off. Sometimes you don't quite feel like yourself. Your sense of smell reaches the part of your brain that runs your mood, stress, and focus faster than any other sense. Start with a 2-minute assessment — no products, no pressure, just the science of your state.</p>
       <div class="hero-acts">
-        <a href="SE-equilibrium-quiz-v2.html" class="btn-p">Start the assessment →</a>
-        <a href="#science" class="btn-g">Why scent?</a>
+        <a onclick="startQuiz()" class="btn-p">Start the assessment →</a>
+        <a onclick="scrollToId('science')" class="btn-g">Why scent?</a>
       </div>
     </div>
     <div class="fu" style="transition-delay:.15s">
@@ -252,13 +252,12 @@
         <div class="crow"><span class="cn">Limonene</span><span class="cp">→ dopaminergic signalling → directed attention</span></div>
         <div class="crow"><span class="cn">Beta-pinene</span><span class="cp">→ noradrenergic pathway → sustained focus</span></div>
         <div class="crow"><span class="cn">1,8-Cineole</span><span class="cp">→ AChE inhibition → acetylcholine availability</span></div>
-        <button class="hc-btn" onclick="window.location.href='sana-essencia-advisor.html'">Get your personalised formula →</button>
+        <button class="hc-btn" onclick="startQuiz()">Get your personalised formula →</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STRIP -->
 <div class="strip" aria-label="Key facts">
   <div class="strip-i">
     <div class="stat"><span class="stat-n">7</span><span class="stat-l">Documented<br>formulas</span></div>
@@ -273,7 +272,6 @@
   </div>
 </div>
 
-<!-- SCIENCE -->
 <section id="science" aria-labelledby="sci-h">
   <div class="sec">
     <div class="fu">
@@ -289,7 +287,6 @@
   </div>
 </section>
 
-<!-- STATES -->
 <section id="states" aria-labelledby="states-h">
   <div class="sec">
     <div class="fu">
@@ -298,34 +295,33 @@
       <p class="sec-body">You don't wake up thinking "I need lavender." You wake up thinking "I can't focus" or "I can't switch off." Start with the state you're in — the assessment does the rest.</p>
     </div>
     <div class="states-grid fu">
-      <a href="SE-equilibrium-quiz-v2.html" class="state-cell">
+      <button onclick="startQuiz()" class="state-cell">
         <div class="state-icon">⚡</div>
         <div class="state-name">Focus</div>
         <div class="state-quote">"I lose concentration during the day."</div>
-      </a>
-      <a href="SE-equilibrium-quiz-v2.html" class="state-cell">
+      </button>
+      <button onclick="startQuiz()" class="state-cell">
         <div class="state-icon">🌊</div>
         <div class="state-name">Reset</div>
         <div class="state-quote">"I can't switch off after work."</div>
-      </a>
-      <a href="SE-equilibrium-quiz-v2.html" class="state-cell">
+      </button>
+      <button onclick="startQuiz()" class="state-cell">
         <div class="state-icon">🕯️</div>
         <div class="state-name">Connection</div>
         <div class="state-quote">"I want to feel closer to my partner."</div>
-      </a>
-      <a href="SE-equilibrium-quiz-v2.html" class="state-cell">
+      </button>
+      <button onclick="startQuiz()" class="state-cell">
         <div class="state-icon">🌙</div>
         <div class="state-name">Recovery</div>
         <div class="state-quote">"I need better, more consistent rest."</div>
-      </a>
+      </button>
     </div>
     <div style="margin-top:2rem;text-align:center">
-      <a href="SE-equilibrium-quiz-v2.html" class="btn-p">Start the assessment →</a>
+      <a onclick="startQuiz()" class="btn-p">Start the assessment →</a>
     </div>
   </div>
 </section>
 
-<!-- FORMULAS -->
 <section id="formulas" aria-labelledby="form-h">
   <div class="f-sec">
     <div class="f-inner">
@@ -345,34 +341,84 @@
   </div>
 </section>
 
-<!-- QUIZ -->
 <section id="quiz" aria-labelledby="quiz-h">
   <div class="sec">
-    <div class="quiz-card fu">
-      <div class="quiz-l">
-        <p class="eye">The Equilibrium Quiz</p>
-        <h2 class="quiz-title" id="quiz-h">Eight questions. A formula matched to you.</h2>
-        <p class="quiz-body">Tell us where you are right now — your energy, stress, time of day, and what you need. The quiz recommends your formula with the receptor-pathway science behind it. No jargon. No wellness clichés.</p>
-        <div class="chips">
-          <span class="chip">❄️ Thermal Reset</span>
-          <span class="chip">🌿 Hormone Balance</span>
-          <span class="chip">🕯️ Connection</span>
-          <span class="chip">⚡ Focus</span>
-          <span class="chip">🌊 Decompression</span>
+    <p class="eye" style="text-align:center;margin-bottom:1rem">The Equilibrium Quiz</p>
+    <div class="quiz-card fu" id="quiz-card">
+
+      <div class="quiz-top">
+        <h2 class="quiz-title" id="quiz-h">Four questions. A formula matched to you.</h2>
+        <p class="quiz-body">Tell us your energy, your stress, the time of day, and what you need right now.</p>
+        <div class="quiz-progress" id="quiz-progress">
+          <div class="qp-dot active" data-step="0"></div>
+          <div class="qp-dot" data-step="1"></div>
+          <div class="qp-dot" data-step="2"></div>
+          <div class="qp-dot" data-step="3"></div>
         </div>
-        <a href="SE-equilibrium-quiz-v2.html" class="btn-p">Take the quiz →</a>
       </div>
-      <div class="quiz-r">
-        <div class="quiz-vis">🎁</div>
-        <div class="quiz-rt">Also for gifting</div>
-        <p class="quiz-rb">Taking it for someone else? The quiz has a gifting path. Build a personalised protocol for your partner, friend, or colleague — with science they'll actually understand.</p>
-        <a href="SE-equilibrium-quiz-v2.html" class="btn-g">Find a gift protocol →</a>
+
+      <div class="quiz-body-area">
+
+        <div class="q-step active" data-step="0">
+          <p class="q-question">How is your energy right now?</p>
+          <div class="q-options">
+            <button class="q-opt" onclick="answerQ(0,'low')">Low — I'm running on empty</button>
+            <button class="q-opt" onclick="answerQ(0,'scattered')">Scattered — I can't settle on one thing</button>
+            <button class="q-opt" onclick="answerQ(0,'wired')">Wired — I feel tense but tired</button>
+            <button class="q-opt" onclick="answerQ(0,'ok')">Steady — I just need a boost</button>
+          </div>
+        </div>
+
+        <div class="q-step" data-step="1">
+          <p class="q-question">What's driving your stress today?</p>
+          <div class="q-options">
+            <button class="q-opt" onclick="answerQ(1,'hormonal')">Hormonal — hot flushes, hormonal restlessness</button>
+            <button class="q-opt" onclick="answerQ(1,'mental')">Mental load — too much to hold in my head</button>
+            <button class="q-opt" onclick="answerQ(1,'performance')">Performance — I need to show up well</button>
+            <button class="q-opt" onclick="answerQ(1,'sleep')">Sleep — I haven't rested properly</button>
+          </div>
+          <div class="q-nav"><span class="q-back" onclick="backQ()">← back</span><span></span></div>
+        </div>
+
+        <div class="q-step" data-step="2">
+          <p class="q-question">What time of day is this for?</p>
+          <div class="q-options">
+            <button class="q-opt" onclick="answerQ(2,'morning')">Morning</button>
+            <button class="q-opt" onclick="answerQ(2,'afternoon')">Afternoon</button>
+            <button class="q-opt" onclick="answerQ(2,'evening')">Evening</button>
+            <button class="q-opt" onclick="answerQ(2,'anytime')">Any time — it varies</button>
+          </div>
+          <div class="q-nav"><span class="q-back" onclick="backQ()">← back</span><span></span></div>
+        </div>
+
+        <div class="q-step" data-step="3">
+          <p class="q-question">What do you need most?</p>
+          <div class="q-options">
+            <button class="q-opt" onclick="answerQ(3,'calm')">Calm — bring my system down</button>
+            <button class="q-opt" onclick="answerQ(3,'focus')">Focus — sharpen my mind</button>
+            <button class="q-opt" onclick="answerQ(3,'connect')">Connection — feel closer to someone</button>
+            <button class="q-opt" onclick="answerQ(3,'restore')">Restoration — repair and recover</button>
+          </div>
+          <div class="q-nav"><span class="q-back" onclick="backQ()">← back</span><span></span></div>
+        </div>
+
       </div>
+
+      <div class="q-result" id="q-result">
+        <div class="qr-badge" id="qr-badge">Your match · Cognitive Regulation</div>
+        <div class="qr-name" id="qr-name">Acuity Strike</div>
+        <div class="qr-range" id="qr-range">SE-N5 · Lemon + Rosemary</div>
+        <div class="qr-mechs" id="qr-mechs"></div>
+        <div class="qr-actions">
+          <a class="btn-p" onclick="scrollToId('waitlist');document.getElementById('wl-email').focus()">Join the waitlist for this formula →</a>
+          <a class="btn-g" onclick="restartQuiz()">Take it again</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- SHOP -->
 <section id="shop" aria-labelledby="shop-h">
   <div class="shop-sec">
     <div class="shop-i">
@@ -417,12 +463,11 @@
           </div>
         </div>
       </div>
-      <p class="shop-note">Your order may arrive in separate parcels from our fulfilment partners. Your Sana Essencia protocol cards and personal items are packed and dispatched by our founder from Basingstoke. <a href="#about" style="color:var(--gold)">Why we work this way →</a></p>
+      <p class="shop-note">Your order may arrive in separate parcels from our fulfilment partners. Your Sana Essencia protocol cards and personal items are packed and dispatched by our founder from Basingstoke. <a onclick="scrollToId('about')" style="color:var(--gold);cursor:pointer">Why we work this way →</a></p>
     </div>
   </div>
 </section>
 
-<!-- GIFTS -->
 <section id="gifts" aria-labelledby="gifts-h">
   <div class="sec">
     <div class="fu">
@@ -444,7 +489,6 @@
   </div>
 </section>
 
-<!-- PERIMENOPAUSE -->
 <section id="perimenopause" aria-labelledby="peri-h">
   <div class="sec" style="background:var(--cr)">
     <div class="fu">
@@ -458,11 +502,10 @@
       <div class="peri-card"><div class="peri-sym">Sleep disruption · Anxiety</div><div class="peri-f">Noct Descent</div><div class="peri-d">Sclareol from clary sage modulates the GABAergic pathway. Incensole acetate from frankincense activates CB1 receptors — reducing cortisol and neural hyperactivity.</div><div class="peri-p">Pairs with: Lava stone bracelet · Nexus Baseline (layered)</div></div>
       <div class="peri-card"><div class="peri-sym">Mental load · Overwhelm</div><div class="peri-f">Vela</div><div class="peri-d">Cedrol from cedarwood Atlas regulates the autonomic nervous system — grounding without drowsing. Linalool suppresses the sympathetic nervous system without sedation.</div><div class="peri-p">Pairs with: Lava stone bracelet · Used at 5–8pm daily</div></div>
     </div>
-    <div style="margin-top:2rem"><a href="SE-equilibrium-quiz-v2.html" class="btn-p">Take the Equilibrium Quiz →</a></div>
+    <div style="margin-top:2rem"><a onclick="startQuiz()" class="btn-p">Take the Equilibrium Quiz →</a></div>
   </div>
 </section>
 
-<!-- FOUNDER -->
 <section id="about" aria-labelledby="about-h">
   <div class="founder-sec">
     <div class="founder-i">
@@ -482,7 +525,6 @@
   </div>
 </section>
 
-<!-- WAITLIST -->
 <section id="waitlist" aria-labelledby="wl-h">
   <div class="wl-sec">
     <p class="eye">Join the waitlist</p>
@@ -497,7 +539,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="ft-i">
     <div class="ft-top">
@@ -508,19 +549,18 @@
       <div>
         <div class="ft-ct">Navigate</div>
         <ul class="ft-links">
-          <li><a href="#science">The Science</a></li>
-          <li><a href="#formulas">Formulas</a></li>
-          <li><a href="#shop">Shop</a></li>
-          <li><a href="#gifts">Gifts</a></li>
-          <li><a href="#perimenopause">Equilibrium Edit</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a onclick="scrollToId('science')">The Science</a></li>
+          <li><a onclick="scrollToId('formulas')">Formulas</a></li>
+          <li><a onclick="scrollToId('shop')">Shop</a></li>
+          <li><a onclick="scrollToId('gifts')">Gifts</a></li>
+          <li><a onclick="scrollToId('perimenopause')">Equilibrium Edit</a></li>
+          <li><a onclick="scrollToId('about')">About</a></li>
         </ul>
       </div>
       <div>
         <div class="ft-ct">Tools</div>
         <ul class="ft-links">
-          <li><a href="sana-essencia-advisor.html">Protocol Advisor</a></li>
-          <li><a href="SE-equilibrium-quiz-v2.html">Equilibrium Quiz</a></li>
+          <li><a onclick="startQuiz()">Equilibrium Quiz</a></li>
           <li><a href="https://sanaessencia.myshopify.com" target="_blank" rel="noopener">Shop</a></li>
           <li><a href="mailto:hello@sanaessencia.co.uk">hello@sanaessencia.co.uk</a></li>
         </ul>
@@ -536,9 +576,11 @@
 <script>
 function toggleNav(btn){const n=document.getElementById('mob-nav');const o=n.classList.toggle('open');btn.setAttribute('aria-expanded',o)}
 function closeMob(){document.getElementById('mob-nav').classList.remove('open')}
+function scrollToId(id){const t=document.getElementById(id);if(t){t.scrollIntoView({behavior:'smooth',block:'start'})}}
+
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const t=document.getElementById(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+
 async function submitWL(e){
   e.preventDefault();
   const em=document.getElementById('wl-email').value.trim();
@@ -548,6 +590,108 @@ async function submitWL(e){
   try{await fetch('https://formspree.io/f/xqeowqqp',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:em,source:'Homepage waitlist',_subject:'New Sana Essencia waitlist signup'})})}catch(err){}
   e.target.style.display='none';
   document.getElementById('wl-ok').style.display='block';
+}
+
+/* ===== QUIZ LOGIC ===== */
+let qAnswers={0:null,1:null,2:null,3:null};
+let qStep=0;
+
+function startQuiz(){
+  scrollToId('quiz');
+  restartQuiz();
+}
+
+function restartQuiz(){
+  qAnswers={0:null,1:null,2:null,3:null};
+  qStep=0;
+  document.getElementById('q-result').classList.remove('active');
+  document.querySelectorAll('.q-step').forEach(s=>s.classList.remove('active'));
+  document.querySelector('.q-step[data-step="0"]').classList.add('active');
+  document.querySelectorAll('.q-opt').forEach(o=>o.classList.remove('selected'));
+  document.querySelectorAll('.qp-dot').forEach(d=>{d.classList.remove('active','done')});
+  document.querySelector('.qp-dot[data-step="0"]').classList.add('active');
+  document.getElementById('quiz-card').style.display='block';
+  document.querySelector('.quiz-top').style.display='block';
+  document.querySelector('.quiz-body-area').style.display='block';
+}
+
+function updateProgress(){
+  document.querySelectorAll('.qp-dot').forEach(d=>{
+    const s=parseInt(d.dataset.step);
+    d.classList.remove('active','done');
+    if(s<qStep)d.classList.add('done');
+    else if(s===qStep)d.classList.add('active');
+  });
+}
+
+function answerQ(step,val){
+  qAnswers[step]=val;
+  const stepEl=document.querySelector('.q-step[data-step="'+step+'"]');
+  stepEl.querySelectorAll('.q-opt').forEach(o=>o.classList.remove('selected'));
+  event.target.classList.add('selected');
+  setTimeout(()=>{
+    if(step<3){
+      stepEl.classList.remove('active');
+      qStep=step+1;
+      document.querySelector('.q-step[data-step="'+qStep+'"]').classList.add('active');
+      updateProgress();
+    } else {
+      showResult();
+    }
+  },250);
+}
+
+function backQ(){
+  if(qStep>0){
+    document.querySelector('.q-step[data-step="'+qStep+'"]').classList.remove('active');
+    qStep--;
+    document.querySelector('.q-step[data-step="'+qStep+'"]').classList.add('active');
+    updateProgress();
+  }
+}
+
+const formulas={
+  n1:{badge:'Your match · Equilibrium',name:'Nexus Baseline',range:'SE-N1 · Lavender dominant',rows:[['Linalool','→ GABA-A receptor → anxiolytic, cortisol reduction']]},
+  n2:{badge:'Your match · Equilibrium',name:'Nexus Thermal Reset',range:'SE-N2 · Eucalyptus + Peppermint',rows:[['1,8-Cineole','→ TRPM8 channel → thermal relief, alertness']]},
+  n3:{badge:'Your match · Cognitive Regulation',name:'Aurora Rise',range:'SE-N3 · Bergamot FCF + Rosemary',rows:[['Linalyl acetate','→ serotonergic modulation → mood lift'],['1,8-Cineole','→ AChE inhibition → sustained focus']]},
+  n4:{badge:'Your match · Olfactory Restoration',name:'Noct Descent',range:'SE-N4 · Clary Sage + Frankincense',rows:[['Sclareol','→ GABAergic pathway → deep calm'],['Incensole acetate','→ CB1 receptor → cortisol reduction']]},
+  n5:{badge:'Your match · Cognitive Regulation',name:'Acuity Strike',range:'SE-N5 · Lemon + Rosemary',rows:[['Limonene','→ dopaminergic signalling → directed attention'],['Beta-pinene','→ noradrenergic pathway → sustained focus']]},
+  n6:{badge:'Your match · Equilibrium Intimate',name:'Vinculum',range:'SE-N6 · Jasmine + Bergamot + Sandalwood',rows:[['Hedione','→ VN1R1 pheromone receptor → social trust, bonding']]},
+  n7:{badge:'Your match · Olfactory Restoration',name:'Vela',range:'SE-N7 · Orange + Bergamot + Cedarwood + Vetiver',rows:[['Cedrol','→ autonomic regulation → grounding'],['Linalool','→ SNS suppression → permission to switch off']]}
+};
+
+function showResult(){
+  const a=qAnswers;
+  let key='n5';
+  if(a[3]==='connect'){key='n6';}
+  else if(a[1]==='hormonal'&&(a[3]==='restore'||a[2]==='evening')){key='n4';}
+  else if(a[1]==='hormonal'){key='n2';}
+  else if(a[3]==='restore'||a[0]==='wired'){key='n4';}
+  else if(a[3]==='calm'&&a[2]==='evening'){key='n4';}
+  else if(a[3]==='calm'){key='n1';}
+  else if(a[3]==='focus'&&a[0]==='low'){key='n3';}
+  else if(a[3]==='focus'){key='n5';}
+  else if(a[1]==='mental'&&a[2]==='evening'){key='n7';}
+  else if(a[1]==='mental'){key='n5';}
+  else if(a[1]==='performance'){key='n3';}
+  else if(a[1]==='sleep'){key='n4';}
+
+  const f=formulas[key];
+  document.getElementById('qr-badge').textContent=f.badge;
+  document.getElementById('qr-name').textContent=f.name;
+  document.getElementById('qr-range').textContent=f.range;
+  const mechsEl=document.getElementById('qr-mechs');
+  mechsEl.innerHTML='';
+  f.rows.forEach(r=>{
+    const row=document.createElement('div');
+    row.className='qr-row';
+    row.innerHTML='<span class="qr-cn">'+r[0]+'</span><span class="qr-cp">'+r[1]+'</span>';
+    mechsEl.appendChild(row);
+  });
+
+  document.querySelector('.quiz-top').style.display='none';
+  document.querySelector('.quiz-body-area').style.display='none';
+  document.getElementById('q-result').classList.add('active');
 }
 </script>
 </body>
