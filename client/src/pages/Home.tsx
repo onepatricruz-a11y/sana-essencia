@@ -50,6 +50,7 @@ export default function Home() {
             <li><a href="#gifts">Gifts</a></li>
             <li><a href="#perimenopause">Equilibrium Edit</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="sana-essencia-advisor.html">Get My Formula</a></li>
           </ul>
           <a href="SE-equilibrium-quiz-v2.html" className="nav-cta">
             Start assessment
@@ -72,6 +73,7 @@ export default function Home() {
           <a href="#gifts" onClick={() => setIsNavOpen(false)}>Gifts</a>
           <a href="#perimenopause" onClick={() => setIsNavOpen(false)}>Equilibrium Edit</a>
           <a href="#about" onClick={() => setIsNavOpen(false)}>About</a>
+          <a href="sana-essencia-advisor.html" onClick={() => setIsNavOpen(false)}>Get My Formula</a>
           <a href="SE-equilibrium-quiz-v2.html" className="mob-cta">
             Start assessment →
           </a>
@@ -491,9 +493,11 @@ export default function Home() {
               </div>
             </div>
             <div className="shop-note">
-              <strong>Note:</strong> Our proprietary scent formulas are
-              currently in final clinical testing. Secure your vectors now and
-              join the waitlist to be first in line for the formulas.
+              <strong>How it works:</strong> Sana Essencia does the research,
+              translates the science, and designs every protocol in-house.
+              Our carefully selected manufacturing and fulfilment partners
+              bring each vector and formula to life and ship it to you —
+              so what you receive is exactly what left the lab.
             </div>
           </div>
         </div>
@@ -610,6 +614,13 @@ export default function Home() {
                 barrier and interface directly with the limbic system. It's not
                 magic. It's chemistry.
               </p>
+              <p className="founder-b">
+                Our role is the science: the research, the mechanism-first
+                formulation, and the protocol design. Manufacturing and
+                fulfilment are handled by a small group of carefully selected
+                partners we've vetted for quality and consistency — so every
+                order that reaches you matches the formula we designed.
+              </p>
               <div className="founder-sig">Sana Essencia Science Team</div>
             </div>
             <div className="principle">
@@ -678,6 +689,7 @@ export default function Home() {
                 <li><a href="#formulas">The Formulas</a></li>
                 <li><a href="#perimenopause">Equilibrium Edit</a></li>
                 <li><a href="SE-equilibrium-quiz-v2.html">Take the Assessment</a></li>
+                <li><a href="sana-essencia-advisor.html">Get My Formula</a></li>
               </ul>
             </div>
             <div>
