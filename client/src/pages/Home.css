@@ -298,8 +298,7 @@ button { font-family: var(--ss); cursor: pointer; border: none; background: none
 .shop-cat { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; font-weight: 600; }
 .shop-name { font-family: var(--sf); font-size: 1.2rem; font-weight: 500; color: var(--g); margin-bottom: 0.5rem; }
 .shop-desc { font-size: 0.85rem; color: var(--gl); line-height: 1.55; margin-bottom: 1rem; }
-.shop-foot { display: flex; align-items: center; justify-content: space-between; }
-.shop-price { font-family: var(--sf); font-size: 1.1rem; font-weight: 500; color: var(--g); }
+.shop-foot { display: flex; align-items: center; justify-content: flex-end; }
 .shop-btn { padding: 8px 18px; border: 1px solid var(--g); border-radius: 20px; font-size: 12px; font-weight: 600; color: var(--g); transition: background 0.15s, color 0.15s; }
 .shop-btn:hover { background: var(--g); color: var(--cr); }
 .shop-note { margin-top: 2rem; font-size: 0.85rem; color: var(--gl); background: var(--gp); border-radius: 12px; padding: 1rem 1.25rem; max-width: 640px; }
