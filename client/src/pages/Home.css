@@ -1,4 +1,4 @@
-/* ==========================================================================
+.ft-top { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }/* ==========================================================================
    Sana Essencia — Home page styles
    Palette: graphite / cream / gold accent
    Fonts already loaded in client/index.html:
