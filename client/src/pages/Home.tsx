@@ -449,27 +449,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="shop-card">
-                <div className="shop-img">🔗</div>
-                <div className="shop-body">
-                  <div className="shop-cat">Wearable Carrier</div>
-                  <div className="shop-name">Stainless Steel Diffuser Locket</div>
-                  <div className="shop-desc">
-                    Absorbent felt pad with ventilation openings. Continuous
-                    olfactory signal at chest level for up to 8 hours.
-                  </div>
-                  <div className="shop-foot">
-                    <a
-                      href="https://sanaessencia.myshopify.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="shop-btn"
-                    >
-                      Shop now
-                    </a>
-                  </div>
-                </div>
-              </div>
+             
               <div className="shop-card">
                 <div className="shop-img">🗝️</div>
                 <div className="shop-body">
