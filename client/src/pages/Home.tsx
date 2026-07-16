@@ -288,7 +288,7 @@ export default function Home() {
               peer-reviewed study.
             </p>
             <div className="f-grid fu">
-              <div className="f-card">
+              <div className="f-card" id="nexus-baseline">
                 <div className="f-code">SE-N1 · Equilibrium</div>
                 <div className="f-name">Nexus Baseline</div>
                 <div className="f-range">Lavender dominant</div>
@@ -299,7 +299,7 @@ export default function Home() {
                   Linalool → GABA-A receptor → calming effect, cortisol reduction
                 </div>
               </div>
-              <div className="f-card">
+              <div className="f-card" id="nexus-thermal-reset">
                 <div className="f-code">SE-N2 · Equilibrium</div>
                 <div className="f-name">Nexus Thermal Reset</div>
                 <div className="f-range">Eucalyptus + Peppermint</div>
@@ -310,7 +310,7 @@ export default function Home() {
                   1,8-Cineole → TRPM8 channel → cooling sensation, alertness
                 </div>
               </div>
-              <div className="f-card">
+              <div className="f-card" id="aurora-rise">
                 <div className="f-code">SE-N3 · Cognitive Regulation</div>
                 <div className="f-name">Aurora Rise</div>
                 <div className="f-range">Bergamot FCF + Rosemary</div>
@@ -321,7 +321,7 @@ export default function Home() {
                   Linalyl acetate → serotonergic modulation + 1,8-cineole → AChE inhibition
                 </div>
               </div>
-              <div className="f-card">
+              <div className="f-card" id="noct-descent">
                 <div className="f-code">SE-N4 · Olfactory Restoration</div>
                 <div className="f-name">Noct Descent</div>
                 <div className="f-range">Clary Sage + Frankincense</div>
@@ -332,7 +332,7 @@ export default function Home() {
                   Sclareol → GABAergic pathway + Incensole acetate → CB1 receptor
                 </div>
               </div>
-              <div className="f-card">
+              <div className="f-card" id="acuity-strike">
                 <div className="f-code">SE-N5 · Cognitive Regulation</div>
                 <div className="f-name">Acuity Strike</div>
                 <div className="f-range">Lemon + Rosemary</div>
@@ -343,7 +343,7 @@ export default function Home() {
                   Limonene + Beta-pinene → dopaminergic signalling → directed attention
                 </div>
               </div>
-              <div className="f-card">
+              <div className="f-card" id="vinculum">
                 <div className="f-code">SE-N6 · Equilibrium Intimate</div>
                 <div className="f-name">Vinculum</div>
                 <div className="f-range">Jasmine + Bergamot + Sandalwood</div>
@@ -354,7 +354,7 @@ export default function Home() {
                   Hedione → VN1R1 pheromone receptor → social trust + bonding
                 </div>
               </div>
-              <div className="f-card">
+              <div className="f-card" id="vela">
                 <div className="f-code">SE-N7 · Olfactory Restoration</div>
                 <div className="f-name">Vela</div>
                 <div className="f-range">Orange + Bergamot + Cedarwood + Vetiver</div>
@@ -438,8 +438,8 @@ export default function Home() {
                     steadily for 4–8 hours. The wearable protocol.
                   </div>
                   <div className="shop-foot">
-                    <a
-                      href="https://sanaessencia.myshopify.com"
+                    
+                      href="https://essencefive.co.uk/collections/signature-gift"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="shop-btn"
@@ -451,17 +451,18 @@ export default function Home() {
               </div>
              
               <div className="shop-card">
-                <div className="shop-img">🗝️</div>
+                <div className="shop-img">📿</div>
                 <div className="shop-body">
-                  <div className="shop-cat">Gifting · Pocket-Sized</div>
-                  <div className="shop-name">Lava Stone Keyring</div>
+                  <div className="shop-cat">Wearable Carrier · Discreet</div>
+                  <div className="shop-name">Diffuser Locket</div>
                   <div className="shop-desc">
-                    One drop. Clip to your keys. Decompress on the commute home.
-                    The pocket protocol.
+                    For anyone who doesn't wear bracelets. A felt insert holds
+                    your formula — never touching skin — worn at chest height
+                    for a steady, discreet signal all day.
                   </div>
                   <div className="shop-foot">
-                    <a
-                      href="https://sanaessencia.myshopify.com"
+                    
+                      href="https://essencefive.co.uk/collections/signature-gift"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="shop-btn"
@@ -678,6 +679,7 @@ export default function Home() {
               <ul className="ft-links">
                 <li><a href="#shop">Shop</a></li>
                 <li><a href="#gifts">Gifting</a></li>
+                <li><a href="https://essencefive.co.uk" target="_blank" rel="noopener noreferrer">Essence Five Shop</a></li>
                 <li><a href="mailto:hello@sanaessencia.co.uk">Contact Us</a></li>
               </ul>
             </div>
