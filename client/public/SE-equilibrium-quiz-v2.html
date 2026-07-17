@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -430,7 +431,7 @@ function getSantaBanner(profile) {
 
 const FORMULAS = {
   thermal: {
-    formula: 'Nexus Thermal Reset', range: 'Equilibrium',
+    formula: 'Nexus Thermal Reset', range: 'Equilibrium', shopCollection: 'cooling',
     headline: 'Cooling relief the moment you need it',
     description: "Nexus Thermal Reset targets the sudden waves of heat your body is throwing at you. It works with your thermoregulatory system instead of against it, producing a real, measurable drop in perceived heat within minutes.",
     science: "1,8-Cineole from eucalyptus activates TRPM8 cold-sensing channels in the nasal lining, triggering an immediate cooling sensation. Menthol from peppermint stimulates the trigeminal nerve for a second wave of thermal relief.",
@@ -441,7 +442,7 @@ const FORMULAS = {
     ]
   },
   endocrine_baseline: {
-    formula: 'Nexus Baseline', range: 'Equilibrium',
+    formula: 'Nexus Baseline', range: 'Equilibrium', shopCollection: 'equilibrium',
     headline: 'Grounding for a restless nervous system',
     description: "Nexus Baseline is built for the restlessness that has no obvious trigger — the hormonal noise underneath an ordinary day. It lowers the volume without dulling you.",
     science: "Linalool from lavender binds GABA-A receptors, the same pathway targeted by anti-anxiety medication, producing a calming effect without sedation. Cortisol drops measurably within 15–20 minutes.",
@@ -452,7 +453,7 @@ const FORMULAS = {
     ]
   },
   endocrine_noct: {
-    formula: 'Noct Descent', range: 'Olfactory Restoration',
+    formula: 'Noct Descent', range: 'Olfactory Restoration', shopCollection: 'equilibrium',
     headline: 'Permission to properly wind down',
     description: "Noct Descent is built for the evening version of hormonal restlessness — the racing mind that won't let the day end. It eases you toward sleep without the grogginess.",
     science: "Sclareol from clary sage modulates the GABAergic pathway, quieting neural activity. Incensole acetate from frankincense activates CB1 receptors, reducing cortisol and easing the nervous system into rest.",
@@ -463,7 +464,7 @@ const FORMULAS = {
     ]
   },
   unified: {
-    formula: 'Vinculum', range: 'Equilibrium Intimate',
+    formula: 'Vinculum', range: 'Equilibrium Intimate', shopCollection: 'connection',
     headline: 'A shared formula for shared calm',
     description: "Vinculum is designed to be used with someone else — it lowers both nervous systems into the same register, making space for real closeness instead of just proximity.",
     science: "Hedione, a jasmine-derived molecule, activates the VN1R1 receptor linked to social trust and bonding. Santalol from sandalwood binds GABA-A receptors for deep, shared calm.",
@@ -474,7 +475,7 @@ const FORMULAS = {
     ]
   },
   cognitive_acuity: {
-    formula: 'Acuity Strike', range: 'Cognitive Regulation',
+    formula: 'Acuity Strike', range: 'Cognitive Regulation', shopCollection: 'focus',
     headline: 'Cut through the fog and focus',
     description: "Acuity Strike is built for scattered attention — when you need to concentrate and your mind keeps sliding away. It sharpens without the jittery edge of caffeine.",
     science: "Limonene and beta-pinene from lemon and rosemary enhance dopaminergic signalling, the pathway behind directed attention. Focus measurably improves within 20 minutes.",
@@ -485,7 +486,7 @@ const FORMULAS = {
     ]
   },
   cognitive_aurora: {
-    formula: 'Aurora Rise', range: 'Cognitive Regulation',
+    formula: 'Aurora Rise', range: 'Cognitive Regulation', shopCollection: 'focus',
     headline: 'A lift for a depleted mind',
     description: "Aurora Rise is built for the low, flat feeling that makes focus hard to access. It restores mood first, so concentration has somewhere to stand.",
     science: "Linalyl acetate from bergamot FCF modulates serotonergic signalling, supporting mood. 1,8-cineole from rosemary inhibits acetylcholinesterase, sustaining focus once mood lifts.",
@@ -496,7 +497,7 @@ const FORMULAS = {
     ]
   },
   decompress: {
-    formula: 'Vela', range: 'Olfactory Restoration',
+    formula: 'Vela', range: 'Olfactory Restoration', shopCollection: 'decompression',
     headline: 'Permission to put it down',
     description: "Vela is a transition formula — not sleep, not stimulation, but the space in between. It marks the end of the day's demands so you can return to yourself.",
     science: "Linalool suppresses sympathetic nervous system activity, lowering cortisol within 15 minutes. Cedrol from cedarwood Atlas grounds the autonomic nervous system without sedating.",
@@ -507,6 +508,15 @@ const FORMULAS = {
     ]
   }
 };
+
+const EF_BASE = 'https://essencefive.co.uk/collections/';
+
+// Gift answers always override the formula match — someone shopping
+// for another person shouldn't land on a "your hormone balance" page.
+function getShopLink(formula, isGift) {
+  if (isGift) return EF_BASE + 'signature-gift';
+  return EF_BASE + (formula.shopCollection || 'signature-gift');
+}
 
 const PROFILE_LABELS = { thermal: 'Thermal Regulation', endocrine: 'Hormone Balance', unified: 'Connection', cognitive: 'Cognitive Focus', decompress: 'Decompression' };
 const TIME_LABELS = { morning: 'first thing in the morning', afternoon: 'through the afternoon slump', transition: 'right at the evening handover', evening: 'in the evening wind-down', night: 'as part of your night routine' };
@@ -560,6 +570,8 @@ function computeRec(A) {
     gift_note = 'Since this is for someone else — we can help you build a gift set with the formula, a vector, and a protocol card included.';
   }
 
+  const shopLink = getShopLink(f, isGift);
+
   return {
     profile: PROFILE_LABELS[winner],
     formula: f.formula,
@@ -572,7 +584,9 @@ function computeRec(A) {
     why_now,
     couples_note,
     decompress_note,
-    gift_note
+    gift_note,
+    shopLink,
+    isGift
   };
 }
 
@@ -611,6 +625,11 @@ function renderResult(rec, isGift) {
     </div>
 
     ${rec.why_now ? `<div class="why-now"><div class="scilbl" style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:3px;">Why now</div><div class="scitxt">${rec.why_now}</div></div>` : ''}
+
+    <a href="${rec.shopLink}" class="btn btnp" style="display:block;text-align:center;text-decoration:none;margin-top:14px;box-sizing:border-box;">
+      ${rec.isGift ? 'Shop gifts on Essence Five →' : 'Shop ' + (rec.formula || 'your formula') + ' picks on Essence Five →'}
+    </a>
+    <div style="text-align:center;font-size:11px;color:var(--text3);margin-top:6px;">Curated products to support your protocol — chosen by us, sold on our sister store.</div>
 
     ${getProducts(profileStr, isGift)}
     ${getGiftBanner(profileStr, isGift)}
