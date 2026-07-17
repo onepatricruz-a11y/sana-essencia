@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,14 +130,14 @@
   .gift-lbl { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
   .gift-title { font-family: 'Source Serif 4', serif; font-size: 17px; font-weight: 300; color: #f5f0e8; margin-bottom: 5px; }
   .gift-desc { font-size: 12px; color: rgba(245,240,232,0.62); line-height: 1.6; margin-bottom: 11px; }
-  .gift-btn { padding: 9px 15px; background: var(--gold); color: var(--graphite); border: none; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .gift-btn { padding: 9px 15px; background: var(--gold); color: var(--graphite); border: none; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; display: inline-block; text-decoration: none; }
 
   /* Secret Santa banner */
   .santa-banner { background: linear-gradient(135deg, #1a3a2a 0%, #2a4a3a 100%); border-radius: 12px; padding: 1.15rem; margin: 0.9rem 0; }
   .santa-lbl { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #7dc89a; margin-bottom: 5px; }
   .santa-title { font-family: 'Source Serif 4', serif; font-size: 16px; font-weight: 300; color: #f0f5f2; margin-bottom: 5px; }
   .santa-desc { font-size: 12px; color: rgba(240,245,242,0.62); line-height: 1.6; margin-bottom: 11px; }
-  .santa-btn { padding: 9px 15px; background: #7dc89a; color: #1a3a2a; border: none; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .santa-btn { padding: 9px 15px; background: #7dc89a; color: #1a3a2a; border: none; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; display: inline-block; text-decoration: none; }
 
   /* Waitlist */
   .cta { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 0.5px solid var(--border); }
@@ -377,29 +378,29 @@ function getProducts(profile, isGift) {
   const isUnified = p.includes('unified') || p.includes('connect') || p.includes('vincul') || p.includes('intimac');
 
   if (isDecompress) return `
-    <div class="sec-div"><span>Matched products</span></div>
-    <div class="prod"><div class="prod-icon" style="background:#e8eef2;">🌊</div><div class="prod-info"><div class="prod-name">Lava Stone Diffuser Bracelet</div><div class="prod-desc">Wear your Vela formula through the transition. All-day grounding.</div></div><div class="prod-price">£16.99</div></div>
-    <div class="prod"><div class="prod-icon" style="background:#e8eef2;">🗝️</div><div class="prod-info"><div class="prod-name">Lava Stone Keyring</div><div class="prod-desc">Pocket decompression. One drop of Vela — your reset on your keys.</div></div><div class="prod-price">£8.99</div></div>`;
+    <div class="sec-div"><span>Carry it with you</span></div>
+    <div class="prod"><div class="prod-icon" style="background:#e8eef2;">🌊</div><div class="prod-info"><div class="prod-name">Lava Stone Diffuser Bracelet</div><div class="prod-desc">Wear your Vela formula through the transition. All-day grounding.</div></div></div>
+    <div class="prod"><div class="prod-icon" style="background:#e8eef2;">📿</div><div class="prod-info"><div class="prod-name">Diffuser Locket</div><div class="prod-desc">Prefer not to wear a bracelet? Same mechanism, worn at chest height.</div></div></div>`;
 
   if (isThermal) return `
-    <div class="sec-div"><span>Matched products</span></div>
-    <div class="prod"><div class="prod-icon" style="background:#e8f2ec;">❄️</div><div class="prod-info"><div class="prod-name">Lava Stone Diffuser Bracelet</div><div class="prod-desc">Carry your Nexus Thermal Reset formula. Wear your cooling protocol.</div></div><div class="prod-price">£16.99</div></div>
-    <div class="prod"><div class="prod-icon" style="background:#e8f2ec;">💧</div><div class="prod-info"><div class="prod-name">Magnesium Menopause Spray</div><div class="prod-desc">Transdermal magnesium with clary sage — eases hot flushes and tension.</div></div><div class="prod-price">£14.99</div></div>`;
+    <div class="sec-div"><span>Carry it with you</span></div>
+    <div class="prod"><div class="prod-icon" style="background:#e8f2ec;">❄️</div><div class="prod-info"><div class="prod-name">Lava Stone Diffuser Bracelet</div><div class="prod-desc">Carry your Nexus Thermal Reset formula. Wear your cooling protocol.</div></div></div>
+    <div class="prod"><div class="prod-icon" style="background:#e8f2ec;">📿</div><div class="prod-info"><div class="prod-name">Diffuser Locket</div><div class="prod-desc">A discreet alternative to the bracelet — same passive diffusion.</div></div></div>`;
 
   if (isEndocrine) return `
-    <div class="sec-div"><span>Matched products</span></div>
-    <div class="prod"><div class="prod-icon" style="background:#ede8f2;">🌿</div><div class="prod-info"><div class="prod-name">Lava Stone Diffuser Bracelet</div><div class="prod-desc">Carry your Noct Descent or Aurora Rise formula through the day.</div></div><div class="prod-price">£16.99</div></div>
-    <div class="prod"><div class="prod-icon" style="background:#ede8f2;">💊</div><div class="prod-info"><div class="prod-name">MENOstage Herbal Support</div><div class="prod-desc">Soya isoflavones and women's herbs — EFSA-backed hormonal balance.</div></div><div class="prod-price">£18.99</div></div>`;
+    <div class="sec-div"><span>Carry it with you</span></div>
+    <div class="prod"><div class="prod-icon" style="background:#ede8f2;">🌿</div><div class="prod-info"><div class="prod-name">Lava Stone Diffuser Bracelet</div><div class="prod-desc">Carry your Noct Descent or Aurora Rise formula through the day.</div></div></div>
+    <div class="prod"><div class="prod-icon" style="background:#ede8f2;">📿</div><div class="prod-info"><div class="prod-name">Diffuser Locket</div><div class="prod-desc">A discreet alternative to the bracelet — same passive diffusion.</div></div></div>`;
 
   if (isUnified) return `
-    <div class="sec-div"><span>Matched products</span></div>
-    <div class="prod"><div class="prod-icon" style="background:#f2ede8;">🕯️</div><div class="prod-info"><div class="prod-name">Lava Stone Bracelet Pair</div><div class="prod-desc">Two matching bracelets for the shared Vinculum protocol.</div></div><div class="prod-price">£29.99</div></div>
-    <div class="prod"><div class="prod-icon" style="background:#f2ede8;">🎁</div><div class="prod-info"><div class="prod-name">The Connection Gift Set</div><div class="prod-desc">Two bracelets + protocol cards. Ready to give. Ready to share.</div></div><div class="prod-price">£39.99</div></div>`;
+    <div class="sec-div"><span>Carry it with you</span></div>
+    <div class="prod"><div class="prod-icon" style="background:#f2ede8;">🕯️</div><div class="prod-info"><div class="prod-name">Lava Stone Diffuser Bracelet</div><div class="prod-desc">One for you, one for them — the shared Vinculum protocol.</div></div></div>
+    <div class="prod"><div class="prod-icon" style="background:#f2ede8;">📿</div><div class="prod-info"><div class="prod-name">Diffuser Locket</div><div class="prod-desc">A discreet alternative to the bracelet — same passive diffusion.</div></div></div>`;
 
   return `
-    <div class="sec-div"><span>Matched products</span></div>
-    <div class="prod"><div class="prod-icon" style="background:#eef2e8;">⚡</div><div class="prod-info"><div class="prod-name">Portable Vector Clamshell Carrier</div><div class="prod-desc">Desk-to-meeting focus protocol. Carry Acuity Strike anywhere.</div></div><div class="prod-price">£24.99</div></div>
-    <div class="prod"><div class="prod-icon" style="background:#eef2e8;">🧠</div><div class="prod-info"><div class="prod-name">Diffuser Locket — Steel</div><div class="prod-desc">All-day cognitive support at chest level.</div></div><div class="prod-price">£19.99</div></div>`;
+    <div class="sec-div"><span>Carry it with you</span></div>
+    <div class="prod"><div class="prod-icon" style="background:#eef2e8;">⚡</div><div class="prod-info"><div class="prod-name">Lava Stone Diffuser Bracelet</div><div class="prod-desc">Desk-to-meeting focus protocol. Carry Acuity Strike anywhere.</div></div></div>
+    <div class="prod"><div class="prod-icon" style="background:#eef2e8;">📿</div><div class="prod-info"><div class="prod-name">Diffuser Locket</div><div class="prod-desc">All-day cognitive support at chest level.</div></div></div>`;
 }
 
 function getGiftBanner(profile, isGift) {
@@ -409,8 +410,8 @@ function getGiftBanner(profile, isGift) {
   return `<div class="gift-banner">
     <div class="gift-lbl">💝 Build a gift</div>
     <div class="gift-title">Give someone the science of connection</div>
-    <div class="gift-desc">Two lava stone bracelets, two protocol cards, one Vinculum vial — boxed and ready. The science of scent, given with intention. Perfect for Valentine's Day, anniversaries, or any moment that deserves more than a candle.</div>
-    <button class="gift-btn" onclick="alert('Coming soon — join the waitlist below to be first!')">Build a gift set →</button>
+    <div class="gift-desc">Two lava stone bracelets, two protocol cards, one Vinculum formula — the science of scent, given with intention. Perfect for anniversaries, or any moment that deserves more than a candle.</div>
+    <a class="gift-btn" href="https://essencefive.co.uk/collections/signature-gift" target="_blank" rel="noopener noreferrer">Shop gifting on Essence Five →</a>
   </div>`;
 }
 
@@ -421,9 +422,9 @@ function getSantaBanner(profile) {
   if (!isDecompress && !highLoad) return '';
   return `<div class="santa-banner">
     <div class="santa-lbl">🎄 Corporate gifting</div>
-    <div class="santa-title">The perfect Secret Santa</div>
-    <div class="santa-desc">A lava stone keyring with a Vela protocol card. Add one drop, clip it to your keys, decompress on the commute home. Under £10. Genuinely useful. A story to tell. Perfect for office gift exchanges or workplace wellbeing.</div>
-    <button class="santa-btn" onclick="alert('Corporate gift enquiries: hello@sanaessencia.co.uk')">Enquire about bulk orders →</button>
+    <div class="santa-title">The desk decompression protocol</div>
+    <div class="santa-desc">A lava stone bracelet or diffuser locket, paired with a Vela protocol card. Genuinely useful. A story to tell. Good for office gift exchanges or workplace wellbeing.</div>
+    <a class="santa-btn" href="mailto:hello@sanaessencia.co.uk?subject=Corporate gift enquiry">Enquire about bulk orders →</a>
   </div>`;
 }
 
