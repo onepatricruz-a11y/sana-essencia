@@ -439,7 +439,7 @@ export default function Home() {
                   </div>
                   <div className="shop-foot">
                     
-                      href="https://essencefive.co.uk/collections/signature-gift"
+                     <a href="https://essencefive.co.uk/collections/signature-gift"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="shop-btn"
@@ -462,7 +462,7 @@ export default function Home() {
                   </div>
                   <div className="shop-foot">
                     
-                      href="https://essencefive.co.uk/collections/signature-gift"
+                     <a href="https://essencefive.co.uk/collections/signature-gift"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="shop-btn"
