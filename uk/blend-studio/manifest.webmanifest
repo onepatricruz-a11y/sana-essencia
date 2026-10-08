@@ -1,11 +1,13 @@
 {
   "name": "Sana Essencia Blend Studio",
+  "id": "./",
   "short_name": "Blend Studio",
   "description": "Build essential oil blends with real quantities, honest science and UK-safe wording.",
   "lang": "en-GB",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#F5F1E8",
   "theme_color": "#1F3D2F",
   "icons": [
@@ -24,6 +26,37 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "categories": [
+    "lifestyle",
+    "productivity",
+    "education"
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/1-describe.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshots/2-formula.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshots/3-science.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshots/4-moods.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
     }
   ]
 }
