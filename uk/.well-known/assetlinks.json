@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "uk.co.sanaessencia.blendstudio",
+        "sha256_cert_fingerprints": ["C5:31:52:72:70:0D:7F:ED:09:BB:63:DD:1B:6D:F7:5B:91:BD:AF:A4:56:82:56:D4:35:EB:E2:0D:84:B6:E6:86"]
+      }
+    }]
