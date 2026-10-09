@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scent Preview · Demo | Sana Essencia</title>
+<meta name="description" content="Scent Preview demo: a science-backed pre-sales tool for scent marketing companies.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Scent Preview · Sana Essencia">
+<meta property="og:description" content="Honest science that helps sell what people can't see. A demo for scent marketing companies.">
+<meta property="og:image" content="https://sanaessencia.co.uk/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F5F1E8;--cream2:#EDE6D6;--forest:#1F3D2F;--forest2:#2C5140;--sage:#A7B8A0;--sagew:#E4EADF;--terra:#C0643E;--ink:#1E2520;--muted:#5B665E;--white:#fff;--line:rgba(31,61,47,.14);--r:16px;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Plus Jakarta Sans",system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.55;font-size:16px}
+a{color:var(--forest)}
+.demo{background:var(--terra);color:#fff;text-align:center;font-size:.8rem;font-weight:600;padding:8px 16px;letter-spacing:.02em}
+.wrap{width:min(980px,100% - 32px);margin-inline:auto}
+header{padding:20px 0 8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo-ph{width:58px;height:58px;border:2px dashed var(--terra);border-radius:14px;display:grid;place-items:center;font-size:.6rem;font-weight:700;color:var(--terra);text-align:center;line-height:1.1;flex:none}
+.brand h1{font-family:var(--serif);font-size:1.9rem;color:var(--forest);line-height:1}
+.brand p{font-size:.85rem;color:var(--muted)}
+.brand p b{color:var(--forest)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none}
+.tab{flex:none;border:1px solid rgba(31,61,47,.3);background:transparent;padding:8px 15px;border-radius:999px;font:600 .9rem var(--sans);color:var(--ink);cursor:pointer}
+.tab[aria-selected=true]{background:var(--forest);color:var(--cream);border-color:var(--forest)}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.stack{display:grid;gap:14px}
+h2{font-family:var(--serif);color:var(--forest);font-size:1.7rem;line-height:1.15}
+h3{font-family:var(--serif);color:var(--forest);font-size:1.3rem;line-height:1.2}
+.muted{color:var(--muted)}.small{font-size:.88rem}
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terra)}
+.progress{display:flex;gap:6px;margin:6px 0 2px}
+.progress span{flex:1;height:5px;border-radius:9px;background:var(--cream2)}
+.progress span.on{background:var(--forest)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid rgba(31,61,47,.28);background:var(--white);padding:9px 14px;border-radius:999px;font:500 .92rem var(--sans);cursor:pointer;color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--forest);color:var(--cream);border-color:var(--forest)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:0;border-radius:999px;padding:12px 22px;font:600 .95rem var(--sans);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn.primary{background:var(--forest);color:var(--cream)}
+.btn.accent{background:var(--terra);color:#fff}
+.btn.ghost{background:transparent;border:1.5px solid var(--forest);color:var(--forest)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+input[type=text]{width:100%;border:1px solid rgba(31,61,47,.3);border-radius:12px;padding:11px 14px;font:500 1rem var(--sans);background:var(--white)}
+.fam{border-left:6px solid var(--c,var(--sage));background:var(--white);border-radius:var(--r);padding:18px;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fam .top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.match{font:700 .85rem var(--sans);color:var(--forest);background:var(--sagew);border-radius:999px;padding:4px 10px}
+.notes{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.notes span{font-size:.8rem;background:var(--cream);border-radius:999px;padding:3px 10px}
+.why li{margin:4px 0 4px 18px}
+.sci{background:var(--sagew);border-radius:12px;padding:10px 12px;font-size:.88rem;margin-top:10px}
+.ref{font-size:.75rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.lvl{display:inline-block;font-size:.78rem;font-weight:700;border-radius:999px;padding:2px 9px}
+.lvl.s{background:var(--sagew);color:var(--forest)}.lvl.m{background:#F5E8D2;color:#8F5410}.lvl.n{background:#EEE;color:#555}
+.say{display:grid;gap:8px}
+.say div{border-radius:12px;padding:10px 12px;font-size:.92rem}
+.say .yes{background:#E1EDE3}.say .no{background:#F4DEDA;text-decoration:line-through;color:#7a2d22}
+details{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:600;color:var(--forest)}
+details p{margin-top:8px;font-size:.93rem}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:14px}
+.kpi b{font-family:var(--serif);font-size:2rem;color:var(--forest);display:block;line-height:1}
+.bar{height:10px;border-radius:9px;background:var(--cream2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--forest)}
+.myth{border:1px dashed var(--terra);border-radius:14px;padding:14px;background:var(--white)}
+.myth b{color:var(--terra)}
+footer{margin:34px 0 26px;font-size:.78rem;color:var(--muted);line-height:1.6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--forest);color:var(--cream);padding:12px 18px;border-radius:14px;font-size:.9rem;max-width:90vw;z-index:9}
+[hidden]{display:none!important}
+@media(max-width:600px){h2{font-size:1.45rem}.card{padding:16px}.btn{width:100%}th:nth-child(4),td:nth-child(4){display:none}}
+</style>
+</head>
+<body>
+<div class="demo">DEMO · shown with your scent company's branding · dashboard figures are examples</div>
+<div class="wrap">
+  <header>
+    <div class="logo-ph">YOUR<br>LOGO<br>HERE</div>
+    <div class="brand"><h1>Scent Preview</h1><p>from your scent marketing company · science by <b>Sana Essencia</b></p></div>
+  </header>
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-tab="client">For the client</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="team">Sales team</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="dash">Dashboard</button>
+  </nav>
+
+  <!-- ======== CLIENT ======== -->
+  <section id="p-client" class="stack" style="margin-top:10px">
+    <div class="card stack" id="wizard">
+      <span class="eyebrow" id="w-step">Step 1 of 5</span>
+      <div class="progress" id="w-prog"></div>
+      <h2 id="w-title"></h2>
+      <p class="muted small" id="w-sub"></p>
+      <div id="w-body"></div>
+      <div class="row">
+        <button class="btn ghost" id="w-back" type="button">Back</button>
+        <button class="btn primary" id="w-next" type="button">Continue</button>
+      </div>
+    </div>
+    <div id="result" class="stack" hidden></div>
+  </section>
+
+  <!-- ======== TEAM ======== -->
+  <section id="p-team" class="stack" style="margin-top:10px" hidden>
+    <div class="card stack">
+      <span class="eyebrow">Pocket science</span>
+      <h2>Honest answers to the questions every client asks</h2>
+      <p class="muted small">Strong, true talking points. Each answer shows where it comes from, so your team can speak with confidence and without overselling.</p>
+    </div>
+    <div id="faq"></div>
+    <div class="card stack">
+      <span class="eyebrow">Numbers we'd rather not use</span>
+      <h3>Popular statistics with no traceable source</h3>
+      <p class="small muted">They are repeated across the industry, but we could not find a published study behind them. The UK Advertising Codes (CAP Code) expect claims to be backed by evidence before they are made. Swapping these numbers for real research makes the sale stronger.</p>
+      <div class="stack" id="myths"></div>
+    </div>
+    <div class="card stack">
+      <span class="eyebrow">References</span>
+      <ol class="small" id="refs" style="padding-left:18px;display:grid;gap:6px"></ol>
+    </div>
+  </section>
+
+  <!-- ======== DASHBOARD ======== -->
+  <section id="p-dash" class="stack" style="margin-top:10px" hidden>
+    <div class="card stack">
+      <span class="eyebrow">Example monthly dashboard</span>
+      <h2>Who was interested before the meeting</h2>
+      <p class="muted small">Illustrative figures. In the live version, the dashboard shows the previews your team sent and how many clients completed them.</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b>64</b><span class="small muted">previews sent</span></div>
+      <div class="kpi"><b>41</b><span class="small muted">completed by the client</span></div>
+      <div class="kpi"><b>18</b><span class="small muted">asked for samples</span></div>
+      <div class="kpi"><b>3 min</b><span class="small muted">average time to complete</span></div>
+    </div>
+    <div class="card stack">
+      <h3>Sectors that responded most</h3>
+      <div class="stack small" id="bars"></div>
+    </div>
+    <div class="card stack">
+      <h3>Most suggested scent families</h3>
+      <p class="small muted">Helps you plan samples and fragrance stock for the next meetings.</p>
+      <div class="stack small" id="bars2"></div>
+    </div>
+  </section>
+
+  <footer>
+    Demo prepared by Sana Essencia Ltd (Company No. 17298884). The Scent Preview suggests scent families to guide the sales conversation; it does not reveal or replace the partner company's perfumers' formulas. Information only, with no health claims. Fragrances for spaces should follow IFRA standards and the supplier's safety data sheet. · <a href="/">sanaessencia.co.uk</a> · hello@sanaessencia.co.uk
+  </footer>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,3200)}
+
+/* ---------- references (verified) ---------- */
+const REFS={
+ spang96:"Spangenberg, Crowley & Henderson (1996). Improving the store environment: do olfactory cues affect evaluations and behaviors? Journal of Marketing, 60(2), 67–80.",
+ mitchell95:"Mitchell, Kahn & Knasko (1995). There's something in the air: effects of congruent or incongruent ambient odor on consumer decision making. Journal of Consumer Research, 22(2), 229–238.",
+ mattila01:"Mattila & Wirtz (2001). Congruency of scent and music as a driver of in-store evaluations and behavior. Journal of Retailing, 77(2), 273–289.",
+ herrmann13:"Herrmann, Zidansek, Sprott & Spangenberg (2013). The power of simplicity: processing fluency and the effects of olfactory cues on retail sales. Journal of Retailing, 89(1), 30–43.",
+ roschk17:"Roschk, Loureiro & Breitsohl (2017). Calibrating 30 years of experimental research: a meta-analysis of the atmospheric effects of music, scent, and color. Journal of Retailing, 93(2), 228–240.",
+ herz04:"Herz, Eliassen, Beland & Souza (2004). Neuroimaging evidence for the emotional potency of odor-evoked memory. Neuropsychologia, 42(3), 371–378.",
+ lehrner05:"Lehrner, Marwinski, Lehr, Jöhren & Deecke (2005). Ambient odors of orange and lavender reduce anxiety and improve mood in a dental office. Physiology & Behavior, 86(1–2), 92–95.",
+ stein16:"Steinemann (2016). Fragranced consumer products: exposures and effects from emissions. Air Quality, Atmosphere & Health, 9, 861–866."
+};
+const RK=Object.keys(REFS); const rn=k=>RK.indexOf(k)+1;
+const cite=k=>`<span class="ref">[${rn(k)}]</span>`;
+
+/* ---------- data ---------- */
+const SECTORS=[
+ {id:"hotel",n:"Hotel or B&B",pl:"hotels and B&Bs",sp:["lobby","corridor","restaurant_n","spa","room"],fav:{floral:1,woody:1,amber:1},say:"A scent created to welcome guests and help them remember their stay.",no:"Our scent takes away the stress of travel"},
+ {id:"retail",n:"Shop or retail",pl:"shops",sp:["floor","fitting","till","window"],fav:{citrus:1,floral:1,woody:1},say:"The brand's own scent, in every store across the chain.",no:"Boosts your sales by 30%"},
+ {id:"office",n:"Office or workplace",pl:"offices",sp:["reception","meeting","breakout","corridor"],fav:{green:1,citrus:1,aquatic:1},say:"A light scent in reception, to welcome everyone who arrives.",no:"Improves your team's productivity"},
+ {id:"health",n:"Clinic or practice",pl:"clinics",sp:["waiting","reception","treatment_n"],fav:{citrus:1,aquatic:1,floral:1},say:"A light scent in the waiting room, chosen to make people feel welcome.",no:"Reduces patients' anxiety"},
+ {id:"gym",n:"Gym or studio",pl:"gyms and studios",sp:["reception","training","changing"],fav:{citrus:1,green:1,aquatic:1},say:"A fresh feel from the start of the workout to the end.",no:"Boosts your performance"},
+ {id:"auto",n:"Car showroom",pl:"car showrooms",sp:["showroom","lounge","handover"],fav:{woody:1,amber:1,green:1},say:"The scent that goes with choosing and collecting a new car.",no:"Helps customers decide faster"},
+ {id:"mall",n:"Shopping centre, airport or high footfall",pl:"busy public spaces",sp:["entrance","corridor","plaza"],fav:{citrus:1,aquatic:1,green:1},say:"A light scent signature that helps people recognise the space.",no:"Makes visitors stay longer and spend more"},
+ {id:"event",n:"Event or brand activation",pl:"events",sp:["entrance","stage","lounge"],fav:{citrus:1,amber:1,floral:1},say:"A scent that is part of the event experience.",no:"Guarantees the audience will remember the brand"}
+];
+const SPACES={
+ lobby:["Lobby and reception","m","On during the day, in cycles (e.g. 30 min on, 30 min off).","First impressions: this is where the signature shows most."],
+ corridor:["Corridors and circulation","s","Light and steady, without build-up.","Gives continuity without tiring the nose."],
+ restaurant_n:["Restaurant and food areas","n","No scent.","Scent competes with food and bothers diners."],
+ spa:["Spa or relaxation area","s","Light, only while in use. Offer scent-free times.","People there have chosen to be there."],
+ room:["Guest rooms","n","No scent, or only on request.","Guests don't choose the air they breathe at night."],
+ floor:["Shop floor","m","In cycles during opening hours.","A simple scent that fits the products works best."],
+ fitting:["Fitting rooms","s","Very light.","Small, closed spaces: scent builds up."],
+ till:["Tills and exit","s","Light.","Closes the experience with the same signature."],
+ window:["Entrance and window","m","Moderate at the door, without spilling onto the street.","Invites people in."],
+ reception:["Reception","m","30–60 min on and 30–60 min off.","A warm welcome, without bothering the people who work there all day."],
+ meeting:["Meeting rooms","s","20–30 min before the meeting, then off when it starts.","Light air, not heavy."],
+ breakout:["Kitchen and breakout areas","s","Only if the team agrees; away from food.","No one should spend all day in a scent they didn't choose."],
+ waiting:["Waiting room","s","Very light, in cycles. Switch off if anyone asks.","Patients may be sensitive, pregnant or have allergies."],
+ treatment_n:["Treatment rooms","n","No scent.","Patients can't choose to leave."],
+ training:["Training floor","s","Light and fresh, with good ventilation.","Heavy breathing calls for lightness."],
+ changing:["Changing rooms","m","Moderate freshness.","A sense of cleanliness."],
+ showroom:["Showroom","m","In cycles while customers are in.","A recognisable signature across every site."],
+ lounge:["Lounge","s","Light.","A space for conversation and waiting."],
+ handover:["Handover area","m","Only during the handover.","A memorable moment: scent helps create the memory."],
+ entrance:["Entrances","m","Moderate, at the busiest times.","This is where the signature is noticed."],
+ plaza:["Seating and open areas","s","Light.","Large spaces need well-spread diffusion."],
+ stage:["Main stage area","s","Light, without competing with the content.","The scent supports, it doesn't take centre stage."]
+};
+const LVL={s:["light","s"],m:["moderate","m"],n:["no scent","n"]};
+const PERS=["Welcoming","Sophisticated","Energetic","Natural","Innovative","Traditional","Young","Minimalist","Warm","Fresh","Elegant","Playful"];
+const FEEL=[
+ {id:"welcome",n:"Welcome",t:"a sense of welcome"},{id:"calm",n:"Calm",t:"calm"},{id:"energy",n:"Energy",t:"energy"},{id:"trust",n:"Trust",t:"trust"},
+ {id:"luxury",n:"Sophistication",t:"sophistication"},{id:"fresh",n:"Freshness and cleanliness",t:"freshness and cleanliness"},{id:"cosy",n:"Cosiness",t:"cosiness"},{id:"memory",n:"Being remembered",t:"brand recall"}
+];
+const CARE=[
+ {id:"sens",n:"Sensitive audience (children, pregnancy, patients)"},{id:"food",n:"Food or drink in the space"},
+ {id:"closed",n:"Small or closed spaces with air conditioning"},{id:"staff",n:"People work in the space all day"},{id:"pets",n:"Pets in the space"}
+];
+const FAM={
+ citrus:{n:"Bright citrus",c:"#C2932A",notes:["sweet orange","bergamot","lemon","mandarin"],d:"Cheerful, clean and very widely liked. Says welcome and clarity.",
+  p:{Energetic:2,Young:2,Fresh:2,Playful:2,Welcoming:1,Minimalist:1},f:{welcome:2,energy:2,fresh:2,memory:1},
+  sci:`Simple, familiar scents are easier to process. In a real store, a simple orange scent was linked to higher spending than a complex blend. ${cite("herrmann13")}`},
+ green:{n:"Green and herbal",c:"#5E7D64",notes:["rosemary","lemongrass","green tea","basil"],d:"Natural and clear-headed. Suits brands linked to nature, wellbeing and clean tech.",
+  p:{Natural:3,Fresh:2,Minimalist:2,Innovative:1,Energetic:1},f:{fresh:2,energy:1,calm:1,trust:1},
+  sci:`What matters most is the fit between scent and setting: scents that match the place and the brand tend to be rated more positively. ${cite("mitchell95")} ${cite("mattila01")}`},
+ floral:{n:"Soft floral",c:"#B0605A",notes:["orange blossom","lavender","soft jasmine","light rose"],d:"Delicate and welcoming when well dosed. Good for hospitality and beauty.",
+  p:{Welcoming:2,Elegant:2,Sophisticated:1,Warm:1,Traditional:1},f:{welcome:2,calm:2,cosy:1,luxury:1},
+  sci:`In classic retail studies, spaces with a pleasant scent were rated more positively than unscented ones. ${cite("spang96")}`},
+ woody:{n:"Woody",c:"#6E5641",notes:["cedar","sandalwood","vetiver","soft leather"],d:"Solid and reliable. Conveys quality and permanence.",
+  p:{Sophisticated:2,Traditional:2,Elegant:2,Minimalist:1,Warm:1},f:{trust:3,luxury:2,memory:1},
+  sci:`Memories triggered by scent activate emotion-related areas of the brain more strongly than memories triggered by images. ${cite("herz04")}`},
+ amber:{n:"Amber and spice",c:"#8F5410",notes:["amber","soft vanilla","cardamom","tonka bean"],d:"Warm and enveloping. Elegant in the evening and in winter; needs a low dose.",
+  p:{Warm:3,Sophisticated:2,Elegant:1,Welcoming:1},f:{cosy:3,luxury:2,memory:1},
+  sci:`Scent and music that match in intensity (for example, both calm or both lively) improved how the space was rated. ${cite("mattila01")}`},
+ aquatic:{n:"Aquatic and clean",c:"#2C5140",notes:["sea breeze","cotton","ozonic notes","white tea"],d:"Fresh and neutral, liked by broad audiences, with a sense of cleanliness.",
+  p:{Fresh:3,Minimalist:2,Innovative:2,Young:1},f:{fresh:3,calm:1,welcome:1},
+  sci:`A review of 30 years of experiments found real but moderate effects of scent on how spaces are experienced, larger when the scent fits the context. ${cite("roschk17")}`}
+};
+
+/* ---------- state ---------- */
+const st={name:"",sector:null,pers:[],feel:[],care:[]};
+const STEPS=[
+ {t:"What is your business called?",s:"Optional. We only use it to personalise the preview.",ok:()=>true},
+ {t:"What kind of space do you have?",s:"Choose one.",ok:()=>!!st.sector},
+ {t:"How would you describe your brand?",s:"Choose up to 3 words.",ok:()=>st.pers.length>0},
+ {t:"What should people feel when they walk in?",s:"Choose up to 2.",ok:()=>st.feel.length>0},
+ {t:"Anything we should take care with?",s:"Tick what applies. It helps set the intensity and where not to use scent.",ok:()=>true}
+];
+let step=0;
+function chip(label,on,attr){return `<button type="button" class="chip" aria-pressed="${on}" ${attr}>${esc(label)}</button>`}
+function renderStep(){
+ $("#w-step").textContent=`Step ${step+1} of ${STEPS.length}`;
+ $("#w-prog").innerHTML=STEPS.map((_,i)=>`<span class="${i<=step?"on":""}"></span>`).join("");
+ $("#w-title").textContent=STEPS[step].t; $("#w-sub").textContent=STEPS[step].s;
+ let h="";
+ if(step===0) h=`<label class="small muted" for="nm">Business name</label><input type="text" id="nm" maxlength="60" placeholder="e.g. The Harbour Hotel" value="${esc(st.name)}">`;
+ if(step===1) h=`<div class="chips">${SECTORS.map(s=>chip(s.n,st.sector===s.id,`data-sector="${s.id}"`)).join("")}</div>`;
+ if(step===2) h=`<div class="chips">${PERS.map(p=>chip(p,st.pers.includes(p),`data-pers="${p}"`)).join("")}</div>`;
+ if(step===3) h=`<div class="chips">${FEEL.map(f=>chip(f.n,st.feel.includes(f.id),`data-feel="${f.id}"`)).join("")}</div>`;
+ if(step===4) h=`<div class="chips">${CARE.map(c=>chip(c.n,st.care.includes(c.id),`data-care="${c.id}"`)).join("")}</div>`;
+ $("#w-body").innerHTML=h;
+ $("#w-back").style.visibility=step?"visible":"hidden";
+ $("#w-next").textContent=step===STEPS.length-1?"See my preview":"Continue";
+ $("#w-next").disabled=!STEPS[step].ok();
+ const nm=$("#nm"); if(nm) nm.addEventListener("input",e=>st.name=e.target.value.trim());
+}
+document.addEventListener("click",e=>{
+ const s=e.target.closest("[data-sector]"); if(s){st.sector=s.dataset.sector;renderStep();return}
+ const p=e.target.closest("[data-pers]"); if(p){toggle(st.pers,p.dataset.pers,3);renderStep();return}
+ const f=e.target.closest("[data-feel]"); if(f){toggle(st.feel,f.dataset.feel,2);renderStep();return}
+ const c=e.target.closest("[data-care]"); if(c){toggle(st.care,c.dataset.care,9);renderStep();return}
+});
+function toggle(arr,v,max){const i=arr.indexOf(v); if(i>=0)arr.splice(i,1); else {if(arr.length>=max)arr.shift(); arr.push(v)}}
+$("#w-back").addEventListener("click",()=>{if(step>0){step--;renderStep()}});
+$("#w-next").addEventListener("click",()=>{ if(step<STEPS.length-1){step++;renderStep()} else showResult(); });
+
+/* ---------- result ---------- */
+const lst=a=>a.length>1?a.slice(0,-1).join(", ")+" and "+a[a.length-1]:a[0];
+function score(){
+ const sec=SECTORS.find(s=>s.id===st.sector);
+ const res=Object.entries(FAM).map(([id,F])=>{
+  let sc=0, why=[], pm=[], fm=[];
+  st.pers.forEach(p=>{if(F.p[p]){sc+=F.p[p];pm.push(p.toLowerCase())}});
+  st.feel.forEach(f=>{if(F.f[f]){sc+=F.f[f]*1.5;fm.push(FEEL.find(x=>x.id===f).t)}});
+  if(pm.length)why.push(`suits a ${lst(pm)} brand`);
+  if(fm.length)why.push(`supports ${lst(fm)}`);
+  if(sec.fav[id]){sc+=2;why.push(`is a popular choice for ${sec.pl}`)}
+  if(id==="amber"&&(st.care.includes("closed")||st.care.includes("sens")||st.care.includes("food")))sc-=2.5;
+  if(id==="floral"&&st.care.includes("sens"))sc-=1;
+  if((id==="citrus"||id==="aquatic")&&st.care.includes("sens"))sc+=1;
+  return {id,F,sc,why:[...new Set(why)].slice(0,3)};
+ }).sort((a,b)=>b.sc-a.sc);
+ const max=Math.max(res[0].sc,1);
+ return res.slice(0,2).map(r=>({...r,pct:Math.max(55,Math.min(96,Math.round(60+36*r.sc/max)))}));
+}
+let summary="";
+function showResult(){
+ const sec=SECTORS.find(s=>s.id===st.sector), top=score(), who=st.name||"Your business";
+ const soft=st.care.includes("sens")||st.care.includes("closed")||st.care.includes("staff");
+ const rows=sec.sp.map(k=>{let [n,l,when,why]=SPACES[k]; if(soft&&l==="m")l="s"; if(k==="reception"&&st.care.includes("staff"))when+=" Agree it with the people who work there.";
+   return `<tr><td><b>${esc(n)}</b></td><td><span class="lvl ${LVL[l][1]}">${LVL[l][0]}</span></td><td>${esc(when)}</td><td class="muted">${esc(why)}</td></tr>`}).join("");
+ const care=[
+  "Start with less intensity than seems necessary: the nose adapts within minutes, and newcomers notice more.",
+  "Let people know the space is scented and switch off if someone asks. A US survey found about a third of adults reported some problem with fragranced products. "+cite("stein16"),
+  st.care.includes("food")?"Keep scent away from where food and drink are served.":null,
+  st.care.includes("pets")?"Cats are especially sensitive to essential oils: keep diffusers out of reach and the space well ventilated.":null,
+  st.care.includes("staff")?"People who work in the space all day should have a say and have scent-free areas.":null,
+  "Use fragrances with IFRA certification and the supplier's safety data sheet."
+ ].filter(Boolean);
+ $("#result").innerHTML=`
+  <div class="card stack">
+   <span class="eyebrow">Scent identity preview</span>
+   <h2>${esc(who)}</h2>
+   <p class="small muted">${esc(sec.n)} · ${esc(st.pers.join(", ").toLowerCase())} brand · feeling: ${esc(lst(st.feel.map(f=>FEEL.find(x=>x.id===f).t)))}</p>
+  </div>
+  <h3>Suggested scent families</h3>
+  ${top.map((r,i)=>`<div class="fam" style="--c:${r.F.c}">
+    <div class="top"><h3>${i===0?"1st":"2nd"} suggestion · ${esc(r.F.n)}</h3><span class="match">${r.pct}% match</span></div>
+    <p class="small">${esc(r.F.d)}</p>
+    <div class="notes">${r.F.notes.map(n=>`<span>${esc(n)}</span>`).join("")}</div>
+    <ul class="why small">${r.why.map(w=>`<li>${esc(w.charAt(0).toUpperCase()+w.slice(1))}</li>`).join("")}</ul>
+    <div class="sci"><b>What the research shows:</b> ${r.F.sci}</div>
+   </div>`).join("")}
+  <p class="small muted">The families guide the conversation. The final formula is created by the scent company's perfumers, from samples you smell in person.</p>
+  <div class="card stack">
+   <h3>Plan by space</h3>
+   <div style="overflow-x:auto"><table><thead><tr><th>Space</th><th>Intensity</th><th>When</th><th>Why</th></tr></thead><tbody>${rows}</tbody></table></div>
+  </div>
+  <div class="card stack">
+   <h3>Good practice</h3>
+   <ul class="why small">${care.map(c=>`<li>${c}</li>`).join("")}</ul>
+  </div>
+  <div class="card stack">
+   <h3>How to talk about your scent</h3>
+   <div class="say"><div class="yes">“${esc(sec.say)}”</div><div class="no">“${esc(sec.no)}”</div></div>
+   <p class="small muted">Describe the scent, the experience and the brand. Health or results claims need evidence, and the UK Advertising Codes (CAP Code) apply to them.</p>
+  </div>
+  <div class="card stack" style="background:var(--forest);color:var(--cream)">
+   <h3 style="color:var(--cream)">Next step</h3>
+   <p class="small" style="color:rgba(245,241,232,.9)">Our team brings samples of these families for you to smell in your own space.</p>
+   <div class="row"><button class="btn accent" type="button" id="ask">I'd like samples</button><button class="btn ghost" style="border-color:var(--cream);color:var(--cream)" type="button" id="copy">Copy summary</button><button class="btn ghost" style="border-color:var(--cream);color:var(--cream)" type="button" id="restart">Start again</button></div>
+  </div>
+  <div class="card"><p class="small muted"><b>References:</b> ${top.map(r=>r.F.sci.match(/\[(\d+)\]/g)).flat().filter(Boolean).concat(["["+rn("stein16")+"]"]).filter((v,i,a)=>a.indexOf(v)===i).map(x=>{const k=RK[+x.replace(/\D/g,"")-1];return esc(x+" "+REFS[k])}).join(" ")}</p></div>`;
+ summary=[`SCENT PREVIEW · ${who}`,`${sec.n} · ${st.pers.join(", ").toLowerCase()} brand`,"",
+  ...top.map((r,i)=>`${i+1}. ${r.F.n} (${r.pct}%) · ${r.F.notes.join(", ")}`),"","PLAN BY SPACE",
+  ...sec.sp.map(k=>{let [n,l,when]=SPACES[k]; if(soft&&l==="m")l="s"; return `- ${n}: ${LVL[l][0]} · ${when}`}),"","Science by Sana Essencia · sanaessencia.co.uk"].join("\n");
+ $("#wizard").hidden=true; $("#result").hidden=false; window.scrollTo({top:$("#result").offsetTop-10,behavior:"smooth"});
+ $("#ask").onclick=()=>toast("In the live version, this button alerts the salesperson and books the sample visit.");
+ $("#copy").onclick=()=>{try{navigator.clipboard.writeText(summary).then(()=>toast("Summary copied"),()=>toast("Couldn't copy here"))}catch(e){toast("Couldn't copy here")}};
+ $("#restart").onclick=()=>{Object.assign(st,{name:"",sector:null,pers:[],feel:[],care:[]});step=0;$("#result").hidden=true;$("#wizard").hidden=false;renderStep();window.scrollTo(0,0)};
+}
+
+/* ---------- sales team ---------- */
+const QA=[
+ ["“Does this actually work?”",`Yes, with a real but moderate effect. A meta-analysis of 30 years of experiments found positive effects of scent on how spaces are rated and on behaviour, larger when the scent fits the setting ${cite("roschk17")}. Say it in those words: “a real effect, which depends on choosing the right scent”.`],
+ ["“How much will sales go up?”",`Don't promise a number. Some studies show an effect on sales, such as the simple orange scent ${cite("herrmann13")}, but results vary by store, product and audience. Offer to measure together: a period with scent and one without, under the same conditions.`],
+ ["“Which scent is best?”",`The one that fits the brand and the space. Scents that match the context are rated better than pleasant but out-of-place ones ${cite("mitchell95")} ${cite("mattila01")}. Simple, familiar scents tend to work better than very complex blends ${cite("herrmann13")}.`],
+ ["“Why does scent stick in the memory?”",`Smell has a direct line to brain areas linked to emotion and memory. Memories triggered by scent are more emotional than those triggered by images ${cite("herz04")}. That's why a scent signature helps customers recognise a brand.`],
+ ["“What if a staff member or customer doesn't like it?”",`A fair concern: in a US survey, about a third of adults reported some problem with fragranced products ${cite("stein16")}. The answer is low intensity, cycles, scent-free areas and agreeing it with the team. That protects the client and your brand.`],
+ ["“Can I say the scent calms patients?”",`No. Studies in dental waiting rooms linked orange and lavender to better reported mood ${cite("lehrner05")}, but a clinic can't promise a health effect. Say: “a light scent, chosen to make people feel welcome”.`]
+];
+const MYTHS=[
+ ["“75% of our emotions are generated by smell.”","Usually credited to marketing books, with no published study behind it. Use instead: memories triggered by scent are more emotional than those triggered by images [herz04]."],
+ ["“We remember 35% of what we smell but only 5% of what we see.”","Credited to an American university, but we could not find the original study. Use instead: smell has a direct line to brain areas linked to emotion and memory [herz04]."],
+ ["“Smell influences 80% of buying decisions.”","No traceable source. Use instead: retail studies show real, moderate effects, larger when the scent fits the space [roschk17]."]
+];
+$("#faq").innerHTML=QA.map(([q,a],i)=>`<details ${i===0?"open":""}><summary>${q}</summary><p>${a}</p></details>`).join("");
+$("#myths").innerHTML=MYTHS.map(([m,a])=>`<div class="myth"><b>${esc(m)}</b><p class="small" style="margin-top:6px">${a.replace(/\[(\w+)\]/g,(_,k)=>cite(k))}</p></div>`).join("");
+$("#refs").innerHTML=RK.map(k=>`<li>${esc(REFS[k])}</li>`).join("");
+
+/* ---------- dashboard (example) ---------- */
+const bars=(el,data)=>{const m=Math.max(...data.map(d=>d[1]));$(el).innerHTML=data.map(([n,v])=>`<div><div class="row" style="justify-content:space-between"><span>${n}</span><b>${v}</b></div><div class="bar"><i style="width:${v/m*100}%"></i></div></div>`).join("")};
+bars("#bars",[["Hotel or B&B",14],["Shop or retail",11],["Office or workplace",8],["Clinic or practice",5],["Car showroom",3]]);
+bars("#bars2",[["Bright citrus",16],["Woody",12],["Soft floral",9],["Aquatic and clean",7],["Green and herbal",5]]);
+
+/* ---------- tabs ---------- */
+$$(".tab").forEach(b=>b.addEventListener("click",()=>{
+ $$(".tab").forEach(x=>x.setAttribute("aria-selected",x===b?"true":"false"));
+ ["client","team","dash"].forEach(t=>$("#p-"+t).hidden=t!==b.dataset.tab);
+}));
+renderStep();
+})();
+</script>
+</body>
+</html>
