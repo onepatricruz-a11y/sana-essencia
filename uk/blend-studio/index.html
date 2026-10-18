@@ -18,8 +18,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://sanaessencia.co.uk/blend-studio/og-image.png">
   <meta property="og:type" content="website">
-<meta name="theme-color" content="#1F3D2F">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%231F3D2F'/><text x='50' y='66' font-size='50' text-anchor='middle' fill='%23F5F1E8' font-family='Georgia'>S</text></svg>">
+<meta name="theme-color" content="#3B2733">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%233B2733'/><text x='50' y='66' font-size='50' text-anchor='middle' fill='%23F6EEE1' font-family='Georgia'>S</text></svg>">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -41,62 +41,64 @@ body.has-bar .toast { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Figtree:wght@400..700&family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* Layout: a perfumer's lab bench — sticky section tabs over a two-column workbench; the recipe is a mono "formula sheet" and every ingredient carries a note-coloured blotter strip. Tokens follow sanaessencia.co.uk. */
 :root {
-  --paper: #F5F1E8;
-  --paper-2: #EDE6D6;
-  --surface: #FBF9F4;
-  --ink: #1E2520;
-  --muted: #5B665E;
-  --forest: #1F3D2F;
-  --forest-2: #2C5140;
-  --sage: #A7B8A0;
-  --sage-wash: #E4EADF;
-  --terracotta: #C0643E;
-  --line: rgba(31, 61, 47, 0.14);
-  --line-strong: rgba(31, 61, 47, 0.30);
-  --scrim: rgba(20, 30, 24, 0.45);
-  --btn-bg: #1F3D2F;
-  --btn-fg: #F5F1E8;
-  --top: #C2932A;
-  --heart: #B0605A;
-  --base: #6E5641;
+  /* Sana Essencia Studio palette: beeswax, smoked plum, amber resin, clay rose, eucalyptus */
+  --paper: #F6EEE1;
+  --paper-2: #EEE2CF;
+  --surface: #FCF8F2;
+  --ink: #2B1E25;
+  --muted: #6E5C64;
+  --forest: #3B2733;
+  --forest-2: #5C4150;
+  --sage: #7FA693;
+  --sage-wash: #E6EEE6;
+  --terracotta: #94601F;
+  --line: rgba(59, 39, 51, 0.14);
+  --line-strong: rgba(59, 39, 51, 0.30);
+  --scrim: rgba(30, 18, 24, 0.45);
+  --btn-bg: #C4893B;
+  --btn-fg: #2B1E25;
+  --top: #C9972E;
+  --heart: #C77C6C;
+  --base: #7D5B3E;
   --ok: #2F6B45;
   --ok-bg: #E1EDE3;
   --warn: #8F5410;
   --warn-bg: #F5E8D2;
   --bad: #A13A2A;
   --bad-bg: #F4DEDA;
-  --info: #2C5140;
-  --info-bg: #E6ECE6;
-  --shadow: 0 10px 30px rgba(31, 61, 47, 0.10);
-  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --info: #5C4150;
+  --info-bg: #EFE6EC;
+  --shadow: 0 10px 30px rgba(59, 39, 51, 0.10);
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --wordmark: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --radius: 16px;
   --radius-sm: 10px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #111915; --paper-2: #18231D; --surface: #1A2620; --ink: #ECE6D8; --muted: #A6B1A8;
-    --forest: #B9D3BF; --forest-2: #9DBFA6; --sage: #5F7A64; --sage-wash: #213129; --terracotta: #E7956E;
-    --line: rgba(236, 230, 216, 0.12); --line-strong: rgba(236, 230, 216, 0.26); --scrim: rgba(0, 0, 0, 0.6);
-    --btn-bg: #B9D3BF; --btn-fg: #10201A;
-    --top: #E3BD5F; --heart: #E0948C; --base: #C9A986;
-    --ok: #8FD1A3; --ok-bg: #1C3325; --warn: #F0C27A; --warn-bg: #392C17; --bad: #F2A193; --bad-bg: #3D211C; --info: #B9D3BF; --info-bg: #1F2E27;
+    --paper: #1A1316; --paper-2: #22191D; --surface: #271D22; --ink: #F1E7DA; --muted: #B9A9AF;
+    --forest: #F0D9B8; --forest-2: #E2C39A; --sage: #7FA693; --sage-wash: #24302A; --terracotta: #E0A85A;
+    --line: rgba(241, 231, 218, 0.12); --line-strong: rgba(241, 231, 218, 0.26); --scrim: rgba(0, 0, 0, 0.6);
+    --btn-bg: #E0A85A; --btn-fg: #241A10;
+    --top: #E8C062; --heart: #E39B8B; --base: #C9A07A;
+    --ok: #8FD1A3; --ok-bg: #1C3325; --warn: #F0C27A; --warn-bg: #392C17; --bad: #F2A193; --bad-bg: #3D211C; --info: #E2C39A; --info-bg: #2C2226;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #111915; --paper-2: #18231D; --surface: #1A2620; --ink: #ECE6D8; --muted: #A6B1A8;
-  --forest: #B9D3BF; --forest-2: #9DBFA6; --sage: #5F7A64; --sage-wash: #213129; --terracotta: #E7956E;
-  --line: rgba(236, 230, 216, 0.12); --line-strong: rgba(236, 230, 216, 0.26); --scrim: rgba(0, 0, 0, 0.6);
-  --btn-bg: #B9D3BF; --btn-fg: #10201A;
-  --top: #E3BD5F; --heart: #E0948C; --base: #C9A986;
-  --ok: #8FD1A3; --ok-bg: #1C3325; --warn: #F0C27A; --warn-bg: #392C17; --bad: #F2A193; --bad-bg: #3D211C; --info: #B9D3BF; --info-bg: #1F2E27;
+  --paper: #1A1316; --paper-2: #22191D; --surface: #271D22; --ink: #F1E7DA; --muted: #B9A9AF;
+    --forest: #F0D9B8; --forest-2: #E2C39A; --sage: #7FA693; --sage-wash: #24302A; --terracotta: #E0A85A;
+    --line: rgba(241, 231, 218, 0.12); --line-strong: rgba(241, 231, 218, 0.26); --scrim: rgba(0, 0, 0, 0.6);
+    --btn-bg: #E0A85A; --btn-fg: #241A10;
+    --top: #E8C062; --heart: #E39B8B; --base: #C9A07A;
+    --ok: #8FD1A3; --ok-bg: #1C3325; --warn: #F0C27A; --warn-bg: #392C17; --bad: #F2A193; --bad-bg: #3D211C; --info: #E2C39A; --info-bg: #2C2226;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   color-scheme: dark;
 }
@@ -104,7 +106,7 @@ body.has-bar .toast { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
 * { box-sizing: border-box; }
 body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
 .app { max-width: 1140px; margin: 0 auto; padding-inline: 16px; padding-block: 14px 48px; }
-h1, h2, h3, h4 { font-family: var(--serif); color: var(--forest); font-weight: 600; line-height: 1.12; margin: 0; text-wrap: balance; }
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--forest); font-weight: 600; font-variation-settings: "SOFT" 100; line-height: 1.12; margin: 0; text-wrap: balance; }
 h2 { font-size: 1.9rem; }
 h3 { font-size: 1.35rem; }
 h4 { font-size: 1.12rem; font-family: var(--sans); font-weight: 650; color: var(--ink); line-height: 1.3; }
@@ -124,8 +126,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* Masthead */
 .masthead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding-block: 6px 12px; }
 .brand { display: flex; align-items: center; gap: 12px; }
-.mark { width: 40px; height: 40px; border-radius: 50%; background: var(--btn-bg); color: var(--btn-fg); display: grid; place-items: center; font-family: var(--serif); font-size: 1.45rem; font-weight: 700; flex: none; }
-.brand-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--forest); line-height: 1; }
+.mark { width: 40px; height: 40px; border-radius: 50%; background: var(--btn-bg); color: var(--btn-fg); display: grid; place-items: center; font-family: var(--wordmark); font-size: 1.45rem; font-weight: 700; flex: none; }
+.brand-name { font-family: var(--wordmark); font-size: 1.5rem; font-weight: 700; color: var(--forest); line-height: 1; }
 .brand-sub { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta); margin-top: 3px; }
 .masthead-line { color: var(--muted); font-size: 0.92rem; max-width: 46ch; }
 
@@ -157,6 +159,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .note-heart { --note: var(--heart); }
 .note-base { --note: var(--base); }
 .notebadge { color: var(--note); }
+.famdot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--fam); margin-right: 5px; vertical-align: 0; box-shadow: 0 0 0 1px var(--line); }
 .cite { font-size: 0.78rem; font-weight: 600; color: var(--forest-2); white-space: nowrap; text-decoration: none; border-bottom: 1px dotted currentColor; }
 .cites { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; }
 
@@ -774,6 +777,10 @@ const FLAGS = {
 /* strength: 1 soft … 5 very intense (guides how many parts to use)
    candle: how it tends to perform in wax (good / ok / weak)
    cost: 1 £ … 3 £££ */
+/* Scent family colours, chosen from colour-odour research (lemon-yellow, spearmint-turquoise,
+   floral-pink, caramel/woody-brown) so each family looks the way it smells. */
+const FAM_HEX = { Citrus: "#E8C547", Floral: "#E39BB0", Herbal: "#86A960", Minty: "#4FB3A9", Woody: "#7D5B3E", Resinous: "#C4893B", Spicy: "#C2622F", Sweet: "#B9803F" };
+const famDot = f => `<span class="famdot" style="--fam:${FAM_HEX[f] || "#999"}" aria-hidden="true"></span>`;
 const OILS = [
   { id: "bergamot", name: "Bergamot", latin: "Citrus bergamia (cold-pressed)", note: "top", family: "Citrus", strength: 3, cost: 2, candle: "good",
     aroma: "Bright, slightly floral citrus: the scent of Earl Grey tea.",
@@ -2028,8 +2035,8 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
     return `<p class="mono small" style="margin-bottom:10px">${esc(summaryLine(rec))}</p><table><thead>${head}</thead><tbody>${rows}${foot}</tbody></table>`;
   }
 
-  const FAMILY_COLOURS = { Citrus: "#E2B33B", Floral: "#D9809F", Herbal: "#6EA56A", Minty: "#45ADA3", Woody: "#9C6B45", Resinous: "#B88A2E", Spicy: "#C8562E", Sweet: "#D7A777" };
-  const FAMILY_INK = { Woody: "#FFF8F0", Spicy: "#FFF8F0" };
+  const FAMILY_COLOURS = FAM_HEX;
+  const FAMILY_INK = { Woody: "#FFF8F0", Spicy: "#FFF8F0", Resinous: "#2B1E25" };
   const SC = {"title": "Your scent, by family", "empty": "Add ingredients to see your scent take shape.", "fam": {"Citrus": "Citrus", "Floral": "Floral", "Herbal": "Herbal", "Minty": "Minty", "Woody": "Woody", "Resinous": "Resinous", "Spicy": "Spicy", "Sweet": "Sweet"}, "mostly": "Mostly {f}, with {rest}.", "only": "All {f}.", "aria": "Blend by ingredient"};
   function renderScentCard(rec) {
     const box = $("#scentcard"); if (!box) return;
@@ -2229,7 +2236,7 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
       .filter(o => skin ? o.id !== "bergamot" || q.includes("bergamot") : true);
     $("#picker-list").innerHTML = list.length ? list.map(o => {
       const added = inBlend.has(o.id);
-      return `<button type="button" class="pick note-${o.note}" data-pick="${o.id}" ${added ? "disabled" : ""}><span class="strip" aria-hidden="true"></span><span class="t"><b>${esc(o.name)}</b><span>${esc(NOTES[o.note].label)} · ${esc(o.family)} · ${esc(o.aroma)}</span></span><span class="small muted">${added ? "Added" : "Add"}</span></button>`;
+      return `<button type="button" class="pick note-${o.note}" data-pick="${o.id}" ${added ? "disabled" : ""}><span class="strip" aria-hidden="true"></span><span class="t"><b>${esc(o.name)}</b><span>${esc(NOTES[o.note].label)} · ${famDot(o.family)}${esc(o.family)} · ${esc(o.aroma)}</span></span><span class="small muted">${added ? "Added" : "Add"}</span></button>`;
     }).join("") : `<p class="muted" style="padding:12px">No match. Try another word.</p>`;
   }
   $("#add-ing").addEventListener("click", openPicker);
@@ -2451,7 +2458,7 @@ Reply with only JSON in exactly this shape:
   function oilCard(o) {
     const flags = o.flags.map(f => `<span class="flag" title="${esc(FLAGS[f].text)}">${esc(FLAGS[f].label)}</span>`).join("");
     return `<details class="oil note-${o.note}" id="oil-${o.id}">
-      <summary><span class="strip" aria-hidden="true"></span><span class="t"><b>${esc(o.name)}</b><span class="small muted"><i>${esc(o.latin)}</i></span><span class="row">${noteBadge(o.note)}${evBadge(o.evidence)}<span class="small muted">${esc(o.family)}</span></span><span class="small">${esc(o.aroma)}</span></span><span class="chev" aria-hidden="true">›</span></summary>
+      <summary><span class="strip" aria-hidden="true"></span><span class="t"><b>${esc(o.name)}</b><span class="small muted"><i>${esc(o.latin)}</i></span><span class="row">${noteBadge(o.note)}${evBadge(o.evidence)}<span class="small muted">${famDot(o.family)}${esc(o.family)}</span></span><span class="small">${esc(o.aroma)}</span></span><span class="chev" aria-hidden="true">›</span></summary>
       <div class="oil-body">
         <div class="kv"><span class="k">Key aroma molecules</span><span>${esc(o.molecules)}</span></div>
         <div class="kv"><span class="k">When you smell it</span><span>${esc(o.brain)}</span></div>
