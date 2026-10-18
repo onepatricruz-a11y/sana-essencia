@@ -215,6 +215,13 @@
     .prose p { margin-top: 10px; }
     .offers-grid.plans { grid-template-columns: repeat(3, 1fr); }
     .aud h3 { font-size: 1.35rem; }
+    .season-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 34px; }
+    .season { background: var(--white); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+    .season.now { border: 2px solid var(--terracotta); }
+    .season .when { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 8px; }
+    .season p { font-size: .95rem; color: var(--muted); }
+    @media (max-width: 960px) { .season-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .season-grid { grid-template-columns: 1fr; } }
     @media (max-width: 960px) { .offers-grid.plans { grid-template-columns: 1fr; } }
   </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Sana Essencia", "alternateName": ["Sana Essencia Ltd", "Sana Essência"], "url": "https://sanaessencia.co.uk/", "logo": "https://sanaessencia.co.uk/og-image.png", "email": "hello@sanaessencia.co.uk", "founder": {"@type": "Person", "name": "Patricia Cruz"}, "sameAs": ["https://sanaessencia.com.br/", "https://www.linkedin.com/in/patricia-cruz-7a3a90412/"], "description": "Sana Essencia translates the science of scent for brands and workplaces and offers practical tools on work-related stress."}</script>
@@ -263,8 +270,37 @@
           <div class="aud"><div class="icon">⚖</div><h3>One prep list</h3><p>Every guest’s choice turned into one list for the group: grams of each oil, total wax, jars, fresheners and tealights, with spare included.</p></div>
           <div class="aud"><div class="icon">❏</div><h3>Formula cards</h3><p>A printed card for each guest with your studio’s name, their blend and their exact grams. Something they keep, and a reason to remember you.</p></div>
           <div class="aud"><div class="icon">✉</div><h3>Follow-up emails</h3><p>A ready-written email per guest: their formula, candle care and an easy way to rebuy their blend or book again.</p></div>
-          <div class="aud"><div class="icon">❦</div><h3>Favours and team orders</h3><p>Scale one blend to 60 wedding favours or a team order in seconds, with the oils and wax to buy.</p></div>
+          <div class="aud"><div class="icon">❦</div><h3>Client gifts and favours</h3><p>Scale one blend to a company’s 200 Christmas gifts or 60 wedding favours in seconds, and print a gift tag for each.</p></div>
           <div class="aud"><div class="icon">✓</div><h3>Wording for your shop</h3><p>A checker for product listings and labels, so what you say about scent stays within UK advertising rules.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seasons" style="padding-top: 24px;">
+      <div class="container">
+        <span class="eyebrow">Seasonal collections</span>
+        <h2>A new collection before every season</h2>
+        <p class="lead">Six tested house blends from your own oils, ready 6 to 8 weeks ahead, so you can plan the workshops, client gifts and shop range that sell at that time of year.</p>
+        <div class="season-grid">
+          <div class="season now"><span class="when">Out now</span><h3>Christmas</h3><p>Mulled orange, frosted forest, candy cane. For festive workshops and companies’ Christmas gifts to their clients and teams.</p></div>
+          <div class="season"><span class="when">Early January</span><h3>Valentine’s</h3><p>Soft florals and warm woods for couples’ workshops and gifts.</p></div>
+          <div class="season"><span class="when">February</span><h3>Mother’s Day and spring</h3><p>Fresh, green and gently floral, for gift candles and Easter sessions.</p></div>
+          <div class="season"><span class="when">May</span><h3>Summer and Father’s Day</h3><p>Bright citrus and herbs, plus woody blends for summer gifts.</p></div>
+          <div class="season"><span class="when">August</span><h3>Endless summer</h3><p>Freshness that lasts into September: citrus lifted by mint and anchored by cedar, so it doesn’t fade after the first hour.</p></div>
+          <div class="season"><span class="when">September</span><h3>Autumn and Halloween</h3><p>Spice, smoke and orchard fruit for the cosy season.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gifts" class="context">
+      <div class="container">
+        <span class="eyebrow">Client gifts</span>
+        <h2>Help local businesses give something memorable</h2>
+        <p class="lead" style="color: rgba(245,241,232,0.85);">Companies buy Christmas gifts for clients and staff every year. With the Studio tools you can offer them a candle in a seasonal blend, made in your studio, with their name on every tag.</p>
+        <div class="context-grid">
+          <div class="context-card"><strong>Choose a blend</strong><p>From the seasonal collection, or one you create with the client.</p></div>
+          <div class="context-card"><strong>Scale it in seconds</strong><p>40 or 400 candles: the oils, wax and jars to order, with spare included.</p></div>
+          <div class="context-card"><strong>Print the gift tags</strong><p>“A gift from Hart &amp; Co”, the blend name and the safety line, ready to tie on.</p></div>
         </div>
       </div>
     </section>
@@ -308,6 +344,8 @@
               <li>Your studio’s name and your ingredient list</li>
               <li>A link and QR code for guests</li>
               <li>Host tools: prep list, formula cards, follow-up emails, favours</li>
+              <li>A new seasonal collection before every season</li>
+              <li>Client gift orders with printed gift tags</li>
               <li>The AI assistant when it launches (see below)</li>
             </ul>
             <div class="price">&pound;199 <small>a year, or &pound;24 a month</small></div>

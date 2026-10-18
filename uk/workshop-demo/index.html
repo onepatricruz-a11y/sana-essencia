@@ -370,9 +370,11 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
 .mail-item[open] summary { border-bottom: 1px solid var(--line); }
 .mail-body { padding: 12px 14px; display: grid; gap: 10px; }
 .mail-body pre { white-space: pre-wrap; font-family: var(--sans); font-size: .9rem; margin: 0; background: var(--paper); border-radius: 10px; padding: 12px; }
+.fav-wide { grid-column: 1 / -1; }
 .fav-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
 .host-foot { margin-top: 28px; }
 #print-cards { display: none; }
+.season-tag { justify-self: start; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--terracotta); border-radius: 999px; padding: 4px 10px; }
 .kit-cell { display: grid; gap: 4px; min-width: 0; }
 .kit-cap { display: none; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
 .kit-row + .kit-row { padding-top: 10px; border-top: 1px solid var(--line); }
@@ -398,6 +400,13 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
   .fcard td, .fcard th { padding: 1.2mm 0; border-bottom: 0.2mm solid #ccc; text-align: left; }
   .fcard .num { text-align: right; }
   .fcard .care { font-size: 8pt; color: #444; margin: 3mm 0 0; }
+  #print-cards.tags { grid-template-columns: repeat(3, 1fr); gap: 6mm; }
+  .ftag { border: 1px dashed #999; border-radius: 4mm; padding: 5mm; break-inside: avoid; font-family: Georgia, serif; text-align: center; }
+  .ftag h3 { margin: 1mm 0; font-size: 14pt; }
+  .ftag .studio { font-size: 7pt; letter-spacing: .1em; text-transform: uppercase; color: #666; margin: 0; }
+  .ftag .who { font-size: 8pt; color: #444; margin: 0 0 2mm; }
+  .ftag .gift { font-size: 10pt; font-style: italic; margin: 0 0 2mm; }
+  .ftag .care { font-size: 6.5pt; color: #666; margin: 0; }
   .fcard .studio { font-size: 8pt; letter-spacing: .1em; text-transform: uppercase; color: #666; margin: 0 0 3mm; }
 }
 </style>
@@ -532,6 +541,15 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
           <label class="sr" for="copy-fallback">Recipe text</label>
           <textarea class="input" id="copy-fallback" rows="8" hidden readonly></textarea>
         </div>
+      </div>
+
+      <div class="section" id="season-section">
+        <div class="section-head">
+          <span class="season-tag">This season</span>
+          <h2>Christmas collection</h2>
+          <p class="muted">Six festive house blends, made from the oils we have in the studio. Load one as it is, or make it your own.</p>
+        </div>
+        <div class="grid-cards" id="season"></div>
       </div>
 
       <div class="section">
@@ -729,15 +747,17 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
       </div>
 
       <div class="section">
-        <div class="section-head"><h2>Wedding favours and team orders</h2><p class="muted small">Scale one blend to any number of small candles.</p></div>
+        <div class="section-head"><h2>Client gifts, favours and team orders</h2><p class="muted small">Scale one blend to any number of candles, for a company’s Christmas gifts or a wedding, and print a gift tag for each.</p></div>
         <div class="card stack">
           <div class="fav-grid">
             <div class="field"><label for="fav-blend">Blend</label><select class="input" id="fav-blend"></select></div>
-            <div class="field"><label for="fav-count">How many favours</label><input class="input" id="fav-count" type="number" min="1" max="2000" step="1"></div>
+            <div class="field"><label for="fav-count">How many candles</label><input class="input" id="fav-count" type="number" min="1" max="2000" step="1"></div>
             <div class="field"><label for="fav-size">Wax per favour (g)</label><input class="input" id="fav-size" type="number" min="5" max="1000" step="5"></div>
             <div class="field"><label for="fav-load">Load %</label><input class="input" id="fav-load" type="number" min="1" max="12" step="0.5"></div>
+            <div class="field fav-wide"><label for="fav-from">Gift from (optional)</label><input class="input" id="fav-from" type="text" maxlength="60" placeholder="e.g. Hart &amp; Co Accountants" autocomplete="off"></div>
           </div>
           <div id="fav-out"></div>
+          <div class="row"><button class="btn ghost small" id="fav-tags" type="button">Print gift tags</button></div>
         </div>
       </div>
 
@@ -1377,6 +1397,21 @@ if (typeof module !== "undefined") module.exports = { REFS, EVIDENCE, NOTES, FLA
 
 MOODS.forEach(m => { m.oils = m.oils.filter(id => PARTNER_CATALOGUE.includes(id)); });
 for (let i = STARTERS.length - 1; i >= 0; i--) if (!STARTERS[i].items.every(([id]) => PARTNER_CATALOGUE.includes(id))) STARTERS.splice(i, 1);
+/* Seasonal collection (Studio plan): new house blends each season, released ahead of the date */
+const SEASON = {
+  id: "christmas-2026", name: "Christmas collection", line: "Six festive house blends for December workshops, client gifts and favours.",
+  blends: [
+    { id: "xmas-mulled-orange", name: "Mulled Orange", mood: "cosy", format: "candle", items: [["orange", 4], ["blackpepper", 1], ["vanilla", 2], ["frankincense", 1], ["cedarwood", 2]], blurb: "Warm orange peel with a pinch of pepper over vanilla and cedar." },
+    { id: "xmas-frosted-forest", name: "Frosted Forest", mood: "nature", format: "candle", items: [["cedarwood", 4], ["eucalyptus", 1], ["peppermint", 1], ["frankincense", 2], ["bergamot", 2]], blurb: "A cold winter walk: cedar, a breath of eucalyptus and soft resin." },
+    { id: "xmas-candy-cane", name: "Candy Cane", mood: "joy", format: "candle", items: [["peppermint", 2], ["vanilla", 4], ["mandarin", 3], ["cedarwood", 1]], blurb: "Cool mint wrapped in sweet vanilla and mandarin." },
+    { id: "xmas-midnight-mass", name: "Midnight Mass", mood: "grounded", format: "candle", items: [["frankincense", 4], ["cedarwood", 2], ["orange", 2], ["patchouli", 1], ["vanilla", 1]], blurb: "Candlelit incense with a glow of orange." },
+    { id: "xmas-clementine", name: "Clementine Cheer", mood: "joy", format: "reed", items: [["mandarin", 4], ["orange", 2], ["grapefruit", 1], ["vanilla", 2], ["cedarwood", 1]], blurb: "Bright clementine for hallways and reception desks." },
+    { id: "xmas-fireside", name: "Fireside Velvet", mood: "cosy", format: "candle", items: [["patchouli", 1], ["vanilla", 3], ["orange", 2], ["blackpepper", 1], ["cedarwood", 3]], blurb: "Soft woods and vanilla, like the end of a long December day." }
+  ]
+};
+SEASON.blends = SEASON.blends.filter(b => b.items.every(([id]) => PARTNER_CATALOGUE.includes(id)));
+SEASON.blends.slice().reverse().forEach(b => { b.season = SEASON.id; STARTERS.unshift(b); });
+
 const DROPS_PER_ML = 20;      // approximate; varies with oil and dropper
 const OIL_DENSITY = 0.9;      // g per ml, typical for essential oils
 const OIL_MAP = Object.fromEntries(OILS.map(o => [o.id, o]));
@@ -2292,7 +2327,10 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
       <button type="button" class="btn ghost small" data-starter="${st.id}" style="justify-self:start">Load this formula</button>
     </div>`;
   }
-  function renderStarters() { $("#starters").innerHTML = STARTERS.map(s => starterCard(s)).join(""); }
+  function renderStarters() {
+    $("#starters").innerHTML = STARTERS.filter(s => !s.season).map(s => starterCard(s)).join("");
+    const box = $("#season"); if (box) box.innerHTML = STARTERS.filter(s => s.season).map(s => starterCard(s)).join("");
+  }
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-starter]");
     if (!b) return;
@@ -3069,7 +3107,8 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
   function allBlends() {
     const saved = (store.get(KEY_SAVED, []) || []).filter(s => s && Array.isArray(s.items) && withFractions(s.items).length)
       .map(s => ({ key: "s-" + s.key, name: s.name, items: s.items, saved: true }));
-    return saved.concat(HOUSE);
+    const season = (typeof SEASON !== "undefined" ? SEASON.blends : []).map(b => ({ key: "x-" + b.id, name: b.name, items: b.items.map(([id, parts]) => ({ id, parts })), season: true }));
+    return saved.concat(season, HOUSE);
   }
   const blendByKey = k => allBlends().find(b => b.key === k) || null;
 
@@ -3083,7 +3122,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
       { label: "Tealights", g: 12, n: 4, load: 8 }
     ],
     guests: [],
-    fav: { key: "h-lavender", n: 60, g: 60, load: 8 }
+    fav: { key: "x-xmas-mulled-orange", n: 40, g: 120, load: 8, from: "" }
   };
   let plan = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_PLAN)), store.get(KEY, {}) || {});
   if (!Array.isArray(plan.kit) || !plan.kit.length) plan.kit = JSON.parse(JSON.stringify(DEFAULT_PLAN.kit));
@@ -3117,10 +3156,11 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
   /* ---------- render: guests ---------- */
   function blendOptions(sel) {
     const list = allBlends();
-    const saved = list.filter(b => b.saved), house = list.filter(b => !b.saved);
+    const saved = list.filter(b => b.saved), season = list.filter(b => b.season), house = list.filter(b => !b.saved && !b.season);
     const opt = b => `<option value="${esc(b.key)}"${b.key === sel ? " selected" : ""}>${esc(b.name)}</option>`;
     return `<option value="">Choose a blend…</option>` +
       (saved.length ? `<optgroup label="Designed by guests">${saved.map(opt).join("")}</optgroup>` : "") +
+      (season.length ? `<optgroup label="${esc(SEASON.name)}">${season.map(opt).join("")}</optgroup>` : "") +
       `<optgroup label="House blends">${house.map(opt).join("")}</optgroup>`;
   }
   function renderGuests() {
@@ -3177,6 +3217,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
     let host = $("#print-cards");
     if (!host) { host = document.createElement("div"); host.id = "print-cards"; document.body.appendChild(host); }
     const date = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+    host.classList.remove("tags");
     host.innerHTML = plan.guests.map(g => {
       const l = guestLines(g); if (!l) return "";
       return `<div class="fcard"><p class="studio">${esc(plan.studio)}</p><h3>${esc(l.blend.name)}</h3><p class="who">Made by ${esc(g.name || "you")} · ${esc(date)}</p>
@@ -3185,6 +3226,19 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
         </tbody></table><p class="care">Let candles cure for about two weeks. On the first burn, let the melt pool reach the edge. Trim the wick to about 5 mm. Never leave a burning candle unattended.</p></div>`;
     }).join("");
     return host.innerHTML.trim().length > 0;
+  }
+
+  function buildTags() {
+    const b = blendByKey(plan.fav.key), n = Math.min(500, Math.round(num(plan.fav.n, 0)));
+    if (!b || !n) return false;
+    let host = $("#print-cards");
+    if (!host) { host = document.createElement("div"); host.id = "print-cards"; document.body.appendChild(host); }
+    const from = (plan.fav.from || "").trim();
+    const oils = withFractions(b.items).map(r => r.oil.name).join(" · ");
+    const tag = `<div class="ftag"><p class="studio">${esc(plan.studio)}</p><h3>${esc(b.name)}</h3><p class="who">${esc(oils)}</p>${from ? `<p class="gift">A gift from ${esc(from)}</p>` : ""}<p class="care">Never leave a burning candle unattended. Keep away from children and pets.</p></div>`;
+    host.innerHTML = Array.from({ length: n }, () => tag).join("");
+    host.classList.add("tags");
+    return true;
   }
 
   /* ---------- follow-up emails ---------- */
@@ -3214,7 +3268,8 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
   function renderFavSelect() {
     const list = allBlends();
     if (!list.some(b => b.key === plan.fav.key)) plan.fav.key = list[0] ? list[0].key : "";
-    $("#fav-blend").innerHTML = list.map(b => `<option value="${esc(b.key)}"${b.key === plan.fav.key ? " selected" : ""}>${esc(b.name)}${b.saved ? " (guest)" : ""}</option>`).join("");
+    $("#fav-blend").innerHTML = list.map(b => `<option value="${esc(b.key)}"${b.key === plan.fav.key ? " selected" : ""}>${esc(b.name)}${b.saved ? " (guest)" : b.season ? " (Christmas)" : ""}</option>`).join("");
+    $("#fav-from").value = plan.fav.from || "";
     $("#fav-count").value = plan.fav.n; $("#fav-size").value = plan.fav.g; $("#fav-load").value = plan.fav.load;
   }
   function renderFav() {
@@ -3224,7 +3279,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
     const spare = 1 + num(plan.spare, 0) / 100;
     const wax = n * g * spare, frag = wax * load / 100;
     const rows = withFractions(b.items);
-    out.innerHTML = `<div class="prep-sum"><div><b>${fmt0(n)}</b><span>favours</span></div><div><b>${fmt0(wax)} g</b><span>wax with spare</span></div><div><b>${fmt1(frag)} g</b><span>fragrance</span></div></div>
+    out.innerHTML = `<div class="prep-sum"><div><b>${fmt0(n)}</b><span>candles</span></div><div><b>${fmt0(wax)} g</b><span>wax with spare</span></div><div><b>${fmt1(frag)} g</b><span>fragrance</span></div></div>
       <div class="tablewrap"><table><thead><tr><th>Oil</th><th class="num">Grams</th><th class="num">Per favour</th></tr></thead><tbody>
       ${rows.map(r => `<tr><td>${esc(r.oil.name)}</td><td class="num">${fmt1(frag * r.frac)}</td><td class="num">${fmt1(g * load / 100 * r.frac)}</td></tr>`).join("")}
       </tbody></table></div>`;
@@ -3250,6 +3305,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
     if (t.id === "fav-count") plan.fav.n = num(t.value, 0);
     if (t.id === "fav-size") plan.fav.g = num(t.value, 0);
     if (t.id === "fav-load") plan.fav.load = Math.min(12, num(t.value, 0));
+    if (t.id === "fav-from") { plan.fav.from = t.value; save(); return; }
     if (t.id.startsWith("fav-")) { renderFav(); save(); }
   });
   panel.addEventListener("change", e => {
@@ -3272,6 +3328,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
     else if (t.id === "host-guest-clear") { plan.guests = []; renderGuests(); renderOutputs(); }
     else if (t.id === "host-print") { if (buildCards()) window.print(); else flash("Give at least one guest a blend first"); }
     else if (t.id === "host-copy-prep") { copy(prepText(), "Prep list copied"); }
+    else if (t.id === "fav-tags") { if (buildTags()) window.print(); else flash("Choose a blend and a number first"); }
     else if (t.dataset.copyMail != null) { const m = emailFor(plan.guests[+t.dataset.copyMail]); if (m) copy(`Subject: ${m.subject}\n\n${m.body}`, "Email copied"); }
   });
   function flash(msg) { const t = $("#toast"); if (!t) return; t.textContent = msg; t.hidden = false; clearTimeout(flash.t); flash.t = setTimeout(() => { t.hidden = true; }, 2600); }
