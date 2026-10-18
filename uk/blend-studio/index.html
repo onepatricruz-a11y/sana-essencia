@@ -41,7 +41,7 @@ body.has-bar .toast { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Figtree:wght@400..700&family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* Layout: a perfumer's lab bench — sticky section tabs over a two-column workbench; the recipe is a mono "formula sheet" and every ingredient carries a note-coloured blotter strip. Tokens follow sanaessencia.co.uk. */
 :root {
@@ -73,8 +73,9 @@ body.has-bar .toast { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
   --info: #5C4150;
   --info-bg: #EFE6EC;
   --shadow: 0 10px 30px rgba(59, 39, 51, 0.10);
-  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --wordmark: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --radius: 16px;
   --radius-sm: 10px;
@@ -105,7 +106,7 @@ body.has-bar .toast { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
 * { box-sizing: border-box; }
 body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
 .app { max-width: 1140px; margin: 0 auto; padding-inline: 16px; padding-block: 14px 48px; }
-h1, h2, h3, h4 { font-family: var(--serif); color: var(--forest); font-weight: 600; line-height: 1.12; margin: 0; text-wrap: balance; }
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--forest); font-weight: 600; font-variation-settings: "SOFT" 100; line-height: 1.12; margin: 0; text-wrap: balance; }
 h2 { font-size: 1.9rem; }
 h3 { font-size: 1.35rem; }
 h4 { font-size: 1.12rem; font-family: var(--sans); font-weight: 650; color: var(--ink); line-height: 1.3; }
@@ -125,8 +126,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* Masthead */
 .masthead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding-block: 6px 12px; }
 .brand { display: flex; align-items: center; gap: 12px; }
-.mark { width: 40px; height: 40px; border-radius: 50%; background: var(--btn-bg); color: var(--btn-fg); display: grid; place-items: center; font-family: var(--serif); font-size: 1.45rem; font-weight: 700; flex: none; }
-.brand-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--forest); line-height: 1; }
+.mark { width: 40px; height: 40px; border-radius: 50%; background: var(--btn-bg); color: var(--btn-fg); display: grid; place-items: center; font-family: var(--wordmark); font-size: 1.45rem; font-weight: 700; flex: none; }
+.brand-name { font-family: var(--wordmark); font-size: 1.5rem; font-weight: 700; color: var(--forest); line-height: 1; }
 .brand-sub { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta); margin-top: 3px; }
 .masthead-line { color: var(--muted); font-size: 0.92rem; max-width: 46ch; }
 
