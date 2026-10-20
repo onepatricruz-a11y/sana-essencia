@@ -85,10 +85,17 @@
       border-bottom: 1px solid rgba(31, 61, 47, 0.08);
     }
     .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-    .logo { font-family: var(--serif); font-size: 1.7rem; font-weight: 700; color: var(--forest); text-decoration: none; }
+    .logo { font-family: var(--serif); font-size: 1.7rem; font-weight: 700; color: var(--forest); text-decoration: none; white-space: nowrap; flex-shrink: 0; margin-right: 20px; }
     .logo span { color: var(--terracotta); }
-    .nav-links { display: flex; align-items: center; gap: 26px; list-style: none; }
-    .nav-links a { text-decoration: none; font-size: 0.93rem; font-weight: 500; color: var(--muted); }
+    .nav-links { display: flex; align-items: center; gap: 22px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.93rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
+    @media (min-width: 1181px) { .nav-links { gap: 15px; } .nav-links a { font-size: 0.86rem; } }
+    @media (max-width: 1180px) {
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column;
+        background: var(--cream); padding: 20px 16px 26px; gap: 18px; border-bottom: 1px solid rgba(31,61,47,0.1); }
+      .nav-links.open { display: flex; }
+    }
     .nav-links a:hover { color: var(--forest); }
     .lang { font-size: 0.85rem; font-weight: 600; text-decoration: none; color: var(--forest);
       border: 1px solid var(--sage); padding: 6px 12px; border-radius: 999px; }
@@ -238,6 +245,7 @@
         <li><a href="/workshop-hosts/">Workshop studios</a></li>
         <li><a href="/partners/">Partners</a></li>
         <li><a href="#brazil">Brazil</a></li>
+        <li><a href="/about/">About</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a class="lang" href="https://sanaessencia.com.br" hreflang="pt-BR" lang="pt-BR">🇧🇷 Português</a></li>
       </ul>
@@ -395,7 +403,7 @@
         </div>
         <p style="margin-top: 28px; color: var(--muted); font-size: 0.95rem;">Sana Essencia Ltd is not VAT registered, so we don't add UK VAT. Health and safety consultant or L&amp;D provider? Use the System with your clients under a <a href="/partners/">Partner Licence</a>, and we can brand the documents in your logo and colours. See the <a href="/licence/">licence terms</a>.</p>
         <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem;"><strong style="color: var(--forest);">Founding pilot:</strong> we're looking for three UK organisations to use the System free, in return for honest feedback we can publish. <a href="mailto:hello@sanaessencia.co.uk?subject=Founding%20pilot">Email us</a> to apply.</p>
-      </div>
+      </div></div>
     </section>
 
     <!-- ===== WORKPLACE SCENT PLAN ===== -->
@@ -546,7 +554,7 @@
       <div class="container">
         <h2 style="font-size: 1.8rem;">Privacy</h2>
         <div class="faq-list" style="margin-top: 10px;">
-          <p style="color: var(--muted); font-size: 0.95rem; max-width: 820px;">This website has no forms, cookies or tracking. Purchases are handled by Payhip, which processes your payment details under its own privacy policy. If you email us, Sana Essencia Ltd uses your name, email address and anything you tell us only to reply and, if you asked, to let you know when new programmes are ready. We don't sell or share your details, and you can ask us to delete them at any time by emailing hello@sanaessencia.co.uk. Fonts on this page are loaded from Google Fonts. You can complain to the Information Commissioner's Office (ico.org.uk) if you're unhappy with how we handle your data.</p>
+          <p style="color: var(--muted); font-size: 0.95rem; max-width: 820px;">This website has no forms, cookies or tracking. Purchases are handled by Payhip, which processes your payment details under its own privacy policy. If you email us, Sana Essencia Ltd uses your name, email address and anything you tell us only to reply and, if you asked, to let you know when new programmes are ready. We don't sell or share your details, and you can ask us to delete them at any time by emailing hello@sanaessencia.co.uk. Fonts on this page are loaded from Google Fonts. You can complain to the Information Commissioner's Office (ico.org.uk) if you're unhappy with how we handle your data. Read the full <a href="/privacy/">privacy policy</a>, <a href="/terms/">terms</a> and <a href="/refunds/">refund policy</a>.</p>
         </div>
       </div>
     </section>
@@ -583,7 +591,10 @@
             <span class="foot-head">Sana Essencia</span>
             <a href="/#book">Book for your home</a>
             <a href="/#contact">Contact</a>
-            <a href="/#privacy">Privacy</a>
+            <a href="/about/">About</a>
+            <a href="/privacy/">Privacy</a>
+            <a href="/terms/">Terms</a>
+            <a href="/refunds/">Refunds</a>
             <a href="https://www.linkedin.com/in/patricia-cruz-7a3a90412/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://sanaessencia.com.br" hreflang="pt-BR" lang="pt-BR">🇧🇷 Site em português</a>
           </nav>

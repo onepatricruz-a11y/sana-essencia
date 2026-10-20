@@ -83,10 +83,17 @@
       border-bottom: 1px solid rgba(31, 61, 47, 0.08);
     }
     .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-    .logo { font-family: var(--serif); font-size: 1.7rem; font-weight: 700; color: var(--forest); text-decoration: none; }
+    .logo { font-family: var(--serif); font-size: 1.7rem; font-weight: 700; color: var(--forest); text-decoration: none; white-space: nowrap; flex-shrink: 0; margin-right: 20px; }
     .logo span { color: var(--terracotta); }
-    .nav-links { display: flex; align-items: center; gap: 26px; list-style: none; }
-    .nav-links a { text-decoration: none; font-size: 0.93rem; font-weight: 500; color: var(--muted); }
+    .nav-links { display: flex; align-items: center; gap: 22px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.93rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
+    @media (min-width: 1181px) { .nav-links { gap: 15px; } .nav-links a { font-size: 0.86rem; } }
+    @media (max-width: 1180px) {
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column;
+        background: var(--cream); padding: 20px 16px 26px; gap: 18px; border-bottom: 1px solid rgba(31,61,47,0.1); }
+      .nav-links.open { display: flex; }
+    }
     .nav-links a:hover { color: var(--forest); }
     .lang { font-size: 0.85rem; font-weight: 600; text-decoration: none; color: var(--forest);
       border: 1px solid var(--sage); padding: 6px 12px; border-radius: 999px; }
@@ -245,6 +252,7 @@
         <li><a href="/workshop-hosts/">Workshop studios</a></li>
         <li><a href="/partners/">Partners</a></li>
         <li><a href="/#brazil">Brazil</a></li>
+        <li><a href="/about/">About</a></li>
         <li><a href="/#contact">Contact</a></li>
         <li><a class="lang" href="https://sanaessencia.com.br" hreflang="pt-BR" lang="pt-BR">🇧🇷 Português</a></li>
       </ul>
@@ -363,7 +371,7 @@
           </article>
         </div>
         <p style="margin-top: 24px; color: var(--muted);">Want it fully in your colours, on your own website? <a href="mailto:hello@sanaessencia.co.uk?subject=Branded%20partner%20version">Ask about a branded partner version</a>, from &pound;79 a month.</p>
-      </div>
+      </div></div>
     </section>
 
     <section id="assistant">
@@ -459,7 +467,10 @@
             <span class="foot-head">Sana Essencia</span>
             <a href="/#book">Book for your home</a>
             <a href="/#contact">Contact</a>
-            <a href="/#privacy">Privacy</a>
+            <a href="/about/">About</a>
+            <a href="/privacy/">Privacy</a>
+            <a href="/terms/">Terms</a>
+            <a href="/refunds/">Refunds</a>
             <a href="https://www.linkedin.com/in/patricia-cruz-7a3a90412/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://sanaessencia.com.br" hreflang="pt-BR" lang="pt-BR">🇧🇷 Site em português</a>
           </nav>
