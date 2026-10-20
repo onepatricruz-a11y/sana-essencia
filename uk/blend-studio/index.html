@@ -481,7 +481,7 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
           </div>
 
           <div class="card stack-sm nextbox" id="shop-box" hidden>
-            <span class="eyebrow">Buy the ingredients</span>
+            <span class="eyebrow">Where to find the ingredients</span>
             <div class="shoplist" id="shop-list"></div>
             <p class="small muted" id="shop-note"></p>
           </div>
@@ -580,8 +580,9 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
           <div class="cta">
             <span class="eyebrow">For your building</span>
             <h3>A scent plan for your workplace</h3>
-            <p class="small">Want a plan for your reception, meeting rooms or wellbeing space, with wording your team can use? Tell us about the space.</p>
-            <div class="row"><a class="btn ghost" href="mailto:hello@sanaessencia.co.uk?subject=Workplace%20scent%20plan">Email Sana Essencia</a></div>
+            <p class="small">A room-by-room plan for your reception, meeting rooms and quiet spaces, agreed with your team, with run times, scent-free zones and wording your staff can use.</p>
+            <p class="price">£495 · remote, up to 6 spaces</p>
+            <div class="row"><a class="btn ghost" href="/#scent-plan">See the Workplace Scent Plan</a></div>
           </div>
         </div>
       </div>
@@ -672,6 +673,7 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
 
   <footer class="footer">
     <p><b>Sana Essencia Ltd</b> · Registered in England and Wales · Company No. 17298884 · sanaessencia.co.uk · hello@sanaessencia.co.uk</p>
+    <p>We explain what each material does, how strong it is and what to watch for. You decide what you make and how it’s used. If you sell what you make, checking it meets the rules for your product type (such as a safety assessment for anything worn on skin) stays with you.</p>
     <p>General education about scent, not medical advice, and not a cosmetic or product safety assessment. Measurements are approximate: about 20 drops per ml, and essential oils taken as 0.9 g per ml. Weigh for accuracy.</p>
   </footer>
 </div>
@@ -2686,13 +2688,13 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
     { id: "science", eyebrow: "Video session · 45 min", name: "The science of your scent", price: "£59", unit: "per session",
       text: "We translate the science for your creation: how the molecules in your blend reach the parts of the brain linked to emotion and memory, what research shows (and what it doesn't yet) and what your scent says.",
       items: ["Your blend read ingredient by ingredient", "What your creation means and how to tell its story", "Written summary with references", "No health promises: honest science"], sendBlend: true },
-    { id: "signature", eyebrow: "Most popular", name: "Signature Pack", price: "£149", unit: "two versions", feature: true,
+    { id: "signature", eyebrow: "Your signature", name: "Signature Pack", price: "£149", unit: "two versions", feature: true,
       text: "A scent signature for your brand or for you, in two versions (for example, a masculine and a feminine one).",
       items: ["40-minute video call about your brand", "2 final formulas for 30, 50 and 100 ml", "Formula sheet with percentages and limits", "A name and short description of each scent for the label", "2 rounds of adjustments"], sendBlend: true },
     { id: "brand", eyebrow: "For brands", name: "Brand scent consultancy", price: "£249", unit: "from",
       text: "For makers who sell or want to: positioning, story and wording that do justice to the scent without promising what they can't.",
       items: ["Two video sessions", "Name, concept and story for the range", "Label, website and social wording reviewed with the Wording check", "A simple launch plan"], sendBlend: false },
-    { id: "candle", eyebrow: "Christmas · digital gift", name: "Christmas signature candle", price: "£15", unit: "· 3 for £39",
+    { id: "candle", until: "2026-12-10", eyebrow: "Christmas · digital gift", name: "Christmas signature candle", price: "£15", unit: "· 3 for £39",
       text: "A scent created for the person you're giving it to. You receive the recipe and printable artwork: make the candle yourself or take it to a candle maker you trust.",
       items: ["Personalised recipe for a 200 g candle", "Scent name and a gift card with your message", "Printable label", "Order by 10 December"], sendBlend: false }
   ];
@@ -2709,7 +2711,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
     return `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent("Order: " + sv.name)}&body=${encodeURIComponent(body)}`;
   }
   function renderServices() {
-    $("#services").innerHTML = SERVICES.map(sv => `<article class="svc${sv.feature ? " feature" : ""}">
+    $("#services").innerHTML = SERVICES.filter(sv => !sv.until || new Date() <= new Date(sv.until + "T23:59:59")).map(sv => `<article class="svc${sv.feature ? " feature" : ""}">
         <span class="eyebrow">${esc(sv.eyebrow)}</span>
         <h3>${esc(sv.name)}</h3>
         <p class="svc-price">${esc(sv.price)} <small>${esc(sv.unit)}</small></p>

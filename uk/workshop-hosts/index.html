@@ -177,6 +177,11 @@
     .foot-links { display: flex; flex-wrap: wrap; gap: 18px; }
     .foot-links a { text-decoration: none; }
     .foot-links a:hover { color: var(--forest); }
+    .foot-cols { display: flex; flex-wrap: wrap; gap: 28px 56px; }
+    .foot-col { display: flex; flex-direction: column; gap: 8px; min-width: 190px; }
+    .foot-head { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--forest); margin-bottom: 2px; }
+    .foot-col a { text-decoration: none; }
+    .foot-col a:hover { color: var(--forest); }
     .disclaimer { margin-top: 22px; font-size: 0.8rem; line-height: 1.6; max-width: 900px; }
 
 
@@ -432,22 +437,35 @@
           Registered in England and Wales · Company No. 17298884<br>
           Registered office: 50 Fullbrook Drive, Basingstoke, RG21 6AX
         </div>
-        <div class="foot-links">
-          <a href="/psychosocial-risk-toolkit/">Psychosocial Risk Toolkit</a>
-          <a href="/#system">Risk Management System</a>
-          <a href="/partners/">Partners and sales agents</a>
-          <a href="/licence/">Licence terms</a>
-          <a href="/blend-studio/">Blend Studio</a>
-          <a href="/#book">Book for your home</a>
-          <a href="/scent-preview/">Scent Preview for scent companies</a>
-          <a href="/workshop-hosts/">For workshop studios</a>
-          <a href="/purchase-check/">Purchase check-up for makers</a>
-          <a href="/#privacy">Privacy</a>
-          <a href="mailto:hello@sanaessencia.co.uk">Contact</a>
-          <a href="https://sanaessencia.com.br" hreflang="pt-BR" lang="pt-BR">🇧🇷 Site em português</a>
+        <div class="foot-cols">
+          <nav class="foot-col" aria-label="For workplaces">
+            <span class="foot-head">Workplaces</span>
+            <a href="/psychosocial-risk-toolkit/">Psychosocial Risk Toolkit</a>
+            <a href="/#pack">Manager's Pack</a>
+            <a href="/#system">Risk Management System</a>
+            <a href="/#scent-plan">Workplace Scent Plan</a>
+            <a href="/partners/">Partners and sales agents</a>
+            <a href="/licence/">Licence terms</a>
+          </nav>
+          <nav class="foot-col" aria-label="For scent makers and studios">
+            <span class="foot-head">Makers &amp; studios</span>
+            <a href="/blend-studio/">Blend Studio</a>
+            <a href="/blend-studio/#services">Scent services for makers</a>
+            <a href="/workshop-hosts/">For workshop studios</a>
+            <a href="/scent-preview/">Scent Preview for scent companies</a>
+            <a href="/purchase-check/">Purchase check-up</a>
+          </nav>
+          <nav class="foot-col" aria-label="Sana Essencia">
+            <span class="foot-head">Sana Essencia</span>
+            <a href="/#book">Book for your home</a>
+            <a href="/#contact">Contact</a>
+            <a href="/#privacy">Privacy</a>
+            <a href="https://www.linkedin.com/in/patricia-cruz-7a3a90412/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://sanaessencia.com.br" hreflang="pt-BR" lang="pt-BR">🇧🇷 Site em português</a>
+          </nav>
         </div>
       </div>
-      <p class="disclaimer">Sana Essencia's resources support organisations in managing work-related stress and psychosocial risk. They don't replace your own risk assessment, advice from a competent health and safety professional, or legal advice. © <span id="year"></span> Sana Essencia Ltd. All rights reserved.</p>
+      <p class="disclaimer">Sana Essencia's resources support organisations in managing work-related stress and psychosocial risk, and explain how scent works. They don't replace your own risk assessment, advice from a competent health and safety professional, legal advice, or the safety assessment a product you sell may need. We explain what each material does; you decide what you make and how it's used. © <span id="year"></span> Sana Essencia Ltd. All rights reserved.</p>
     </div>
   </footer>
 
