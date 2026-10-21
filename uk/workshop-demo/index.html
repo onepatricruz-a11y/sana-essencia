@@ -2801,7 +2801,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
   const SERVICES = [
     { id: "wording", eyebrow: "Start here", name: "Wording check", price: "£39", unit: "up to 3 texts",
       text: "Send us up to three product descriptions, labels or posts. We mark the phrases that could break UK advertising rules on health, medicinal or germ-killing claims, and suggest wording that still sells the scent.",
-      items: ["Your text marked up, phrase by phrase", "A safer alternative for each flagged phrase, with the reason and source", "One round, delivered within 5 working days", "Checks what your words claim, not your formula, product safety or CLP label"], sendBlend: false },
+      items: ["Your text marked up, phrase by phrase", "A safer alternative for each flagged phrase, with the reason and source", "One round, delivered within 5 working days", "Checks what your words claim, not your formula, product safety or CLP label"], sendBlend: false, url: "https://payhip.com/b/9rjbe" },
     { id: "science", eyebrow: "Video session · 45 min", name: "The science of your scent", price: "£59", unit: "per session",
       text: "We translate the science for your creation: how the molecules in your blend reach the parts of the brain linked to emotion and memory, what research shows (and what it doesn't yet) and what your scent says.",
       items: ["Your blend read ingredient by ingredient", "What your creation means and how to tell its story", "Written summary with references", "No health promises: honest science"], sendBlend: true },
@@ -2822,6 +2822,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
   }
   function orderLink(id) {
     const sv = SERVICES.find(x => x.id === id) || SERVICES[0];
+    if (sv.url) return sv.url;
     const blend = sv.sendBlend ? blendSummary() : "";
     const body = [`Hello! I'd like to order: ${sv.name} (${sv.price}).`, "", "Name:", "Town:", "Best days and times:", sv.id === "candle" ? "Who the gift is for and what memories the scent should bring back:" : sv.id === "wording" ? "Paste the text you’d like checked (up to three descriptions, labels or posts):" : "What I want this scent to do for me or my brand:", "",
       blend ? "My blend in the Studio:\n" + blend : ""].join("\n").slice(0, 1600);
@@ -2840,7 +2841,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
         <p class="svc-price">${esc(sv.price)} <small>${esc(sv.unit)}</small></p>
         <p class="small">${esc(sv.text)}</p>
         <ul class="small">${sv.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>
-        <div class="row"><button class="btn ${sv.feature ? "primary" : "ghost"} small" type="button" data-order="${sv.id}">Order</button></div>
+        <div class="row"><button class="btn ${sv.feature ? "primary" : "ghost"} small" type="button" data-order="${sv.id}">${sv.url ? "Buy now" : "Order"}</button></div>
       </article>`).join("");
   }
   function shopUrl(oil) {
@@ -2858,7 +2859,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
   }
   document.addEventListener("click", e => {
     const o = e.target.closest("[data-order]");
-    if (o) { window.location.href = orderLink(o.dataset.order); return; }
+    if (o) { const link = orderLink(o.dataset.order); if (/^https:/.test(link)) window.open(link, "_blank", "noopener"); else window.location.href = link; return; }
     const g = e.target.closest("[data-goto]");
     if (g) openTab(g.dataset.goto);
   });
