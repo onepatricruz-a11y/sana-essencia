@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scent card · Blend Studio</title>
+<meta name="description" content="A scent card made with the Sana Essencia Blend Studio.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..700&family=Fraunces:opsz,wght@9..144,400..700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F6EEE1;--surface:#FCF8F2;--ink:#2B1E25;--muted:#6E5C64;--plum:#3B2733;--line:rgba(59,39,51,.14);--btn:#C4893B;--top:#C9972E;--heart:#C77C6C;--base:#7D5B3E;
+--serif:"Fraunces",Georgia,serif;--sans:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1E1519;--surface:#2A1F25;--ink:#F3E9EE;--muted:#C2B2BA;--plum:#F3E9EE;--line:rgba(243,233,238,.16)}}
+:root[data-theme="dark"]{--paper:#1E1519;--surface:#2A1F25;--ink:#F3E9EE;--muted:#C2B2BA;--plum:#F3E9EE;--line:rgba(243,233,238,.16)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.5 var(--sans);padding:24px 16px 48px}
+body.embed{background:transparent;padding:0}
+.wrap{max-width:520px;margin:0 auto}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px 24px 20px;box-shadow:0 10px 30px rgba(59,39,51,.10)}
+.eyebrow{font:700 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font:600 clamp(28px,8vw,40px)/1.05 var(--serif);color:var(--plum);margin:8px 0 6px;overflow-wrap:anywhere}
+.fmt{color:var(--muted);font-size:14px}
+.bar{display:flex;height:14px;border-radius:7px;overflow:hidden;margin:18px 0 10px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.desc{margin:16px 0 4px;font-size:17px}
+.notes{display:grid;gap:10px;margin-top:16px}
+.note{display:grid;grid-template-columns:68px 1fr;gap:10px;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.note b{font:700 12px/1.6 var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.note.top b{color:var(--top)}.note.heart b{color:var(--heart)}.note.base b{color:var(--base)}
+.credit{margin-top:18px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.credit a{color:inherit}
+.actions{display:grid;gap:10px;margin-top:20px}
+.btn{font:700 15px/1 var(--sans);border-radius:999px;padding:13px 18px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;text-align:center;text-decoration:none}
+.btn.primary{background:var(--btn);border-color:var(--btn);color:#2B1E25}
+.help{font-size:14px;color:var(--muted);margin-top:14px}
+textarea{width:100%;font:400 12px/1.4 ui-monospace,Menlo,Consolas,monospace;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--surface);color:var(--ink);margin-top:8px;resize:vertical}
+.empty{text-align:center;padding:40px 10px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--plum);color:var(--paper);padding:10px 16px;border-radius:999px;font-size:14px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <article class="card" id="card" hidden>
+    <span class="eyebrow">Scent card</span>
+    <h1 id="name"></h1>
+    <p class="fmt" id="fmt"></p>
+    <div class="bar" id="bar" role="img"></div>
+    <div class="legend" id="legend"></div>
+    <p class="desc" id="desc"></p>
+    <div class="notes" id="notes"></div>
+    <p class="credit"><span>Created with <a href="https://sanaessencia.co.uk/blend-studio/?ref=card" target="_blank" rel="noopener">Blend Studio by Sana Essencia</a></span><span>A description of the scent, not a health claim.</span></p>
+  </article>
+  <div class="card empty" id="empty" hidden>
+    <h1>This scent card is empty</h1>
+    <p class="fmt">The link may be incomplete. Ask the maker to share it again.</p>
+  </div>
+  <section id="tools" hidden>
+    <div class="actions">
+      <button class="btn primary" id="dl" type="button">Download image</button>
+      <button class="btn" id="copy-link" type="button">Copy link</button>
+      <a class="btn" href="../" id="studio">Open the Blend Studio</a>
+    </div>
+    <p class="help"><b>Add it to your website:</b> copy this code and paste it into your product page (for example as an "embed" or "custom HTML" block).</p>
+    <textarea id="embed" rows="4" readonly></textarea>
+    <button class="btn" id="copy-embed" type="button" style="margin-top:8px;width:100%">Copy website code</button>
+    <p class="help">The card shows the scent family and notes only, never your quantities. Before you use it to sell, make sure your product meets the rules for its type.</p>
+  </section>
+</main>
+<div class="toast" id="toast" hidden></div>
+<script>
+(function () {
+  "use strict";
+  var D = {"oils":{"bergamot":["Bergamot","top","Citrus"],"bergamotfcf":["Bergamot FCF","top","Citrus"],"orange":["Sweet orange","top","Citrus"],"lemon":["Lemon","top","Citrus"],"grapefruit":["Grapefruit","top","Citrus"],"lime":["Lime","top","Citrus"],"mandarin":["Mandarin","top","Citrus"],"peppermint":["Peppermint","top","Minty"],"eucalyptus":["Eucalyptus","top","Herbal"],"rosemary":["Rosemary","top","Herbal"],"lemongrass":["Lemongrass","top","Citrus"],"cardamom":["Cardamom","top","Spicy"],"lavender":["Lavender","heart","Floral"],"clarysage":["Clary sage","heart","Herbal"],"geranium":["Geranium","heart","Floral"],"chamomile":["Roman chamomile","heart","Herbal"],"neroli":["Neroli","heart","Floral"],"ylang":["Ylang-ylang","heart","Floral"],"rose":["Rose","heart","Floral"],"jasmine":["Jasmine","heart","Floral"],"blackpepper":["Black pepper","heart","Spicy"],"cinnamon":["Cinnamon leaf","heart","Spicy"],"clove":["Clove bud","heart","Spicy"],"ginger":["Ginger","heart","Spicy"],"cypress":["Cypress","heart","Woody"],"frankincense":["Frankincense","base","Resinous"],"cedarwood":["Cedarwood","base","Woody"],"sandalwood":["Sandalwood","base","Woody"],"vetiver":["Vetiver","base","Woody"],"patchouli":["Patchouli","base","Woody"],"vanilla":["Vanilla","base","Sweet"],"tonka":["Tonka bean","base","Sweet"]},"formats":{"diffuser":"Ultrasonic diffuser","inhaler":"Personal inhaler","spray":"Room & linen spray","candle":"Container candle","melts":"Wax melts","reed":"Reed diffuser","rollon":"Roll-on (pulse points)","perfumeoil":"Perfume oil (roll-on)","bodyoil":"Body or massage oil","faceoil":"Face oil","bath":"Bath oil or salts","perfume":"Alcohol perfume"},"fam":{"Citrus":"#E8C547","Floral":"#E39BB0","Herbal":"#86A960","Minty":"#4FB3A9","Woody":"#7D5B3E","Resinous":"#C4893B","Spicy":"#C2622F","Sweet":"#B9803F"},"ink":{"Woody":"#FFF8F0","Spicy":"#FFF8F0"},"words":{"Citrus":"bright citrus","Floral":"soft floral","Herbal":"fresh herbal","Woody":"warm woody","Spicy":"warm, spicy","Sweet":"creamy-sweet","Resinous":"resinous","Minty":"cool, minty"},"bad":["\\b(treat(s|ed|ing|ment|ments)?|cure[sd]?|curing|heal(s|ed|ing)?|remed(y|ies)|therapeutic|medicinal|prescri\\w*|prevents?)\\b","\\b(anxi\\w*|depress\\w*|insomnia|panic|burnout|anti[- ]?stress|stress[- ]?(relief|relieving|busting|free)|(reduc\\w*|reliev\\w*|eas\\w*|fight\\w*|beat\\w*|combat\\w*|lower\\w*|melt\\w*)\\s+(away\\s+)?(your\\s+)?(stress|anxiety|tension|worry))\\b","\\b((improv\\w*|better|deeper|restful|quality)\\s+sleep|sleep\\s+(better|aid|remedy|support)|fall\\s+asleep|helps?\\s+(you\\s+)?(to\\s+)?sleep)\\b","\\b(hormon\\w*|cortisol|serotonin|dopamine|endorphin\\w*|oxytocin|nervous system|blood pressure|heart rate|immun\\w*|metabolism)\\b","\\b(detox\\w*|toxins?|cleans(e|es|ing)\\s+(your\\s+)?(body|blood|lungs|system))\\b","\\b(anti[- ]?(bacterial|viral|microbial|septic|fungal)|antiseptic|disinfect\\w*|kills?\\s+(\\d+\\s*%\\s+)?(of\\s+)?(all\\s+)?(germs|bacteria|viruses)|germs?|purif(y|ies|ying)\\s+(the\\s+|your\\s+)?air|air[- ]purif\\w*|saniti[sz]\\w*)\\b","\\b(pain\\w*|headaches?|migraines?|nausea|inflammat\\w*|anti[- ]?inflammatory|arthritis|asthma|sinus\\w*|congest\\w*|decongest\\w*|clears?\\s+(your\\s+)?(airways|head|nose)|breathe\\s+easier)\\b","\\b((clinically|scientifically|medically)\\s+(proven|tested|backed)|proven\\s+to|science[- ]backed|guaranteed?\\s+to)\\b","\\b(aphrodisiac\\w*|libido|arous\\w*)\\b","\\b(chemical[- ]free|no chemicals|non[- ]?toxic|100\\s*%\\s*safe|completely safe|totally safe|perfectly safe|safe for (everyone|all|anyone)|no side[- ]effects|natural (so|therefore|means) (it'?s\\s+)?safe)\\b"]};
+  var BAD = D.bad.map(function (s) { return new RegExp(s); });
+  var NOTE_LABEL = { top: "Top", heart: "Heart", base: "Base" };
+  var params = new URLSearchParams(location.search);
+  var embed = params.get("embed") === "1";
+  if (embed) document.body.classList.add("embed");
+  function $(id) { return document.getElementById(id); }
+  function toast(m) { var t = $("toast"); t.textContent = m; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { t.hidden = true; }, 2200); }
+  function decode(s) {
+    try { s = s.replace(/-/g, "+").replace(/_/g, "/"); while (s.length % 4) s += "="; return JSON.parse(decodeURIComponent(escape(atob(s)))); } catch (e) { return null; }
+  }
+  function clean(p) {
+    if (!p || typeof p !== "object") return null;
+    var oils = (Array.isArray(p.o) ? p.o : []).filter(function (id, i, a) { return typeof id === "string" && D.oils[id] && a.indexOf(id) === i; }).slice(0, 12);
+    if (!oils.length) return null;
+    var w = {}, total = 0;
+    if (p.w && typeof p.w === "object") Object.keys(p.w).forEach(function (f) { var v = Number(p.w[f]); if (D.fam[f] && isFinite(v) && v > 0) { w[f] = v; total += v; } });
+    if (!total) oils.forEach(function (id) { var f = D.oils[id][2]; w[f] = (w[f] || 0) + 1; total += 1; });
+    Object.keys(w).forEach(function (f) { w[f] = w[f] / total; });
+    var name = typeof p.n === "string" ? p.n.replace(/\s+/g, " ").trim().slice(0, 40) : "";
+    var norm = name.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+    if (!name || BAD.some(function (re) { return re.test(norm); })) name = "Untitled blend";
+    var fmt = D.formats[p.f] || "";
+    return { name: name, oils: oils, w: w, fmt: fmt };
+  }
+  function list(a) { return a.length > 1 ? a.slice(0, -1).join(", ") + " and " + a[a.length - 1] : a[0]; }
+  function describe(c) {
+    var fams = Object.keys(c.w).sort(function (a, b) { return c.w[b] - c.w[a]; });
+    var word = D.words[fams[0]] || "layered";
+    if (fams[1] && c.w[fams[1]] >= 0.25) word = word.replace(/,$/, "") + " and " + D.words[fams[1]].replace("warm, ", "").replace("cool, ", "");
+    var names = c.oils.slice(0, 3).map(function (id) { return D.oils[id][0].toLowerCase().replace("bergamot fcf", "bergamot"); });
+    var t = "A " + word + " blend of " + list(names) + ".";
+    return t.charAt(0).toUpperCase() + t.slice(1);
+  }
+  var raw = (location.hash.match(/c=([A-Za-z0-9_-]+)/) || [])[1];
+  var c = raw ? clean(decode(raw)) : null;
+  if (!c) { $("empty").hidden = false; return; }
+  document.title = c.name + " · Scent card";
+  var fams = Object.keys(c.w).sort(function (a, b) { return c.w[b] - c.w[a]; });
+  $("name").textContent = c.name;
+  $("fmt").textContent = c.fmt;
+  var bar = $("bar"), legend = $("legend");
+  bar.setAttribute("aria-label", "Scent families: " + fams.map(function (f) { return f + " " + Math.round(c.w[f] * 100) + "%"; }).join(", "));
+  fams.forEach(function (f) {
+    var s = document.createElement("span"); s.style.flexGrow = c.w[f]; s.style.background = D.fam[f]; bar.appendChild(s);
+    var l = document.createElement("span"); var i = document.createElement("i"); i.style.background = D.fam[f]; l.appendChild(i); l.appendChild(document.createTextNode(f + " " + Math.round(c.w[f] * 100) + "%")); legend.appendChild(l);
+  });
+  var desc = describe(c);
+  $("desc").textContent = desc;
+  var byNote = { top: [], heart: [], base: [] };
+  c.oils.forEach(function (id) { var o = D.oils[id]; (byNote[o[1]] || byNote.heart).push(o[0]); });
+  ["top", "heart", "base"].forEach(function (n) {
+    if (!byNote[n].length) return;
+    var row = document.createElement("div"); row.className = "note " + n;
+    var b = document.createElement("b"); b.textContent = NOTE_LABEL[n];
+    var s = document.createElement("span"); s.textContent = byNote[n].join(", ");
+    row.appendChild(b); row.appendChild(s); $("notes").appendChild(row);
+  });
+  $("card").hidden = false;
+  if (embed) {
+    var post = function () { try { parent.postMessage({ seCardHeight: document.documentElement.scrollHeight }, "*"); } catch (e) {} };
+    window.addEventListener("load", post); setTimeout(post, 600);
+    return;
+  }
+  $("tools").hidden = false;
+  var url = location.origin + location.pathname + "#c=" + raw;
+  var embedUrl = location.origin + location.pathname + "?embed=1#c=" + raw;
+  $("embed").value = '<iframe src="' + embedUrl + '" title="Scent card: ' + c.name.replace(/[<>"&]/g, "") + '" style="width:100%;max-width:520px;height:460px;border:0" loading="lazy"></iframe>';
+  function copy(text, done) {
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { toast(done); }, function () { toast("Couldn't copy: select it and copy by hand"); });
+    else toast("Couldn't copy: select it and copy by hand");
+  }
+  $("copy-link").addEventListener("click", function () { copy(url, "Link copied"); });
+  $("copy-embed").addEventListener("click", function () { $("embed").select(); copy($("embed").value, "Website code copied"); });
+
+  // ---- image ----
+  function wrap(ctx, text, maxW) {
+    var words = text.split(" "), lines = [], line = "";
+    words.forEach(function (w) { var t = line ? line + " " + w : w; if (ctx.measureText(t).width > maxW && line) { lines.push(line); line = w; } else line = t; });
+    if (line) lines.push(line); return lines;
+  }
+  function drawImage() {
+    var W = 1080, H = 1350, P = 96, cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+    var x = cv.getContext("2d");
+    x.fillStyle = "#F6EEE1"; x.fillRect(0, 0, W, H);
+    x.fillStyle = "#FCF8F2"; x.beginPath(); if (x.roundRect) x.roundRect(48, 48, W - 96, H - 96, 40); else x.rect(48, 48, W - 96, H - 96); x.fill();
+    var y = 170;
+    x.fillStyle = "#6E5C64"; x.font = "700 26px Figtree, sans-serif"; x.fillText("SCENT CARD", P, y);
+    y += 30; x.fillStyle = "#3B2733"; x.font = "600 92px Fraunces, Georgia, serif";
+    wrap(x, c.name, W - 2 * P).slice(0, 3).forEach(function (l) { y += 100; x.fillText(l, P, y); });
+    if (c.fmt) { y += 56; x.fillStyle = "#6E5C64"; x.font = "500 32px Figtree, sans-serif"; x.fillText(c.fmt, P, y); }
+    y += 56; var bx = P, bw = W - 2 * P;
+    fams.forEach(function (f) { var w = bw * c.w[f]; x.fillStyle = D.fam[f]; x.fillRect(bx, y, w, 28); bx += w; });
+    y += 70; x.font = "500 28px Figtree, sans-serif"; var lx = P;
+    fams.forEach(function (f) { var t = f + " " + Math.round(c.w[f] * 100) + "%"; x.fillStyle = D.fam[f]; x.fillRect(lx, y - 20, 20, 20); x.fillStyle = "#6E5C64"; x.fillText(t, lx + 30, y); lx += 30 + x.measureText(t).width + 36; });
+    y += 70; x.fillStyle = "#2B1E25"; x.font = "500 38px Figtree, sans-serif";
+    wrap(x, desc, W - 2 * P).forEach(function (l) { x.fillText(l, P, y); y += 52; });
+    y += 20;
+    var col = { top: "#C9972E", heart: "#C77C6C", base: "#7D5B3E" };
+    ["top", "heart", "base"].forEach(function (n) {
+      if (!byNote[n].length) return;
+      x.strokeStyle = "rgba(59,39,51,.14)"; x.lineWidth = 2; x.beginPath(); x.moveTo(P, y); x.lineTo(W - P, y); x.stroke();
+      y += 56; x.fillStyle = col[n]; x.font = "700 26px Figtree, sans-serif"; x.fillText(NOTE_LABEL[n].toUpperCase(), P, y);
+      x.fillStyle = "#2B1E25"; x.font = "500 34px Figtree, sans-serif";
+      wrap(x, byNote[n].join(", "), W - 2 * P - 170).forEach(function (l, i) { x.fillText(l, P + 170, y + i * 46); y += i ? 46 : 0; });
+      y += 34;
+    });
+    x.fillStyle = "#6E5C64"; x.font = "500 26px Figtree, sans-serif";
+    x.fillText("Created with Blend Studio by Sana Essencia", P, H - 120);
+    x.fillText("sanaessencia.co.uk/blend-studio", P, H - 84);
+    return cv;
+  }
+  $("dl").addEventListener("click", function () {
+    var go = function () {
+      var cv = drawImage();
+      cv.toBlob(function (blob) {
+        if (!blob) { toast("Couldn't make the image here"); return; }
+        var a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+        a.download = c.name.replace(/[^\w\- ]+/g, "").trim().replace(/\s+/g, "-").toLowerCase() + "-scent-card.png";
+        document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+      }, "image/png");
+    };
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go, go);
+  });
+})();
+</script>
+</body>
+</html>

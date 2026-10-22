@@ -1,5 +1,5 @@
 /* Sana Essencia Studio: offline support. Pages load fresh when online and from cache when offline. */
-const CACHE = "se-studio-v9";
+const CACHE = "se-studio-v10";
 const CORE = ["./", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
@@ -21,10 +21,11 @@ self.addEventListener("fetch", e => {
 
   if (isPage) {
     // Network first, so updates appear straight away; cached copy when offline.
+    const home = url.pathname === new URL("./", self.location).pathname;
     e.respondWith(fetch(req).then(res => {
-      const copy = res.clone(); caches.open(CACHE).then(c => c.put("./", copy));
+      const copy = res.clone(); caches.open(CACHE).then(c => c.put(home ? "./" : req, copy));
       return res;
-    }).catch(() => caches.match("./")));
+    }).catch(() => caches.match(home ? "./" : req).then(hit => hit || caches.match("./"))));
     return;
   }
   // Icons and fonts: cache first, refresh in the background.
