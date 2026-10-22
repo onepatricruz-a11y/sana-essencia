@@ -16,7 +16,7 @@ their data (`/api/me`), which covers UK GDPR and LGPD access and erasure request
 ## Endpoints
 | Path | What it does |
 |---|---|
-| `POST /api/auth/start` `{email, lang}` | Emails a sign-in link (EN → Blend Studio, PT → Estúdio). 5 a hour per email. |
+| `POST /api/auth/start` `{email, lang}` | Emails a sign-in link (EN → Blend Studio, PT → Estúdio). 5 an hour per email and 20 an hour per IP address. |
 | `POST /api/auth/verify` `{token}` | Single-use, 20 min. Returns a 60-day session + 24 h entitlement token. |
 | `GET /api/me` / `POST /api/me {action:"export"\|"delete"}` | Plan, until when; data export/erasure. |
 | `POST /api/claim/payhip` `{licenseKey}` | Checks the key with Payhip's licence API; one key = one account. |
@@ -28,7 +28,7 @@ their data (`/api/me`), which covers UK GDPR and LGPD access and erasure request
 
 ## Run the tests
 ```
-cd /workspace/se-server && npm install && npm test     # 13 tests, no network, in-memory storage
+cd /workspace/se-server && npm install && npm test     # 15 tests, no network, in-memory storage
 ```
 
 ## How it would go live (later, with Patricia's OK)
@@ -48,4 +48,4 @@ cd /workspace/se-server && npm install && npm test     # 13 tests, no network, i
 - **Paid features in the Studio's own code** (costing, PDFs) can only be gated "softly" with the entitlement token.
   A technical person could bypass that. Anything that must be protected (packs, sync, IFRA storage) has to come from the server.
 - **Brazil site** is on GitHub Pages, so it calls `https://sanaessencia.co.uk/api` (CORS allowed). Moving it to Netlify is optional.
-- `packs/index.mjs` blends are placeholders.
+- `packs/index.mjs` blends are placeholders. `winter-2026` is marked as such and its `releaseAt` is 2099-01-01, so those placeholders are never served until Patricia supplies checked formulas.

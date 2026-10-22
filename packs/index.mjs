@@ -6,14 +6,17 @@ export const PACKS = [
   {
     id: "winter-2026",
     title: { en: "Winter Hearth", pt: "Lareira de Inverno" },
-    releaseAt: "2026-11-16T00:00:00Z",
+    // PLACEHOLDER formulas, clearly marked below. The date is deliberately far ahead so this pack
+    // is never served until Patricia replaces the blends with checked formulas and moves releaseAt.
+    releaseAt: "2099-01-01T00:00:00Z",
+    placeholder: true,
     plan: "maker",
     preview: 1,
     markets: ["uk"], // Brazilian November is early summer
     blends: [
-      { id: "wh-1", name: { en: "Fireside Orange", pt: "Laranja da Lareira" }, oils: { orange: 40, clove: 10, cinnamon: 10, cedarwood: 25, vanilla: 15 } },
-      { id: "wh-2", name: { en: "Frosted Pine Walk", pt: "Passeio Gelado" }, oils: { cypress: 35, eucalyptus: 15, frankincense: 30, cedarwood: 20 } },
-      { id: "wh-3", name: { en: "Mulled Evening", pt: "Noite de Quentão" }, oils: { orange: 35, ginger: 15, clove: 10, cardamom: 10, sandalwood: 30 } },
+      { id: "wh-1", placeholder: true, name: { en: "Placeholder: Fireside Orange", pt: "Placeholder: Laranja da Lareira" }, oils: { orange: 40, clove: 10, cinnamon: 10, cedarwood: 25, vanilla: 15 } },
+      { id: "wh-2", placeholder: true, name: { en: "Placeholder: Frosted Pine Walk", pt: "Placeholder: Passeio Gelado" }, oils: { cypress: 35, eucalyptus: 15, frankincense: 30, cedarwood: 20 } },
+      { id: "wh-3", placeholder: true, name: { en: "Placeholder: Mulled Evening", pt: "Placeholder: Noite de Quentão" }, oils: { orange: 35, ginger: 15, clove: 10, cardamom: 10, sandalwood: 30 } },
     ],
   },
   {

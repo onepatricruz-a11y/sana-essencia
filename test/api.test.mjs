@@ -33,6 +33,21 @@ test("Portuguese sign-in links go to the Brazilian Estúdio", async () => {
   assert.match(outbox[0].subject, /Estúdio/);
 });
 
+test("sign-in is limited per IP as well as per email", async () => {
+  const { default: start, MAX_PER_IP, MAX_PER_EMAIL } = await import("../netlify/functions/auth-start.mjs");
+  const ip = addr => ({ "x-nf-client-connection-ip": addr });
+  for (let i = 0; i < MAX_PER_IP; i++) {
+    const r = await call(start, req("/api/auth/start", { method: "POST", body: { email: `ip${i}@ex.co` }, headers: ip("203.0.113.10") }));
+    assert.equal(r.status, 200);
+  }
+  assert.equal((await call(start, req("/api/auth/start", { method: "POST", body: { email: "over@ex.co" }, headers: ip("203.0.113.10") }))).status, 429, "one address cannot keep trying new emails");
+  assert.equal((await call(start, req("/api/auth/start", { method: "POST", body: { email: "over@ex.co" }, headers: ip("203.0.113.99") }))).status, 200, "a different address is not blocked");
+  for (let i = 0; i < MAX_PER_EMAIL; i++) {
+    assert.equal((await call(start, req("/api/auth/start", { method: "POST", body: { email: "same@ex.co" }, headers: ip(`198.51.100.${i}`) }))).status, 200);
+  }
+  assert.equal((await call(start, req("/api/auth/start", { method: "POST", body: { email: "same@ex.co" }, headers: ip("198.51.100.50") }))).status, 429, "five per email still applies across addresses");
+});
+
 test("bad emails, rate limit and CORS", async () => {
   const start = await fn("auth-start");
   assert.equal((await call(start, req("/api/auth/start", { method: "POST", body: { email: "nope" } }))).status, 400);
@@ -129,24 +144,30 @@ test("Hotmart monthly subscription uses the plan's period", async () => {
 test("Seasonal packs: free sees a preview, Maker sees all, future packs stay hidden", async () => {
   const packs = await fn("packs"), admin = await fn("admin-grant");
   const { PACKS } = await import("../packs/index.mjs");
+  const christmas = PACKS.find(p => p.id === "christmas-2026");
   const winter = PACKS.find(p => p.id === "winter-2026");
+  assert.ok(winter.placeholder);
+  assert.ok(Date.parse(winter.releaseAt) > Date.parse("2030-01-01T00:00:00Z"), "winter placeholders stay unreleased");
+  assert.ok(winter.blends.every(b => b.placeholder && /placeholder/i.test(b.name.en) && /placeholder/i.test(b.name.pt)));
   const realNow = Date.now;
-  Date.now = () => Date.parse("2026-11-20T12:00:00Z");
+  Date.now = () => Date.parse("2026-12-15T12:00:00Z");
   try {
     let r = await call(packs, req("/api/packs"));
-    assert.deepEqual(r.body.packs.map(p => p.id), ["winter-2026"]);
-    assert.equal(r.body.comingNext.title, "Christmas Gifting");
-    r = await call(packs, req("/api/packs/winter-2026"), { params: { id: "winter-2026" } });
+    assert.deepEqual(r.body.packs.map(p => p.id), ["christmas-2026"]);
+    assert.ok(!r.body.packs.some(p => p.id === "winter-2026"));
+    assert.equal(r.body.comingNext.title, "Valentine's");
+    assert.equal((await call(packs, req("/api/packs/winter-2026"), { params: { id: "winter-2026" } })).status, 404, "placeholder winter pack is not served");
+    r = await call(packs, req("/api/packs/christmas-2026"), { params: { id: "christmas-2026" } });
     assert.equal(r.body.unlocked, false);
     assert.equal(r.body.blends.length, 1);
-    assert.equal(r.body.locked, winter.blends.length - 1);
+    assert.equal(r.body.locked, christmas.blends.length - 1);
     assert.equal((await call(packs, req("/api/packs/valentine-2027"), { params: { id: "valentine-2027" } })).status, 404, "not released yet");
     const s = await signIn("paid@example.com");
     assert.equal((await call(admin, req("/api/admin/grant", { method: "POST", body: { email: "paid@example.com", plan: "maker", days: 30 } }))).status, 401);
     await call(admin, req("/api/admin/grant", { method: "POST", body: { email: "paid@example.com", plan: "maker", days: 30 }, headers: { "x-admin-key": "admin-test" } }));
-    r = await call(packs, req("/api/packs/winter-2026", { headers: auth(s) }), { params: { id: "winter-2026" } });
+    r = await call(packs, req("/api/packs/christmas-2026", { headers: auth(s) }), { params: { id: "christmas-2026" } });
     assert.equal(r.body.unlocked, true);
-    assert.equal(r.body.blends.length, winter.blends.length);
+    assert.equal(r.body.blends.length, christmas.blends.length);
     r = await call(packs, req("/api/packs?lang=pt"));
     assert.ok(!r.body.packs.some(p => p.id === "winter-2026"), "UK winter pack is not shown in Brazil");
   } finally { Date.now = realNow; }
@@ -159,6 +180,22 @@ test("GDPR/LGPD: a maker can export and delete their data", async () => {
   assert.equal(ex.body.data.email, "gdpr@example.com");
   await call(me, req("/api/me", { method: "POST", body: { action: "delete" }, headers: auth(s) }));
   assert.equal((await store.list("user/")).length, 0);
+});
+
+test("deleting an account also removes that email's licence and Play records", async () => {
+  const me = await fn("me");
+  const s = await signIn("gdpr2@example.com");
+  await store.set("licence/AAAAA-BBBBB-CCCCC-DDDDD", { email: "gdpr2@example.com", product: "bT6IA", at: 1 });
+  await store.set("licence/EEEEE-FFFFF-GGGGG-HHHHH", { email: "keep@example.com", product: "bT6IA", at: 1 });
+  await store.set("play/token-user", { email: "gdpr2@example.com", productId: "maker_monthly", at: 1 });
+  await store.set("play/token-keep", { email: "keep@example.com", productId: "maker_monthly", at: 1 });
+  const r = await call(me, req("/api/me", { method: "POST", body: { action: "delete" }, headers: auth(s) }));
+  assert.equal(r.status, 200);
+  assert.equal(await store.get("user/gdpr2@example.com"), null);
+  assert.equal(await store.get("licence/AAAAA-BBBBB-CCCCC-DDDDD"), null);
+  assert.equal(await store.get("play/token-user"), null);
+  assert.equal((await store.get("licence/EEEEE-FFFFF-GGGGG-HHHHH")).email, "keep@example.com");
+  assert.equal((await store.get("play/token-keep")).email, "keep@example.com");
 });
 
 test("Google Play: verifies with Google, acknowledges, binds token to one account", async () => {
