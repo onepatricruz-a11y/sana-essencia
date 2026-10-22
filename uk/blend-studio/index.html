@@ -585,6 +585,11 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
           </ul>
           <p class="small no-play"><b>Founding makers: &pound;45 a year, kept for as long as you stay subscribed.</b> For the first 100 makers who join the waitlist. The Maker plan is otherwise &pound;59 a year. <a href="/workshop-hosts/#plans">See all plans</a>.</p>
           <div class="row"><span class="small muted play-only">Plans are available on our website, sanaessencia.co.uk.</span><a class="btn primary small no-play" href="/try/#testers">Join the waitlist</a><a class="btn ghost small no-play" href="https://payhip.com/b/bT6IA" target="_blank" rel="noopener">Buy a year · £59</a><span class="small muted">Opens 16 November 2026. The free Blend Studio stays free.</span></div>
+          <div class="stack-sm" id="se-account">
+            <form class="row" id="se-signin" hidden><label class="sr" for="se-email">Your email</label><input class="input" id="se-email" type="email" autocomplete="email" placeholder="Already a member? Your email" required><button class="btn ghost small" type="submit">Email me a sign-in link</button></form>
+            <p class="small" id="se-signed" hidden><span id="se-who"></span> · <button class="btn ghost small" id="se-signout" type="button">Sign out</button></p>
+            <form class="row no-play" id="se-licence" hidden><label class="sr" for="se-key">Payhip licence key</label><input class="input" id="se-key" placeholder="Licence key from your Payhip receipt" autocomplete="off"><button class="btn ghost small" type="submit">Unlock</button></form>
+          </div>
         </div>
       </div>
     </section>
@@ -750,6 +755,7 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
 <div class="actionbar" id="actionbar"><button type="button" class="btn ghost small" id="ab-copy">Copy</button><button type="button" class="btn ghost small" id="ab-email">Email it to me</button><button type="button" class="btn primary small" data-goto="services">Services</button></div>
 <div id="print-area" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="se-account.js"></script>
 <script>
 /* Sana Essencia Blend Studio — content library.
    All summaries are paraphrased. Skin maximums are Tisserand & Young (2014) or IFRA values
@@ -3042,11 +3048,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
 
 
   /* ---------- maker tools: costing and printable formula cards (Maker plan) ---------- */
-  const MAKER = (() => { try {
-    const q = new URLSearchParams(location.search);
-    if (q.get("maker") === "preview") sessionStorage.setItem("se-maker", "1");
-    return sessionStorage.getItem("se-maker") === "1";
-  } catch (e) { return false; } })();
+  const MAKER = !!(window.SE && SE.account && SE.account.makerAllowed()); // paid plan via se-account.js; ?maker=preview only off the live domain
   const KEY_PRICES = "se-maker-prices";
   const prices = Object.assign({ oils: {}, mat: {}, sell: {} }, store.get(KEY_PRICES, {}));
   ["oils", "mat", "sell"].forEach(k => { if (!prices[k] || typeof prices[k] !== "object") prices[k] = {}; });

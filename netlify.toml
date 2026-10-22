@@ -1,4 +1,15 @@
+# The site builds from the repo root and publishes only uk/ (same pages as before, when base was "uk").
+# Functions live outside uk/, so their code and the seasonal packs are never published as plain files.
 [build]
-  base = "uk"
-  publish = "."
+  publish = "uk"
   command = "echo 'Static site - no build needed'"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Never cache API answers.
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"

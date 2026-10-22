@@ -1,0 +1,14 @@
+{
+  "name": "se-server",
+  "private": true,
+  "type": "module",
+  "description": "Sana Essencia accounts, entitlements and seasonal packs (Netlify Functions). Not deployed.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "dev": "netlify dev"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
