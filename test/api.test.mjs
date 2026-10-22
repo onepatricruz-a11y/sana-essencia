@@ -48,12 +48,51 @@ test("sign-in emails set reply_to for English and Portuguese", async () => {
     assert.equal(sent.length, 1);
     assert.equal(sent[0].reply_to, "replies@example.com");
     assert.equal(sent[0].to, "via@ex.co");
-    assert.match(sent[0].subject, /Estúdio/);
+    assert.equal(sent[0].subject, "Seu link de acesso ao Estúdio de Blends");
+    assert.match(sent[0].html, /Entrar na Sana Essencia/);
+    assert.match(sent[0].html, /#entrar=/);
+    assert.match(sent[0].text, /#entrar=/);
+    assert.equal(/<img\b/i.test(sent[0].html), false);
+    assert.equal(sent[0].subject.includes("!"), false);
   } finally {
     restore();
     delete process.env.EMAIL_REPLY_TO;
     process.env.RESEND_API_KEY = "";
   }
+});
+
+test("sign-in email is plain text and simple HTML in both languages", async () => {
+  const start = await fn("auth-start");
+  const { sendSignInEmail, outbox: box } = await import("../lib/email.mjs");
+  await call(start, req("/api/auth/start", { method: "POST", body: { email: "en-mail@ex.co" } }));
+  await call(start, req("/api/auth/start", { method: "POST", body: { email: "pt-mail@ex.co", lang: "pt" } }));
+  const en = outbox[0], pt = outbox[1];
+  assert.equal(en.subject, "Your sign-in link for the Blend Studio");
+  assert.equal(pt.subject, "Seu link de acesso ao Estúdio de Blends");
+  for (const msg of [en, pt]) {
+    assert.equal(msg.subject.includes("!"), false);
+    assert.equal(/[A-Z]{4,}/.test(msg.subject), false);
+    assert.match(msg.text, /https:\/\/sanaessencia\.(co\.uk|com\.br)\//);
+    assert.match(msg.html, /https:\/\/sanaessencia\.(co\.uk|com\.br)\//);
+    assert.equal(/<img\b/i.test(msg.html), false);
+    assert.equal(/fonts\.google|url\(/i.test(msg.html), false);
+  }
+  assert.match(en.html, /Sign in to Sana Essencia/);
+  assert.match(en.text, /#signin=/);
+  assert.match(en.html, /#signin=/);
+  assert.match(en.html, /expires in 20 minutes/);
+  assert.match(en.html, /sanaessencia\.co\.uk/);
+  assert.match(pt.html, /Entrar na Sana Essencia/);
+  assert.match(pt.text, /#entrar=/);
+  assert.match(pt.html, /#entrar=/);
+  assert.match(pt.html, /expira em 20 minutos/);
+  assert.match(pt.html, /sanaessencia\.com\.br/);
+  const nasty = 'https://sanaessencia.co.uk/blend-studio/#signin=a<b>&"c';
+  await sendSignInEmail("nasty@ex.co", nasty, "en", 20 * 60 * 1000);
+  const html = box.at(-1).html;
+  assert.equal(html.includes("<b>"), false);
+  assert.match(html, /a&lt;b&gt;&amp;&quot;c/);
+  assert.match(box.at(-1).text, /a<b>&"c/);
 });
 
 test("Portuguese sign-in links go to the Brazilian Estúdio", async () => {

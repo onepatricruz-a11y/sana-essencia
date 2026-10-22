@@ -80,7 +80,7 @@
 
   /* Optional sign-in box: <div id="se-account"> with #se-signin, #se-signed/#se-who/#se-signout, #se-licence/#se-key. */
   function $(id) { return document.getElementById(id); }
-  function say(msg) { var t = $("toast"); if (!t) { alert(msg); return; } t.textContent = msg; t.hidden = false; clearTimeout(say.t); say.t = setTimeout(function () { t.hidden = true; }, 3200); }
+  function say(msg) { var t = $("toast"); if (!t) { alert(msg); return; } t.textContent = msg; t.hidden = false; clearTimeout(say.t); say.t = setTimeout(function () { t.hidden = true; }, 6000); }
   function renderBox(p) {
     if (!$("se-account")) return;
     var signedIn = !!(p && p.email) && !!get(K.session);
@@ -97,7 +97,7 @@
   function bind() {
     var f = $("se-signin"), l = $("se-licence"), o = $("se-signout");
     if (f) f.addEventListener("submit", function (e) { e.preventDefault();
-      account.start($("se-email").value.trim()).then(function () { say(PT ? "Enviamos o link de acesso para o seu e-mail" : "Check your email for the sign-in link"); }, function (err) { say(err.message); }); });
+      account.start($("se-email").value.trim()).then(function () { say(PT ? "Enviamos o link de acesso para o seu e-mail. Se não estiver na sua caixa de entrada, verifique a pasta de spam." : "Check your email for the sign-in link. If it isn't in your inbox, check your spam folder."); }, function (err) { say(err.message); }); });
     if (l) l.addEventListener("submit", function (e) { e.preventDefault();
       account.claimPayhip($("se-key").value).then(settle, function (err) { say(err.message); }); });
     if (o) o.addEventListener("click", function () { account.signOut(); settle({ plan: "free" }); });

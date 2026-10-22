@@ -44,7 +44,7 @@ export default handle(async (req, context) => {
   const c = cfg(), pt = lang === "pt";
   // The token sits after "#", so it never reaches server logs or other sites.
   const link = pt ? `${c.brSiteUrl}/estudio/#entrar=${token}` : `${c.siteUrl}/blend-studio/#signin=${token}`;
-  await sendSignInEmail(e, link, pt ? "pt" : "en");
+  await sendSignInEmail(e, link, pt ? "pt" : "en", TTL);
   return json(req, 200, { ok: true });
 });
 
