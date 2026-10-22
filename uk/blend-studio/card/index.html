@@ -6,6 +6,11 @@
 <title>Scent card · Blend Studio</title>
 <meta name="description" content="A scent card made with the Sana Essencia Blend Studio.">
 <meta name="robots" content="noindex">
+<meta property="og:title" content="A scent card from the Blend Studio">
+<meta property="og:description" content="Scent family, notes and a short description, made with the Sana Essencia Blend Studio.">
+<meta property="og:image" content="https://sanaessencia.co.uk/blend-studio/og-image.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..700&family=Fraunces:opsz,wght@9..144,400..700&display=swap" rel="stylesheet">
@@ -62,15 +67,17 @@ textarea{width:100%;font:400 12px/1.4 ui-monospace,Menlo,Consolas,monospace;bord
     <div class="actions">
       <button class="btn primary" id="dl" type="button">Download image</button>
       <button class="btn" id="copy-link" type="button">Copy link</button>
+      <button class="btn" id="qr" type="button">Download QR code for your label</button>
       <a class="btn" href="../" id="studio">Open the Blend Studio</a>
     </div>
     <p class="help"><b>Add it to your website:</b> copy this code and paste it into your product page (for example as an "embed" or "custom HTML" block).</p>
-    <textarea id="embed" rows="4" readonly></textarea>
+    <textarea id="embed" rows="5" readonly></textarea>
     <button class="btn" id="copy-embed" type="button" style="margin-top:8px;width:100%">Copy website code</button>
     <p class="help">The card shows the scent family and notes only, never your quantities. Before you use it to sell, make sure your product meets the rules for its type.</p>
   </section>
 </main>
 <div class="toast" id="toast" hidden></div>
+<script src="qrcode.min.js"></script>
 <script>
 (function () {
   "use strict";
@@ -141,12 +148,31 @@ textarea{width:100%;font:400 12px/1.4 ui-monospace,Menlo,Consolas,monospace;bord
   $("tools").hidden = false;
   var url = location.origin + location.pathname + "#c=" + raw;
   var embedUrl = location.origin + location.pathname + "?embed=1#c=" + raw;
-  $("embed").value = '<iframe src="' + embedUrl + '" title="Scent card: ' + c.name.replace(/[<>"&]/g, "") + '" style="width:100%;max-width:520px;height:460px;border:0" loading="lazy"></iframe>';
+  var safeName = c.name.replace(/[<>"&]/g, "");
+  $("embed").value = '<iframe data-se-card src="' + embedUrl + '" title="Scent card: ' + safeName + '" style="width:100%;max-width:520px;height:600px;border:0" loading="lazy"></iframe>\n'
+    + '<p style="font-size:13px"><a href="https://sanaessencia.co.uk/blend-studio/">Scent card made with Blend Studio by Sana Essencia</a></p>\n'
+    + '<script>addEventListener("message",function(e){if(e.origin==="https://sanaessencia.co.uk"&&e.data&&e.data.seCardHeight){document.querySelectorAll("iframe[data-se-card]").forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.seCardHeight+4)+"px";});}});<\/script>';
   function copy(text, done) {
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { toast(done); }, function () { toast("Couldn't copy: select it and copy by hand"); });
     else toast("Couldn't copy: select it and copy by hand");
   }
   $("copy-link").addEventListener("click", function () { copy(url, "Link copied"); });
+  $("qr").addEventListener("click", function () {
+    if (typeof qrcode !== "function") { toast("Couldn't make the QR code here"); return; }
+    var q = qrcode(0, "M"); q.addData(url); q.make();
+    var n = q.getModuleCount(), cell = Math.max(6, Math.floor(900 / (n + 8))), pad = cell * 4, size = n * cell + pad * 2;
+    var cv = document.createElement("canvas"); cv.width = size; cv.height = size + 90;
+    var x = cv.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, cv.width, cv.height); x.fillStyle = "#2B1E25";
+    for (var r = 0; r < n; r++) for (var col = 0; col < n; col++) if (q.isDark(r, col)) x.fillRect(pad + col * cell, pad + r * cell, cell, cell);
+    x.font = "600 34px Figtree, sans-serif"; x.textAlign = "center";
+    x.fillText("Scan for the story of " + (c.name.length > 22 ? "this scent" : c.name), size / 2, size + 40);
+    cv.toBlob(function (blob) {
+      if (!blob) { toast("Couldn't make the QR code here"); return; }
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+      a.download = c.name.replace(/[^\w\- ]+/g, "").trim().replace(/\s+/g, "-").toLowerCase() + "-qr.png";
+      document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    }, "image/png");
+  });
   $("copy-embed").addEventListener("click", function () { $("embed").select(); copy($("embed").value, "Website code copied"); });
 
   // ---- image ----
