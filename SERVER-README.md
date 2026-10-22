@@ -28,7 +28,7 @@ their data (`/api/me`), which covers UK GDPR and LGPD access and erasure request
 
 ## Run the tests
 ```
-cd /workspace/se-server && npm install && npm test     # 16 tests, no network, in-memory storage
+cd /workspace/se-server && npm install && npm test     # 17 tests, no network, in-memory storage
 ```
 
 ## How it would go live (later, with Patricia's OK)

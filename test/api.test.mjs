@@ -26,6 +26,36 @@ test("sign-in link works once and gives a free plan", async () => {
   assert.equal(r.body.me.email, "maker@example.com");
 });
 
+test("sign-in emails set reply_to for English and Portuguese", async () => {
+  const start = await fn("auth-start");
+  await call(start, req("/api/auth/start", { method: "POST", body: { email: "en@ex.co" } }));
+  await call(start, req("/api/auth/start", { method: "POST", body: { email: "pt@ex.co", lang: "pt" } }));
+  assert.equal(outbox[0].reply_to, "hello@sanaessencia.co.uk");
+  assert.equal(outbox[1].reply_to, "hello@sanaessencia.co.uk");
+  assert.match(outbox[0].subject, /Blend Studio/);
+  assert.match(outbox[1].subject, /Estúdio/);
+  process.env.EMAIL_REPLY_TO = "replies@example.com";
+  process.env.RESEND_API_KEY = "re_test";
+  const sent = [];
+  const restore = mockFetch(async (url, init) => {
+    assert.equal(url, "https://api.resend.com/emails");
+    sent.push(JSON.parse(init.body));
+    return new Response(JSON.stringify({ id: "em_1" }), { status: 200 });
+  });
+  try {
+    const r = await call(start, req("/api/auth/start", { method: "POST", body: { email: "via@ex.co", lang: "pt" } }));
+    assert.equal(r.status, 200);
+    assert.equal(sent.length, 1);
+    assert.equal(sent[0].reply_to, "replies@example.com");
+    assert.equal(sent[0].to, "via@ex.co");
+    assert.match(sent[0].subject, /Estúdio/);
+  } finally {
+    restore();
+    delete process.env.EMAIL_REPLY_TO;
+    process.env.RESEND_API_KEY = "";
+  }
+});
+
 test("Portuguese sign-in links go to the Brazilian Estúdio", async () => {
   const start = await fn("auth-start");
   await call(start, req("/api/auth/start", { method: "POST", body: { email: "a@b.com.br", lang: "pt" } }));
