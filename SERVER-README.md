@@ -28,7 +28,7 @@ their data (`/api/me`), which covers UK GDPR and LGPD access and erasure request
 
 ## Run the tests
 ```
-cd /workspace/se-server && npm install && npm test     # 15 tests, no network, in-memory storage
+cd /workspace/se-server && npm install && npm test     # 16 tests, no network, in-memory storage
 ```
 
 ## How it would go live (later, with Patricia's OK)
@@ -48,4 +48,4 @@ cd /workspace/se-server && npm install && npm test     # 15 tests, no network, i
 - **Paid features in the Studio's own code** (costing, PDFs) can only be gated "softly" with the entitlement token.
   A technical person could bypass that. Anything that must be protected (packs, sync, IFRA storage) has to come from the server.
 - **Brazil site** is on GitHub Pages, so it calls `https://sanaessencia.co.uk/api` (CORS allowed). Moving it to Netlify is optional.
-- `packs/index.mjs` blends are placeholders. `winter-2026` is marked as such and its `releaseAt` is 2099-01-01, so those placeholders are never served until Patricia supplies checked formulas.
+- `packs/index.mjs` blends are placeholders. Winter, Christmas, Valentine's and Dia dos Namorados are marked `Placeholder:` and each `releaseAt` is 2099-01-01. Placeholder packs are never served. If every pack still ahead is a placeholder, the "coming next" line is "A new seasonal pack coming soon" and does not name the pack.
