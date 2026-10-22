@@ -141,36 +141,78 @@ test("Hotmart monthly subscription uses the plan's period", async () => {
   assert.ok(until > Date.now() + 29 * DAY && until < Date.now() + 31 * DAY);
 });
 
-test("Seasonal packs: free sees a preview, Maker sees all, future packs stay hidden", async () => {
-  const packs = await fn("packs"), admin = await fn("admin-grant");
+test("Seasonal packs stay unreleased while they are placeholders", async () => {
+  const packsFn = await fn("packs"), admin = await fn("admin-grant");
   const { PACKS } = await import("../packs/index.mjs");
-  const christmas = PACKS.find(p => p.id === "christmas-2026");
-  const winter = PACKS.find(p => p.id === "winter-2026");
-  assert.ok(winter.placeholder);
-  assert.ok(Date.parse(winter.releaseAt) > Date.parse("2030-01-01T00:00:00Z"), "winter placeholders stay unreleased");
-  assert.ok(winter.blends.every(b => b.placeholder && /placeholder/i.test(b.name.en) && /placeholder/i.test(b.name.pt)));
+  const held = ["winter-2026", "christmas-2026", "valentine-2027", "namorados-2027"];
+  assert.deepEqual(PACKS.map(p => p.id), held);
+  for (const p of PACKS) {
+    assert.equal(p.placeholder, true);
+    assert.equal(p.releaseAt, "2099-01-01T00:00:00Z");
+    assert.ok(p.blends.length);
+    for (const b of p.blends) {
+      assert.equal(b.placeholder, true);
+      for (const name of Object.values(b.name)) assert.match(name, /^Placeholder:/);
+    }
+  }
   const realNow = Date.now;
+  const forbidden = ["Winter Hearth", "Lareira", "Christmas", "Natal", "Valentine", "Namorados", "Fireside", "Clementine", "Rosa e Cumaru", "wh-1", "xm-1", "vl-1", "nm-1", "2099"];
   Date.now = () => Date.parse("2026-12-15T12:00:00Z");
   try {
-    let r = await call(packs, req("/api/packs"));
-    assert.deepEqual(r.body.packs.map(p => p.id), ["christmas-2026"]);
-    assert.ok(!r.body.packs.some(p => p.id === "winter-2026"));
-    assert.equal(r.body.comingNext.title, "Valentine's");
-    assert.equal((await call(packs, req("/api/packs/winter-2026"), { params: { id: "winter-2026" } })).status, 404, "placeholder winter pack is not served");
-    r = await call(packs, req("/api/packs/christmas-2026"), { params: { id: "christmas-2026" } });
-    assert.equal(r.body.unlocked, false);
-    assert.equal(r.body.blends.length, 1);
-    assert.equal(r.body.locked, christmas.blends.length - 1);
-    assert.equal((await call(packs, req("/api/packs/valentine-2027"), { params: { id: "valentine-2027" } })).status, 404, "not released yet");
+    let r = await call(packsFn, req("/api/packs"));
+    assert.deepEqual(r.body.packs, []);
+    assert.equal(r.body.comingNext.title, "A new seasonal pack coming soon");
+    assert.equal("releaseAt" in r.body.comingNext, false);
+    const blob = JSON.stringify(r.body);
+    for (const secret of forbidden) assert.equal(blob.includes(secret), false, secret);
+    for (const id of held) assert.equal((await call(packsFn, req(`/api/packs/${id}`), { params: { id } })).status, 404, id);
     const s = await signIn("paid@example.com");
     assert.equal((await call(admin, req("/api/admin/grant", { method: "POST", body: { email: "paid@example.com", plan: "maker", days: 30 } }))).status, 401);
     await call(admin, req("/api/admin/grant", { method: "POST", body: { email: "paid@example.com", plan: "maker", days: 30 }, headers: { "x-admin-key": "admin-test" } }));
-    r = await call(packs, req("/api/packs/christmas-2026", { headers: auth(s) }), { params: { id: "christmas-2026" } });
-    assert.equal(r.body.unlocked, true);
-    assert.equal(r.body.blends.length, christmas.blends.length);
-    r = await call(packs, req("/api/packs?lang=pt"));
-    assert.ok(!r.body.packs.some(p => p.id === "winter-2026"), "UK winter pack is not shown in Brazil");
+    r = await call(packsFn, req("/api/packs/christmas-2026", { headers: auth(s) }), { params: { id: "christmas-2026" } });
+    assert.equal(r.status, 404, "a Maker still cannot open a placeholder pack");
+    r = await call(packsFn, req("/api/packs?lang=pt"));
+    assert.deepEqual(r.body.packs, []);
+    assert.equal(r.body.comingNext.title, "Um novo pack sazonal em breve");
+    for (const secret of forbidden) assert.equal(JSON.stringify(r.body).includes(secret), false, secret);
   } finally { Date.now = realNow; }
+});
+
+test("pack access: free sees a preview, Maker sees all, placeholders are not teased by name", async () => {
+  const { listPacks, getPack } = await import("../lib/packs.mjs");
+  const now = Date.parse("2026-12-15T12:00:00Z");
+  const packs = [
+    { id: "out", title: { en: "Out now", pt: "Já disponível" }, releaseAt: "2026-01-01T00:00:00Z", plan: "maker", preview: 1, blends: [
+      { id: "a", name: { en: "One", pt: "Um" }, oils: { lavender: 60 } },
+      { id: "b", name: { en: "Two", pt: "Dois" }, oils: { bergamot: 40 } },
+    ] },
+    { id: "later", title: { en: "Later", pt: "Depois" }, releaseAt: "2027-06-01T00:00:00Z", plan: "maker", preview: 1, blends: [
+      { id: "c", name: { en: "Three" }, oils: { rose: 100 } },
+    ] },
+    { id: "hold", placeholder: true, title: { en: "Secret Placeholder", pt: "Segredo" }, releaseAt: "2099-01-01T00:00:00Z", plan: "maker", preview: 1, blends: [
+      { id: "d", name: { en: "Placeholder: Hidden" }, oils: { clove: 100 } },
+    ] },
+  ];
+  const free = listPacks({ now, packs });
+  assert.deepEqual(free.packs.map(p => p.id), ["out"]);
+  assert.equal(free.packs[0].unlocked, false);
+  assert.equal(free.comingNext.title, "Later");
+  assert.equal(free.comingNext.releaseAt, "2027-06-01T00:00:00Z");
+  assert.equal(JSON.stringify(free).includes("Secret"), false);
+  const preview = getPack("out", { now, packs });
+  assert.equal(preview.unlocked, false);
+  assert.equal(preview.blends.length, 1);
+  assert.equal(preview.locked, 1);
+  const maker = getPack("out", { plan: "maker", now, packs });
+  assert.equal(maker.unlocked, true);
+  assert.equal(maker.blends.length, 2);
+  assert.equal(getPack("later", { now, packs }), null);
+  assert.equal(getPack("hold", { plan: "maker", now: Date.parse("2100-01-02T00:00:00Z"), packs }), null);
+  const onlyHeld = listPacks({ now: Date.parse("2100-01-02T00:00:00Z"), packs: packs.filter(p => p.placeholder) });
+  assert.deepEqual(onlyHeld.packs, []);
+  assert.equal(onlyHeld.comingNext.title, "A new seasonal pack coming soon");
+  assert.equal("releaseAt" in onlyHeld.comingNext, false);
+  assert.equal(listPacks({ now, packs: [] }).comingNext, null);
 });
 
 test("GDPR/LGPD: a maker can export and delete their data", async () => {
