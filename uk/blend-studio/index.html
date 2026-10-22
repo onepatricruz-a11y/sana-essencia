@@ -3051,6 +3051,9 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
   const prices = Object.assign({ oils: {}, mat: {}, sell: {} }, store.get(KEY_PRICES, {}));
   ["oils", "mat", "sell"].forEach(k => { if (!prices[k] || typeof prices[k] !== "object") prices[k] = {}; });
   const savePrices = () => store.set(KEY_PRICES, prices);
+  const SHARED_MAT = ["feePct", "feeFixed"];
+  const matFor = fmt => { const m = prices.mat[fmt]; return m && typeof m === "object" ? m : (prices.mat[fmt] = {}); };
+  const matVal = (fmt, k) => SHARED_MAT.includes(k) ? prices.mat[k] : matFor(fmt)[k];
   const money = n => "£" + num(n, 2);
   const posNum = v => { const n = Number(String(v).replace(",", ".")); return isFinite(n) && n >= 0 ? n : null; };
   const MATS = {
@@ -3068,7 +3071,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
       if (!p || !(p.price > 0) || !(p.ml > 0)) { missing.push(r.oil.name); return; }
       frag += r.ml * p.price / p.ml;
     });
-    const m = prices.mat, units = mode === "wax" ? rec.jars : 1;
+    const m = matFor(rec.format), units = mode === "wax" ? rec.jars : 1;
     const lines = [["Fragrance (whole batch)", frag]];
     let batch = frag;
     if (mode === "wax") { const w = (m.waxKg || 0) * rec.totals.waxG / 1000; lines.push(["Wax", w]); batch += w; }
@@ -3088,9 +3091,11 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
     }).join("");
     const mode = rec.fmt.mode === "wax" ? "wax" : rec.fmt.mode === "percent" ? "percent" : "other";
     mats.innerHTML = MATS[mode].length ? `<h4>Your other materials</h4>` + MATS[mode].map(([k, label, unit]) =>
-      `<div class="cost-row two"><span>${esc(label)} <span class="u">${esc(unit)}</span></span><input class="input" inputmode="decimal" aria-label="${esc(label)}, ${esc(unit)}" data-mat="${k}" value="${prices.mat[k] != null ? esc(prices.mat[k]) : ""}"></div>`).join("")
+      `<div class="cost-row two"><span>${esc(label)} <span class="u">${esc(unit)}</span></span><input class="input" inputmode="decimal" aria-label="${esc(label)}, ${esc(unit)}" data-mat="${k}" value="${matVal(rec.format, k) != null ? esc(matVal(rec.format, k)) : ""}"></div>`).join("")
       + `<h4>Selling</h4><div class="cost-row two"><span>Your selling price <span class="u">£ each</span></span><input class="input" inputmode="decimal" aria-label="Selling price in pounds" data-sell="${rec.format}" value="${prices.sell[rec.format] != null ? esc(prices.sell[rec.format]) : ""}"></div>
-         <div class="cost-row two"><span>Sales fees <span class="u">% (Etsy, card fees…)</span></span><input class="input" inputmode="decimal" aria-label="Sales fees in percent" data-mat="feePct" value="${prices.mat.feePct != null ? esc(prices.mat.feePct) : ""}"></div>` : "";
+         <div class="cost-row two"><span>Sales fees <span class="u">% of the price (Etsy, card fees…)</span></span><input class="input" inputmode="decimal" aria-label="Sales fees in percent" data-mat="feePct" value="${prices.mat.feePct != null ? esc(prices.mat.feePct) : ""}"></div>
+         <div class="cost-row two"><span>Fixed fees per sale <span class="u">£ (listing, payment fee…)</span></span><input class="input" inputmode="decimal" aria-label="Fixed fees per sale in pounds" data-mat="feeFixed" value="${prices.mat.feeFixed != null ? esc(prices.mat.feeFixed) : ""}"></div>
+         <p class="small muted">Check your platform’s current fees. If you aren’t VAT registered, add the VAT they charge on their fees too.</p>` : "";
   }
   function renderMakerOut(rec) {
     const c = costOf(rec), out = $("#cost-out");
@@ -3099,14 +3104,19 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
     let html = `<table class="cost-table">${c.lines.map(([l, v]) => `<tr><td>${esc(l)}</td><td class="num">${money(v)}</td></tr>`).join("")}`;
     if (c.mode !== "other") if (c.units > 1) html += `<tr><td>Batch shared over ${c.units}</td><td class="num">${money(c.batch / c.units)} each</td></tr>`;
     if (c.extras) html += `<tr><td>${c.mode === "wax" ? "Jar, wick and label" : "Bottle and label"} (each)</td><td class="num">${money(c.extras)}</td></tr>`;
-    html += `<tr class="total"><td>Cost ${unitWord}${c.units > 1 ? ` (batch of ${c.units})` : ""}</td><td class="num">${money(c.perUnit)}</td></tr>`;
+    html += `<tr class="total"><td>Cost ${unitWord}${c.units > 1 ? ` (batch of ${c.units})` : ""}${c.missing.length ? " (incomplete)" : ""}</td><td class="num">${c.missing.length ? "at least " : ""}${money(c.perUnit)}</td></tr>`;
     const sell = posNum(prices.sell[rec.format]);
-    if (c.mode !== "other" && sell) {
-      const fee = (posNum(prices.mat.feePct) || 0) / 100, net = sell * (1 - fee), profit = net - c.perUnit;
-      html += `<tr><td>After fees, you receive</td><td class="num">${money(net)}</td></tr><tr class="total"><td>Profit ${unitWord} · margin</td><td class="num">${money(profit)} · ${Math.round(profit / sell * 100)}%</td></tr>`;
+    let loss = false;
+    if (c.mode !== "other" && sell && !c.missing.length) {
+      const fee = (posNum(prices.mat.feePct) || 0) / 100, fixed = posNum(prices.mat.feeFixed) || 0;
+      const net = sell * (1 - fee) - fixed, profit = net - c.perUnit;
+      loss = profit < 0;
+      const signed = (profit < 0 ? "−" : "") + money(Math.abs(profit));
+      html += `<tr><td>After fees, you receive</td><td class="num">${money(net)}</td></tr><tr class="total"><td>${loss ? "Loss" : "Profit"} ${unitWord} · margin</td><td class="num">${signed} · ${String(Math.round(profit / sell * 100)).replace("-", "−")}%</td></tr>`;
     }
     html += `</table>`;
-    if (c.missing.length) html += `<p class="cost-note">Add prices for ${esc(c.missing.join(", "))} to complete the cost.</p>`;
+    if (c.missing.length) html += `<p class="cost-note">Add prices for ${esc(c.missing.join(", "))}: the cost and profit aren’t complete until every oil has a price.</p>`;
+    if (loss) html += `<p class="cost-note"><b>At this price you lose money on each sale.</b> Raise the price, lower the fragrance load or check your material costs.</p>`;
     out.innerHTML = html;
   }
   function renderMaker() {
@@ -3123,7 +3133,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
     const t = e.target; if (!MAKER || !t.closest || !t.closest("#maker-tools")) return;
     const v = posNum(t.value);
     if (t.dataset.oil) { const o = prices.oils[t.dataset.oil] = prices.oils[t.dataset.oil] || {}; if (v == null) delete o[t.dataset.k]; else o[t.dataset.k] = v; }
-    else if (t.dataset.mat) { if (v == null) delete prices.mat[t.dataset.mat]; else prices.mat[t.dataset.mat] = v; }
+    else if (t.dataset.mat) { const k = t.dataset.mat, box = SHARED_MAT.includes(k) ? prices.mat : matFor(state.blend.format); if (v == null) delete box[k]; else box[k] = v; }
     else if (t.dataset.sell) { if (v == null) delete prices.sell[t.dataset.sell]; else prices.sell[t.dataset.sell] = v; }
     savePrices(); renderMakerOut(computeRecipe(state.blend));
   });
@@ -3149,6 +3159,9 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
       if (c.lines.some(l => l[1] > 0)) {
         html += `<h2>Cost</h2><table><tbody>${c.lines.map(([l, v]) => `<tr><td>${esc(l)}</td><td class="n">${money(v)}</td></tr>`).join("")}${c.units > 1 ? `<tr><td>Batch shared over ${c.units}</td><td class="n">${money(c.batch / c.units)} each</td></tr>` : ""}${c.extras ? `<tr><td>${c.mode === "wax" ? "Jar, wick and label" : "Bottle and label"} (each)</td><td class="n">${money(c.extras)}</td></tr>` : ""}${c.mode !== "other" ? `<tr><td><b>Cost per unit</b></td><td class="n"><b>${money(c.perUnit)}</b></td></tr>` : ""}</tbody></table>${c.missing.length ? `<p class="meta">Prices missing for: ${esc(c.missing.join(", "))}.</p>` : ""}`;
       }
+      html += `<h2>Label text (draft)</h2>
+        <p><b>${esc(b.name || "Untitled blend")}</b><br>${esc(d.text)}</p>
+        <p class="meta">Add: net weight or volume, your business name and address, a batch number${f.group === "skin" ? ", the full INCI ingredient list with allergens and the period after opening" : ", any CLP hazard statements and pictograms from your safety data sheets"}${rec.format === "candle" ? ", and the candle fire-safety warnings" : ""}. Check the wording with the Wording checker before you print.</p>`;
       html += `<h2>Before you sell</h2><ul>
         <li>Check each oil against your supplier’s safety data sheet (SDS) and IFRA certificate for this product type.</li>
         <li>${f.group === "skin" ? "Skin products are cosmetics: you need a safety assessment (CPSR), a Responsible Person, SCPN notification and full labels." : "Work out the CLP hazard label from your suppliers’ safety data sheets." + (rec.format === "candle" ? " Add the candle fire-safety warnings (BS EN 15494)." : "")}</li>
