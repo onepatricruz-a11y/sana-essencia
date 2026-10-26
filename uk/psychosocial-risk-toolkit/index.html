@@ -271,7 +271,7 @@ textarea.fallback{width:100%;height:160px;margin-top:8px;font:12px var(--mono);b
     <div class="top-in">
       <div class="brand">
         <a class="home" href="/">&larr; sanaessencia.co.uk</a>
-        <div class="label">Science-led tools for compliant, comfortable workplaces</div>
+        <div class="label">Practical tools to help you manage work-related stress, based on HSE's Management Standards</div>
         <h1>Psychosocial Risk <span>Toolkit</span></h1>
         <div class="by">by Sana Essencia</div>
         <p>Plan psychosocial controls room by room, using the HSE Management Standards, the Workplace Regulations and an evidence-graded environment layer. Scent is optional and sits last, behind a consent gate.</p>
@@ -443,18 +443,18 @@ textarea.fallback{width:100%;height:160px;margin-top:8px;font:12px var(--mono);b
 <section id="partners" role="tabpanel" aria-labelledby="t-partners" hidden>
   <div class="panel-intro">
     <h2>For consultants</h2>
-    <p>Offer the Psychosocial Risk Toolkit to your clients under your own name. You keep the client relationship; Sana Essencia keeps the content current as the law changes.</p>
+    <p>Offer the Psychosocial Risk Toolkit to your client organisations with your logo alongside ours, and the line &ldquo;Powered by Sana Essencia&rdquo;. A licence counts client organisations, not sites. You keep the client relationship; Sana Essencia keeps the content current as the law changes.</p>
   </div>
   <div class="partner">
     <div class="card">
       <h3>What you get</h3>
       <ul class="offer">
-        <li><span><b>Your name on every plan.</b> Plans and copied text carry your consultancy name, with "Powered by Sana Essencia" underneath.</span></li>
-        <li><span><b>A site-visit tool.</b> Build a room plan with the client during a walk-round, then paste it into your report.</span></li>
-        <li><span><b>A ready L&amp;D session.</b> The team room check runs in 15 minutes and produces actions with owners.</span></li>
+        <li><span><b>Your name on every plan.</b> Plans and copied text show your consultancy name, with &ldquo;Powered by Sana Essencia&rdquo;.</span></li>
+        <li><span><b>A walk-round tool.</b> Build a room plan with the client during a visit, then paste it into your report. The licence still counts client organisations, not sites.</span></li>
+        <li><span><b>A ready L&amp;D session.</b> The team room check runs in 15 minutes and produces actions with owners. You lead it with your clients. Sana Essencia does not run the session.</span></li>
         <li><span><b>A citable evidence register.</b> Graded plainly, with sources, so clients see the reasoning.</span></li>
         <li><span><b>Updates as the law moves.</b> For example, the Employment Rights Act 2025 harassment duties from 30 October 2026.</span></li>
-        <li><span><b>A referral share.</b> You earn a commission on any Sana Essencia product your clients buy.</span></li>
+        <li><span><b>A referral share.</b> You earn a commission on any Sana Essencia product your clients buy. If you earn a commission or referral share when a client buys, please tell them before they buy. A simple line is enough: &ldquo;I'm a Sana Essencia partner and receive a commission if you buy through my link.&rdquo; Include it in any email, post or proposal that links to us, and label social posts #ad.</span></li>
       </ul>
     </div>
     <div class="card">
@@ -465,7 +465,7 @@ textarea.fallback{width:100%;height:160px;margin-top:8px;font:12px var(--mono);b
         <input id="prepInput" type="text" placeholder="e.g. Hampshire Safety Partners" autocomplete="organization">
       </div>
       <div class="subhead" style="margin-top:20px">Talk to us</div>
-      <p style="font-size:14px;color:var(--ink-2)">Pilot places are open for UK health and safety consultancies and L&amp;D providers. The full Partner Licence, with the System documents for your clients, is &pound;495 a year for up to 10 clients or &pound;895 unlimited. <a href="/partners/">See partner terms</a>.</p>
+      <p style="font-size:14px;color:var(--ink-2)">Pilot places are open for UK health and safety consultancies and L&amp;D providers. The Back to Baseline Delivery Partner Licence, with the System documents for your client organisations, is &pound;346.50 in year one (standard price &pound;495 a year) for up to 10 client organisations, or &pound;626.50 in year one (standard price &pound;895 a year) for unlimited client organisations. Founding offer: 30% off year one for the first 5 partners. Offer ends 31 March 2027. Then the standard price. No VAT is charged on this licence. It is invoiced by Sana Essencia Ltd. <a href="/partners/">See partner terms</a>.</p>
       <div class="contact"><code id="email">hello@sanaessencia.co.uk</code><button class="btn ghost" type="button" id="copyEmail">Copy email</button></div>
       <div class="copied" id="emailCopied" style="text-align:left"></div>
     </div>
@@ -476,6 +476,7 @@ textarea.fallback{width:100%;height:160px;margin-top:8px;font:12px var(--mono);b
 <footer>
   <div class="wrap foot">
     <p><b>Important.</b> The Psychosocial Risk Toolkit supports, and does not replace, a suitable and sufficient risk assessment carried out by a competent person. It is general information, not legal or medical advice. No health claims are made for any scent.</p>
+    <p>Based on HSE's Management Standards. Contains public sector information published by the Health and Safety Executive and licensed under the Open Government Licence v3.0. Sana Essencia is not affiliated with, or endorsed by, HSE, Acas or CIPD. Our tools are a guide, not legal or health and safety sign-off.</p>
     <p>Sana Essencia Ltd · Company No. 17298884 · Registered in England and Wales · <a href="/">sanaessencia.co.uk</a> · <a href="https://sanaessencia.com.br/toolkit-riscos-psicossociais/" hreflang="pt-BR" lang="pt-BR">Versão em português</a></p>
   </div>
 </footer>
@@ -654,7 +655,7 @@ function planText(){
   const d=new Date(),rev=new Date(d.getFullYear(),d.getMonth()+3,d.getDate());
   const fmt=x=>x.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
   let t=`ROOM PLAN: ${r.name.toUpperCase()}\n`;
-  if(prep)t+=`Prepared by ${prep} · Psychosocial Risk Toolkit, by Sana Essencia\n`;
+  if(prep)t+=`Prepared by ${prep} · Powered by Sana Essencia\n`;
   t+=`Date: ${fmt(d)} · Review by: ${fmt(rev)}\n\n${r.sub}\n\n1. FIX THE CAUSE: ORGANISATIONAL CONTROLS\n`;
   r.focus.forEach(f=>t+=`- ${f}\n`);
   STDS.filter(s=>state.stds.has(s.id)).forEach(s=>{t+=`${s.name} standard:\n`;s.acts.forEach(a=>t+=`- ${a}\n`);});
