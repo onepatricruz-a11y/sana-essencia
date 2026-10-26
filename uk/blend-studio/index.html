@@ -2305,7 +2305,7 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
       ${extra && extra.matched ? `<p class="small muted">${extra.matched}</p>` : ""}
       ${why.length ? `<ul class="small">${why.map(w => `<li>${esc(w)}</li>`).join("")}</ul>` : ""}
       ${notes.length ? `<ul class="small">${notes.map(w => `<li>${esc(w)}</li>`).join("")}</ul>` : ""}
-      <div class="row"><button type="button" class="btn primary small" id="goto-bench">See the recipe</button><span class="small muted">Loaded as a ${esc(f.label.toLowerCase())}. Change anything below.</span></div>`;
+      <div class="row"><button type="button" class="btn primary small" id="goto-bench">See the recipe</button><span class="small muted">Loaded as ${/^[aeiou]/i.test(f.label) ? "an" : "a"} ${esc(f.label.toLowerCase())}. Change anything below.</span></div>`;
     res.hidden = false;
     $("#goto-bench").addEventListener("click", scrollToSheet);
     setTimeout(() => { const y = res.getBoundingClientRect().top + window.scrollY - 70; window.scrollTo({ top: Math.max(0, y), behavior: "smooth" }); }, 60);
