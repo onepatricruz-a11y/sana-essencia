@@ -235,6 +235,26 @@
     @media (max-width: 960px) { .season-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 560px) { .season-grid { grid-template-columns: 1fr; } }
     @media (max-width: 960px) { .offers-grid.plans { grid-template-columns: 1fr; } }
+    /* Comparison */
+    .compare-wrap { margin-top: 30px; overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); }
+    table.compare { width: 100%; border-collapse: collapse; background: var(--white); font-size: 0.95rem; min-width: 520px; }
+    table.compare th { background: var(--forest); color: var(--cream); text-align: left; padding: 12px 14px; font-weight: 600; }
+    table.compare th:last-child { background: var(--terracotta); }
+    table.compare td { padding: 12px 14px; border-bottom: 1px solid rgba(31,61,47,0.12); vertical-align: top; }
+    table.compare td:first-child { font-weight: 600; color: var(--forest); }
+    table.compare td:last-child { background: rgba(192,100,62,0.06); }
+    @media (max-width: 640px) {
+      .compare-wrap { overflow: visible; box-shadow: none; }
+      table.compare { min-width: 0; background: transparent; }
+      table.compare thead { display: none; }
+      table.compare tr { display: block; background: var(--white); border-radius: 14px; box-shadow: var(--shadow); margin-bottom: 12px; overflow: hidden; }
+      table.compare td { display: block; border-bottom: 0; padding: 8px 16px; }
+      table.compare td:first-child { padding-top: 14px; font-size: 1rem; }
+      table.compare td[data-label]::before { content: attr(data-label) ": "; font-weight: 600; color: var(--muted); }
+      table.compare td:last-child { padding-bottom: 14px; }
+      table.compare td:last-child::before { color: var(--terracotta); }
+    }
+    .compare-note { margin-top: 14px; font-size: 0.88rem; color: var(--muted); max-width: 760px; }
   </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Sana Essencia", "alternateName": ["Sana Essencia Ltd", "Sana Essência"], "url": "https://sanaessencia.co.uk/", "logo": "https://sanaessencia.co.uk/og-image.png", "email": "hello@sanaessencia.co.uk", "founder": {"@type": "Person", "name": "Patricia Cruz"}, "sameAs": ["https://sanaessencia.com.br/", "https://www.linkedin.com/in/patricia-cruz-7a3a90412/"], "description": "Sana Essencia translates the science of scent for brands and workplaces and offers practical tools on work-related stress."}</script>
 </head>
@@ -286,6 +306,31 @@
           <div class="aud"><div class="icon">❦</div><h3>Client gifts and favours</h3><p>Scale one blend to a company’s 200 Christmas gifts or 60 wedding favours in seconds, and print a gift tag for each.</p></div>
           <div class="aud"><div class="icon">✓</div><h3>Wording for your shop</h3><p>A checker for product listings and labels that flags wording likely to break UK advertising rules.</p></div>
         </div>
+      </div>
+    </section>
+
+    <section id="why" style="padding-top: 24px;">
+      <div class="container">
+        <span class="eyebrow">Why the Blend Studio</span>
+        <h2>Other apps do the maths. This one knows the oils.</h2>
+        <p class="lead">Most maker apps work out weights, costs and labels. The Blend Studio does the weights too, then explains how each oil behaves in wax, what you can say about it, and runs your workshop around it.</p>
+        <div class="compare-wrap">
+          <table class="compare">
+            <thead><tr><th scope="col">What you need</th><th scope="col">Most maker apps</th><th scope="col">Blend Studio</th></tr></thead>
+            <tbody>
+              <tr><td>Exact grams for your jars</td><td data-label="Most maker apps">Yes, often for very little</td><td data-label="Blend Studio">Yes, for 12 product formats</td></tr>
+              <tr><td>Costing and margins</td><td data-label="Most maker apps">Yes, what they do best</td><td data-label="Blend Studio">Maker plan, from your own supplier prices</td></tr>
+              <tr><td>CLP hazard labels</td><td data-label="Most maker apps">Label tools do this well, some for free</td><td data-label="Blend Studio">Not a label maker: draft label text and a reminder of what your label needs</td></tr>
+              <tr><td>Which oils throw well in wax, and why</td><td data-label="Most maker apps">Not usually</td><td data-label="Blend Studio">Every oil rated for candles, with the reason</td></tr>
+              <tr><td>The research behind each oil</td><td data-label="Most maker apps">Rarely</td><td data-label="Blend Studio">Graded evidence, with sources you can open</td></tr>
+              <tr><td>Wording you can use in your shop</td><td data-label="Most maker apps">Not usually</td><td data-label="Blend Studio">A checker for UK advertising rules</td></tr>
+              <tr><td>Your oils, your name, a QR code for guests</td><td data-label="Most maker apps">Not usually</td><td data-label="Blend Studio">Studio plan</td></tr>
+              <tr><td>Prep list, formula cards and follow-up emails</td><td data-label="Most maker apps">Not usually</td><td data-label="Blend Studio">Studio plan</td></tr>
+              <tr><td>A seasonal collection from your own oils</td><td data-label="Most maker apps">Not usually</td><td data-label="Blend Studio">Studio plan, six a year</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="compare-note">Based on the candle, label and aromatherapy apps we reviewed in October 2026. Many are good at what they do: keep using them for costing or CLP labels if they suit you. The Blend Studio is built to sit alongside them.</p>
       </div>
     </section>
 
@@ -412,6 +457,8 @@
         <h2>Good to know</h2>
         <div class="faq-list">
           <details><summary>Will other studios see our blends?</summary><p>No. Your ingredient list and house blends appear only in your studio version.</p></details>
+          <details><summary>Who owns the blends we and our guests create?</summary><p>You do. Blends created in your studio version, by you or your guests, are yours to use under your own booking terms. Sana Essencia claims no rights in them. If you’d like to sell guests’ blends in your own range, add a line to your booking terms and ask before using anyone’s name.</p></details>
+          <details><summary>Does it work with fragrance oils and soap?</summary><p>Not yet. Today the Studio covers essential oils for candles, wax melts, reeds, sprays and perfume. Fragrance oils from your own catalogue, and soap, are next, built with our founding studios and using the limits on your suppliers’ IFRA certificates.</p></details>
           <details><summary>Who keeps our guests’ details?</summary><p>You do. Guests send their blend to your email, and the host tools keep your workshop plan in your own browser. Sana Essencia doesn’t collect your guest list.</p></details>
           <details><summary>Does it work with our booking system?</summary><p>Yes, alongside it. It’s a web link and a QR code, so nothing to install and nothing to change in how guests book and pay.</p></details>
           <details><summary>Who is responsible for safety?</summary><p>You stay responsible for your oils and products. The tools show fragrance loads, flag oils that need care and remind you to check each IFRA certificate and your wax’s maximum load.</p></details>
@@ -462,6 +509,7 @@
             <a href="/workshop-hosts/">For workshop studios</a>
             <a href="/scent-preview/">Scent Preview for scent companies</a>
             <a href="/purchase-check/">Purchase check-up</a>
+            <a href="/guides/essential-oil-candle-throw/">Candle throw guide</a>
           </nav>
           <nav class="foot-col" aria-label="Sana Essencia">
             <span class="foot-head">Sana Essencia</span>

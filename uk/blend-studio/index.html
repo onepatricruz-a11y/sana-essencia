@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sana Essencia Blend Studio</title>
-<meta name="description" content="Free essential oil blending studio: real quantities for candles, diffusers, sprays and perfumes, graded scent science, safety limits, workplace scent plans and a UK advertising wording checker.">
+<title>Blend Studio: free essential oil blend calculator for candles and perfume | Sana Essencia</title>
+<meta name="description" content="Free for makers: see which essential oils throw well in wax, get exact grams for your jars, and check your wording against UK advertising rules. Candles, wax melts, reeds, sprays and perfume.">
 <link rel="canonical" href="https://sanaessencia.co.uk/blend-studio/">
 <link rel="alternate" hreflang="en-GB" href="https://sanaessencia.co.uk/blend-studio/">
 <link rel="alternate" hreflang="pt-BR" href="https://sanaessencia.com.br/estudio/">
-<meta property="og:title" content="Sana Essencia Blend Studio">
-<meta property="og:description" content="Free essential oil blending studio: real quantities for candles, diffusers, sprays and perfumes, graded scent science, safety limits, workplace scent plans and a UK advertising wording checker.">
+<meta property="og:title" content="Blend Studio: which essential oils throw well in wax | Sana Essencia">
+<meta property="og:description" content="Free for makers: see which essential oils throw well in wax, get exact grams for your jars, and check your wording against UK advertising rules. Candles, wax melts, reeds, sprays and perfume.">
 <meta property="og:url" content="https://sanaessencia.co.uk/blend-studio/">
 <meta property="og:image" content="https://sanaessencia.co.uk/blend-studio/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -150,6 +150,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* Cards and badges */
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+.waxbadge { color: var(--muted); }
+.waxbadge.wax-good { color: var(--forest-2); }
 .badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; line-height: 1.5; }
 .ev-review { color: var(--ok); }
 .ev-human { color: var(--info); }
@@ -524,7 +526,7 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
       <div class="section" id="saved-section">
         <div class="section-head">
           <h2>My blends</h2>
-          <p class="muted small" id="saved-note">Your nose log, saved in this browser. Smell each blend on a blotter after a minute, an hour and a day, then give it stars and a note. Copy or download a recipe to keep it anywhere. Saved blends stay on this device only: tap “Email it to me” to keep a copy anywhere.</p>
+          <p class="muted small" id="saved-note">Your nose log, saved in this browser. Smell each blend on a blotter after a minute, an hour and a day, then give it stars and a note. Copy or download a recipe to keep it anywhere. Saved blends stay on this device only: tap “Email it to me” to keep a copy anywhere. Your blends are yours: Sana Essencia claims no rights in them.</p>
         </div>
         <div class="chips" id="saved-sort"></div>
         <div class="saved-list" id="saved"></div>
@@ -635,6 +637,7 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
           <input class="input" id="lib-search" type="search" placeholder="Search by name, molecule or mood" autocomplete="off">
           <div class="chips" id="lib-notes" aria-label="Filter by note"></div>
           <div class="chips" id="lib-evidence" aria-label="Filter by evidence"></div>
+          <div class="chips" id="lib-wax" aria-label="Filter by how it performs in candles"></div>
         </div>
         <p class="count" id="lib-count"></p>
         <div class="lib" id="lib-list"></div>
@@ -1807,6 +1810,8 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
   const cite = id => REFS[id] ? `<a class="cite" href="${esc(REFS[id].url)}" target="_blank" rel="noopener">${esc(shortCite(id))}</a>` : "";
   const cites = ids => (ids && ids.length) ? `<span class="cites">${ids.map(cite).join("")}</span>` : "";
   const evBadge = ev => `<span class="badge ev-${ev}" title="${esc(EVIDENCE[ev].desc)}">${esc(EVIDENCE[ev].label)}</span>`;
+  const WAXB = {good: "Candles: strong", ok: "Candles: fine", weak: "Candles: weak"};
+  const waxBadge = w => WAXB[w] ? `<span class="badge waxbadge wax-${w}">${esc(WAXB[w])}</span>` : "";
   const noteBadge = n => `<span class="badge notebadge note-${n}">${esc(NOTES[n].label)}</span>`;
 
   /* ---------- storage (per-browser convenience) ---------- */
@@ -1819,7 +1824,7 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
   /* ---------- state ---------- */
   const state = {
     blend: null, saved: store.get(KEY_SAVED, []), mood: "calm",
-    lib: { q: "", note: "all", ev: "all" }, picker: { q: "", note: "all" },
+    lib: { q: "", note: "all", ev: "all", wax: "all" }, picker: { q: "", note: "all" },
     quiz: { mood: null, setting: null, families: [], household: [] },
     sample: null, downloads: null, aiCtl: null, pendingDelete: null
   };
@@ -2474,7 +2479,7 @@ Reply with only JSON in exactly this shape:
   function oilCard(o) {
     const flags = o.flags.map(f => `<span class="flag" title="${esc(FLAGS[f].text)}">${esc(FLAGS[f].label)}</span>`).join("");
     return `<details class="oil note-${o.note}" id="oil-${o.id}">
-      <summary><span class="strip" aria-hidden="true"></span><span class="t"><b>${esc(o.name)}</b><span class="small muted"><i>${esc(o.latin)}</i></span><span class="row">${noteBadge(o.note)}${evBadge(o.evidence)}<span class="small muted">${famDot(o.family)}${esc(o.family)}</span></span><span class="small">${esc(o.aroma)}</span></span><span class="chev" aria-hidden="true">›</span></summary>
+      <summary><span class="strip" aria-hidden="true"></span><span class="t"><b>${esc(o.name)}</b><span class="small muted"><i>${esc(o.latin)}</i></span><span class="row">${noteBadge(o.note)}${evBadge(o.evidence)}${waxBadge(o.candle)}<span class="small muted">${famDot(o.family)}${esc(o.family)}</span></span><span class="small">${esc(o.aroma)}</span></span><span class="chev" aria-hidden="true">›</span></summary>
       <div class="oil-body">
         <div class="kv"><span class="k">Key aroma molecules</span><span>${esc(o.molecules)}</span></div>
         <div class="kv"><span class="k">When you smell it</span><span>${esc(o.brain)}</span></div>
@@ -2492,23 +2497,25 @@ Reply with only JSON in exactly this shape:
     const l = state.lib;
     $("#lib-notes").innerHTML = [["all", "All notes"], ["top", "Top"], ["heart", "Heart"], ["base", "Base"]].map(([v, t]) => `<button type="button" class="chip" aria-pressed="${l.note === v}" data-lnote="${v}">${t}</button>`).join("");
     $("#lib-evidence").innerHTML = [["all", "Any evidence"]].concat(Object.entries(EVIDENCE).map(([k, e]) => [k, e.label])).map(([v, t]) => `<button type="button" class="chip" aria-pressed="${l.ev === v}" data-lev="${v}">${esc(t)}</button>`).join("");
+    $("#lib-wax").innerHTML = [["all", "Any use"], ["good", "Throws well in wax"], ["ok", "Fine in wax"]].map(([v, t]) => `<button type="button" class="chip" aria-pressed="${(l.wax || "all") === v}" data-lwax="${v}">${esc(t)}</button>`).join("");
   }
   function renderLibrary() {
     const l = state.lib, q = l.q.trim().toLowerCase();
-    const list = OILS.filter(o => (l.note === "all" || o.note === l.note) && (l.ev === "all" || o.evidence === l.ev) &&
+    const list = OILS.filter(o => (l.note === "all" || o.note === l.note) && (l.ev === "all" || o.evidence === l.ev) && (!l.wax || l.wax === "all" || o.candle === l.wax) &&
       (!q || [o.name, o.latin, o.family, o.molecules, o.aroma, o.moods.map(m => MOODS.find(x => x.id === m).name).join(" ")].join(" ").toLowerCase().includes(q)));
     $("#lib-count").textContent = `${list.length} of ${OILS.length} ingredients`;
     $("#lib-list").innerHTML = list.length ? list.map(oilCard).join("") : `<div class="empty">No ingredients match. Clear a filter or try another word.</div>`;
   }
   $("#lib-search").addEventListener("input", e => { state.lib.q = e.target.value; renderLibrary(); });
   $("#panel-library").addEventListener("click", e => {
-    const n = e.target.closest("[data-lnote]"), v = e.target.closest("[data-lev]"), a = e.target.closest("[data-add-oil]");
+    const n = e.target.closest("[data-lnote]"), v = e.target.closest("[data-lev]"), w = e.target.closest("[data-lwax]"), a = e.target.closest("[data-add-oil]");
     if (n) { state.lib.note = n.dataset.lnote; renderLibFilters(); renderLibrary(); }
     if (v) { state.lib.ev = v.dataset.lev; renderLibFilters(); renderLibrary(); }
+    if (w) { state.lib.wax = w.dataset.lwax; renderLibFilters(); renderLibrary(); }
     if (a) addOil(a.dataset.addOil);
   });
   function openOil(id) {
-    state.lib = { q: "", note: "all", ev: "all" };
+    state.lib = { q: "", note: "all", ev: "all", wax: "all" };
     $("#lib-search").value = "";
     renderLibFilters(); renderLibrary();
     openTab("library", true);
