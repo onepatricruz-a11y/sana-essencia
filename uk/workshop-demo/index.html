@@ -543,7 +543,7 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
         </div>
       </div>
 
-      <div class="section" id="season-section">
+      <div class="section" id="season-section" hidden style="display:none">
         <div class="section-head">
           <span class="season-tag">This season</span>
           <h2>Christmas collection</h2>
@@ -1398,7 +1398,7 @@ if (typeof module !== "undefined") module.exports = { REFS, EVIDENCE, NOTES, FLA
 
 MOODS.forEach(m => { m.oils = m.oils.filter(id => PARTNER_CATALOGUE.includes(id)); });
 for (let i = STARTERS.length - 1; i >= 0; i--) if (!STARTERS[i].items.every(([id]) => PARTNER_CATALOGUE.includes(id))) STARTERS.splice(i, 1);
-/* Seasonal collection (Studio plan): new house blends each season, released ahead of the date */
+/* Seasonal collection on hold. Recipes stay in this file and are cleared below so nothing is offered. */
 const SEASON = {
   id: "christmas-2026", name: "Christmas collection", line: "Six festive house blends for December workshops, client gifts and favours.",
   blends: [
@@ -1411,6 +1411,7 @@ const SEASON = {
   ]
 };
 SEASON.blends = SEASON.blends.filter(b => b.items.every(([id]) => PARTNER_CATALOGUE.includes(id)));
+SEASON.blends = []; /* on hold: do not offer the collection */
 SEASON.blends.slice().reverse().forEach(b => { b.season = SEASON.id; STARTERS.unshift(b); });
 
 const DROPS_PER_ML = 20;      // approximate; varies with oil and dropper
@@ -3128,7 +3129,7 @@ SHORT.hseStress = "HSE Management Standards"; SHORT.equality = "Equality Act 201
       { label: "Tealights", g: 12, n: 4, load: 8 }
     ],
     guests: [],
-    fav: { key: "x-xmas-mulled-orange", n: 40, g: 120, load: 8, from: "" }
+    fav: { key: "h-orchard", n: 40, g: 120, load: 8, from: "" }
   };
   let plan = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_PLAN)), store.get(KEY, {}) || {});
   if (!Array.isArray(plan.kit) || !plan.kit.length) plan.kit = JSON.parse(JSON.stringify(DEFAULT_PLAN.kit));
