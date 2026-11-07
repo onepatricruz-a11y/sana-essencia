@@ -324,6 +324,7 @@ function renderGuides(){
     '<section class="section"><div class="wrap"><div class="cards">'+GUIDE_ORDER.map(guideCard).join("")+'</div></div></section>';
 }
 
+var COURSE_LINK = {"candles":"Modules 3 and 7","wax-melts":"Modules 3 and 7","diffusers":"Modules 4 and 7","sprays":"Modules 4 and 7","cosmetics":"Module 5","selling":"Modules 7 and 9"};
 function renderGuide(k){
   var g = GUIDES[k];
   var others = GUIDE_ORDER.filter(function(x){return x!==k;}).map(function(x){return '<a href="#'+x+'">'+GUIDES[x].title+'</a>';}).join("");
@@ -346,6 +347,7 @@ function renderGuide(k){
       '<aside class="guide-side">'+
         '<div class="sheet side-box"><p class="eyebrow">Official sources</p><ul class="src-list">'+g.sources.map(function(s){return '<li><a href="'+SRC[s].url+'" target="_blank" rel="noopener">'+esc(SRC[s].name)+'</a></li>';}).join("")+'</ul></div>'+
         '<div class="sheet side-box"><p class="eyebrow">Templates for this guide</p><p>Members get label and record templates that follow these rules, and an alert when a rule changes.</p><a class="btn arrow" href="#membership">See membership </a></div>'+
+        (COURSE_LINK[k] ? '<div class="sheet side-box"><p class="eyebrow">Learn it step by step</p><p>'+COURSE_LINK[k]+' of The Scent Business Course, by Sana Essencia. Module 1 is free.</p><a class="btn arrow" href="https://sanaessencia.co.uk/course/">See the course </a></div>' : '')+
         '<div class="side-box plain"><p class="eyebrow">Other guides</p><div class="side-links">'+others+'</div></div>'+
       '</aside>'+
     '</div></section>';
