@@ -1,0 +1,4 @@
+# Scent Ledger lives in /ledger/ and is served at ledger.sanaessencia.co.uk once that domain is added in Netlify.
+https://ledger.sanaessencia.co.uk/*  /ledger/:splat  200!
+# After the subdomain works, uncomment the next line so the old path points to the subdomain:
+# /ledger/*  https://ledger.sanaessencia.co.uk/:splat  301!
