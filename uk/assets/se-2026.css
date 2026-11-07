@@ -81,3 +81,16 @@ footer a:hover,.foot-links a:hover,.foot-col a:hover{color:#FFFFFF}
 .foot-head{color:var(--se-on-navy)}
 .foot-grid{border-top-color:rgba(255,255,255,.12)}
 footer .logo{color:var(--se-on-navy)}
+
+/* Footer company name (inline navy colour on a navy footer) */
+footer strong{color:var(--se-on-navy)!important}
+
+/* Course band on the homepage (navy twin of the Scent Ledger band) */
+.course-band{background-color:var(--forest);background-image:repeating-linear-gradient(to bottom,transparent 0 35px,var(--se-ruling-dark) 35px 36px);color:var(--se-on-navy)}
+.course-band .ledger-grid::before{background:var(--se-red-band);opacity:.75}
+.course-band h2{color:#FFFFFF;font-size:clamp(2rem,4vw,3rem)}
+.course-band .eyebrow{color:var(--se-red-band)}
+.course-band .lead{color:rgba(243,246,251,.86);margin-top:14px;max-width:52ch}
+.course-band .btn-row{margin-top:26px}
+.course-band .btn-outline{border-color:rgba(243,246,251,.7);color:var(--se-on-navy)}
+.course-band .btn-outline:hover{background:var(--se-on-navy);color:var(--forest)}
