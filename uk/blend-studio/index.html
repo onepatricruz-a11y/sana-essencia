@@ -378,7 +378,7 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
   if (sessionStorage.getItem("se-play") === "1") document.documentElement.classList.add("play-app");
 } catch (e) {} })();
 </script>
-<style>.play-app .no-play{display:none!important}.play-only{display:none}.play-app .play-only{display:inline}</style>
+<style>.play-app .no-play{display:none!important}.play-only{display:none}.play-app .play-only{display:inline}.pick.locked{opacity:.62}.pick.locked .small{white-space:nowrap}.oil-locked{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line,#D3DCE8);border-radius:12px;background:var(--card,#fff);opacity:.8}.oil-locked .t{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}.scard.locked{opacity:.7}.free-note{font-size:.9rem;color:var(--muted,#56657A)}#upgrade .panel{max-width:520px}#upgrade .up-body{padding:4px 22px 22px;display:grid;gap:12px}#upgrade ul{margin:0 0 0 18px;display:grid;gap:4px}#upgrade form{display:grid;gap:8px;border-top:1px solid var(--line,#D3DCE8);padding-top:14px}#upgrade .msg{min-height:1.2em}</style>
 </head>
 <body>
 <div class="app">
@@ -533,8 +533,9 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
       </div>
           <div class="section">
         <div class="cta">
-          <span class="eyebrow">Coming next</span>
+          <span class="eyebrow">Full version</span>
           <h3>The Maker plan</h3>
+          <p class="small"><b>Included:</b> all 32 ingredients, every starter formula, and saved blends with your nose log. <b>Coming next:</b></p>
           <ul class="small">
             <li>Costing from your own supplier prices: cost per candle or bottle, fees and your margin</li>
             <li>Printable formula cards and spec sheets, with draft label text</li>
@@ -547,6 +548,7 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
       </div>
     </section>
 
+      <div class="section"><p class="free-note">Want to make it by hand? Book a candle or perfume workshop with a local maker.</p></div>
     <!-- MOODS -->
     <section id="panel-moods" role="tabpanel" aria-labelledby="tab-moods" hidden>
       <div class="stack">
@@ -692,6 +694,31 @@ mark.info { background: var(--info-bg); box-shadow: inset 0 -2px 0 var(--info); 
   </footer>
 </div>
 
+<div class="overlay" id="upgrade" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="upgrade-title">
+    <div class="panel-head">
+      <div class="row" style="justify-content: space-between;">
+        <h3 id="upgrade-title">In the full version</h3>
+        <button class="iconbtn" id="upgrade-close" type="button" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <div class="up-body">
+      <p id="upgrade-why" class="muted">The free Blend Studio uses 13 of the 32 ingredients and 3 starter formulas.</p>
+      <ul class="small">
+        <li>All 32 ingredients, with the science for each</li>
+        <li>Every starter formula</li>
+        <li>Save your blends and nose log in My blends</li>
+      </ul>
+      <div class="row no-play"><a class="btn primary small" href="/try/#testers">See the Maker plan</a><span class="small muted">Plans open 16 November 2026.</span></div>
+      <p class="small muted play-only">The full version is coming to Google Play.</p>
+      <form id="licence-form" class="no-play" autocomplete="off">
+        <label class="small" for="licence-key"><b>Already a member?</b> Enter the licence key from your Payhip receipt.</label>
+        <div class="row"><input class="input" id="licence-key" name="licence-key" placeholder="XXXXX-XXXXX-XXXXX-XXXXX" maxlength="64" style="flex:1;min-width:0"><button class="btn ghost small" type="submit">Unlock</button></div>
+        <p class="small muted msg" id="licence-msg" role="status"></p>
+      </form>
+    </div>
+  </div>
+</div>
 <div class="overlay" id="picker" hidden>
   <div class="panel" role="dialog" aria-modal="true" aria-labelledby="picker-title">
     <div class="panel-head">
@@ -1830,6 +1857,32 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
   };
   if (!Array.isArray(state.saved)) state.saved = [];
 
+  /* ---------- free and full versions ---------- */
+  const FREE_OILS = new Set(["bergamot", "bergamotfcf", "orange", "lemon", "peppermint", "eucalyptus", "rosemary", "lavender", "ylang", "blackpepper", "cedarwood", "frankincense", "vanilla"]);
+  const KEY_PLAN = "se-blend-studio-plan";
+  const PLAN = { full: false };
+  (function () { const p = store.get(KEY_PLAN, null); if (p && p.ok && Number(p.until) > Date.now()) PLAN.full = true; })();
+  const isLocked = id => !PLAN.full && !FREE_OILS.has(id);
+  const starterFree = st => st.items.every(([id]) => FREE_OILS.has(id));
+  function freeSub(id) {
+    const o = OIL_MAP[id]; if (!o) return "lavender";
+    const pool = OILS.filter(x => FREE_OILS.has(x.id) && x.id !== "bergamotfcf");
+    const same = pool.find(x => x.family === o.family) || pool.find(x => x.note === o.note);
+    return same ? same.id : "lavender";
+  }
+  function freeSwap(b) {
+    if (PLAN.full || !b || !Array.isArray(b.items)) return { b, note: "" };
+    const swaps = [], items = [];
+    b.items.forEach(i => {
+      if (!i || !OIL_MAP[i.id]) return;
+      let id = i.id;
+      if (!FREE_OILS.has(id)) { const to = freeSub(id); swaps.push(`${OIL_MAP[id].name} → ${OIL_MAP[to].name}`); id = to; }
+      const ex = items.find(x => x.id === id);
+      if (ex) ex.parts += i.parts; else items.push({ id, parts: i.parts });
+    });
+    return { b: { ...b, items }, note: swaps.length ? `Free version: ${swaps.join(", ")}` : "" };
+  }
+
   function blendFromStarter(st) {
     const f = FORMATS[st.format];
     return { name: st.name, items: st.items.map(([id, parts]) => ({ id, parts })), format: st.format, size: f.size, jars: 1, strength: f.def };
@@ -1840,7 +1893,7 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
     const f = FORMATS[b.format];
     return { name: String(b.name || "Untitled blend").slice(0, 60), items, format: b.format, size: Number(b.size) > 0 ? Number(b.size) : f.size, jars: Math.max(1, Math.round(Number(b.jars) || 1)), strength: clampStrength(b.format, b.strength) };
   }
-  state.blend = validBlend(store.get(KEY_CUR, null)) || blendFromStarter(STARTERS[0]);
+  state.blend = validBlend(freeSwap(store.get(KEY_CUR, null)).b) || blendFromStarter(STARTERS[0]);
   let saveTimer = null;
   function persist() { clearTimeout(saveTimer); saveTimer = setTimeout(() => store.set(KEY_CUR, state.blend), 300); }
 
@@ -1879,6 +1932,7 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
     const b = state.blend;
     let target = id;
     if (FORMATS[b.format].group === "skin" && id === "bergamot") target = "bergamotfcf";
+    if (isLocked(target)) { if (!quiet) openUpgrade("oil"); return false; }
     if (b.items.some(i => i.id === target)) { if (!quiet) toast(`${OIL_MAP[target].name} is already in the blend`); return false; }
     b.items.push({ id: target, parts: partsFor(OIL_MAP[target]) });
     renderIngredients(); renderOutputs();
@@ -2130,9 +2184,10 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
     renderFormats(); renderSizeStrength(); renderIngredients(); renderOutputs();
   }
   function loadBlend(b, msg) {
-    state.blend = validBlend(b) || state.blend;
+    const fs = freeSwap(b);
+    state.blend = validBlend(fs.b) || state.blend;
     renderBench();
-    if (msg) toast(msg);
+    if (fs.note) toast(fs.note); else if (msg) toast(msg);
   }
   function scrollToSheet() { const w = document.querySelector(".sheet") || $("#workbench"); const y = w.getBoundingClientRect().top + window.scrollY - 70; window.scrollTo({ top: Math.max(0, y), behavior: "smooth" }); }
   function scrollToBench() { const w = $("#workbench"); const y = w.getBoundingClientRect().top + window.scrollY - 70; window.scrollTo(0, Math.max(0, y)); }
@@ -2163,6 +2218,7 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
   function slug(s) { return (s || "blend").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "blend"; }
 
   $("#save-blend").addEventListener("click", () => {
+    if (!PLAN.full) { openUpgrade("save"); return; }
     const b = state.blend;
     if (!b.items.length) { toast("Add an ingredient first"); return; }
     const entry = { ...JSON.parse(JSON.stringify(b)), savedAt: Date.now(), key: "b" + Date.now().toString(36) };
@@ -2227,12 +2283,12 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
   /* ---------- starters ---------- */
   function starterCard(st, compact) {
     const m = MOODS.find(x => x.id === st.mood);
-    return `<div class="scard">
+    return `<div class="scard${PLAN.full || starterFree(st) ? "" : " locked"}">
       <div class="tags"><span class="tag">${esc(m ? m.name : "")}</span><span class="tag">${esc(FORMATS[st.format].label)}</span></div>
       <h4 style="font-family:var(--serif);font-size:1.3rem;color:var(--forest);font-weight:600">${esc(st.name)}</h4>
       ${compact ? "" : `<p class="small muted">${esc(st.blurb)}</p>`}
       <div class="oilchips">${st.items.map(([id, p]) => `<span class="note-${OIL_MAP[id].note}">${esc(OIL_MAP[id].name)} ${p}</span>`).join("")}</div>
-      <button type="button" class="btn ghost small" data-starter="${st.id}" style="justify-self:start">Load this formula</button>
+      ${PLAN.full || starterFree(st) ? `<button type="button" class="btn ghost small" data-starter="${st.id}" style="justify-self:start">Load this formula</button>` : `<button type="button" class="btn ghost small" data-upgrade="starter" style="justify-self:start">🔒 Full version</button>`}
     </div>`;
   }
   function renderStarters() { $("#starters").innerHTML = STARTERS.map(s => starterCard(s)).join(""); }
@@ -2244,6 +2300,51 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
     loadBlend(blendFromStarter(st), `Loaded ${st.name}`);
     openTab("blend", true); scrollToBench();
   });
+
+  /* ---------- upgrade and licence ---------- */
+  const UP_WHY = {
+    oil: "This oil is in the full library. The free Blend Studio uses 13 of the 32 ingredients.",
+    starter: "This formula is in the full version. The free Blend Studio has 3 starter formulas.",
+    save: "Saving blends is in the full version. You can still copy or download any recipe."
+  };
+  function openUpgrade(reason) {
+    if (!$("#picker").hidden) closePicker();
+    $("#upgrade-why").textContent = UP_WHY[reason] || UP_WHY.oil;
+    $("#licence-msg").textContent = "";
+    $("#upgrade").hidden = false; document.body.style.overflow = "hidden";
+    setTimeout(() => $("#upgrade-close").focus(), 30);
+  }
+  function closeUpgrade() { $("#upgrade").hidden = true; document.body.style.overflow = ""; }
+  $("#upgrade-close").addEventListener("click", closeUpgrade);
+  $("#upgrade").addEventListener("click", e => { if (e.target.id === "upgrade") closeUpgrade(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#upgrade").hidden) closeUpgrade(); });
+  document.addEventListener("click", e => { const u = e.target.closest("[data-upgrade]"); if (u) openUpgrade(u.dataset.upgrade); });
+  async function checkLicence(key) {
+    const r = await fetch("/api/verify-licence", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ key }) });
+    let j = {}; try { j = await r.json(); } catch (e) {}
+    return j;
+  }
+  function applyPlan() { renderStarters(); renderLibrary(); renderBench(); }
+  $("#licence-form").addEventListener("submit", async e => {
+    e.preventDefault();
+    const key = $("#licence-key").value.trim(), msg = $("#licence-msg");
+    if (!key) { msg.textContent = "Enter your licence key first."; return; }
+    msg.textContent = "Checking…";
+    try {
+      const j = await checkLicence(key);
+      if (j.ok) {
+        store.set(KEY_PLAN, { ok: true, until: j.until, key });
+        PLAN.full = true; applyPlan(); closeUpgrade(); toast("Full version unlocked");
+      } else if (j.error === "not_ready") msg.textContent = "Licence keys open on 16 November 2026.";
+      else if (j.error === "expired") msg.textContent = "This licence has ended. Renew your plan to keep the full version.";
+      else msg.textContent = "That key wasn’t recognised. Check it against your Payhip receipt.";
+    } catch (err) { msg.textContent = "Couldn’t check the key just now. Try again when you’re online."; }
+  });
+  (async function recheck() {
+    const p = store.get(KEY_PLAN, null);
+    if (!p || !p.key || Number(p.until) - Date.now() > 7 * 864e5) return;
+    try { const j = await checkLicence(p.key); if (j.ok) store.set(KEY_PLAN, { ok: true, until: j.until, key: p.key }); else if (j.error === "expired" || j.error === "invalid") { store.set(KEY_PLAN, null); } } catch (e) {}
+  })();
 
   /* ---------- picker ---------- */
   function openPicker() { state.picker = { q: "", note: "all" }; $("#picker-search").value = ""; renderPicker(); $("#picker").hidden = false; document.body.style.overflow = "hidden"; setTimeout(() => $("#picker-search").focus(), 30); }
@@ -2257,7 +2358,7 @@ if (typeof module !== "undefined") module.exports = { fitToSkin, styleFor, distr
       .filter(o => skin ? o.id !== "bergamot" || q.includes("bergamot") : true);
     $("#picker-list").innerHTML = list.length ? list.map(o => {
       const added = inBlend.has(o.id);
-      return `<button type="button" class="pick note-${o.note}" data-pick="${o.id}" ${added ? "disabled" : ""}><span class="strip" aria-hidden="true"></span><span class="t"><b>${esc(o.name)}</b><span>${esc(NOTES[o.note].label)} · ${famDot(o.family)}${esc(o.family)} · ${esc(o.aroma)}</span></span><span class="small muted">${added ? "Added" : "Add"}</span></button>`;
+      return `<button type="button" class="pick note-${o.note}${isLocked(o.id) ? " locked" : ""}" data-pick="${o.id}" ${added ? "disabled" : ""}><span class="strip" aria-hidden="true"></span><span class="t"><b>${esc(o.name)}</b><span>${esc(NOTES[o.note].label)} · ${famDot(o.family)}${esc(o.family)} · ${esc(o.aroma)}</span></span><span class="small muted">${added ? "Added" : (isLocked(o.id) ? "🔒 Full version" : "Add")}</span></button>`;
     }).join("") : `<p class="muted" style="padding:12px">No match. Try another word.</p>`;
   }
   $("#add-ing").addEventListener("click", openPicker);
@@ -2476,6 +2577,9 @@ Reply with only JSON in exactly this shape:
 
   /* ---------- library ---------- */
   const CANDLE = { good: "Throws well in wax", ok: "Fine in wax; pair with a base note", weak: "Weak or costly in wax: better in perfume or diffusers" };
+  function lockedOilCard(o) {
+    return `<div class="oil-locked note-${o.note}" id="oil-${o.id}"><span class="t"><b>${esc(o.name)}</b><span class="small muted">${esc(NOTES[o.note].label)} · ${famDot(o.family)}${esc(o.family)}</span></span><button type="button" class="btn ghost small" data-upgrade="oil">🔒 Full version</button></div>`;
+  }
   function oilCard(o) {
     const flags = o.flags.map(f => `<span class="flag" title="${esc(FLAGS[f].text)}">${esc(FLAGS[f].label)}</span>`).join("");
     return `<details class="oil note-${o.note}" id="oil-${o.id}">
@@ -2503,8 +2607,8 @@ Reply with only JSON in exactly this shape:
     const l = state.lib, q = l.q.trim().toLowerCase();
     const list = OILS.filter(o => (l.note === "all" || o.note === l.note) && (l.ev === "all" || o.evidence === l.ev) && (!l.wax || l.wax === "all" || o.candle === l.wax) &&
       (!q || [o.name, o.latin, o.family, o.molecules, o.aroma, o.moods.map(m => MOODS.find(x => x.id === m).name).join(" ")].join(" ").toLowerCase().includes(q)));
-    $("#lib-count").textContent = `${list.length} of ${OILS.length} ingredients`;
-    $("#lib-list").innerHTML = list.length ? list.map(oilCard).join("") : `<div class="empty">No ingredients match. Clear a filter or try another word.</div>`;
+    $("#lib-count").textContent = `${list.length} of ${OILS.length} ingredients` + (PLAN.full ? "" : ` · ${OILS.filter(o => FREE_OILS.has(o.id)).length} in the free version`);
+    $("#lib-list").innerHTML = list.length ? list.map(o => isLocked(o.id) ? lockedOilCard(o) : oilCard(o)).join("") : `<div class="empty">No ingredients match. Clear a filter or try another word.</div>`;
   }
   $("#lib-search").addEventListener("input", e => { state.lib.q = e.target.value; renderLibrary(); });
   $("#panel-library").addEventListener("click", e => {
@@ -2520,6 +2624,7 @@ Reply with only JSON in exactly this shape:
     renderLibFilters(); renderLibrary();
     openTab("library", true);
     const d = $("#oil-" + id);
+    if (d && d.tagName !== "DETAILS") { openUpgrade("oil"); return; }
     if (d) { d.open = true; const y = d.getBoundingClientRect().top + window.scrollY - 70; window.scrollTo(0, Math.max(0, y)); d.querySelector("summary").focus({ preventScroll: true }); }
   }
 

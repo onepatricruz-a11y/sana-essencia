@@ -269,6 +269,42 @@
     .free-card span.t { color: var(--muted); font-size: .92rem; }
     @media (max-width: 900px) { .free-grid { grid-template-columns: minmax(0, 1fr); } }
   </style>
+  <style>
+    .article { max-width: 760px; margin-inline: auto; }
+    .article h1 { font-size: clamp(2.1rem, 5vw, 3.1rem); margin: 10px 0 14px; }
+    .article .meta { color: var(--muted); font-size: .9rem; margin-bottom: 28px; }
+    .article h2 { font-size: clamp(1.6rem, 3.4vw, 2.1rem); margin: 42px 0 12px; }
+    .article h3 { font-size: 1.35rem; margin: 26px 0 8px; }
+    .article p, .article li { font-size: 1.05rem; margin-bottom: 14px; }
+    .article ul, .article ol { padding-left: 22px; margin-bottom: 14px; }
+    .article .answer { background: var(--white); border-left: 5px solid var(--terracotta); border-radius: 14px; padding: 20px 22px; box-shadow: var(--shadow); font-size: 1.08rem; }
+    .article table { width: 100%; border-collapse: collapse; margin: 10px 0 22px; font-size: .97rem; background: var(--white); border-radius: 12px; overflow: hidden; }
+    .article th, .article td { text-align: left; padding: 10px 12px; border-bottom: 1px solid rgba(15,30,51,.1); vertical-align: top; }
+    .article th { background: var(--cream-2); color: var(--forest); font-size: .85rem; text-transform: uppercase; letter-spacing: .05em; }
+    .article .tablewrap { overflow-x: auto; }
+    .article .myth { border: 1px dashed var(--terracotta); border-radius: 14px; padding: 16px 18px; margin-bottom: 12px; background: var(--white); }
+    .article .myth b { color: var(--terracotta); }
+    .article .cta-inline { background: var(--forest); color: var(--cream); border-radius: 22px; padding: 28px; margin: 40px 0 10px; }
+    .article .cta-inline h3 { color: var(--cream); margin-top: 0; }
+    .article .cta-inline p { color: rgba(243,246,251,.9); }
+    .article .cta-inline .btn-outline { border-color: var(--cream); color: var(--cream); }
+    .article .refs { font-size: .88rem; color: var(--muted); }
+    .article .refs a { overflow-wrap: anywhere; }
+    .article .refs li { font-size: .88rem; margin-bottom: 6px; }
+    .article .note { font-size: .9rem; color: var(--muted); }
+    .article .cta-inline .btn-outline { border-color: var(--cream); color: var(--cream); }
+    .qa-toc { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 10px; }
+    .qa-toc a { text-decoration: none; font-weight: 600; font-size: .92rem; color: var(--forest); border: 1px solid var(--sage); border-radius: 999px; padding: 6px 14px; background: var(--white); }
+    .qa { background: var(--white); border-radius: 16px; padding: 20px 22px; margin-bottom: 14px; box-shadow: var(--shadow); scroll-margin-top: 90px; }
+    .article .qa h3 { margin: 0 0 8px; font-size: 1.28rem; }
+    .article .qa p { margin-bottom: 8px; }
+    .qa .kind { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 6px; }
+    .qa .src { font-size: .85rem; color: var(--muted); margin: 6px 0 0; }
+    .qa .src a { overflow-wrap: anywhere; }
+    .qa .go { font-weight: 600; }
+    #questions .article h2:first-child { margin-top: 0; }
+  </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en-GB", "mainEntity": [{"@type": "Question", "name": "Do I need a stress risk assessment?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Employers have a legal duty to assess the risk of work-related stress and act on it. If you have five or more workers, you must write the assessment down."}}, {"@type": "Question", "name": "What are HSE’s Management Standards?", "acceptedAnswer": {"@type": "Answer", "text": "Six areas of work design that affect stress: demands, control, support, relationships, role and change. They’re the basis of HSE’s approach to stress risk assessment."}}, {"@type": "Question", "name": "What changes on 30 October 2026 for harassment?", "acceptedAnswer": {"@type": "Answer", "text": "Employers must take all reasonable steps to prevent sexual harassment, and can be liable for harassment of staff by third parties such as customers and clients. It applies in England, Wales and Scotland."}}, {"@type": "Question", "name": "What if a customer harasses one of my staff?", "acceptedAnswer": {"@type": "Answer", "text": "Since 30 October 2026, you can be liable unless you took all reasonable steps to prevent it. Acas suggests assessing the risks, a policy, training, recording incidents, updating customer terms and telling customers the consequences."}}, {"@type": "Question", "name": "What do “all reasonable steps” mean for a small business?", "acceptedAnswer": {"@type": "Answer", "text": "Acas says it depends on your size, sector and type of work, and means doing what is possible with the resources you have. If you decide a step isn’t reasonable, write down why."}}, {"@type": "Question", "name": "How much do Sana Essencia’s workplace tools cost?", "acceptedAnswer": {"@type": "Answer", "text": "The Psychosocial Risk Toolkit is free. The Manager’s Pack is £59 for up to 50 staff or £149 for 51–250. The Risk Management System is £249 for up to 50 staff or £449 for 51–250 staff, one-off with 12 months of updates. Consultant partner licences start at £495 a year."}}, {"@type": "Question", "name": "Can we use a diffuser or room scent in the office?", "acceptedAnswer": {"@type": "Answer", "text": "No UK law bans it, but the air is shared. In a UK survey, 27.8% of adults reported health problems from fragranced products, such as migraines or asthma attacks. Agree it with your team, keep scent-free areas, make it easy to opt out, and keep the space well ventilated, as the Workplace Regulations require."}}, {"@type": "Question", "name": "Can we burn candles at work?", "acceptedAnswer": {"@type": "Answer", "text": "Check your building’s fire rules first: many shared workspaces don’t allow open flames. Paper scent strips or a reed diffuser in a single room are simpler options."}}]}</script>
 </head>
 <body>
   <!-- ===== HEADER ===== -->
@@ -496,6 +532,62 @@
         </div>
       </div>
     </section>
+    <section class="faq" id="questions">
+      <div class="container article">
+        <h2 id="employers" style="scroll-margin-top:90px">Questions employers ask</h2>
+        <div class="qa" id="stress-ra">
+          <span class="kind">What the law says</span>
+          <h3>Do I need a stress risk assessment?</h3>
+          <p>Yes. Employers have a legal duty to assess the risk of work-related stress and act on it. If you have five or more workers, you must write the assessment down.</p>
+          <p class="go"><a href="/psychosocial-risk-toolkit/">Start with the free toolkit →</a></p><p class="src">Source: <a href="https://www.hse.gov.uk/STRESS/risk-assessment.htm" target="_blank" rel="noopener">HSE, stress risk assessment</a></p>
+        </div>
+        <div class="qa" id="management-standards">
+          <span class="kind">What is</span>
+          <h3>What are HSE’s Management Standards?</h3>
+          <p>Six areas of work design that affect stress: demands, control, support, relationships, role and change. They’re the basis of HSE’s approach to stress risk assessment.</p>
+          <p class="src">Source: <a href="https://www.hse.gov.uk/STRESS/risk-assessment.htm" target="_blank" rel="noopener">HSE, stress risk assessment</a></p>
+        </div>
+        <div class="qa" id="harassment-30-oct">
+          <span class="kind">What the law says</span>
+          <h3>What changes on 30 October 2026 for harassment?</h3>
+          <p>Employers must take all reasonable steps to prevent sexual harassment, and can be liable for harassment of staff by third parties such as customers and clients. It applies in England, Wales and Scotland.</p>
+          <p class="go"><a href="/guides/harassment-duty-30-october-2026/">Read the 8-point checklist →</a></p><p class="src">Source: <a href="https://www.acas.org.uk/employment-rights-act-2025/harassment-law-changes/sexual-harassment" target="_blank" rel="noopener">Acas, sexual harassment</a>; <a href="https://www.business.gov.uk/campaign/employment-changes/employers/workplace-sexual-harassment-and-third-party-harassment/" target="_blank" rel="noopener">Business.gov.uk</a></p>
+        </div>
+        <div class="qa" id="customer-harasses">
+          <span class="kind">What if</span>
+          <h3>What if a customer harasses one of my staff?</h3>
+          <p>Since 30 October 2026, you can be liable unless you took all reasonable steps to prevent it. Acas suggests assessing the risks, a policy, training, recording incidents, updating customer terms and telling customers the consequences.</p>
+          <p class="src">Source: <a href="https://www.acas.org.uk/employment-rights-act-2025/harassment-law-changes" target="_blank" rel="noopener">Acas, third-party harassment</a></p>
+        </div>
+        <div class="qa" id="reasonable-steps">
+          <span class="kind">What does it mean</span>
+          <h3>What do “all reasonable steps” mean for a small business?</h3>
+          <p>Acas says it depends on your size, sector and type of work, and means doing what is possible with the resources you have. If you decide a step isn’t reasonable, write down why.</p>
+          <p class="src">Source: <a href="https://www.acas.org.uk/employment-rights-act-2025/harassment-law-changes" target="_blank" rel="noopener">Acas, third-party harassment</a></p>
+        </div>
+        <div class="qa" id="toolkit-cost">
+          <span class="kind">How much does it cost</span>
+          <h3>How much do Sana Essencia’s workplace tools cost?</h3>
+          <p>The Psychosocial Risk Toolkit is free. The Manager’s Pack is £59 for up to 50 staff or £149 for 51–250. The Risk Management System is £249 for up to 50 staff or £449 for 51–250 staff, one-off with 12 months of updates. Consultant partner licences start at £495 a year.</p>
+          <p class="go"><a href="/licence/">See the licence terms →</a></p>
+        </div>
+        <h3 id="scent-at-work" style="scroll-margin-top:90px;margin-top:32px">Scent at work</h3>
+        <div class="qa" id="diffuser-office">
+          <span class="kind">Can we</span>
+          <h3>Can we use a diffuser or room scent in the office?</h3>
+          <p>No UK law bans it, but the air is shared. In a UK survey, 27.8% of adults reported health problems from fragranced products, such as migraines or asthma attacks. Agree it with your team, keep scent-free areas, make it easy to opt out, and keep the space well ventilated, as the Workplace Regulations require.</p>
+          <p class="go"><a href="/psychosocial-risk-toolkit/">Plan it in the toolkit →</a></p><p class="src">Source: <a href="https://researchonline.jcu.edu.au/53664/" target="_blank" rel="noopener">Steinemann (2018), fragranced products in the UK</a>; <a href="https://www.legislation.gov.uk/uksi/1992/3004/contents" target="_blank" rel="noopener">Workplace (Health, Safety and Welfare) Regulations 1992</a></p>
+        </div>
+        <div class="qa" id="candles-office">
+          <span class="kind">Can we</span>
+          <h3>Can we burn candles at work?</h3>
+          <p>Check your building’s fire rules first: many shared workspaces don’t allow open flames. Paper scent strips or a reed diffuser in a single room are simpler options.</p>
+          
+        </div>
+        <p class="note">General information, not legal advice. Check the current law and take advice for your own situation.</p>
+      </div>
+    </section>
+
     <!-- ===== CONTACT ===== -->
     <section class="cta" id="contact">
       <div class="container">
