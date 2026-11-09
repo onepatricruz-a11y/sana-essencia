@@ -304,7 +304,7 @@ function renderHome(){
   '</div></section>'+
 
   '<section class="section"><div class="wrap">'+
-    secHead("Membership","Stay compliant without becoming a lawyer","Founding prices for the first members. Sign-ups open after a qualified specialist has reviewed our guidance.")+
+    secHead("Membership","Know the rules without becoming a lawyer","Founding prices for the first members. Sign-ups open after a qualified specialist has reviewed our guidance.")+
     tiersHTML(false)+
   '</div></section>'+
 
@@ -420,7 +420,7 @@ function renderUpdates(){
 }
 
 function renderMembership(){
-  return '<section class="page-head"><div class="wrap"><p class="eyebrow">Membership</p><h1 id="page-h1" tabindex="-1">Stay compliant without becoming a lawyer</h1><p class="lede">The guides are free. Members get templates, printable checklists and an alert whenever a rule that affects their products changes.</p></div></section>'+
+  return '<section class="page-head"><div class="wrap"><p class="eyebrow">Membership</p><h1 id="page-h1" tabindex="-1">Know the rules without becoming a lawyer</h1><p class="lede">The guides are free. Members get templates, printable checklists and an alert whenever a rule that affects their products changes.</p></div></section>'+
     '<section class="section"><div class="wrap">'+tiersHTML(true)+'<p class="fine" style="margin-top:16px">Founding prices for the first members. Prices include VAT where it applies.</p></div></section>'+
     '<section class="section alt" id="join"><div class="wrap two">'+
       '<div class="prose"><p class="eyebrow">Register interest</p><h2 style="font-size:32px">Be first in when sign-ups open</h2><p>Sign-ups open once a qualified specialist has reviewed our guidance. Leave your email and we’ll tell you the day it opens.</p>'+
