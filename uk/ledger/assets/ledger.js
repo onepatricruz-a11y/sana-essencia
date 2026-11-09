@@ -257,7 +257,7 @@ function guideCard(k){ var g = GUIDES[k]; return '<a class="card" href="#'+k+'">
 function tiersHTML(full){
   var t = [
     {name:"Free", price:"£0", per:"", alt:"Always free", items:["Product checker and claims checker","Answers to the most-asked questions","Monthly email of law changes"], cta:"Use the free tools", href:"#checker", cls:""},
-    {name:"Member", price:"£9", per:"/month", alt:"or £90 a year", items:["Every product guide in full","Label templates: CLP, cosmetics and candle warnings","Record templates: batch log, burn-test log, technical file","Alerts when a rule that affects your products changes","Monthly live question time"], cta:"Register interest", href:"#membership", cls:"pick"}
+    {name:"Member", price:"£9", per:"/month", alt:"or £90 a year", items:["Printable checklist for each product guide","Label templates: CLP, cosmetics and candle warnings","Record templates: batch log, burn-test log, technical file","Alerts when a rule that affects your products changes","Monthly live question time"], cta:"Register interest", href:"#membership", cls:"pick"}
   ];
   return '<div class="tiers">'+t.map(function(x){ return '<div class="tier '+x.cls+'">'+(x.cls?'<span class="pick-badge">Most makers</span>':'')+'<h3>'+x.name+'</h3><p class="price">'+x.price+'<small>'+x.per+'</small></p><p class="alt-price">'+x.alt+'</p><ul class="ticks">'+x.items.map(function(i){return '<li>'+i+'</li>';}).join("")+'</ul><a class="btn '+(x.cls?'':'ghost')+'" href="'+(full&&x.href==="#membership"?"#join":x.href)+'">'+x.cta+'</a></div>'; }).join("")+'</div>';
 }
@@ -420,11 +420,11 @@ function renderUpdates(){
 }
 
 function renderMembership(){
-  return '<section class="page-head"><div class="wrap"><p class="eyebrow">Membership</p><h1 id="page-h1" tabindex="-1">Stay compliant without becoming a lawyer</h1><p class="lede">Templates, full guides and an alert whenever a rule that affects your products changes.</p></div></section>'+
+  return '<section class="page-head"><div class="wrap"><p class="eyebrow">Membership</p><h1 id="page-h1" tabindex="-1">Stay compliant without becoming a lawyer</h1><p class="lede">The guides are free. Members get templates, printable checklists and an alert whenever a rule that affects their products changes.</p></div></section>'+
     '<section class="section"><div class="wrap">'+tiersHTML(true)+'<p class="fine" style="margin-top:16px">Founding prices for the first members. Prices include VAT where it applies.</p></div></section>'+
     '<section class="section alt" id="join"><div class="wrap two">'+
       '<div class="prose"><p class="eyebrow">Register interest</p><h2 style="font-size:32px">Be first in when sign-ups open</h2><p>Sign-ups open once a qualified specialist has reviewed our guidance. Leave your email and we’ll tell you the day it opens.</p>'+
-      '<form class="inline-form" id="join-form"><label for="join-email" class="sr">Email address</label><input id="join-email" type="email" placeholder="you@yourshop.co.uk" required><button class="btn" type="submit">Notify me</button></form><p class="form-msg" id="join-msg" hidden></p><p class="fine">Preview site: this form does not send or store anything yet.</p></div>'+
+      '<form class="inline-form" id="join-form" name="ledger-interest" method="POST" data-netlify="true" netlify-honeypot="company-website"><input type="hidden" name="form-name" value="ledger-interest"><p hidden><label>Leave this empty: <input name="company-website" tabindex="-1" autocomplete="off"></label></p><label for="join-email" class="sr">Email address</label><input id="join-email" name="email" type="email" placeholder="you@yourshop.co.uk" required maxlength="120"><button class="btn" type="submit">Notify me</button></form><p class="form-msg" id="join-msg" role="status" hidden></p><p class="fine">We use your email only to tell you when sign-ups open. See the <a href="https://sanaessencia.co.uk/privacy/">privacy notice</a>.</p></div>'+
       '<div class="prose"><p class="eyebrow">Questions</p>'+
         '<h3 style="font-size:20px">Is this legal advice?</h3><p>No. Scent Ledger explains the rules in plain English and links to the law. For advice on your own situation, speak to a solicitor or your local Trading Standards business advice service.</p>'+
         '<h3 style="font-size:20px">Can I cancel?</h3><p>Yes, at any time. Monthly plans stop at the end of the month; yearly plans stop at the end of the year.</p>'+
@@ -512,7 +512,12 @@ if(page==="faq"){
 }
 if(page==="membership"){
   var jf = document.getElementById("join-form");
-  if(jf) jf.addEventListener("submit", function(e){ e.preventDefault(); var m = document.getElementById("join-msg"); m.textContent = "Thanks. Sign-ups aren\u2019t open yet, so nothing was sent."; m.hidden = false; });
+  if(jf) jf.addEventListener("submit", function(e){ e.preventDefault(); var m = document.getElementById("join-msg");
+    var body = new URLSearchParams(new FormData(jf)).toString();
+    fetch("/", {method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:body})
+      .then(function(r){ if(!r.ok) throw 0; m.textContent = "Thanks. We\u2019ll email you the day sign-ups open."; m.hidden = false; jf.reset(); })
+      .catch(function(){ m.textContent = "That didn\u2019t send. Please try again, or email hello@sanaessencia.co.uk."; m.hidden = false; });
+  });
 }
 
 })();
