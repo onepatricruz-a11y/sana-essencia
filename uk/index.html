@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="p:domain_verify" content="0d40cad41bed63fa3e8c6decc5af9497"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Work-related stress and harassment: practical tools for UK employers | Sana Essencia</title>
-  <meta name="description" content="Practical tools for UK employers: a stress risk assessment built on HSE's Management Standards, the harassment duty since 30 October 2026, and comfortable workplaces. Plus the free Blend Studio for scent makers.">
-  <meta property="og:title" content="Work-related stress and harassment: practical tools for UK employers | Sana Essencia">
-  <meta property="og:description" content="Practical tools for a stress risk assessment built on HSE's Management Standards, and for the harassment duty since 30 October 2026.">
+  <title>Sana Essencia | Tools for scent businesses: workshops, scent design and UK rules</title>
+  <meta name="description" content="Ready-to-teach workshops, a scent design app and the UK rules in plain English for candle, soap and fragrance businesses. Plus practical tools for workplaces.">
+  <meta property="og:title" content="Sana Essencia | Tools for scent businesses: workshops, scent design and UK rules">
+  <meta property="og:description" content="Ready-to-teach workshops, a scent design app and the UK rules in plain English for candle, soap and fragrance businesses. Plus practical tools for workplaces.">
   <meta property="og:url" content="https://sanaessencia.co.uk/">
   <meta property="og:image" content="https://sanaessencia.co.uk/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -261,369 +261,108 @@
   </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Sana Essencia", "alternateName": ["Sana Essencia Ltd", "Sana Essência"], "url": "https://sanaessencia.co.uk/", "logo": "https://sanaessencia.co.uk/og-image.png", "email": "hello@sanaessencia.co.uk", "founder": {"@type": "Person", "name": "Patricia Cruz"}, "sameAs": ["https://sanaessencia.com.br/", "https://www.linkedin.com/in/patricia-cruz-7a3a90412/"], "description": "Sana Essencia translates the science of scent for brands and workplaces and offers practical tools on work-related stress."}</script>
 <link rel="stylesheet" href="/assets/se-2026.css">
+
+  <style>
+    .doors.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .door .door-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--forest); color: #FFFFFF; display: grid; place-items: center; margin-bottom: 6px; }
+    .door .door-icon svg { width: 28px; height: 28px; }
+    .doors.three .door-body { padding: 30px 28px 30px; }
+    .free-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+    .free-card { display: flex; flex-direction: column; gap: 6px; background: #FFFFFF; border: 1px solid var(--se-rule, #D3DCE8); border-radius: var(--radius); padding: 22px 24px; text-decoration: none; color: inherit; transition: transform .15s; }
+    .free-card:hover { transform: translateY(-2px); }
+    .free-card .k { font-family: var(--se-mono, monospace); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--terracotta); }
+    .free-card strong { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; color: var(--forest); }
+    .free-card span.t { color: var(--muted); font-size: .95rem; }
+    .public-line { padding: 40px 0; }
+    .public-line p { max-width: 820px; color: var(--muted); }
+    .public-line a { color: var(--terracotta); }
+    @media (max-width: 900px) { .doors.three, .free-grid { grid-template-columns: minmax(0, 1fr); } }
+  </style>
 </head>
 <body>
-
+  <script>(function(){var h=location.hash,w={'#uk-law':1,'#pack':1,'#system':1,'#scent-plan':1,'#building':1,'#brazil':1};
+    if(w[h])location.replace('/workplaces/'+h);else if(h==='#studio')location.replace('/blend-studio/');else if(h==='#scent-ledger')location.replace('/ledger/');else if(h==='#course')location.replace('/course/');})();</script>
   <!-- ===== HEADER ===== -->
   <header>
     <div class="container nav">
       <a href="#home" class="logo"><img src="/assets/se-mark.svg" alt="" width="34" height="34">Sana <span>Essencia</span></a>
       <button class="menu-toggle" aria-label="Open menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
       <ul class="nav-links">
-        <li><a href="#uk-law">UK employers</a></li>
-        <li><a href="#pack">Manager's Pack</a></li>
-        <li><a href="/blend-studio/">Blend Studio</a></li>
-        <li><a href="#system">Risk System</a></li>
-        <li><a href="/workshop-hosts/">Workshop studios</a></li>
-        <li><a href="/partners/">Partners</a></li>
-        <li><a class="nav-new" href="/course/">Course</a></li>
+        <li><a href="/workshops/">Workshops</a></li>
+        <li><a href="/blend-studio/">Studio</a></li>
+        <li><a href="/ledger/">Ledger</a></li>
+        <li><a href="/workplaces/">Workplaces</a></li>
         <li><a href="/about/">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="/ledger/">Scent Ledger</a></li>
-          <li><a class="lang" href="https://sanaessencia.com.br" hreflang="pt-BR" lang="pt-BR" aria-label="Site em português">🇧🇷 PT</a></li>
+        <li><a class="lang" href="https://sanaessencia.com.br" hreflang="pt-BR" lang="pt-BR" aria-label="Site em português">🇧🇷 PT</a></li>
       </ul>
     </div>
   </header>
 
   <main>
+
     <!-- ===== HERO ===== -->
     <section class="hero" id="home">
       <div class="hero-copy">
-        <span class="eyebrow">Science-led tools for safer, more comfortable workplaces</span>
-        <h1>Healthier workplaces, starting with how work feels.</h1>
-        <p class="lead">How people are led, how their work is designed, and how the space around them feels all shape a working day. Sana Essencia gives you practical, science-led tools for each of them, in plain English.</p>
+        <span class="eyebrow">For candle, soap and fragrance businesses</span>
+        <h1>Ready-made tools for scent businesses.</h1>
+        <p class="lead">Ready-to-teach workshops, a scent design app and the UK rules in plain English. Under your brand, powered by Sana Essencia.</p>
         <div class="btn-row">
-          <a href="#uk-law" class="btn btn-accent">Tools for workplaces</a>
-          <a href="/blend-studio/" class="btn btn-outline">Open the free Blend Studio</a>
-        </div>
-        <div class="trust">
-          <span>100% digital</span>
-          <span>Plain English</span>
-          <span>Honest science, no health promises</span>
+          <a href="/workshops/" class="btn btn-accent">See the Workshop Library</a>
+          <a href="#start" class="btn btn-outline">Find your starting point</a>
         </div>
       </div>
     </section>
 
-    <!-- ===== TWO DOORS ===== -->
-    <section class="doors-section" aria-label="Choose where to start">
-      <div class="container doors">
-        <a class="door" href="#uk-law">
-          <img src="/images/workplace-meeting-room.jpg" width="1200" height="800" alt="A calm, bright meeting room with plants and soft daylight" loading="lazy">
+    <!-- ===== THREE DOORS ===== -->
+    <section class="doors-section" id="start" aria-label="Choose where to start">
+      <div class="container doors three">
+        <a class="door" href="/workshops/">
           <span class="door-body">
-            <span class="door-tag">For workplaces</span>
-            <strong>Make your workplace feel better, safely</strong>
-            <span class="door-text">Tools for managers, HR and H&amp;S teams to manage work-related stress, plus optional scent plans agreed with your team.</span>
-            <span class="door-go">Start here &rarr;</span>
+            <span class="door-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15 14.5c2.8 0 5 2.2 5 5"/></svg></span>
+            <span class="door-tag">I run workshops</span>
+            <strong>Workshop Library</strong>
+            <span class="door-text">Ready-to-teach sessions: running order, slides with your logo, costed shopping list and printables.</span>
+            <span class="door-go">See the packs &rarr;</span>
           </span>
         </a>
-        <a class="door door-warm" href="#studio">
-          <img src="/images/scent-desk.jpg" width="1200" height="800" alt="Scent blotter strips, amber bottles and an open notebook on a bright studio desk" loading="lazy">
+        <a class="door door-warm" href="/ledger/">
           <span class="door-body">
-            <span class="door-tag">For scent makers and studios</span>
-            <strong>Blend with purpose, sell with confidence</strong>
-            <span class="door-text">The free Blend Studio, honest science about what each material does, and wording that helps you stay within UK advertising rules.</span>
-            <span class="door-go">Explore the Blend Studio &rarr;</span>
+            <span class="door-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z"/><path d="M12 9V6"/><path d="M12 3c1 1 1 2 0 3"/></svg></span>
+            <span class="door-tag">I make and sell</span>
+            <strong>Scent Ledger and Studio</strong>
+            <span class="door-text">The UK rules for candles, melts, diffusers and cosmetics, and an app to design your scents.</span>
+            <span class="door-go">Check what you can sell &rarr;</span>
+          </span>
+        </a>
+        <a class="door" href="/workplaces/">
+          <span class="door-body">
+            <span class="door-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M9 20v-6"/></svg></span>
+            <span class="door-tag">I look after a workplace</span>
+            <strong>Workplace tools</strong>
+            <span class="door-text">For managers, HR and health and safety teams: work-related stress and the harassment duty.</span>
+            <span class="door-go">See the tools &rarr;</span>
           </span>
         </a>
       </div>
     </section>
 
-    <!-- ===== UK CONTEXT ===== -->
-    <section class="context" id="uk-law">
+    <!-- ===== FREE TO START ===== -->
+    <section class="steps" id="free">
       <div class="container">
-        <span class="eyebrow">For UK employers</span>
-        <h2>Work-related stress is already part of your risk assessment.</h2>
-        <p class="lead" style="color: rgba(243,246,251,0.85);">The duty to manage work-related stress isn't new: it's the same one that covers every other workplace risk. And since 30 October 2026, employers must also take all reasonable steps to prevent sexual harassment, and can be liable for harassment of staff by third parties such as customers and clients. <a href="/guides/harassment-duty-30-october-2026/" style="color: var(--cream); font-weight: 600;">Read the 8-point checklist</a>.</p>
-        <div class="context-grid">
-          <div class="context-card">
-            <strong>It's already the law</strong>
-            <p>The Health and Safety at Work etc. Act 1974 and the Management of Health and Safety at Work Regulations 1999 require employers to assess risks to their employees' health, and that includes work-related stress.</p>
-          </div>
-          <div class="context-card">
-            <strong>HSE's six areas</strong>
-            <p>HSE's Management Standards look at six areas of work: demands, control, support, relationships, role and change.</p>
-          </div>
-          <div class="context-card">
-            <strong>Assess, act, record</strong>
-            <p>Managing it means identifying the risks, talking to employees, taking action and reviewing it. Employers with five or more employees must record the significant findings.</p>
-          </div>
-        </div>
-        <p class="closing">A wellbeing day is welcome. A risk assessment that people took part in is what counts.</p>
-        <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center">
-          <a href="/psychosocial-risk-toolkit/" class="btn btn-accent">Open the free Psychosocial Risk Toolkit</a>
-          <span style="color:rgba(243,246,251,0.85);font-size:0.97rem;max-width:46ch">For H&amp;S consultants, HR and L&amp;D teams: plan psychosocial controls room by room, with the law and the evidence alongside.</span>
+        <span class="eyebrow">Free to start</span>
+        <h2>Try it before you pay</h2>
+        <div class="free-grid">
+          <a class="free-card" href="/blend-studio/"><span class="k">App</span><strong>Blend Studio</strong><span class="t">Design a scent with real quantities.</span></a>
+          <a class="free-card" href="/ledger/"><span class="k">Rules</span><strong>Scent Ledger guides</strong><span class="t">What you need before you sell.</span></a>
+          <a class="free-card" href="/course/module-1/"><span class="k">Lesson</span><strong>How smell works</strong><span class="t">The science, in four short lessons.</span></a>
         </div>
       </div>
     </section>
 
-    <!-- ===== MANAGER'S PACK (FOR SALE) ===== -->
-    <section id="pack">
+    <!-- ===== FOR EVERYONE ELSE ===== -->
+    <section class="public-line" id="book">
       <div class="container">
-        <div class="split">
-          <div>
-            <span class="eyebrow">Available now</span>
-            <h2>The Manager's Pack: lead a healthy team</h2>
-            <p class="lead">A practical, ready-to-use pack for UK line managers that helps you spot and prevent work-related stress in your team, built on HSE's six Management Standards areas. Read it in an hour, run one team conversation, and leave with a written action plan.</p>
-          </div>
-          <div class="split-photo wide">
-            <img src="/images/manager-desk.jpg" width="1000" height="1250" alt="An open guide, a notepad and a plant on a manager's desk by a window" loading="lazy">
-          </div>
-        </div>
-        <div class="offers-grid">
-          <article class="offer featured">
-            <span class="tag">Team licence</span>
-            <h3>What's inside</h3>
-            <ul>
-              <li>Manager's Guide (PDF): eight short chapters, from the legal duty to running a team conversation</li>
-              <li>Printable checklist and team conversation cards</li>
-              <li>Guidance on supporting an individual and where to point them for help</li>
-              <li>A chapter on the work environment, including optional, safe use of scent</li>
-              <li>Editable Team Action Plan (Excel) that doubles as your written record</li>
-            </ul>
-            <div class="price">&pound;59 <small>one organisation, up to 50 employees</small></div>
-            <!-- Replace the link below with your Payhip product link -->
-            <a href="https://payhip.com/b/UMXxk" class="btn btn-accent" target="_blank" rel="noopener">Buy the Manager's Pack</a>
-          </article>
-          <article class="offer">
-            <span class="tag">Good to know</span>
-            <h3>Who it's for</h3>
-            <p class="who">Line managers, HR and business owners in small and medium-sized UK organisations.</p>
-            <ul>
-              <li>Instant download after payment</li>
-              <li>Share it with managers and staff inside your organisation</li>
-              <li>51&ndash;250 employees: organisation licence &pound;149</li>
-              <li>Practical guidance only: it doesn't replace your own risk assessment or professional advice</li>
-            </ul>
-            <a href="https://payhip.com/b/UMXxk" class="btn btn-outline" target="_blank" rel="noopener">Buy the 51&ndash;250 licence (&pound;149)</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ===== PSYCHOSOCIAL RISK MANAGEMENT SYSTEM (FOR SALE) ===== -->
-    <section id="system" style="background: var(--white);">
-      <div class="container">
-        <span class="eyebrow">Available now &middot; For whole organisations</span>
-        <h2>Psychosocial Risk Management System</h2>
-        <p class="lead">Practical tools to assess, act on and record psychosocial risk across your organisation, built on HSE's six Management Standards areas. Worked examples show what a good register and action plan look like.</p>
-        <div class="offers-grid">
-          <article class="offer featured">
-            <span class="tag">One-off licence</span>
-            <h3>The System</h3>
-            <ul>
-              <li>Overall System Guide, with a step-by-step first 30 days</li>
-              <li>Policy template for leadership sign-off</li>
-              <li>Risk Register template (Word)</li>
-              <li>Action Plan that doubles as your record of significant findings</li>
-              <li>Sensory Protocol Module: optional, consent-based, always last</li>
-              <li>12 months of updates</li>
-            </ul>
-            <div class="price">&pound;249 <small>up to 50 staff &middot; &pound;449 for 51&ndash;250</small></div>
-            <a href="https://payhip.com/b/BR0d9" class="btn btn-accent" target="_blank" rel="noopener">Buy: up to 50 staff (&pound;249)</a>
-            <a href="https://payhip.com/b/AZMyg" class="btn btn-outline" target="_blank" rel="noopener">Buy: 51&ndash;250 staff (&pound;449)</a>
-          </article>
-          <article class="offer">
-            <span class="tag">Annual</span>
-            <h3>Annual Support Plan</h3>
-            <p class="who">For organisations that want help keeping it current.</p>
-            <ul>
-              <li>The full System</li>
-              <li>Quarterly legal update pack</li>
-              <li>Annual review pack</li>
-              <li>One written review of your risk register and action plan</li>
-              <li>Email support, usually within two working days</li>
-            </ul>
-            <div class="price">&pound;595 <small>a year, up to 250 staff</small></div>
-            <a href="mailto:hello@sanaessencia.co.uk?subject=Annual%20Support%20Plan" class="btn btn-outline">Ask about the Annual Plan</a>
-          </article>
-        </div>
-        <p style="margin-top: 28px; color: var(--muted); font-size: 0.95rem;">Sana Essencia Ltd is not VAT registered, so there's no UK VAT. Prices include any VAT due. Health and safety consultant or L&amp;D provider? Use the System with your clients under a <a href="/partners/">Partner Licence</a>, and we can brand the documents in your logo and colours. See the <a href="/licence/">licence terms</a>.</p>
-        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem;"><strong style="color: var(--forest);">Founding pilot:</strong> we're looking for three UK organisations to use the System free, in return for honest feedback we can publish. <a href="mailto:hello@sanaessencia.co.uk?subject=Founding%20pilot">Email us</a> to apply.</p>
-      </div>
-    </section>
-
-    <!-- ===== WORKPLACE SCENT PLAN ===== -->
-    <section id="scent-plan">
-      <div class="container env-grid">
-        <div>
-          <span class="eyebrow">For workplaces &middot; Optional</span>
-          <h2>Workplace Scent Plan</h2>
-          <p class="lead">Scent can't fix heavy workloads or poor management. Good work design does that. Done well, though, it's the finishing touch people notice the moment they walk in. We plan it room by room, for the purpose of each space, with your team's agreement.</p>
-          <article class="offer featured" style="margin-top: 28px;">
-            <span class="tag">Remote plan</span>
-            <h3>What you get</h3>
-            <ul>
-              <li>A 45-minute call, plus your floor plan and photos</li>
-              <li>A short staff consent and sensitivity check</li>
-              <li>A palette for each space: desks, meeting rooms, reception, quiet room</li>
-              <li>Run times, intensity and scent-free zones</li>
-              <li>An opt-out protocol and wording to share with your team</li>
-              <li>A spec sheet for any scent supplier, including what certificates to ask for</li>
-              <li>A review after three months</li>
-            </ul>
-            <div class="price">&pound;495 <small>one site, up to 6 spaces</small></div>
-            <a href="mailto:hello@sanaessencia.co.uk?subject=Workplace%20Scent%20Plan" class="btn btn-accent">Book a 20-minute chat</a>
-          </article>
-        </div>
-        <div class="photo-note">
-        <div class="split-photo wide">
-          <img src="/images/workplace-meeting-room.jpg" width="1200" height="800" alt="A calm, bright meeting room with plants and a small reed diffuser" loading="lazy">
-        </div>
-        <div class="env-box">
-          <span class="eyebrow" style="color: var(--sage);">Our approach to scent</span>
-          <h3>The finishing touch, done with consent</h3>
-          <p>We explain what each scent does, what the research shows and what it doesn't. You and your team decide what goes in the air.</p>
-          <ul class="env-list">
-            <li>Always optional, agreed with the team</li>
-            <li>Care for allergies, asthma and scent sensitivities</li>
-            <li>Scent-free spaces always kept</li>
-            <li>We don't sell oils or devices: our advice is independent</li>
-          </ul>
-        </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== FREE TOOL: BLEND STUDIO ===== -->
-    <section id="studio" class="studio-band">
-      <div class="container">
-        <div class="split">
-          <div class="split-photo wide">
-            <img src="/images/scent-desk.jpg" width="1200" height="800" alt="Scent blotter strips, amber bottles, eucalyptus and a laptop on a studio desk" loading="lazy">
-          </div>
-          <div>
-            <span class="eyebrow">For scent makers and studios &middot; Free tool</span>
-            <h2>Try the Blend Studio</h2>
-            <p class="lead">A free app for anyone who works with scent: describe what you want and get a blend with real quantities, honest science and wording that helps you stay within UK advertising rules. Works on your phone and offline.</p>
-            <p style="margin-top: 14px; color: var(--muted); font-size: 0.95rem; max-width: 640px;">We explain what each material does, how strong it is and what to watch for. You decide what you make and how it's used.</p>
-          </div>
-        </div>
-        <div class="aud-grid">
-          <div class="aud">
-            <div class="icon">&#x1F9EA;</div>
-            <h3>Blends with quantities</h3>
-            <p>Candles, diffusers, room sprays and more, with drops and percentages you can adjust.</p>
-          </div>
-          <div class="aud">
-            <div class="icon">&#x1F3E2;</div>
-            <h3>Workplace scent plans</h3>
-            <p>Simple plans for offices, meeting rooms and quiet rooms, with consent and sensitivities in mind.</p>
-          </div>
-          <div class="aud">
-            <div class="icon">&#x2705;</div>
-            <h3>Wording checker</h3>
-            <p>Paste a product description and see which phrases tend to break UK advertising rules, with safer alternatives.</p>
-          </div>
-        </div>
-        <div class="btn-row">
-          <a href="/blend-studio/" class="btn btn-primary">Open the Blend Studio</a>
-          <a href="/blend-studio/#services" class="btn btn-outline">Scent services for makers</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SCENT LEDGER ===== -->
-    <section class="ledger-band" id="scent-ledger" aria-labelledby="ledger-title">
-      <div class="container ledger-grid">
-        <div>
-          <span class="eyebrow">New &middot; Scent Ledger, by Sana Essencia</span>
-          <h2 id="ledger-title">Can I legally sell this?</h2>
-          <p class="lead">Plain-English UK compliance answers for candle, wax melt, diffuser, soap and fragrance makers. Every answer links to the law and shows the date it was last checked.</p>
-          <div class="btn-row">
-            <a class="btn btn-accent" href="/ledger/">Open Scent Ledger</a>
-            <a class="btn btn-outline" href="/ledger/checker/">Check a product</a>
-          </div>
-        </div>
-        <ul class="ledger-points">
-          <li><b>Product checker</b>What the law requires for what you make, with a source for each point.</li>
-          <li><b>Claims checker</b>Spots medical, germ-killing, safety and green claims in your listings.</li>
-          <li><b>Law updates</b>A dated log of rule changes that affect UK scent makers.</li>
-        </ul>
-      </div>
-    </section>
-
-
-    <!-- ===== WHAT WE'RE BUILDING ===== -->
-    <section class="course-band" id="course" aria-labelledby="course-title">
-      <div class="container ledger-grid">
-        <div>
-          <span class="eyebrow">New &middot; The Scent Business Course</span>
-          <h2 id="course-title">Make it properly. Sell it legally.</h2>
-          <p class="lead">An online course for UK makers: candles, wax melts, diffusers, soap and perfume, then labels, insurance, pricing and workshops. Module 1 is free.</p>
-          <div class="btn-row">
-            <a class="btn btn-accent" href="/course/module-1/">Start Module 1 free</a>
-            <a class="btn btn-outline" href="/course/">See the course</a>
-          </div>
-        </div>
-        <ul class="ledger-points">
-          <li><b>Make it</b>Six modules on the craft, with step-by-step visual guides and each supplier&rsquo;s own instructions.</li>
-          <li><b>Sell it</b>Labels, insurance, pricing, Etsy, markets and your own workshops.</li>
-          <li><b>Honest numbers</b>No earnings promises. You work out your own costs and prices.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="book">
-      <div class="container env-grid">
-        <div>
-          <span class="eyebrow">Home edition · on Kindle</span>
-          <h2>The Scent Advantage</h2>
-          <p class="lead">A short, practical guide to using scent at home with honest science: working from home, studying and unwinding, a five-scent starter kit, safety, and a 7-day plan to find what works for you.</p>
-          <p style="margin-top:.75rem">Most of our work is with organisations. The home edition brings the same science to your own space.</p>
-          <div class="btn-row">
-            <a href="https://www.amazon.co.uk/dp/B0HM5JTN8C?tag=sanaessencia-21" class="btn btn-primary" target="_blank" rel="noopener sponsored">Get it on Amazon</a>
-            <a href="/blend-studio/" class="btn btn-outline">Try the free Blend Studio</a>
-          </div>
-          <p style="margin-top:.75rem">Also in Portuguese: <a href="https://www.amazon.co.uk/dp/B0HM3PMBW3?tag=sanaessencia-21" target="_blank" rel="noopener sponsored" lang="pt-BR">A Vantagem do Aroma</a></p>
-          <p style="font-size:.8rem;opacity:.75;margin-top:.75rem">As an Amazon Associate, Sana Essencia earns from qualifying purchases.</p>
-        </div>
-        <div class="photo-note">
-        <div class="split-photo tall">
-          <img src="/images/home-reading-corner.jpg" width="1000" height="1250" alt="A cosy reading corner with an armchair, books, tea and a diffuser" loading="lazy">
-        </div>
-        <div class="env-box">
-          <h3>Inside the book</h3>
-          <ul class="env-list">
-            <li>How smell reaches the parts of the brain linked to emotion and memory</li>
-            <li>What research does and doesn't support</li>
-            <li>A five-scent starter kit and how to use a diffuser</li>
-            <li>Safety at home, and a 7-day personal experiment</li>
-          </ul>
-        </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="building">
-      <div class="container">
-        <span class="eyebrow">Coming next</span>
-        <h2>What we're building</h2>
-        <p class="lead">The Manager's Pack, the Risk Management System and the Workplace Scent Plan are available now. These fuller UK programmes are in development: <a href="mailto:hello@sanaessencia.co.uk?subject=Register%20interest%20-%20new%20UK%20programmes">register your interest</a> and we'll let you know when they're ready.</p>
-        <div class="aud-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-          <div class="aud">
-            <div class="icon">🎓</div>
-            <h3>Online training</h3>
-            <p>Short courses for managers and teams on recognising and reducing work-related stress, with completion records.</p>
-          </div>
-          <div class="aud">
-            <div class="icon">👂</div>
-            <h3>Listening and action</h3>
-            <p>Anonymous employee listening built around HSE's six areas, turned into an action plan with owners and dates.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== BRAZIL ===== -->
-    <section class="steps" id="brazil">
-      <div class="container">
-        <span class="eyebrow">Already live</span>
-        <h2>Working with companies in Brazil</h2>
-        <p class="lead">In Brazil, the updated NR-1 regulation now requires companies to manage psychosocial risks as part of their occupational risk programme. Our Brazilian programmes, the <em>Programa NR-1 em 30 Dias</em> and the <em>Kit NR-1</em>, help businesses get organised.</p>
-        <div class="btn-row">
-          <a href="https://sanaessencia.com.br" class="btn btn-primary" hreflang="pt-BR">Visit sanaessencia.com.br</a>
-        </div>
+        <p>Want to make your own candle? Book a workshop with a local maker, or design a scent for free in the <a href="/blend-studio/">Blend Studio</a>. For scent at home, there&rsquo;s our book <a href="https://www.amazon.co.uk/dp/B0HM5JTN8C?tag=sanaessencia-21" target="_blank" rel="noopener sponsored">The Scent Advantage</a> (affiliate link).</p>
       </div>
     </section>
 
@@ -633,25 +372,15 @@
         <div class="cta-box">
           <span class="eyebrow" style="color: var(--sage);">Get in touch</span>
           <h2>Not sure where to start?</h2>
-          <p>Tell us a little about your organisation or your scent business, and we'll suggest the right starting point in a free 20-minute chat.</p>
+          <p>Tell us about your business and we&rsquo;ll point you to the right place.</p>
           <div class="btn-row">
-            <a href="mailto:hello@sanaessencia.co.uk?subject=Book%20a%2020-minute%20chat" class="btn btn-accent">Book a 20-minute chat</a>
-            <a href="https://www.linkedin.com/in/patricia-cruz-7a3a90412/" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:hello@sanaessencia.co.uk?subject=Where%20should%20I%20start%3F" class="btn btn-accent">Email us</a>
           </div>
           <p style="margin-top: 22px; font-size: 0.95rem;">hello@sanaessencia.co.uk</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== PRIVACY ===== -->
-    <section class="faq" id="privacy" style="padding: 56px 0;">
-      <div class="container">
-        <h2 style="font-size: 1.8rem;">Privacy</h2>
-        <div class="faq-list" style="margin-top: 10px;">
-          <p style="color: var(--muted); font-size: 0.95rem; max-width: 820px;">This website has no cookies or tracking. Its only form is the optional founding tester sign-up on our <a href="/try/">Try page</a>. Purchases are handled by Payhip, which processes your payment details under its own privacy policy. If you email us, Sana Essencia Ltd uses your name, email address and anything you tell us only to reply and, if you asked, to let you know when new programmes are ready. We don't sell or share your details, and you can ask us to delete them at any time by emailing hello@sanaessencia.co.uk. Fonts on this page are loaded from Google Fonts. You can complain to the Information Commissioner's Office (ico.org.uk) if you're unhappy with how we handle your data. Read the full <a href="/privacy/">privacy policy</a>, <a href="/terms/">terms</a> and <a href="/refunds/">refund policy</a>.</p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- ===== FOOTER ===== -->
@@ -666,22 +395,23 @@
         <div class="foot-cols">
           <nav class="foot-col" aria-label="For workplaces">
             <span class="foot-head">Workplaces</span>
+            <a href="/workplaces/">Workplace tools</a>
             <a href="/psychosocial-risk-toolkit/">Psychosocial Risk Toolkit</a>
             <a href="/guides/harassment-duty-30-october-2026/">Harassment duty checklist</a>
-            <a href="/#pack">Manager's Pack</a>
-            <a href="/#system">Risk Management System</a>
-            <a href="/#scent-plan">Workplace Scent Plan</a>
+            <a href="/workplaces/#pack">Manager's Pack</a>
+            <a href="/workplaces/#system">Risk Management System</a>
+            <a href="/workplaces/#scent-plan">Workplace Scent Plan</a>
             <a href="/partners/">Partners and sales agents</a>
             <a href="/licence/">Licence terms</a>
           </nav>
           <nav class="foot-col" aria-label="For scent makers and studios">
             <span class="foot-head">Makers &amp; studios</span>
+            <a href="/workshops/">Workshop Library</a>
             <a href="/course/">The Scent Business Course</a>
             <a href="/ledger/">Scent Ledger</a>
             <a href="/blend-studio/">Blend Studio</a>
             <a href="/blend-studio/#services">Scent services for makers</a>
             <a href="/workshop-hosts/">For workshop studios</a>
-            <a href="/scent-preview/">Scent Preview for scent companies</a>
             <a href="/purchase-check/">Purchase check-up</a>
             <a href="/guides/essential-oil-candle-throw/">Candle throw guide</a>
           </nav>
