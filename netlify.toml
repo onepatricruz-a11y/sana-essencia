@@ -1,3 +1,4 @@
+# Redeploy after adding Payhip licence keys (10 Nov 2026). Functions read env vars at deploy time.
 [build]
   base = "uk"
   publish = "."
